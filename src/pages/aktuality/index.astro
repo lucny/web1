@@ -6,4 +6,15 @@ import { entries } from '../../lib/content';
 const [articles, programs] = await Promise.all([entries('articles'), entries('programs')]);
 const categories = [...new Set(articles.flatMap((article) => article.data.categories))];
 ---
-<BaseLayout title="Aktuality" description="Školní zpravodaj SŠPU Opava: projekty, úspěchy, akce a důležité informace."><section class="container-page py-14 sm:py-20" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Přehled aktualit</span><p class="eyebrow">Školní zpravodaj</p><h1 class="mt-3">Aktuality, které stojí za pozornost.</h1><p class="prose-school mt-6">Filtrujte podle rubriky, oboru nebo roku. Každá aktualita má vlastní URL, metadata a doporučený související obsah.</p><NewsFilters categories={categories} programs={programs.map((program) => ({ id: program.id, title: program.data.title }))} /><div class="mt-8 grid gap-6 lg:grid-cols-3">{articles.map((article) => <ArticleCard article={article} />)}</div></section></BaseLayout>
+<BaseLayout title="Aktuality" description="Školní zpravodaj SŠPU Opava: projekty, úspěchy, akce a důležité informace.">
+  <section class="container-page py-10 sm:py-14" data-pagefind-body>
+    <span class="sr-only" data-pagefind-filter="typ">Přehled aktualit</span>
+    <div class="page-intro max-w-5xl">
+      <p class="eyebrow">Školní zpravodaj</p>
+      <h1 class="mt-3 max-w-3xl">Aktuality, které stojí za pozornost.</h1>
+      <p class="prose-school mt-5">Filtrujte podle rubriky, oboru nebo roku. Každá aktualita má vlastní URL, metadata a doporučený související obsah.</p>
+    </div>
+    <NewsFilters categories={categories} programs={programs.map((program) => ({ id: program.id, title: program.data.title }))} />
+    <div class="mt-8 grid gap-6 lg:grid-cols-3">{articles.map((article) => <ArticleCard article={article} />)}</div>
+  </section>
+</BaseLayout>

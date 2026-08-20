@@ -4,12 +4,12 @@ import { formatDate } from '../lib/content';
 interface Props { article: CollectionEntry<'articles'>; featured?: boolean }
 const { article, featured = false } = Astro.props;
 ---
-<article class:list={["group card overflow-hidden", featured && 'md:grid md:grid-cols-[1.05fr_1fr]']} data-news-card data-category={article.data.categories.join(' ')} data-program={article.data.programs.join(' ')} data-year={article.data.publishedAt.getFullYear()}>
-  {article.data.cover && <img src={article.data.cover} alt="" class:list={["h-48 w-full object-cover", featured && 'md:h-full']} loading="lazy" />}
+<article class:list={["group card overflow-hidden border-t-4 border-school-cyan transition duration-300 hover:-translate-y-1 hover:shadow-soft", featured && 'md:grid md:grid-cols-[1.05fr_1fr]']} data-news-card data-category={article.data.categories.join(' ')} data-program={article.data.programs.join(' ')} data-year={article.data.publishedAt.getFullYear()}>
+  {article.data.cover && <img src={article.data.cover} alt="" class:list={["h-48 w-full object-cover transition duration-500 group-hover:scale-[1.03]", featured && 'md:h-full']} loading="lazy" />}
   <div class="p-6 sm:p-7">
-    <div class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide text-brand"><span>{article.data.categories[0]?.replace('-', ' ') ?? 'Aktualita'}</span><span aria-hidden="true">·</span><time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time></div>
+    <div class="flex flex-wrap gap-2 meta-label"><span>{article.data.categories[0]?.replace('-', ' ') ?? 'Aktualita'}</span><span aria-hidden="true">·</span><time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time></div>
     <h3 class="mt-3"><a href={`/aktuality/${article.id}/`} class="no-underline hover:text-brand">{article.data.title}</a></h3>
     <p class="mt-3 leading-7 text-ink/75">{article.data.description}</p>
-    <a href={`/aktuality/${article.id}/`} class="mt-5 inline-flex font-bold text-brand">Číst aktualitu <span aria-hidden="true" class="ml-2">→</span></a>
+    <a href={`/aktuality/${article.id}/`} class="mt-5 inline-flex font-bold text-brand no-underline transition group-hover:text-school-magenta">Číst aktualitu <span aria-hidden="true" class="ml-2">→</span></a>
   </div>
 </article>

@@ -2,5 +2,20 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { entries } from '../../lib/content';
 const programs = await entries('programs');
+const colors = ['border-school-steel', 'border-school-cyan', 'border-school-coral', 'border-school-lime', 'border-school-magenta'];
 ---
-<BaseLayout title="Obory a studium" description="Pět maturitních oborů SŠPU Opava: technika, informační technologie, design a tvorba."><section class="container-page py-14 sm:py-20" data-pagefind-body><p class="eyebrow">Obory a studium</p><h1 class="mt-3 max-w-3xl">Vyberte si směr, ve kterém budete mít co říct.</h1><p class="prose-school mt-6">Pět čtyřletých maturitních oborů. Každý nabízí vlastní prostředí, projekty a cestu k dalšímu studiu nebo praxi.</p><div class="mt-12 grid gap-6 lg:grid-cols-2">{programs.map((program) => <article class="card overflow-hidden sm:grid sm:grid-cols-[.85fr_1.15fr]"><img src={program.data.heroImage} alt="" class="h-52 w-full object-cover sm:h-full" loading="lazy"/><div class="p-6 sm:p-8"><p class="text-sm font-bold text-brand">{program.data.code} · {program.data.capacity} míst</p><h2 class="mt-3"><a class="no-underline hover:text-brand" href={`/obory/${program.id}/`}>{program.data.title}</a></h2><p class="mt-4 leading-7 text-ink/75">{program.data.description}</p><a class="mt-6 inline-flex font-bold text-brand" href={`/obory/${program.id}/`}>Detail oboru →</a></div></article>)}</div></section></BaseLayout>
+<BaseLayout title="Obory a studium" description="Pět maturitních oborů SŠPU Opava: technika, informační technologie, design a tvorba.">
+  <section class="container-page py-10 sm:py-14" data-pagefind-body>
+    <div class="page-intro max-w-5xl">
+      <p class="eyebrow">Obory a studium</p>
+      <h1 class="mt-3 max-w-3xl">Vyberte si směr, ve kterém budete mít co říct.</h1>
+      <p class="prose-school mt-5">Pět čtyřletých maturitních oborů. Každý nabízí vlastní prostředí, projekty a cestu k dalšímu studiu nebo praxi.</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-2">
+      {programs.map((program, index) => <article class:list={["group card overflow-hidden border-t-4 transition duration-300 hover:-translate-y-1 hover:shadow-soft sm:grid sm:grid-cols-[.85fr_1.15fr]", colors[index % colors.length]]}>
+        <img src={program.data.heroImage} alt="" class="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-full" loading="lazy" />
+        <div class="p-6 sm:p-8"><p class="meta-label">{program.data.code} · {program.data.capacity} míst</p><h2 class="mt-3"><a class="no-underline transition group-hover:text-school-magenta" href={`/obory/${program.id}/`}>{program.data.title}</a></h2><p class="mt-4 leading-7 text-ink/75">{program.data.description}</p><a class="mt-6 inline-flex font-bold text-brand no-underline transition group-hover:text-school-magenta" href={`/obory/${program.id}/`}>Detail oboru <span aria-hidden="true" class="ml-2">→</span></a></div>
+      </article>)}
+    </div>
+  </section>
+</BaseLayout>
