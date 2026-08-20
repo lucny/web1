@@ -39,8 +39,8 @@ Například `npm run gallery:create -- C:\fotky\den-otevrenych-dveri den-otevren
 - `src/content/` — Gitový obsah a jeho validované entity: články, obory, galerie, dokumenty, události, lidé a informační stránky.
 - `src/content/config.ts` — schéma obsahu pro Astro; zde se mění datový model.
 - `src/components/` — malé opakovaně použitelné komponenty: navigace, karty, filtry, lightbox a obsahové bloky.
-- `src/pages/` — statické trasy, RSS, `robots.txt`, strojově čitelný `/obsah.json` a `llms.txt`.
-- `public/admin/` — Decap CMS, jehož formuláře odpovídají datovým entitám.
+- `src/pages/` — statické trasy včetně `/admin/`, RSS, `robots.txt`, strojově čitelný `/obsah.json` a `llms.txt`.
+- `public/admin/config.yml` — formuláře Decap CMS odpovídající datovým entitám.
 - `src/data/legacy-redirects.ts` — začátek mapy stará URL → nová URL pro budoucí 301 redirecty.
 - `scripts/` — kontrola obsahu, interních odkazů a příprava galerie.
 
@@ -54,7 +54,7 @@ Informační stránky mají vedle Markdownu připravené bloky upozornění, CTA
 
 ## Vyhledávání, SEO a přístupnost
 
-`npm run build` nejdříve vygeneruje HTML a pak Pagefind index. Vyhledávání na `/vyhledavani/` funguje bez samostatného serveru a nabízí filtr typu obsahu. Všechny důležité entity mají samostatné URL, takže je indexují vyhledávače i Pagefind.
+`npm run build` nejdříve vygeneruje HTML a pak Pagefind index. Vyhledávání na `/vyhledavani/` používá v produkci Pagefind; při `npm run dev` se automaticky přepne na obsahový index `/obsah.json`, takže je okamžitě testovatelné i bez buildu. Nabízí filtr typu obsahu. Všechny důležité entity mají samostatné URL, takže je indexují vyhledávače i Pagefind.
 
 Součástí prototypu jsou sitemap, `robots.txt`, RSS, canonical URL, Open Graph metadata, JSON-LD pro školu, breadcrumb, článek, událost a osobu. Komponenty obsahují skip link, viditelné focus stavy, sémantické landmarky, responzivní navigaci a klávesnicově ovladatelný lightbox. Respektují také `prefers-reduced-motion`.
 
