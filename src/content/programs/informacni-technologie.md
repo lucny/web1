@@ -18,6 +18,7 @@ careers:
   - IT analytik
 relatedPeople:
   - jana-novotna
+  - marek-lucny.md
 status: published
 seo:
   noindex: false
