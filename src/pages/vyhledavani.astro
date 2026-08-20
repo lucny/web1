@@ -29,7 +29,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const query = input?.value.trim(); if (!query || !results || !status) return;
     status.textContent = 'Hledám…'; results.innerHTML = '';
     try {
-      const pagefindPath = '/pagefind/pagefind.js';
+      const pagefindPath = `${import.meta.env.BASE_URL}pagefind/pagefind.js`;
       const pagefind = await import(/* @vite-ignore */ pagefindPath);
       const searchResult = await pagefind.search(query, { filters: type?.value ? { typ: type.value } : {} });
       const data = await Promise.all(searchResult.results.slice(0, 20).map((result: { data: () => Promise<{ url: string; meta: { title?: string; typ?: string }; filters?: { typ?: string[] }; excerpt?: string }> }) => result.data()));
@@ -37,7 +37,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       render(data.map((item) => ({ title: item.meta.title || 'Bez názvu', url: item.url, type: item.meta.typ || item.filters?.typ?.[0] || 'Obsah', excerpt: item.excerpt })));
     } catch {
       try {
-        const response = await fetch('/obsah.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}obsah.json`);
         if (!response.ok) throw new Error('Nelze načíst vývojový index.');
         const index = await response.json() as { content: ContentItem[] };
         const needle = normalized(query);

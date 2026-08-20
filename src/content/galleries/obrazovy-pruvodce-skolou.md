@@ -18,7 +18,7 @@ photos:
     caption: Život školy mimo výuku
 article: zahajeni-skolniho-roku-2026
 programs: [strojirenstvi, informacni-technologie, prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
-categories: [skola]
+categories: [Škola]
 tags: [prohlídka školy]
 status: published
 ---

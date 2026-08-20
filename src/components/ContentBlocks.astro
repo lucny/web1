@@ -1,18 +1,50 @@
 ---
-type Block = {
-  type: 'notice'; title: string; text: string;
-} | {
-  type: 'cta'; title: string; text: string; label: string; href: string;
-} | {
-  type: 'columns'; items: { title: string; text: string }[];
-} | {
-  type: 'faq'; items: { question: string; answer: string }[];
-};
+import GalleryLightbox from './GalleryLightbox.astro';
+import { entries, withBase } from '../lib/content';
+
+type TextItem = { title: string; text: string };
+type Block =
+  | { type: 'text'; title?: string; text: string }
+  | { type: 'image'; image: string; alt: string; caption?: string }
+  | { type: 'notice'; title: string; text: string }
+  | { type: 'cta'; title: string; text: string; label: string; href: string }
+  | { type: 'columns' | 'twoColumns' | 'threeColumns'; items: TextItem[] }
+  | { type: 'gallery'; gallery: string }
+  | { type: 'documents'; documents: string[] }
+  | { type: 'articles'; articles: string[] }
+  | { type: 'people'; people: string[] }
+  | { type: 'faq'; items: { question: string; answer: string }[] };
+
 const { blocks = [] } = Astro.props as { blocks?: Block[] };
+const [galleries, documents, articles, people] = await Promise.all([
+  entries('galleries'), entries('documents'), entries('articles'), entries('people')
+]);
+const selected = <T extends { id: string }>(items: T[], ids: string[]) => items.filter((item) => ids.includes(item.id));
 ---
 {blocks.map((block) => {
+  if (block.type === 'text') return <section class="my-10 max-w-3xl">{block.title && <h2 class="text-2xl">{block.title}</h2>}<p class="mt-3 whitespace-pre-line leading-7 text-ink/80">{block.text}</p></section>;
+  if (block.type === 'image') return <figure class="my-10"><img src={withBase(block.image)} alt={block.alt} class="max-h-[42rem] w-full rounded-3xl object-cover shadow-soft" loading="lazy" />{block.caption && <figcaption class="mt-3 text-sm leading-6 text-ink/70">{block.caption}</figcaption>}</figure>;
   if (block.type === 'notice') return <aside class="info-panel my-10 border-l-4 border-l-school-lime"><h2 class="text-xl">{block.title}</h2><p class="mt-2 leading-7">{block.text}</p></aside>;
-  if (block.type === 'cta') return <section class="my-10 overflow-hidden rounded-3xl bg-night p-7 text-white shadow-lift sm:p-9"><p class="section-label !text-school-cyan">Důležitý odkaz</p><h2 class="mt-3 text-2xl text-white">{block.title}</h2><p class="mt-3 max-w-2xl leading-7 text-white/75">{block.text}</p><a class="button-primary mt-6 !bg-accent !text-night hover:!bg-school-cyan" href={block.href}>{block.label}</a></section>;
-  if (block.type === 'columns') return <section class="my-10 grid gap-4 md:grid-cols-2">{block.items.map((item) => <div class="info-panel"><h2 class="text-xl">{item.title}</h2><p class="mt-2 leading-7">{item.text}</p></div>)}</section>;
-  return <section class="my-10"><p class="section-label">Praktické informace</p><h2 class="mt-3">Časté otázky</h2><div class="mt-4 divide-y divide-ink/15 overflow-hidden rounded-2xl border border-ink/15 bg-white shadow-soft">{block.items.map((item) => <details class="p-5"><summary class="cursor-pointer font-bold">{item.question}</summary><p class="mt-3 leading-7 text-ink/75">{item.answer}</p></details>)}</div></section>;
+  if (block.type === 'cta') return <section class="my-10 overflow-hidden rounded-3xl bg-night p-7 text-white shadow-lift sm:p-9"><p class="section-label !text-school-cyan">Důležitý odkaz</p><h2 class="mt-3 text-2xl text-white">{block.title}</h2><p class="mt-3 max-w-2xl leading-7 text-white/75">{block.text}</p><a class="button-primary mt-6 !bg-accent !text-night hover:!bg-school-cyan" href={withBase(block.href)}>{block.label}</a></section>;
+  if (block.type === 'columns' || block.type === 'twoColumns' || block.type === 'threeColumns') return <section class:list={["my-10 grid gap-4", block.type === 'threeColumns' ? 'md:grid-cols-3' : 'md:grid-cols-2']}>
+    {block.items.map((item) => <div class="info-panel"><h2 class="text-xl">{item.title}</h2><p class="mt-2 leading-7">{item.text}</p></div>)}
+  </section>;
+  if (block.type === 'gallery') {
+    const gallery = galleries.find((item) => item.id === block.gallery);
+    return gallery && <section class="my-10"><div class="flex flex-wrap items-end justify-between gap-4"><div><p class="section-label">Galerie</p><h2 class="mt-2 text-2xl">{gallery.data.title}</h2><p class="mt-2 max-w-3xl leading-7 text-ink/75">{gallery.data.description}</p></div><a class="button-secondary" href={withBase(`/galerie/${gallery.id}/`)}>Celá galerie</a></div><div class="mt-6"><GalleryLightbox photos={gallery.data.photos} title={gallery.data.title} /></div></section>;
+  }
+  if (block.type === 'documents') {
+    const items = selected(documents, block.documents);
+    return items.length > 0 && <section class="my-10"><p class="section-label">Ke stažení</p><h2 class="mt-2 text-2xl">Dokumenty</h2><ul class="mt-5 grid gap-3">{items.map((item) => <li><a class="card block border-l-4 border-l-school-cyan p-5 no-underline hover:shadow-soft" href={withBase(`/dokumenty/${item.id}/`)}><strong>{item.data.title}</strong><span class="mt-1 block text-sm leading-6 text-ink/70">{item.data.description}</span></a></li>)}</ul></section>;
+  }
+  if (block.type === 'articles') {
+    const items = selected(articles, block.articles);
+    return items.length > 0 && <section class="my-10"><p class="section-label">Související</p><h2 class="mt-2 text-2xl">Aktuality</h2><ul class="mt-5 grid gap-3">{items.map((item) => <li><a class="card block border-l-4 border-l-school-magenta p-5 no-underline hover:shadow-soft" href={withBase(`/aktuality/${item.id}/`)}><strong>{item.data.title}</strong><span class="mt-1 block text-sm leading-6 text-ink/70">{item.data.description}</span></a></li>)}</ul></section>;
+  }
+  if (block.type === 'people') {
+    const items = selected(people, block.people);
+    return items.length > 0 && <section class="my-10"><p class="section-label">Kontakty</p><h2 class="mt-2 text-2xl">Na koho se obrátit</h2><div class="mt-5 grid gap-4 sm:grid-cols-2">{items.map((item) => <article class="card p-5"><h3 class="text-xl">{item.data.name}</h3><p class="mt-1 text-sm font-bold text-brand">{item.data.role}</p><a class="mt-3 inline-block break-all" href={`mailto:${item.data.email}`}>{item.data.email}</a>{item.data.phone && <a class="mt-1 block" href={`tel:${item.data.phone.replaceAll(' ', '')}`}>{item.data.phone}</a>}</article>)}</div></section>;
+  }
+  if (block.type === 'faq') return <section class="my-10"><p class="section-label">Praktické informace</p><h2 class="mt-3">Časté otázky</h2><div class="mt-4 divide-y divide-ink/15 overflow-hidden rounded-2xl border border-ink/15 bg-white shadow-soft">{block.items.map((item) => <details class="p-5"><summary class="cursor-pointer font-bold">{item.question}</summary><p class="mt-3 leading-7">{item.answer}</p></details>)}</div></section>;
+  return null;
 })}

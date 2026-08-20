@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { entries, routeFor } from '../lib/content';
+import { entries, routeFor, withBase } from '../lib/content';
 
 const labels = {
   pages: 'Stránka',
@@ -22,7 +22,7 @@ export const GET: APIRoute = async () => {
     return {
       type: labels[collection],
       title: data.title ?? data.name,
-      url: routeFor(collection, item.id),
+      url: withBase(routeFor(collection, item.id)),
       description: data.description ?? data.profile,
       text: item.body,
       metadata,

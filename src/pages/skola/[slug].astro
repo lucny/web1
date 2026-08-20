@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentBlocks from '../../components/ContentBlocks.astro';
 import { entries } from '../../lib/content';
 export async function getStaticPaths() { return (await entries('pages')).map((page) => ({ params: { slug: page.id }, props: { page } })); }
-const { page } = Astro.props; const { Content } = await render(page);
+const { page } = Astro.props;
+const { Content } = await render(page);
 ---
-<BaseLayout title={page.data.title} description={page.data.description} breadcrumbs={[{ label: 'Škola', href: '/skola/o-skole/' }, { label: page.data.title }]}><article class="container-page py-14 sm:py-20" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Stránka</span><p class="eyebrow">{page.data.eyebrow ?? 'Škola'}</p><h1 class="mt-3 max-w-4xl">{page.data.title}</h1>{page.data.highlight && <p class="mt-7 max-w-3xl border-l-4 border-accent pl-5 text-xl leading-8 text-ink/80">{page.data.highlight}</p>}<div class="prose-school mt-10"><Content /></div><ContentBlocks blocks={page.data.blocks} /></article></BaseLayout>
+<BaseLayout title={page.data.title} description={page.data.description} seo={page.data.seo} breadcrumbs={[{ label: 'Škola', href: '/skola/o-skole/' }, { label: page.data.title }]}><article class="container-page py-14 sm:py-20" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Stránka</span><p class="eyebrow">{page.data.eyebrow ?? 'Škola'}</p><h1 class="mt-3 max-w-4xl">{page.data.title}</h1>{page.data.highlight && <p class="mt-7 max-w-3xl border-l-4 border-accent pl-5 text-xl leading-8 text-ink/80">{page.data.highlight}</p>}<div class="prose-school mt-10"><Content /></div><ContentBlocks blocks={page.data.blocks} /></article></BaseLayout>

@@ -3,7 +3,7 @@ title: Mezinárodní jazykové zkoušky pro studenty
 description: Škola nabízí studentům možnost připravit se na mezinárodně uznávané jazykové certifikáty.
 publishedAt: 2025-10-01
 author: Redakce školy
-categories: [studium]
+categories: [Studium]
 tags: [angličtina, certifikát]
 programs: []
 status: published

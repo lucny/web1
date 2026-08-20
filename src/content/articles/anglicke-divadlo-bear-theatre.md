@@ -3,7 +3,7 @@ title: Anglické výukové divadlo The Bear Theatre na naší škole
 description: Výukové představení přineslo studentům angličtinu v živé a srozumitelné podobě.
 publishedAt: 2026-06-19
 author: Redakce školy
-categories: [akce]
+categories: [Akce]
 tags: [angličtina, divadlo]
 programs: [strojirenstvi, informacni-technologie, prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
 related: [cambridge-certifikaty]

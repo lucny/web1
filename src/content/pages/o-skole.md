@@ -3,6 +3,28 @@ title: Škola, která spojuje techniku a tvorbu
 description: SŠPU Opava nabízí technické i umělecké vzdělávání s důrazem na samostatnost, praxi a zodpovědnost.
 eyebrow: O škole
 highlight: Naše škola žáky vybavuje znalostmi a dovednostmi pro budoucí povolání i orientaci v současném světě.
+blocks:
+  - type: text
+    title: Škola v souvislostech
+    text: Technické a umělecké obory sdílí zázemí, projekty i prostor pro vlastní nápady.
+  - type: twoColumns
+    items:
+      - title: Technika
+        text: Studenti pracují s konstrukcí, výrobou, digitálními technologiemi a reálnými zadáními.
+      - title: Tvorba
+        text: Ateliéry rozvíjejí autorský přístup, vizuální komunikaci i práci s materiálem.
+  - type: gallery
+    gallery: obrazovy-pruvodce-skolou
+  - type: documents
+    documents: [prohlaseni-o-pristupnosti]
+  - type: people
+    people: [daniela-kubova]
+  - type: faq
+    items:
+      - question: Kde najdu kontaktní informace?
+        answer: Přehled kontaktů je na samostatné stránce Kontakt; pro obecný dotaz lze využít e-mail uvedený u školy.
+      - question: Kde jsou dokumenty pro studenty a uchazeče?
+        answer: Dokumenty jsou dostupné v přehledu Dokumenty a podle tématu také na stránkách pro studenty a uchazeče.
 status: published
 ---
 

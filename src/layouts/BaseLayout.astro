@@ -2,15 +2,21 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { withBase } from '../lib/content';
 
 interface Crumb { label: string; href?: string }
-interface Props { title?: string; description?: string; breadcrumbs?: Crumb[]; schema?: Record<string, unknown> }
-const { title = 'SŠPU Opava', description = 'Moderní web Střední školy průmyslové a umělecké Opava.', breadcrumbs = [], schema } = Astro.props;
-const pageTitle = title === 'SŠPU Opava' ? title : `${title} | SŠPU Opava`;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+interface Seo { title?: string; description?: string; canonical?: string; image?: string; noindex?: boolean }
+interface Props { title?: string; description?: string; breadcrumbs?: Crumb[]; schema?: Record<string, unknown>; seo?: Seo }
+const { title = 'SŠPU Opava', description = 'Moderní web Střední školy průmyslové a umělecké Opava.', breadcrumbs = [], schema, seo } = Astro.props;
+const resolvedTitle = seo?.title || title;
+const resolvedDescription = seo?.description || description;
+const pageTitle = resolvedTitle === 'SŠPU Opava' ? resolvedTitle : `${resolvedTitle} | SŠPU Opava`;
+const canonical = seo?.canonical ? new URL(seo.canonical, Astro.site ?? Astro.url.origin).href : new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+const ogImage = seo?.image ? new URL(seo.image, Astro.site ?? Astro.url.origin).href : undefined;
+const publicSite = Astro.site ?? Astro.url.origin;
 const organization = {
   '@context': 'https://schema.org', '@type': 'EducationalOrganization', name: 'Střední škola průmyslová a umělecká, Opava',
-  url: 'https://www.sspu-opava.cz/', telephone: '+420553621580', email: 'sspu@sspu-opava.cz',
+  url: new URL(import.meta.env.BASE_URL, publicSite).href, telephone: '+420553621580', email: 'sspu@sspu-opava.cz',
   address: { '@type': 'PostalAddress', streetAddress: 'Praskova 399/8', addressLocality: 'Opava', postalCode: '746 01', addressCountry: 'CZ' }
 };
 const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: breadcrumbs.map((crumb, index) => ({ '@type': 'ListItem', position: index + 1, name: crumb.label, item: crumb.href ? new URL(crumb.href, Astro.site ?? Astro.url.origin).href : canonical })) } : undefined;
@@ -20,9 +26,11 @@ const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org'
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="description" content={resolvedDescription} />
+    {seo?.noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" /><meta property="og:title" content={pageTitle} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" /><meta property="og:title" content={pageTitle} /><meta property="og:description" content={resolvedDescription} /><meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content="summary_large_image" />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organization)} />
@@ -31,7 +39,7 @@ const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org'
   </head>
   <body>
     <Header />
-    {breadcrumbs.length > 1 && <nav aria-label="Drobečková navigace" class="container-page pt-6 text-sm text-ink/70"><ol class="flex flex-wrap gap-x-2 gap-y-1">{breadcrumbs.map((crumb, index) => <li class="flex items-center gap-2">{index > 0 && <span aria-hidden="true">/</span>}{crumb.href && index < breadcrumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}</li>)}</ol></nav>}
+    {breadcrumbs.length > 1 && <nav aria-label="Drobečková navigace" class="container-page pt-6 text-sm text-ink/70"><ol class="flex flex-wrap gap-x-2 gap-y-1">{breadcrumbs.map((crumb, index) => <li class="flex items-center gap-2">{index > 0 && <span aria-hidden="true">/</span>}{crumb.href && index < breadcrumbs.length - 1 ? <a href={withBase(crumb.href)}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}</li>)}</ol></nav>}
     <main id="main-content"><slot /></main>
     <Footer />
   </body>

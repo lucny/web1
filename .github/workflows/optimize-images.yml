@@ -1,0 +1,39 @@
+name: Optimize uploaded images
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS action context (JSON)
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Create non-destructive WebP and AVIF variants
+        run: npm run media:optimize
+      - name: Commit generated variants when needed
+        run: |
+          git add -A public/uploads
+          if git diff --cached --quiet; then
+            echo "No optimized variants to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Optimize uploaded images"
+          git push

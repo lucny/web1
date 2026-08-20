@@ -1,12 +1,14 @@
 ---
+import { withBase } from '../lib/content';
 interface Photo { src: string; alt: string; caption?: string }
 const { photos, title } = Astro.props as { photos: Photo[]; title: string };
+const renderedPhotos = photos.map((photo) => ({ ...photo, src: withBase(photo.src) }));
 ---
-<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-gallery data-photos={JSON.stringify(photos)}>
-  {photos.map((photo, index) => <button type="button" class="group relative overflow-hidden rounded-2xl bg-night text-left" data-gallery-open={index} aria-haspopup="dialog" aria-label={`Otevřít fotografii ${index + 1}: ${photo.alt}`}><img src={photo.src} alt={photo.alt} class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" loading="lazy" /><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/80 to-transparent px-4 pb-3 pt-12 text-sm font-bold text-white">{photo.caption ?? photo.alt}</span></button>)}
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-gallery data-photos={JSON.stringify(renderedPhotos)}>
+  {renderedPhotos.map((photo, index) => <button type="button" class="group relative overflow-hidden rounded-2xl bg-night text-left" data-gallery-open={index} aria-haspopup="dialog" aria-label={`Otevřít fotografii ${index + 1}: ${photo.alt}`}><img src={photo.src} alt={photo.alt} class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" loading="lazy" /><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/80 to-transparent px-4 pb-3 pt-12 text-sm font-bold text-white">{photo.caption ?? photo.alt}</span></button>)}
 </div>
 <dialog class="m-auto w-[min(92vw,72rem)] rounded-3xl border-0 bg-night p-0 text-white shadow-2xl backdrop:bg-night/80" aria-label={`Galerie: ${title}`} data-gallery-dialog>
-  <div class="relative"><img class="max-h-[78vh] w-full object-contain" src={photos[0]?.src} alt={photos[0]?.alt} data-gallery-image /><button type="button" class="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-white text-2xl text-night" data-gallery-close aria-label="Zavřít galerii">×</button><div class="flex items-center justify-between gap-4 p-4"><button class="button-secondary !min-h-10 !px-4" type="button" data-gallery-prev>← Předchozí</button><p class="text-sm" data-gallery-caption></p><button class="button-secondary !min-h-10 !px-4" type="button" data-gallery-next>Další →</button></div></div>
+  <div class="relative"><img class="max-h-[78vh] w-full object-contain" src={renderedPhotos[0]?.src} alt={renderedPhotos[0]?.alt} data-gallery-image /><button type="button" class="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-white text-2xl text-night" data-gallery-close aria-label="Zavřít galerii">×</button><div class="flex items-center justify-between gap-4 p-4"><button class="button-secondary !min-h-10 !px-4" type="button" data-gallery-prev>← Předchozí</button><p class="text-sm" data-gallery-caption></p><button class="button-secondary !min-h-10 !px-4" type="button" data-gallery-next>Další →</button></div></div>
 </dialog>
 <script>
   const root = document.querySelector('[data-gallery]');

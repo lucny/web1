@@ -15,7 +15,7 @@ photos:
     caption: Prezentace a soutěžní projekty
 article: plakaty-prumyslovy-design
 programs: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
-categories: [uspechy]
+categories: [Úspěchy]
 tags: [výstava, tvorba]
 status: published
 ---

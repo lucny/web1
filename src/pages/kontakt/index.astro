@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { entries } from '../../lib/content';
-const people = await entries('people');
+import { entries, withBase } from '../../lib/content';
+const people = (await entries('people')).filter((person) => person.data.contactVisible);
 ---
 <BaseLayout title="Kontakty" description="Vedení školy, koordinátoři oborů a kontaktní údaje SŠPU Opava.">
   <section class="container-page py-10 sm:py-14" data-pagefind-body>
@@ -9,7 +9,7 @@ const people = await entries('people');
     <div class="page-intro max-w-5xl"><p class="eyebrow">Lidé a kontakty</p><h1 class="mt-3">Máte otázku? Obraťte se na správného člověka.</h1><p class="prose-school mt-5">Najděte spojení na vedení školy, koordinátory oborů i další členy týmu. Kontaktovat nás můžete telefonicky nebo e-mailem.</p></div>
     <div class="mt-10 grid gap-6 lg:grid-cols-[.75fr_1.25fr]">
       <aside class="overflow-hidden rounded-3xl bg-night p-7 text-white shadow-lift"><p class="section-label !text-school-cyan">Adresa školy</p><h2 class="mt-3 text-2xl text-white">SŠPU Opava</h2><address class="mt-5 not-italic leading-8 text-white/80">Praskova 399/8<br />746 01 Opava<br /><a class="font-bold text-white" href="tel:+420553621580">+420 553 621 580</a><br /><a class="font-bold text-white" href="mailto:sspu@sspu-opava.cz">sspu@sspu-opava.cz</a></address><p class="mt-8 border-t border-white/15 pt-6 text-sm leading-6 text-white/65">IČ: 47813121 · IZO: 000601896<br />Zřizovatel: Moravskoslezský kraj</p></aside>
-      <div class="grid gap-4 sm:grid-cols-2">{people.map((person) => <article class="card border-t-4 border-t-school-coral p-6 transition hover:-translate-y-1 hover:shadow-soft"><p class="meta-label">{person.data.department}</p><h2 class="mt-2 text-2xl"><a class="no-underline hover:text-school-magenta" href={`/kontakt/${person.id}/`}>{person.data.name}</a></h2><p class="mt-2 font-semibold text-ink/70">{person.data.role}</p><a class="mt-5 inline-block break-all font-bold text-brand no-underline hover:text-school-magenta" href={`mailto:${person.data.email}`}>{person.data.email}</a>{person.data.phone && <a class="mt-1 block font-bold text-brand no-underline hover:text-school-magenta" href={`tel:${person.data.phone.replaceAll(' ', '')}`}>{person.data.phone}</a>}</article>)}</div>
+      <div class="grid gap-4 sm:grid-cols-2">{people.map((person) => <article class="card border-t-4 border-t-school-coral p-6 transition hover:-translate-y-1 hover:shadow-soft"><p class="meta-label">{person.data.department}</p><h2 class="mt-2 text-2xl"><a class="no-underline hover:text-school-magenta" href={withBase(`/kontakt/${person.id}/`)}>{person.data.name}</a></h2><p class="mt-2 font-semibold text-ink/70">{person.data.role}</p><a class="mt-5 inline-block break-all font-bold text-brand no-underline hover:text-school-magenta" href={`mailto:${person.data.email}`}>{person.data.email}</a>{person.data.phone && <a class="mt-1 block font-bold text-brand no-underline hover:text-school-magenta" href={`tel:${person.data.phone.replaceAll(' ', '')}`}>{person.data.phone}</a>}</article>)}</div>
     </div>
   </section>
 </BaseLayout>

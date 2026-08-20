@@ -1,0 +1,817 @@
+# Pages CMS is an editing layer only: the public site continues to read these Markdown files through Astro.
+media:
+  - name: images
+    label: Obrázky pro obsah
+    input: public/uploads/images
+    output: /uploads/images
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+    actions:
+      - name: optimize-images
+        label: Optimalizovat obrázky
+        workflow: optimize-images.yml
+        ref: current
+        confirm:
+          title: Vytvořit optimalizované varianty?
+          message: Původní JPG a PNG zůstanou zachovány; workflow pouze přidá WebP a AVIF soubory.
+          button: Spustit optimalizaci
+  - name: galleries
+    label: Fotografie do galerií
+    input: public/uploads/galleries
+    output: /uploads/galleries
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+    actions:
+      - name: optimize-gallery-images
+        label: Optimalizovat fotografie
+        workflow: optimize-images.yml
+        ref: current
+  - name: people
+    label: Fotografie osob
+    input: public/uploads/people
+    output: /uploads/people
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+  - name: documents
+    label: Dokumenty ke stažení
+    input: public/uploads/documents
+    output: /uploads/documents
+    extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx]
+    rename: safe
+  - name: attachments
+    label: Přílohy článků
+    input: public/uploads/attachments
+    output: /uploads/attachments
+    categories: [document, image]
+    rename: safe
+
+components:
+  status:
+    type: select
+    label: Stav publikace
+    options:
+      values:
+        - name: published
+          label: Publikováno
+        - name: draft
+          label: Koncept (nezobrazí se na veřejném webu)
+  programs:
+    type: reference
+    label: Studijní obory
+    options:
+      collection: programs
+      multiple: true
+      value: "{name}"
+      label: "{title}"
+      search: "title,code,description"
+  categories:
+    type: reference
+    label: Kategorie
+    options:
+      collection: categories
+      multiple: true
+      value: "{primary}"
+      label: "{primary}"
+      search: "title,description"
+  tags:
+    type: string
+    label: Štítky
+    list: true
+    description: Volné štítky – použijte krátká, opakovatelná označení (např. „výstava“, „praxe“).
+  seo:
+    type: object
+    label: SEO a sdílení
+    fields:
+      - name: title
+        label: SEO titulek
+        type: string
+        required: false
+        description: Nechte prázdné pro použití hlavního názvu.
+      - name: description
+        label: Meta description
+        type: text
+        required: false
+        options:
+          maxlength: 160
+      - name: canonical
+        label: Kanonická URL
+        type: string
+        required: false
+        description: Použijte jen při vědomém řešení duplicitního obsahu.
+      - name: image
+        label: Obrázek pro sdílení
+        type: image
+        required: false
+        options:
+          media: images
+          rename: safe
+      - name: noindex
+        label: Neindexovat ve vyhledávačích
+        type: boolean
+        required: false
+        default: false
+
+content:
+  - name: web-pages
+    label: Stránky
+    type: collection
+    path: src/content/pages
+    filename:
+      template: "{primary}.md"
+      field: true
+    view:
+      primary: title
+      fields: [title, status]
+      search: [title, description, eyebrow]
+      sort: [title]
+      default:
+        sort: title
+        order: asc
+    fields:
+      - name: title
+        label: Název stránky
+        type: string
+      - name: description
+        label: Perex a meta description
+        type: text
+      - name: eyebrow
+        label: Nadřazený popisek
+        type: string
+        required: false
+      - name: highlight
+        label: Zvýrazněná informace
+        type: text
+        required: false
+      - name: blocks
+        label: Obsahové bloky
+        type: block
+        list: true
+        blockKey: type
+        blocks:
+          - name: text
+            label: Text
+            fields:
+              - name: title
+                label: Nadpis
+                type: string
+                required: false
+              - name: text
+                label: Text
+                type: text
+          - name: image
+            label: Obrázek
+            fields:
+              - name: image
+                label: Obrázek
+                type: image
+                options:
+                  media: images
+                  rename: safe
+              - name: alt
+                label: ALT text
+                type: string
+                description: Popište obsah obrázku; prázdný ALT použijte jen pro čistě dekorativní obrázek.
+              - name: caption
+                label: Popisek
+                type: text
+                required: false
+          - name: twoColumns
+            label: 2 sloupce
+            fields:
+              - name: items
+                label: Sloupce
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Nadpis
+                    type: string
+                  - name: text
+                    label: Text
+                    type: text
+          - name: threeColumns
+            label: 3 sloupce
+            fields:
+              - name: items
+                label: Sloupce
+                type: object
+                list: true
+                fields:
+                  - name: title
+                    label: Nadpis
+                    type: string
+                  - name: text
+                    label: Text
+                    type: text
+          - name: notice
+            label: Informační box
+            fields:
+              - name: title
+                label: Nadpis
+                type: string
+              - name: text
+                label: Text
+                type: text
+          - name: cta
+            label: Výzva k akci (CTA)
+            fields:
+              - name: title
+                label: Nadpis
+                type: string
+              - name: text
+                label: Text
+                type: text
+              - name: label
+                label: Text tlačítka
+                type: string
+              - name: href
+                label: Odkaz
+                type: string
+          - name: gallery
+            label: Galerie
+            fields:
+              - name: gallery
+                label: Vybraná galerie
+                type: reference
+                options:
+                  collection: galleries
+                  value: "{name}"
+                  label: "{title}"
+                  search: "title,description"
+          - name: documents
+            label: Seznam dokumentů
+            fields:
+              - name: documents
+                label: Dokumenty
+                type: reference
+                options:
+                  collection: documents
+                  multiple: true
+                  value: "{name}"
+                  label: "{title}"
+                  search: "title,description,category"
+          - name: articles
+            label: Seznam aktualit
+            fields:
+              - name: articles
+                label: Aktuality
+                type: reference
+                options:
+                  collection: articles
+                  multiple: true
+                  value: "{name}"
+                  label: "{title}"
+                  search: "title,description,author"
+          - name: people
+            label: Osoby a kontakty
+            fields:
+              - name: people
+                label: Kontaktní osoby
+                type: reference
+                options:
+                  collection: people
+                  multiple: true
+                  value: "{name}"
+                  label: "{name}"
+                  search: "name,role,department"
+          - name: faq
+            label: FAQ
+            fields:
+              - name: items
+                label: Otázky a odpovědi
+                type: object
+                list: true
+                fields:
+                  - name: question
+                    label: Otázka
+                    type: string
+                  - name: answer
+                    label: Odpověď
+                    type: text
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+      - name: body
+        label: Hlavní text
+        type: rich-text
+        options:
+          media: images
+          path: pages
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+          switcher: true
+
+  - name: articles
+    label: Aktuality a články
+    type: collection
+    path: src/content/articles
+    filename:
+      template: "{primary}.md"
+      field: true
+    view:
+      primary: title
+      fields: [title, publishedAt, author, status]
+      search: [title, description, author, categories, tags]
+      sort: [publishedAt, title]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - name: title
+        label: Titulek
+        type: string
+      - name: description
+        label: Perex
+        type: text
+      - name: publishedAt
+        label: Datum publikace
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: updatedAt
+        label: Datum poslední úpravy
+        type: date
+        required: false
+        default: ""
+        options:
+          time: true
+          format: yyyy-MM-dd'T'HH:mm:ssXXX
+      - name: author
+        label: Autor
+        type: reference
+        options:
+          collection: people
+          value: "{name}"
+          label: "{name}"
+          search: "name,role,department"
+      - name: categories
+        component: categories
+      - name: tags
+        component: tags
+      - name: programs
+        component: programs
+      - name: cover
+        label: Titulní obrázek
+        type: image
+        required: false
+        options:
+          media: images
+          rename: safe
+      - name: gallery
+        label: Související galerie
+        type: reference
+        required: false
+        options:
+          collection: galleries
+          value: "{name}"
+          label: "{title}"
+          search: "title,description"
+      - name: related
+        label: Doporučené články
+        type: reference
+        required: false
+        options:
+          collection: articles
+          multiple: true
+          value: "{name}"
+          label: "{title}"
+          search: "title,description"
+      - name: attachments
+        label: Přílohy
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: label
+            label: Název přílohy
+            type: string
+          - name: url
+            label: Soubor
+            type: file
+            options:
+              media: attachments
+              categories: [document, image]
+              rename: safe
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+      - name: body
+        label: Obsah článku
+        type: rich-text
+        options:
+          media: images
+          path: articles
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+          switcher: true
+
+  - name: programs
+    label: Studijní obory
+    type: collection
+    path: src/content/programs
+    filename:
+      template: "{primary}.md"
+      field: true
+    operations:
+      delete: false
+    view:
+      primary: title
+      fields: [title, code, form, status]
+      search: [title, code, description]
+      sort: [title]
+    fields:
+      - name: title
+        label: Název oboru
+        type: string
+      - name: code
+        label: Kód oboru
+        type: string
+      - name: form
+        label: Forma studia
+        type: string
+      - name: capacity
+        label: Kapacita
+        type: number
+      - name: description
+        label: Stručný popis
+        type: text
+      - name: heroImage
+        label: Titulní obrázek
+        type: image
+        required: false
+        options:
+          media: images
+          rename: safe
+      - name: highlights
+        label: Hlavní body studia
+        type: string
+        list: true
+      - name: careers
+        label: Možné profese
+        type: string
+        list: true
+      - name: relatedPeople
+        label: Kontakty k oboru
+        type: reference
+        required: false
+        options:
+          collection: people
+          multiple: true
+          value: "{name}"
+          label: "{name}"
+          search: "name,role,department"
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+      - name: body
+        label: Detail oboru
+        type: rich-text
+        options:
+          media: images
+          path: programs
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+          switcher: true
+
+  - name: galleries
+    label: Galerie
+    type: collection
+    path: src/content/galleries
+    filename:
+      template: "{primary}.md"
+      field: true
+    view:
+      primary: title
+      fields: [title, date, status]
+      search: [title, description, categories, tags]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Název galerie
+        type: string
+      - name: description
+        label: Popis a metadata
+        type: text
+      - name: date
+        label: Datum
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: cover
+        label: Titulní fotografie
+        type: image
+        options:
+          media: galleries
+          rename: safe
+      - name: photos
+        label: Fotografie (pořadí odpovídá veřejné galerii)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: src
+            label: Fotografie
+            type: image
+            options:
+              media: galleries
+              rename: safe
+          - name: alt
+            label: ALT text
+            type: string
+            description: Povinný smysluplný popis obsahu snímku.
+          - name: caption
+            label: Popisek
+            type: text
+            required: false
+      - name: article
+        label: Související článek
+        type: reference
+        required: false
+        options:
+          collection: articles
+          value: "{name}"
+          label: "{title}"
+          search: "title,description"
+      - name: programs
+        component: programs
+      - name: categories
+        component: categories
+      - name: tags
+        component: tags
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+      - name: body
+        label: Poznámka pro redakci / doplňující text
+        type: rich-text
+        required: false
+        options:
+          media: images
+          path: galleries
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+          switcher: true
+
+  - name: documents
+    label: Dokumenty
+    type: collection
+    path: src/content/documents
+    filename:
+      template: "{primary}.md"
+      field: true
+    view:
+      primary: title
+      fields: [title, category, date, validUntil, status]
+      search: [title, description, category, tags]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Název dokumentu
+        type: string
+      - name: description
+        label: Popis
+        type: text
+      - name: file
+        label: Soubor ke stažení
+        type: file
+        options:
+          media: documents
+          extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx]
+          rename: safe
+      - name: category
+        label: Kategorie
+        type: reference
+        options:
+          collection: categories
+          value: "{primary}"
+          label: "{primary}"
+          search: "title,description"
+      - name: date
+        label: Datum vydání
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: validUntil
+        label: Platnost do
+        type: date
+        required: false
+        default: ""
+        options:
+          format: yyyy-MM-dd
+      - name: programs
+        component: programs
+      - name: tags
+        component: tags
+      - name: pages
+        label: Související stránky
+        type: reference
+        required: false
+        options:
+          collection: web-pages
+          multiple: true
+          value: "{name}"
+          label: "{title}"
+          search: "title,description"
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+
+  - name: events
+    label: Události
+    type: collection
+    path: src/content/events
+    filename:
+      template: "{primary}.md"
+      field: true
+    view:
+      primary: title
+      fields: [title, start, type, location, status]
+      search: [title, description, type, location]
+      sort: [start, title]
+      default:
+        sort: start
+        order: asc
+    fields:
+      - name: title
+        label: Název události
+        type: string
+      - name: description
+        label: Popis
+        type: text
+      - name: start
+        label: Začátek
+        type: date
+        options:
+          time: true
+          format: yyyy-MM-dd'T'HH:mm:ssXXX
+      - name: end
+        label: Konec
+        type: date
+        required: false
+        default: ""
+        options:
+          time: true
+          format: yyyy-MM-dd'T'HH:mm:ssXXX
+      - name: location
+        label: Místo
+        type: string
+      - name: type
+        label: Typ události
+        type: string
+      - name: url
+        label: Odkaz pro více informací
+        type: string
+        required: false
+      - name: programs
+        component: programs
+      - name: article
+        label: Související článek
+        type: reference
+        required: false
+        options:
+          collection: articles
+          value: "{name}"
+          label: "{title}"
+          search: "title,description"
+      - name: gallery
+        label: Související galerie
+        type: reference
+        required: false
+        options:
+          collection: galleries
+          value: "{name}"
+          label: "{title}"
+          search: "title,description"
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+
+  - name: people
+    label: Lidé a kontakty
+    type: collection
+    path: src/content/people
+    filename:
+      template: "{primary}.md"
+      field: true
+    view:
+      primary: name
+      fields: [name, role, department, status]
+      search: [name, role, department, email, programs]
+      sort: [name]
+    fields:
+      - name: name
+        label: Jméno
+        type: string
+      - name: role
+        label: Titul / funkce
+        type: string
+      - name: department
+        label: Pracoviště
+        type: string
+      - name: phone
+        label: Telefon
+        type: string
+        required: false
+      - name: email
+        label: E-mail
+        type: string
+        pattern:
+          regex: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+          message: Zadejte platnou e-mailovou adresu.
+      - name: photo
+        label: Fotografie
+        type: image
+        required: false
+        options:
+          media: people
+          rename: safe
+      - name: profile
+        label: Stručný profil
+        type: text
+      - name: programs
+        component: programs
+      - name: contactVisible
+        label: Zobrazit v přehledu kontaktů
+        type: boolean
+        default: true
+        description: Vypněte pro technické autorské záznamy, které nesmí být veřejným kontaktem.
+      - name: status
+        component: status
+      - name: seo
+        component: seo
+
+  - name: categories
+    label: Kategorie
+    type: collection
+    path: src/content/categories
+    filename:
+      template: "{primary}.md"
+      field: true
+    operations:
+      delete: false
+    view:
+      primary: title
+      fields: [title, description, status]
+      search: [title, description]
+      sort: [title]
+    fields:
+      - name: title
+        label: Název kategorie
+        type: string
+      - name: description
+        label: Vysvětlení použití
+        type: text
+        required: false
+      - name: status
+        component: status
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "Přidat {path} přes Pages CMS"
+      update: "Upravit {path} přes Pages CMS"
+      delete: "Odstranit {path} přes Pages CMS"
+      rename: "Přejmenovat {oldPath} na {newPath} přes Pages CMS"
+
+actions:
+  - name: rebuild-site
+    label: Znovu sestavit a publikovat web
+    workflow: deploy-pages.yml
+    ref: current
+    cancelable: false
+    confirm:
+      title: Publikovat aktuální větev?
+      message: Spustí validaci obsahu, Astro build, Pagefind a deployment na GitHub Pages.
+      button: Publikovat
+  - name: validate-content
+    label: Zkontrolovat obsah
+    workflow: validate-content.yml
+    ref: current
+    confirm:
+      title: Zkontrolovat obsah?
+      message: Provede kontrolu datového modelu, Astro typů a konfigurace Pages CMS bez změny souborů.
+      button: Spustit kontrolu
+  - name: check-links
+    label: Zkontrolovat interní odkazy
+    workflow: check-links.yml
+    ref: current
+    confirm:
+      title: Sestavit web a zkontrolovat odkazy?
+      message: Vytvoří dočasný produkční build v Actions a ověří všechny interní odkazy.
+      button: Spustit kontrolu

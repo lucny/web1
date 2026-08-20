@@ -3,7 +3,7 @@ title: Exkurze žáků SV2B do společnosti BRANO v Hradci nad Moravicí
 description: Třída SV2B poznala provoz firmy, výrobní technologie i možnosti odborné praxe.
 publishedAt: 2026-06-12
 author: Karel Havránek
-categories: [akce]
+categories: [Akce]
 tags: [exkurze, praxe, průmysl]
 programs: [strojirenstvi]
 related: [ceska-ai-olympiada]

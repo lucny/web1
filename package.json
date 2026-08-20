@@ -12,8 +12,10 @@
     "cms": "decap-server",
     "search:index": "pagefind --site dist",
     "check:content": "node scripts/validate-content.mjs",
+    "check:pages-cms": "node scripts/validate-pages-config.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "check": "astro check && npm run check:content",
+    "media:optimize": "node scripts/optimize-images.mjs",
+    "check": "astro check && npm run check:content && npm run check:pages-cms",
     "test": "npm run check && npm run build && npm run check:links",
     "gallery:create": "node scripts/create-gallery.mjs"
   },

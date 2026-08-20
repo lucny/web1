@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'events' | 'people' | 'pages';
+type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'events' | 'people' | 'pages' | 'categories';
 type Entry<T extends Name> = CollectionEntry<T>;
 
 export async function entries<T extends Name>(collection: T) {
@@ -25,12 +25,19 @@ export function formatDate(date: Date, options: Intl.DateTimeFormatOptions = { d
 }
 
 export function routeFor(collection: Name, id: string) {
-  const routes: Record<Name, string> = {
+  const routes: Record<Exclude<Name, 'categories'>, string> = {
     articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/'
   };
+  if (collection === 'categories') throw new Error('Kategorie nemají veřejnou detailní trasu.');
   return `${routes[collection]}${id}/`;
 }
 
 export function relatedByProgram<T extends Name>(items: Entry<T>[], programs: string[]) {
   return items.filter((item) => 'programs' in item.data && item.data.programs.some((program) => programs.includes(program)));
+}
+
+/** Prefixes a repository-relative public URL when Astro runs below a GitHub Pages base path. */
+export function withBase(path: string) {
+  if (!path.startsWith('/') || path.startsWith('//')) return path;
+  return `${import.meta.env.BASE_URL}${path.slice(1)}`;
 }

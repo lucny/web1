@@ -3,4 +3,4 @@ node_modules/
 dist/
 .astro/
 .env
-public/uploads/
+# Média nahraná přes Pages/Decap CMS jsou součástí Git-backed obsahu.
