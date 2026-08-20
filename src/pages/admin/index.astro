@@ -10,7 +10,12 @@
     <title>Redakce SŠPU Opava</title>
   </head>
   <body data-pagefind-ignore>
-    <main aria-live="polite">Načítám redakční systém…</main>
-    <script src="https://unpkg.com/decap-cms-app@^3/dist/decap-cms.js"></script>
+    <main id="cms-loading" aria-live="polite">Načítám redakční systém…</main>
+    <script>
+      import CMS from 'decap-cms-app';
+
+      CMS.init();
+      document.querySelector('#cms-loading')?.remove();
+    </script>
   </body>
 </html>
