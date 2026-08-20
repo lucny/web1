@@ -116,9 +116,7 @@ content:
     label: Stránky
     type: collection
     path: src/content/pages
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     view:
       primary: title
       fields: [title, status]
@@ -306,9 +304,7 @@ content:
     label: Aktuality a články
     type: collection
     path: src/content/articles
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     view:
       primary: title
       fields: [title, publishedAt, author, status]
@@ -411,9 +407,7 @@ content:
     label: Studijní obory
     type: collection
     path: src/content/programs
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     operations:
       delete: false
     view:
@@ -480,9 +474,7 @@ content:
     label: Galerie
     type: collection
     path: src/content/galleries
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     view:
       primary: title
       fields: [title, date, status]
@@ -565,9 +557,7 @@ content:
     label: Dokumenty
     type: collection
     path: src/content/documents
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     view:
       primary: title
       fields: [title, category, date, validUntil, status]
@@ -633,9 +623,7 @@ content:
     label: Události
     type: collection
     path: src/content/events
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     view:
       primary: title
       fields: [title, start, type, location, status]
@@ -704,9 +692,7 @@ content:
     label: Lidé a kontakty
     type: collection
     path: src/content/people
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     view:
       primary: name
       fields: [name, role, department, status]
@@ -758,9 +744,7 @@ content:
     label: Kategorie
     type: collection
     path: src/content/categories
-    filename:
-      template: "{primary}.md"
-      field: true
+    filename: "{primary}.md"
     operations:
       delete: false
     view:
