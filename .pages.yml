@@ -129,9 +129,11 @@ content:
       - name: title
         label: Název stránky
         type: string
+        required: true
       - name: description
         label: Perex a meta description
         type: text
+        required: true
       - name: eyebrow
         label: Nadřazený popisek
         type: string
@@ -317,12 +319,15 @@ content:
       - name: title
         label: Titulek
         type: string
+        required: true
       - name: description
         label: Perex
         type: text
+        required: true
       - name: publishedAt
         label: Datum publikace
         type: date
+        required: true
         options:
           format: yyyy-MM-dd
       - name: updatedAt
@@ -336,9 +341,10 @@ content:
       - name: author
         label: Autor
         type: reference
+        required: true
         options:
           collection: people
-          value: "{name}"
+          value: "{primary}"
           label: "{name}"
           search: "name,role,department"
       - name: categories
@@ -419,18 +425,23 @@ content:
       - name: title
         label: Název oboru
         type: string
+        required: true
       - name: code
         label: Kód oboru
         type: string
+        required: true
       - name: form
         label: Forma studia
         type: string
+        required: true
       - name: capacity
         label: Kapacita
         type: number
+        required: true
       - name: description
         label: Stručný popis
         type: text
+        required: true
       - name: heroImage
         label: Titulní obrázek
         type: image
@@ -442,10 +453,12 @@ content:
         label: Hlavní body studia
         type: string
         list: true
+        required: true
       - name: careers
         label: Možné profese
         type: string
         list: true
+        required: true
       - name: relatedPeople
         label: Kontakty k oboru
         type: reference
@@ -487,23 +500,28 @@ content:
       - name: title
         label: Název galerie
         type: string
+        required: true
       - name: description
         label: Popis a metadata
         type: text
+        required: true
       - name: date
         label: Datum
         type: date
+        required: true
         options:
           format: yyyy-MM-dd
       - name: cover
         label: Titulní fotografie
         type: image
+        required: true
         options:
           media: galleries
           rename: safe
       - name: photos
         label: Fotografie (pořadí odpovídá veřejné galerii)
         type: object
+        required: true
         list:
           collapsible:
             collapsed: true
@@ -570,12 +588,15 @@ content:
       - name: title
         label: Název dokumentu
         type: string
+        required: true
       - name: description
         label: Popis
         type: text
+        required: true
       - name: file
         label: Soubor ke stažení
         type: file
+        required: true
         options:
           media: documents
           extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx]
@@ -583,6 +604,7 @@ content:
       - name: category
         label: Kategorie
         type: reference
+        required: true
         options:
           collection: categories
           value: "{primary}"
@@ -591,6 +613,7 @@ content:
       - name: date
         label: Datum vydání
         type: date
+        required: true
         options:
           format: yyyy-MM-dd
       - name: validUntil
@@ -636,12 +659,15 @@ content:
       - name: title
         label: Název události
         type: string
+        required: true
       - name: description
         label: Popis
         type: text
+        required: true
       - name: start
         label: Začátek
         type: date
+        required: true
         options:
           time: true
           format: yyyy-MM-dd'T'HH:mm:ssXXX
@@ -656,9 +682,11 @@ content:
       - name: location
         label: Místo
         type: string
+        required: true
       - name: type
         label: Typ události
         type: string
+        required: true
       - name: url
         label: Odkaz pro více informací
         type: string
@@ -702,12 +730,15 @@ content:
       - name: name
         label: Jméno
         type: string
+        required: true
       - name: role
         label: Titul / funkce
         type: string
+        required: true
       - name: department
         label: Pracoviště
         type: string
+        required: true
       - name: phone
         label: Telefon
         type: string
@@ -715,6 +746,7 @@ content:
       - name: email
         label: E-mail
         type: string
+        required: true
         pattern:
           regex: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
           message: Zadejte platnou e-mailovou adresu.
@@ -728,6 +760,7 @@ content:
       - name: profile
         label: Stručný profil
         type: text
+        required: false
       - name: programs
         component: programs
       - name: contactVisible
@@ -756,6 +789,7 @@ content:
       - name: title
         label: Název kategorie
         type: string
+        required: true
       - name: description
         label: Vysvětlení použití
         type: text

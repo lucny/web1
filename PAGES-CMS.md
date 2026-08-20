@@ -25,7 +25,7 @@ Hosted Pages CMS je pro tento experiment doporučený. Self-hosting není potře
 | Lidé | `src/content/people/` | Kontaktní údaje, foto, profil a obory |
 | Kategorie | `src/content/categories/` | Řízená klasifikace použitá v článcích, galeriích a dokumentech |
 
-Kategorie jsou samostatné entity. Štítky zůstávají záměrně volným opakovatelným seznamem: pro redakci je rychlejší je přidat bez zakládání nové entity, zatímco řízené kategorie se nerozpadnou na podobné varianty. Slug je název souboru Markdownu; Pages CMS jej při vytvoření automaticky vytvoří z hlavního názvu včetně přípony `.md`, takže redaktor název souboru nevyplňuje ručně.
+Kategorie jsou samostatné entity. Štítky zůstávají záměrně volným opakovatelným seznamem: pro redakci je rychlejší je přidat bez zakládání nové entity, zatímco řízené kategorie se nerozpadnou na podobné varianty. Slug je název souboru Markdownu; Pages CMS jej při vytvoření automaticky vytvoří z hlavního názvu včetně přípony `.md`, takže redaktor název souboru nevyplňuje ručně. Reference mezi kolekcemi mohou mít tento přirozený tvar s `.md`; web i validátor jej bezpečně převedou na interní slug.
 
 ## Obsahové bloky a editor
 

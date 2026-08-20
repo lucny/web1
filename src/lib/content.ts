@@ -17,7 +17,7 @@ export async function entries<T extends Name>(collection: T) {
 }
 
 export async function byId<T extends Name>(collection: T, id: string) {
-  return (await entries(collection)).find((entry) => entry.id === id);
+  return (await entries(collection)).find((entry) => entry.id === id.replace(/\.md$/i, ''));
 }
 
 export function formatDate(date: Date, options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' }) {

@@ -1,7 +1,14 @@
 import { defineCollection, z } from 'astro:content';
 
 const status = z.enum(['published', 'draft']).default('published');
-const slugList = z.array(z.string()).default([]);
+// Pages CMS reference fields naturally store a collection entry name such as
+// `informacni-technologie.md`. The public site uses Astro slugs without the
+// Markdown extension, so accept both forms at the content boundary.
+const contentReference = z.preprocess(
+  (value) => typeof value === 'string' ? value.replace(/\.md$/i, '') : value,
+  z.string()
+);
+const slugList = z.array(contentReference).default([]);
 const optionalDate = z.preprocess((value) => value === '' ? undefined : value, z.coerce.date().optional());
 const optionalUrl = z.preprocess((value) => value === '' ? undefined : value, z.string().url().optional());
 const seo = z.object({
@@ -21,7 +28,7 @@ const blocks = z.array(z.discriminatedUnion('type', [
   z.object({ type: z.literal('columns'), items: z.array(z.object({ title: z.string(), text: z.string() })).min(2).max(4) }),
   z.object({ type: z.literal('twoColumns'), items: z.array(z.object({ title: z.string(), text: z.string() })).length(2) }),
   z.object({ type: z.literal('threeColumns'), items: z.array(z.object({ title: z.string(), text: z.string() })).length(3) }),
-  z.object({ type: z.literal('gallery'), gallery: z.string() }),
+  z.object({ type: z.literal('gallery'), gallery: contentReference }),
   z.object({ type: z.literal('documents'), documents: slugList }),
   z.object({ type: z.literal('articles'), articles: slugList }),
   z.object({ type: z.literal('people'), people: slugList }),
@@ -40,7 +47,7 @@ const articles = defineCollection({
     tags: slugList,
     programs: slugList,
     cover: z.string().optional(),
-    gallery: z.string().optional(),
+    gallery: contentReference.optional(),
     attachments: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
     related: slugList,
     status,
@@ -73,7 +80,7 @@ const galleries = defineCollection({
     date: z.coerce.date(),
     cover: z.string(),
     photos: z.array(z.object({ src: z.string(), alt: z.string(), caption: z.string().optional() })),
-    article: z.string().optional(),
+    article: contentReference.optional(),
     programs: slugList,
     categories: slugList,
     tags: slugList,
@@ -110,8 +117,8 @@ const events = defineCollection({
     url: z.string().optional(),
     type: z.string(),
     programs: slugList,
-    article: z.string().optional(),
-    gallery: z.string().optional(),
+    article: contentReference.optional(),
+    gallery: contentReference.optional(),
     status,
     seo
   })
@@ -126,7 +133,7 @@ const people = defineCollection({
     phone: z.string().optional(),
     email: z.string().email(),
     photo: z.string().optional(),
-    profile: z.string(),
+    profile: z.string().default(''),
     programs: slugList,
     contactVisible: z.boolean().default(true),
     status,

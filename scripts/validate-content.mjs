@@ -32,8 +32,9 @@ for (const [collection, items] of Object.entries(records)) {
 const ids = (collection) => new Set(records[collection].map((item) => item.id));
 const categoryTitles = new Set(records.categories.map((item) => item.data.title));
 const peopleNames = new Set(records.people.map((item) => item.data.name));
+const contentReference = (value) => typeof value === 'string' ? value.replace(/\.md$/i, '') : value;
 const requireReferences = (source, file, field, values, available) => {
-  for (const value of values ?? []) if (!available.has(value)) errors.push(`${source}/${file}: ${field} odkazuje na neexistující položku „${value}“.`);
+  for (const value of values ?? []) if (!available.has(contentReference(value))) errors.push(`${source}/${file}: ${field} odkazuje na neexistující položku „${value}“.`);
 };
 
 for (const { file, data } of records.articles) {
