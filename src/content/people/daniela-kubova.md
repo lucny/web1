@@ -1,10 +1,13 @@
 ---
 name: Daniela Kubová
-role: Ředitelka školy
-department: Vedení školy
+role: protidrogový preventista
+department: umělecké obory
 phone: +420 553 621 580
-email: kubna@sspu-opava.cz
-profile: Zajišťuje vedení školy, veřejné informace a koordinaci klíčových školních aktivit.
-programs: []
+email: kubova@sspu-opava.cz
+profile: Zajišťuje vedení školy, veřejné informace a koordinaci klíčových
+  školních aktivit.
 status: published
+contactVisible: true
+seo:
+  noindex: false
 ---
