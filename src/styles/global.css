@@ -28,6 +28,8 @@
   .prose-school :where(a) { @apply font-semibold text-brand decoration-2 hover:text-night; }
   .prose-school :where(ul) { @apply my-6 list-disc space-y-2 pl-6; }
   .skip-link { @apply sr-only fixed left-4 top-4 z-[100] rounded-lg bg-night px-4 py-3 font-bold text-white focus:not-sr-only; }
+  .quick-link { @apply grid h-7 w-7 place-items-center rounded-full border border-white/35 text-white no-underline transition hover:border-accent hover:bg-accent hover:text-night; }
+  .quick-link svg { @apply h-4 w-4; }
 }
 
 @media (prefers-reduced-motion: reduce) {
