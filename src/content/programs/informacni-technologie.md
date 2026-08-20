@@ -9,8 +9,8 @@ heroImage: https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/
 highlights:
   - Programování, webové aplikace a databáze
   - Počítačové sítě a operační systémy
-  - CISCO Academy a samostatné projekty
   - Počítačová grafika
+  - CISCO Academy a samostatné projekty
 careers:
   - Programátor
   - Správce sítí
