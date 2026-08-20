@@ -1,518 +1,69 @@
-# Instrukce pro Codex — varianta A: Astro + Git-based CMS
+# Moderní prototyp webu SŠPU Opava
 
-## Cíl experimentu
+Statický, rychlý a přístupný prototyp veřejného webu Střední školy průmyslové a umělecké Opava. Zachovává informační identitu současného webu, ale staví ji na Astro, Tailwind CSS, obsahu v Gitu, Decap CMS a fulltextu Pagefind.
 
-Vytvoř kompletní funkční prototyp moderního veřejného webu SŠPU Opava.
+## Rychlé spuštění
 
-Toto není finální grafický návrh. Hlavním cílem je co nejrychleji získat reálně použitelný web, na kterém bude možné experimentovat s informační architekturou, komponentami, způsobem publikování, vyhledáváním, galeriemi a dalšími funkcemi.
+```bash
+npm install
+npm run dev
+```
 
-Použij:
+Web bude dostupný na adrese, kterou vypíše Astro (běžně `http://localhost:4321`).
 
-- Astro jako základ veřejného webu,
-- Tailwind CSS pro styling,
-- Decap CMS jako Git-based redakční rozhraní,
-- Git jako skutečné úložiště obsahu,
-- Pagefind nebo ekvivalentně vhodné řešení pro komplexní fulltextové vyhledávání.
+V druhém terminálu spusťte lokální rozhraní redakce:
 
-Pokud při implementaci zjistíš, že některé dílčí technické řešení lze udělat lépe jinak, rozhodni se sám. Neber tuto specifikaci jako zákaz použít vhodnější knihovnu nebo architektonický postup. Důležitý je kvalitní funkční výsledek.
+```bash
+npm run cms
+```
 
-Nezdržuj se detailním grafickým designem. Vytvoř čistý, moderní, responzivní a profesionální základ s dobře oddělenými design tokens a komponentami, aby bylo možné později kompletně změnit vizuální styl bez zásahu do obsahové a aplikační architektury.
+Potom otevřete `http://localhost:4321/admin/`. Lokální backend Decap CMS zapisuje změny do pracovního stromu. Pro produkci nastavte Git Gateway (například Netlify) nebo odpovídající Git autentizaci hostingu.
 
----
+## Příkazy
 
-## 1. Charakter webu
+| Účel | Příkaz |
+| --- | --- |
+| Lokální vývoj | `npm run dev` |
+| Produkční build + Pagefind | `npm run build` |
+| Náhled buildu | `npm run preview` |
+| Lokální Decap CMS | `npm run cms` |
+| Kontrola typů a obsahu | `npm run check` |
+| Kompletní ověření | `npm test` |
+| Kontrola interních odkazů po buildu | `npm run check:links` |
+| Vytvoření galerie | `npm run gallery:create -- <složka> <slug> "Název"` |
 
-Web je veřejný prezentační web střední školy.
+Například `npm run gallery:create -- C:\fotky\den-otevrenych-dveri den-otevrenych-dveri "Den otevřených dveří"` vytvoří optimalizované WebP kopie v `public/uploads/galleries/`, založí koncept galerie a záměrně označí ALT texty k redakčnímu doplnění.
 
-Nemá být:
+## Architektura
 
-- LMS,
-- školní informační systém,
-- komplexní workflow CMS,
-- interní portál.
+- `src/content/` — Gitový obsah a jeho validované entity: články, obory, galerie, dokumenty, události, lidé a informační stránky.
+- `src/content/config.ts` — schéma obsahu pro Astro; zde se mění datový model.
+- `src/components/` — malé opakovaně použitelné komponenty: navigace, karty, filtry, lightbox a obsahové bloky.
+- `src/pages/` — statické trasy, RSS, `robots.txt`, strojově čitelný `/obsah.json` a `llms.txt`.
+- `public/admin/` — Decap CMS, jehož formuláře odpovídají datovým entitám.
+- `src/data/legacy-redirects.ts` — začátek mapy stará URL → nová URL pro budoucí 301 redirecty.
+- `scripts/` — kontrola obsahu, interních odkazů a příprava galerie.
 
-Obsah budou spravovat přibližně 2–3 poučení administrátoři.
+Vizuální tokeny jsou soustředěny v `tailwind.config.mjs` a `src/styles/global.css`. Změna barev, písma nebo zaoblení proto nemění obsahový model ani routy.
 
-Prioritami jsou:
+## Obsahový model a redakce
 
-1. rychlost,
-2. jednoduchost,
-3. přístupnost,
-4. kvalitní práce s obsahem,
-5. velmi dobré SEO,
-6. snadná strojová čitelnost obsahu,
-7. jednoduché publikování,
-8. kvalitní vyhledávání,
-9. dlouhodobá udržovatelnost,
-10. komponentová architektura.
+Kategorie jsou řízené rubriky článků a galerií; tagy jsou volnější štítky. Vztahy používají stabilní slugy. Aktualita může patřit k více oborům, nést přílohy, vazbu na galerii a ručně vybrané doporučené články. Pokud doporučení chybí, detail článku vybírá tematicky související obsah.
 
----
+Informační stránky mají vedle Markdownu připravené bloky upozornění, CTA a FAQ. Další blok přidávejte současně do `src/content/config.ts`, `public/admin/config.yml` a `ContentBlocks.astro`.
 
-## 2. Obsahový model
+## Vyhledávání, SEO a přístupnost
 
-Navrhni čistý a dlouhodobě udržitelný obsahový model minimálně pro následující entity.
+`npm run build` nejdříve vygeneruje HTML a pak Pagefind index. Vyhledávání na `/vyhledavani/` funguje bez samostatného serveru a nabízí filtr typu obsahu. Všechny důležité entity mají samostatné URL, takže je indexují vyhledávače i Pagefind.
 
-### Stránky
+Součástí prototypu jsou sitemap, `robots.txt`, RSS, canonical URL, Open Graph metadata, JSON-LD pro školu, breadcrumb, článek, událost a osobu. Komponenty obsahují skip link, viditelné focus stavy, sémantické landmarky, responzivní navigaci a klávesnicově ovladatelný lightbox. Respektují také `prefers-reduced-motion`.
 
-Běžné statické/informační stránky.
+## Nasazení a omezení Git CMS varianty
 
-Stránka nesmí být omezena pouze na jeden dlouhý WYSIWYG text.
+Nasazujte obsah adresáře `dist/` z `npm run build` na statický hosting. Na hostingu převeďte `legacyRedirects` do pravidel 301 a nastavte skutečnou produkční adresu v `astro.config.mjs`.
 
-Navrhni jednoduchý blokový obsahový systém umožňující podle potřeby skládat například:
+Git-based CMS je pro 2–3 proškolené administrátory rychlé, levné, dobře verzované a snadno zálohovatelné. Jeho slabinou jsou konflikty při souběžné editaci, nutnost Git autentizace a méně pohodlná práce s velkým objemem médií. Před porovnáním s druhým prototypem sledujte zejména komfort redakce, rychlost publikace, řešení náhledů, práci s PDF a správu fotografií.
 
-- formátovaný text,
-- obrázek,
-- video/embed,
-- 2–4 responzivní sloupce,
-- zvýrazněný informační blok,
-- CTA,
-- galerii,
-- seznam příloh,
-- seznam článků,
-- seznam událostí,
-- kontaktní osoby,
-- citaci,
-- FAQ,
-- jiné rozumné opakovaně použitelné komponenty.
+## Audit a zdroje
 
-Nepřeháněj množství bloků. Jde o prototyp, který se později rozšíří podle praktických zkušeností.
-
-### Aktuality / články
-
-Článek má podporovat minimálně:
-
-- název,
-- slug,
-- perex,
-- formátovaný obsah,
-- datum publikace,
-- datum poslední změny,
-- autora,
-- titulní obrázek,
-- další multimédia,
-- přílohy,
-- jednu nebo více kategorií,
-- libovolný počet tagů,
-- přiřazení k jednomu nebo více studijním oborům,
-- související galerii,
-- ručně vybrané doporučené články,
-- stav publikováno / koncept,
-- možnost naplánovat nebo alespoň evidovat datum publikace.
-
-Pokud nejsou ručně zvolené doporučené články, může frontend nabídnout relevantní články podle oborů, kategorií nebo tagů.
-
-### Studijní obory
-
-Založ pět demonstračních oborů:
-
-- Strojírenství,
-- Informační technologie,
-- Průmyslový design,
-- Grafický design,
-- Tvorba hraček a herních předmětů.
-
-Obor je samostatná datová entita, nikoli pouze textový tag.
-
-Články, galerie, dokumenty, události a osoby mohou být s obory propojeny.
-
-### Galerie
-
-Galerie má podporovat:
-
-- název,
-- slug,
-- popis,
-- datum,
-- titulní obrázek,
-- fotografie,
-- pořadí fotografií,
-- ALT text,
-- volitelný popisek,
-- vazby na článek,
-- obory,
-- tagy a kategorie.
-
-Galerii zobrazuj responzivně a otevření snímků řeš přístupným lightboxem.
-
-Připrav také automatizační skript, který dokáže ze složky fotografií připravit novou galerii:
-
-- načíst obrázky,
-- rozumně je optimalizovat,
-- vytvořit potřebnou strukturu souborů,
-- připravit metadata galerie,
-- nechat administrátorovi možnost doplnit ALT texty a popisky.
-
-Nepotřebujeme AI generování popisků, ale architektura mu v budoucnu nesmí bránit.
-
-### Dokumenty
-
-Dokument má mít minimálně:
-
-- název,
-- popis,
-- soubor,
-- kategorii,
-- datum,
-- případně platnost,
-- tagy,
-- vazbu na obor nebo stránku.
-
-Dokumenty musí být snadno stahovatelné a jejich metadata prohledávatelná.
-
-Pokud je rozumně možné indexovat také text PDF bez zbytečné komplikace, můžeš to implementovat. Není to podmínka první verze.
-
-### Události
-
-Podporuj:
-
-- název,
-- popis,
-- datum a čas začátku,
-- volitelný konec,
-- místo,
-- odkaz,
-- typ události,
-- vazby na obory,
-- související článek nebo galerii.
-
-Vytvoř přehled nejbližších událostí a jednoduchý kalendář/seznam.
-
-### Lidé
-
-Podporuj:
-
-- jméno,
-- pracovní pozici/funkci,
-- pracoviště,
-- telefon,
-- e-mail,
-- fotografii,
-- stručný profil,
-- vazby na obory.
-
-Kontaktní informace musí být zobrazitelné pomocí opakovatelných komponent.
-
-### Kategorie a tagy
-
-Navrhni čisté rozlišení:
-
-- kategorie jako řízená klasifikace,
-- tagy jako volnější štítky.
-
-Musí se používat nejen pro zobrazení, ale také pro filtrování, související obsah a vyhledávání.
-
----
-
-## 3. Homepage
-
-Vytvoř funkční homepage obsahující alespoň:
-
-- globální hlavičku a navigaci,
-- hero sekci,
-- výrazné důležité informace / „Nepřehlédněte“,
-- odkazy na pět studijních oborů,
-- odkazy na obory zatím řeš úsporně textově bez fotografií,
-- poslední aktuality,
-- filtrování aktualit,
-- nejbližší události,
-- ukázku galerií / „Škola obrazem“,
-- blok pro uchazeče,
-- rychlý rozcestník podle cílové skupiny,
-- footer.
-
-Nepovažuj současnou podobu prototypu za závazný design.
-
----
-
-## 4. Navigace
-
-Pracuj přibližně s hlavní strukturou:
-
-- Škola
-- Obory a studium
-- Uchazeči
-- Aktuality
-- Pro studenty
-- Dokumenty
-- Kontakt
-- Vyhledávání
-
-Doplň vhodnou:
-
-- desktopovou navigaci,
-- mobilní navigaci,
-- breadcrumb navigaci,
-- klávesnicové ovládání,
-- viditelné focus stavy.
-
-Architekturu navigace udělej datově řízenou, aby šla později snadno změnit.
-
----
-
-## 5. Typové stránky
-
-Implementuj minimálně:
-
-- homepage,
-- běžnou statickou stránku,
-- stránku studijního oboru,
-- seznam aktualit,
-- detail článku,
-- seznam galerií,
-- detail galerie,
-- dokumentový přehled,
-- přehled událostí,
-- kontakty / lidé,
-- výsledky vyhledávání.
-
-Není nutné, aby byly všechny graficky dokonale propracované.
-
-Musí být funkční, konzistentní a komponentové.
-
----
-
-## 6. Decap CMS
-
-Připrav plně použitelnou administraci.
-
-Administrátor musí být schopen bez ručního zásahu do zdrojového kódu:
-
-- vytvořit článek,
-- upravit článek,
-- používat rich-text/WYSIWYG editaci,
-- nahrát obrázek,
-- přidat přílohu,
-- vybrat kategorie,
-- vybrat více oborů,
-- přidat tagy,
-- zvolit doporučené články,
-- vytvořit galerii,
-- vytvořit událost,
-- upravit osobu,
-- upravit statickou stránku a její obsahové bloky.
-
-Pro vývoj připrav co nejsnazší lokální workflow.
-
-Chci být schopen projekt spustit a CMS ihned vyzkoušet.
-
-Produkční Git autentizaci neřeš přehnaně složitě. Připrav a zdokumentuj doporučenou cestu pro GitHub nebo jiné vhodné Git úložiště, ale hlavní prioritou této fáze je funkční prototyp.
-
-Neimplementuj složitý workflow schvalování ani rozsáhlé role.
-
----
-
-## 7. Vyhledávání
-
-Vytvoř skutečné fulltextové vyhledávání napříč veřejným obsahem.
-
-Indexuj:
-
-- statické stránky,
-- články,
-- obory,
-- galerie,
-- dokumenty,
-- události,
-- osoby.
-
-Vyhledávání má pracovat nejen s textem, ale také s metadaty.
-
-Umožni podle možností filtrovat například podle:
-
-- typu obsahu,
-- oboru,
-- kategorie,
-- tagu,
-- roku.
-
-Výsledky musí mít:
-
-- nadpis,
-- typ výsledku,
-- krátký relevantní kontext,
-- URL,
-- vhodná metadata.
-
-Navigaci, footer a opakované technické texty do fulltextu nezahrnuj.
-
-Preferuj řešení bez samostatného vyhledávacího serveru, pokud je pro velikost školního webu dostatečné.
-
----
-
-## 8. Responzivita a interaktivita
-
-Web musí fungovat od malých mobilních displejů po velký desktop.
-
-Používej JavaScript jen tam, kde poskytuje skutečný přínos.
-
-Implementuj vhodným způsobem například:
-
-- mobilní menu,
-- filtrování aktualit,
-- lightbox galerie,
-- „načíst další“ / stránkování,
-- vyhledávání,
-- responzivní obsahové bloky.
-
-Nevytvářej z veřejného webu zbytečně SPA.
-
-Obsah musí zůstat dostupný i jako kvalitní HTML.
-
----
-
-## 9. Přístupnost
-
-Cílem je WCAG 2.2 AA.
-
-Dbej minimálně na:
-
-- sémantické HTML,
-- správnou hierarchii nadpisů,
-- landmarks,
-- skip-link,
-- focus management,
-- ovládání klávesnicí,
-- dostatečný kontrast,
-- ALT texty,
-- přístupné formuláře,
-- přístupné modaly/lightboxy,
-- respektování `prefers-reduced-motion`,
-- přiměřené dotykové cíle,
-- rozumné chování při zvětšení textu.
-
-Přístupnost neřeš jako dodatečný patch. Zahrň ji do komponent.
-
----
-
-## 10. SEO a strojová / AI čitelnost
-
-Veškerý důležitý veřejný obsah renderuj do sémantického HTML.
-
-Implementuj podle typu obsahu vhodně:
-
-- `<title>` a meta description,
-- canonical URL,
-- Open Graph,
-- metadata pro sociální sítě,
-- sitemap,
-- robots.txt,
-- RSS pro aktuality,
-- strukturovaná data Schema.org / JSON-LD,
-- BreadcrumbList,
-- Article/NewsArticle,
-- Event,
-- Person,
-- School/EducationalOrganization podle vhodnosti.
-
-Vytvoř také jednoduchý strojově čitelný index veřejného obsahu, pokud je to užitečné.
-
-Můžeš experimentálně přidat `llms.txt`, ale nepovažuj jej za náhradu kvalitního HTML, sitemap, RSS a strukturovaných dat.
-
-AI a vyhledávače musí být schopny důležitý obsah získat bez spuštění složité klientské aplikace.
-
----
-
-## 11. Výkon
-
-Usiluj o velmi dobré Core Web Vitals.
-
-Použij zejména:
-
-- statické generování všude, kde dává smysl,
-- minimální klientský JavaScript,
-- optimalizované obrázky,
-- responzivní velikosti obrázků,
-- lazy loading mimo kritický viewport,
-- rozumnou práci s fonty,
-- stabilní layout bez zbytečných CLS,
-- cache-friendly statické assety.
-
-Nevytvářej backend jen proto, že je to možné.
-
----
-
-## 12. Automatizace
-
-Připrav praktické příkazy alespoň pro:
-
-- spuštění webu,
-- build,
-- preview,
-- lokální CMS,
-- vytvoření galerie ze složky,
-- kontrolu obsahu,
-- kontrolu interních odkazů,
-- vytvoření vyhledávacího indexu.
-
-Pokud vidíš další repetitivní administrátorskou činnost, kterou lze elegantně automatizovat, implementuj ji nebo připrav rozšiřitelný základ.
-
----
-
-## 13. Testovací obsah
-
-Nevytvářej jen prázdnou kostru.
-
-Přidej demonstrační obsah tak, aby bylo možné reálně otestovat:
-
-- homepage,
-- všech pět oborů,
-- alespoň 10 článků různých kategorií,
-- články přiřazené více oborům,
-- tagy,
-- alespoň 2 galerie,
-- několik dokumentů,
-- několik událostí,
-- několik osob,
-- doporučené články,
-- fulltext a filtry.
-
-Texty nemusí být definitivní.
-
----
-
-## 14. Dokumentace
-
-Vytvoř stručnou, ale praktickou dokumentaci:
-
-- `README.md`
-- architektura projektu,
-- obsahový model,
-- způsob spuštění,
-- práce s CMS,
-- přidání článku,
-- přidání galerie,
-- přidání dokumentu,
-- build a deployment,
-- kde se později mění design.
-
-Popiš také výhody, omezení a případná slabá místa této Git-based varianty, která bych měl při srovnání s druhým prototypem sledovat.
-
----
-
-## 15. Kvalita implementace
-
-Používej TypeScript tam, kde přináší hodnotu.
-
-Preferuj:
-
-- malé komponenty,
-- jasné datové modely,
-- jednoduchou architekturu,
-- malé množství závislostí,
-- žádné zbytečné abstrahování,
-- validaci obsahu,
-- dobré chybové stavy.
-
-Pokud narazíš na problém, vyřeš jej rozumně sám.
-
-Nevytvářej dlouhou teoretickou analýzu místo implementace.
-
-Cílem je skutečně spustitelný funkční prototyp, na kterém lze začít okamžitě experimentovat.
-
-Na konci:
-
-1. spusť všechny dostupné kontroly,
-2. oprav chyby,
-3. ověř produkční build,
-4. vypiš stručně, co je implementováno,
-5. uveď přesné příkazy, kterými web a CMS spustím.
+Pracovní audit současného veřejného webu je v [CURRENT-SITE-AUDIT.md](CURRENT-SITE-AUDIT.md). Prototyp používá reprezentativní názvy, vztahy a krátké veřejné texty; před ostrým spuštěním musí redakce ověřit úplnost údajů, licence médií a všechny přesměrovací URL.

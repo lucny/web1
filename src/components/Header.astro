@@ -1,0 +1,36 @@
+---
+const nav = [
+  { href: '/skola/o-skole/', label: 'Škola' },
+  { href: '/obory/', label: 'Obory a studium' },
+  { href: '/uchazeci/', label: 'Uchazeči' },
+  { href: '/aktuality/', label: 'Aktuality' },
+  { href: '/studenti/', label: 'Pro studenty' },
+  { href: '/dokumenty/', label: 'Dokumenty' },
+  { href: '/kontakt/', label: 'Kontakt' }
+];
+const current = Astro.url.pathname;
+---
+<a class="skip-link" href="#main-content">Přeskočit na obsah</a>
+<header data-pagefind-ignore class="border-b border-ink/10 bg-white">
+  <div class="container-page flex min-h-20 items-center justify-between gap-5">
+    <a href="/" class="group flex items-center gap-3 no-underline" aria-label="SŠPU Opava – úvodní stránka">
+      <span class="grid h-11 w-11 place-items-center rounded-xl bg-night font-display text-lg font-black text-white transition group-hover:bg-brand">SŠ</span>
+      <span class="leading-tight text-night"><strong class="block font-display text-base">SŠPU Opava</strong><span class="text-xs text-ink/70">technika · tvorba · budoucnost</span></span>
+    </a>
+    <nav aria-label="Hlavní navigace" class="hidden xl:block">
+      <ul class="flex items-center gap-1 text-sm font-bold">
+        {nav.map((item) => <li><a href={item.href} aria-current={current.startsWith(item.href) ? 'page' : undefined} class:list={["rounded-lg px-2.5 py-2 no-underline transition hover:bg-mist hover:text-brand", current.startsWith(item.href) && 'bg-mist text-brand']}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <a class="hidden min-h-11 items-center rounded-full border border-ink/15 px-4 text-sm font-bold no-underline hover:border-brand hover:text-brand sm:inline-flex" href="/vyhledavani/" aria-label="Otevřít vyhledávání">Vyhledat <span aria-hidden="true" class="ml-2">⌕</span></a>
+    <details class="relative xl:hidden">
+      <summary class="flex min-h-11 cursor-pointer list-none items-center rounded-full border border-ink/15 px-4 text-sm font-bold">Menu <span aria-hidden="true" class="ml-2">☰</span></summary>
+      <nav aria-label="Mobilní navigace" class="absolute right-0 top-14 z-50 w-[min(22rem,calc(100vw-2.5rem))] rounded-2xl border border-ink/10 bg-white p-3 shadow-lift">
+        <ul class="space-y-1">
+          {nav.map((item) => <li><a href={item.href} class="block rounded-xl px-4 py-3 font-bold no-underline hover:bg-mist hover:text-brand">{item.label}</a></li>)}
+          <li><a href="/vyhledavani/" class="block rounded-xl bg-night px-4 py-3 font-bold text-white no-underline">Vyhledávání</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

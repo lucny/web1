@@ -1,0 +1,22 @@
+---
+const { categories = [], programs = [] } = Astro.props;
+---
+<form class="card mt-8 grid gap-4 p-4 sm:grid-cols-3" aria-label="Filtrování aktualit" data-news-filters>
+  <label class="grid gap-1 text-sm font-bold">Rubrika<select class="rounded-xl border border-ink/15 bg-white px-3 py-2.5 font-normal" name="category"><option value="">Všechny rubriky</option>{categories.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+  <label class="grid gap-1 text-sm font-bold">Obor<select class="rounded-xl border border-ink/15 bg-white px-3 py-2.5 font-normal" name="program"><option value="">Všechny obory</option>{programs.map((item: { id: string; title: string }) => <option value={item.id}>{item.title}</option>)}</select></label>
+  <label class="grid gap-1 text-sm font-bold">Rok<select class="rounded-xl border border-ink/15 bg-white px-3 py-2.5 font-normal" name="year"><option value="">Všechny roky</option><option value="2026">2026</option><option value="2025">2025</option></select></label>
+  <p class="sm:col-span-3" aria-live="polite" data-filter-status></p>
+</form>
+<script>
+  const form = document.querySelector('[data-news-filters]') as HTMLFormElement | null;
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-news-card]')];
+  const status = document.querySelector<HTMLElement>('[data-filter-status]');
+  form?.addEventListener('input', () => {
+    const data = new FormData(form); let visible = 0;
+    cards.forEach((card) => {
+      const show = ['category', 'program', 'year'].every((key) => !data.get(key) || card.dataset[key]?.split(' ').includes(String(data.get(key))));
+      card.hidden = !show; if (show) visible++;
+    });
+    if (status) status.textContent = `Zobrazeno: ${visible} ${visible === 1 ? 'aktualita' : visible < 5 ? 'aktuality' : 'aktualit'}.`;
+  });
+</script>

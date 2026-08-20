@@ -1,0 +1,18 @@
+---
+type Block = {
+  type: 'notice'; title: string; text: string;
+} | {
+  type: 'cta'; title: string; text: string; label: string; href: string;
+} | {
+  type: 'columns'; items: { title: string; text: string }[];
+} | {
+  type: 'faq'; items: { question: string; answer: string }[];
+};
+const { blocks = [] } = Astro.props as { blocks?: Block[] };
+---
+{blocks.map((block) => {
+  if (block.type === 'notice') return <aside class="my-10 rounded-2xl border-l-4 border-accent bg-mist p-6"><h2 class="text-xl">{block.title}</h2><p class="mt-2 leading-7">{block.text}</p></aside>;
+  if (block.type === 'cta') return <section class="my-10 rounded-3xl bg-night p-7 text-white"><h2 class="text-2xl text-white">{block.title}</h2><p class="mt-3 max-w-2xl leading-7 text-white/75">{block.text}</p><a class="button-primary mt-6 !bg-accent !text-night" href={block.href}>{block.label}</a></section>;
+  if (block.type === 'columns') return <section class="my-10 grid gap-4 md:grid-cols-2">{block.items.map((item) => <div class="rounded-2xl bg-mist p-5"><h2 class="text-xl">{item.title}</h2><p class="mt-2 leading-7">{item.text}</p></div>)}</section>;
+  return <section class="my-10"><h2>Časté otázky</h2><div class="mt-4 divide-y divide-ink/15 rounded-2xl border border-ink/15 bg-white">{block.items.map((item) => <details class="p-5"><summary class="cursor-pointer font-bold">{item.question}</summary><p class="mt-3 leading-7 text-ink/75">{item.answer}</p></details>)}</div></section>;
+})}
