@@ -5,6 +5,7 @@
 @layer base {
   :root { color-scheme: light; }
   html { scroll-behavior: smooth; }
+  [hidden] { display: none !important; }
   body { @apply min-w-[320px] bg-paper font-body text-ink antialiased; background-image: linear-gradient(180deg, rgb(255 255 255 / 72%), transparent 24rem); }
   main { @apply overflow-hidden; }
   h1, h2, h3, h4 { @apply font-display font-bold tracking-[-0.04em] text-night; }
@@ -21,9 +22,9 @@
 @layer components {
   .container-page { @apply mx-auto w-full max-w-[75rem] px-5 sm:px-8; }
   .eyebrow { @apply text-xs font-bold uppercase tracking-[0.16em] text-brand; }
-  .button-primary { @apply inline-flex min-h-11 items-center justify-center rounded-full bg-night px-5 py-2.5 text-sm font-bold text-white no-underline transition hover:bg-school-magenta; }
-  .button-secondary { @apply inline-flex min-h-11 items-center justify-center rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-bold text-ink no-underline shadow-soft transition hover:border-school-cyan hover:bg-mist hover:text-night; }
-  .card { @apply rounded-3xl border border-ink/10 bg-white shadow-lift; }
+  .button-primary { @apply inline-flex min-h-11 items-center justify-center rounded-lg bg-night px-5 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-school-magenta; }
+  .button-secondary { @apply inline-flex min-h-11 items-center justify-center rounded-lg border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink no-underline shadow-soft transition hover:border-school-cyan hover:bg-mist hover:text-night; }
+  .card { @apply rounded-2xl border border-ink/10 bg-white shadow-lift; }
   .prose-school { @apply max-w-3xl text-base leading-8 text-ink/85 sm:text-lg; }
   .prose-school :where(h2,h3) { @apply mt-10; }
   .prose-school :where(a) { @apply font-semibold text-brand decoration-2 decoration-school-cyan/70 hover:text-school-magenta; }
@@ -34,9 +35,7 @@
   body.menu-open { overflow: hidden; }
   .hero-panel[hidden] { display: none; }
   .hero-tab { position: relative; background-color: var(--tab-color); color: var(--tab-text); }
-  .hero-tab::after { content: ''; position: absolute; inset: 0.35rem; border: 1px solid transparent; border-radius: 0.9rem; pointer-events: none; transition: border-color 180ms ease; }
-  .hero-tab[aria-selected='true']::after { border-color: currentColor; }
-  .hero-tab[aria-selected='true'] .hero-tab-label::after { content: ''; display: inline-block; width: 1.5rem; height: 0.18rem; margin-left: 0.6rem; vertical-align: middle; border-radius: 999px; background: currentColor; }
+  .hero-tab[aria-selected='true'] .hero-tab-label { text-decoration-line: underline; text-decoration-style: dotted; text-decoration-thickness: 2px; text-underline-offset: 0.35rem; }
   .hero-tab-label { position: relative; z-index: 1; }
   .page-hero-art { position: absolute; right: 4%; bottom: -4rem; width: 18rem; height: 18rem; transform: rotate(16deg); opacity: .9; pointer-events: none; }
   .page-hero-art span { position: absolute; display: block; border: 1px solid rgb(255 255 255 / 22%); }
@@ -47,7 +46,7 @@
   .page-intro::after { content: ''; @apply absolute inset-x-0 bottom-0 h-1; background: linear-gradient(90deg, #1A4053 0 20%, #59BDDC 20% 40%, #ECAFAC 40% 60%, #D0D543 60% 80%, #C42079 80% 100%); }
   .section-label { @apply flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-brand; }
   .section-label::before { content: ''; @apply h-px w-8 bg-school-cyan; }
-  .info-panel { @apply rounded-2xl border border-ink/10 bg-mist/70 p-5 sm:p-6; }
+  .info-panel { @apply rounded-xl border border-ink/10 bg-mist/70 p-5 sm:p-6; }
   .meta-label { @apply text-xs font-bold uppercase tracking-[0.14em] text-brand; }
   .color-rule { @apply h-1 rounded-full; background: linear-gradient(90deg, #1A4053 0 20%, #59BDDC 20% 40%, #ECAFAC 40% 60%, #D0D543 60% 80%, #C42079 80% 100%); }
 }
@@ -58,5 +57,4 @@
 
 @media (max-width: 420px) {
   .hero-tab { @apply min-h-24 px-3 py-3 text-[0.68rem] tracking-[0.04em]; }
-  .hero-tab[aria-selected='true'] .hero-tab-label::after { display: block; margin-top: .45rem; margin-left: 0; }
 }

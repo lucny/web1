@@ -23,8 +23,8 @@ export default {
         soft: '0 12px 28px -20px rgb(8 36 58 / 28%)'
       },
       fontFamily: {
-        display: ['"DM Sans"', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif']
+        display: ['"Open Sans"', 'Arial', 'sans-serif'],
+        body: ['"Open Sans"', 'Arial', 'sans-serif']
       }
     }
   },

@@ -12,7 +12,7 @@ const { actions } = Astro.props;
     target={action.external ? '_blank' : undefined}
     rel={action.external ? 'noreferrer' : undefined}
     class:list={[
-      'inline-flex min-h-11 items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold no-underline transition',
+      'inline-flex min-h-11 items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold no-underline transition',
       action.variant === 'primary' && 'bg-accent text-night hover:bg-white',
       action.variant === 'secondary' && 'border border-white/35 bg-night/15 text-white hover:bg-white hover:text-night',
       action.variant === 'text' && 'text-white underline decoration-white/50 underline-offset-4 hover:text-accent'
