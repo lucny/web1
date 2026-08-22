@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
+import PageHero from '../../components/content/PageHero.astro';
 import { entries, formatDate, withBase } from '../../lib/content';
 export async function getStaticPaths() { return (await entries('articles')).map((article) => ({ params: { slug: article.id }, props: { article } })); }
 const { article } = Astro.props;
@@ -12,17 +13,15 @@ const recommended = (recommendedIds.length ? allArticles.filter((item) => recomm
 const schema = { '@context': 'https://schema.org', '@type': 'NewsArticle', headline: article.data.title, description: article.data.description, datePublished: article.data.publishedAt.toISOString(), dateModified: (article.data.updatedAt ?? article.data.publishedAt).toISOString(), author: { '@type': 'Person', name: article.data.author }, publisher: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
 ---
 <BaseLayout title={article.data.title} description={article.data.description} seo={article.data.seo} breadcrumbs={[{ label: 'Aktuality', href: '/aktuality/' }, { label: article.data.title }]} schema={schema}>
-  <article class="container-page py-12 sm:py-16" data-pagefind-body>
+  <PageHero eyebrow={`${article.data.categories.join(' · ')} · ${formatDate(article.data.publishedAt)}`} title={article.data.title} description={article.data.description} accent="#C42079" image={article.data.cover} />
+  <article class="container-page pb-12 sm:pb-16" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Aktualita</span>
     {article.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}
     {article.data.categories.map((category) => <span class="sr-only" data-pagefind-filter="rubrika">{category}</span>)}
     {article.data.tags.map((tag) => <span class="sr-only" data-pagefind-filter="stitek">{tag}</span>)}
     <div class="mx-auto max-w-3xl">
-      <div class="flex flex-wrap gap-2 text-sm font-bold text-brand"><span>{article.data.categories.join(' · ')}</span><span aria-hidden="true">/</span><time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time></div>
-      <h1 class="mt-4">{article.data.title}</h1>
-      <p class="mt-6 text-xl leading-8 text-ink/80">{article.data.description}</p>
+      <div class="flex flex-wrap gap-2 text-sm font-bold text-brand"><time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time></div>
       <p class="mt-5 text-sm text-ink/65">Autor: {article.data.author}{article.data.updatedAt && ` · Upraveno ${formatDate(article.data.updatedAt)}`}</p>
-      {article.data.cover && <img src={withBase(article.data.cover)} alt="" class="mt-9 aspect-[16/8] w-full rounded-3xl object-cover" />}
     </div>
     <div class="prose-school mx-auto mt-10"><Content /></div>
     {article.data.attachments.length > 0 && <section class="mx-auto mt-10 max-w-3xl rounded-2xl bg-mist p-6"><h2 class="text-xl">Přílohy</h2><ul>{article.data.attachments.map((attachment) => <li><a href={withBase(attachment.url)}>{attachment.label}</a></li>)}</ul></section>}

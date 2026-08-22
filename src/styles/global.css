@@ -31,6 +31,18 @@
   .skip-link { @apply sr-only fixed left-4 top-4 z-[100] rounded-lg bg-night px-4 py-3 font-bold text-white focus:not-sr-only; }
   .quick-link { @apply grid h-7 w-7 place-items-center rounded-full border border-white/35 text-white no-underline transition hover:border-accent hover:bg-accent hover:text-night; }
   .quick-link svg { @apply h-4 w-4; }
+  body.menu-open { overflow: hidden; }
+  .hero-panel[hidden] { display: none; }
+  .hero-tab { position: relative; background-color: var(--tab-color); color: var(--tab-text); }
+  .hero-tab::after { content: ''; position: absolute; inset: 0.35rem; border: 1px solid transparent; border-radius: 0.9rem; pointer-events: none; transition: border-color 180ms ease; }
+  .hero-tab[aria-selected='true']::after { border-color: currentColor; }
+  .hero-tab[aria-selected='true'] .hero-tab-label::after { content: ''; display: inline-block; width: 1.5rem; height: 0.18rem; margin-left: 0.6rem; vertical-align: middle; border-radius: 999px; background: currentColor; }
+  .hero-tab-label { position: relative; z-index: 1; }
+  .page-hero-art { position: absolute; right: 4%; bottom: -4rem; width: 18rem; height: 18rem; transform: rotate(16deg); opacity: .9; pointer-events: none; }
+  .page-hero-art span { position: absolute; display: block; border: 1px solid rgb(255 255 255 / 22%); }
+  .page-hero-art span:nth-child(1) { inset: 0; border-radius: 32% 68% 48% 52% / 42% 34% 66% 58%; background: color-mix(in srgb, var(--page-hero-accent) 75%, transparent); }
+  .page-hero-art span:nth-child(2) { inset: 2rem; border-radius: 50%; background: rgb(255 255 255 / 8%); }
+  .page-hero-art span:nth-child(3) { inset: 5rem 1rem 1rem 5rem; border-radius: 1.5rem; transform: rotate(28deg); }
   .page-intro { @apply relative overflow-hidden rounded-[2rem] border border-ink/10 bg-white px-6 py-8 shadow-lift sm:px-10 sm:py-10; }
   .page-intro::after { content: ''; @apply absolute inset-x-0 bottom-0 h-1; background: linear-gradient(90deg, #1A4053 0 20%, #59BDDC 20% 40%, #ECAFAC 40% 60%, #D0D543 60% 80%, #C42079 80% 100%); }
   .section-label { @apply flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-brand; }
@@ -42,4 +54,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+@media (max-width: 420px) {
+  .hero-tab { @apply min-h-24 px-3 py-3 text-[0.68rem] tracking-[0.04em]; }
+  .hero-tab[aria-selected='true'] .hero-tab-label::after { display: block; margin-top: .45rem; margin-left: 0; }
 }

@@ -2,14 +2,15 @@
 import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { byId, entries, withBase } from '../lib/content';
+import PageHero from '../components/content/PageHero.astro';
 const [page, documents] = await Promise.all([byId('pages', 'pro-studenty'), entries('documents')]);
 if (!page) throw new Error('Chybí obsahová stránka pro studenty.');
 const { Content } = await render(page);
 ---
 <BaseLayout title={page.data.title} description={page.data.description} seo={page.data.seo} breadcrumbs={[{ label: 'Pro studenty' }]}>
-  <section class="container-page py-10 sm:py-14" data-pagefind-body>
+  <PageHero eyebrow={page.data.eyebrow ?? 'Pro studenty'} title={page.data.title} description={page.data.highlight} accent="#59BDDC" />
+  <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Stránka</span>
-    <div class="page-intro max-w-5xl"><p class="eyebrow">{page.data.eyebrow}</p><h1 class="mt-3 max-w-4xl">{page.data.title}</h1><p class="mt-5 max-w-3xl text-xl leading-8 text-ink/80">{page.data.highlight}</p></div>
     <div class="prose-school mt-10"><Content /></div>
     <section class="mt-14"><p class="section-label">Ke stažení</p><h2 class="mt-3">Dokumenty pro studenty</h2><div class="mt-6 grid gap-4 md:grid-cols-2">{documents.filter((document) => document.data.pages.includes('pro-studenty')).map((document) => <a href={withBase(`/dokumenty/${document.id}/`)} class="card border-t-4 border-t-school-magenta p-6 no-underline transition hover:-translate-y-1 hover:shadow-soft"><p class="meta-label">Dokument</p><h3 class="mt-2 text-2xl">{document.data.title}</h3><p class="mt-3 text-ink/70">{document.data.description}</p></a>)}</div></section>
   </section>
