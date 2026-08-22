@@ -7,6 +7,9 @@ categories: [Důležité informace]
 tags: [organizace, školní rok]
 programs: []
 related: [phdr-jan-svoboda]
+homepage:
+  featured: true
+  order: 10
 status: published
 ---
 

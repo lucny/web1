@@ -6,6 +6,9 @@ author: Redakce školy
 categories: [Akce]
 tags: [beseda, prevence]
 programs: []
+homepage:
+  featured: false
+  order: 0
 status: published
 ---
 

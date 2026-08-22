@@ -47,6 +47,13 @@ collections:
         display_fields: [title]
         multiple: true
         required: false
+      - label: Zobrazení na titulní stránce
+        name: homepage
+        widget: object
+        collapsed: true
+        fields:
+          - { label: Zobrazit v hlavním zpravodaji, name: featured, widget: boolean, default: false }
+          - { label: Pořadí na titulní stránce, name: order, widget: number, value_type: int, default: 0 }
       - label: Přílohy
         name: attachments
         widget: list

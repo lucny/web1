@@ -6,6 +6,9 @@ author: Redakce školy
 categories: [Studium]
 tags: [angličtina, certifikát]
 programs: []
+homepage:
+  featured: false
+  order: 0
 status: published
 ---
 

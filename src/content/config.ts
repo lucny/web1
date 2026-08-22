@@ -50,6 +50,10 @@ const articles = defineCollection({
     gallery: contentReference.optional(),
     attachments: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
     related: slugList,
+    homepage: z.object({
+      featured: z.boolean().default(false),
+      order: z.number().int().default(0)
+    }).default({}),
     status,
     seo
   })

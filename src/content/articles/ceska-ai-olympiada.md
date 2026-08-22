@@ -7,6 +7,9 @@ categories: [Úspěchy]
 tags: [AI, soutěž, programování]
 programs: [informacni-technologie]
 related: [exkurze-do-brano]
+homepage:
+  featured: true
+  order: 60
 status: published
 ---
 

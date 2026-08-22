@@ -7,6 +7,9 @@ categories: [Akce]
 tags: [exkurze, praxe, průmysl]
 programs: [strojirenstvi]
 related: [ceska-ai-olympiada]
+homepage:
+  featured: false
+  order: 0
 status: published
 ---
 

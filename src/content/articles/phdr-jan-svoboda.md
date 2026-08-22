@@ -9,6 +9,9 @@ tags: [vzdělávání, pedagogové]
 programs: []
 cover: https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/64/1c/641ca945-33e9-46cb-b1e9-02e10136209a/tabule-v-parku-2023-01.jpg__1350x900_q85_subsampling-2.jpg
 related: [zahajeni-skolniho-roku-2026]
+homepage:
+  featured: true
+  order: 20
 status: published
 ---
 

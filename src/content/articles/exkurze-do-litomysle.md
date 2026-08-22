@@ -20,6 +20,9 @@ related:
 attachments:
   - url: /uploads/dji_20000818175753_0227_d.jpg
     label: Předávání diplomů - obrázek
+homepage:
+  featured: true
+  order: 40
 status: published
 ---
 Společná cesta nabídla prostor pro pozorování detailu, diskuzi o architektuře a propojení výuky s místem, které je samo o sobě živou kulturní učebnicí.

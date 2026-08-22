@@ -9,6 +9,9 @@ programs: [prumyslovy-design]
 cover: https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/3c/80/3c80d326-8539-486a-bb24-78ecba016f31/klauzury-leden-2024-instalace-27.jpg__1600x1067_q85_subsampling-2.jpg
 gallery: studentske-prace
 related: [exkurze-do-litomysle]
+homepage:
+  featured: true
+  order: 30
 status: published
 ---
 

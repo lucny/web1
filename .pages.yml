@@ -395,6 +395,18 @@ content:
               media: attachments
               categories: [document, image]
               rename: safe
+      - name: homepage
+        label: Zobrazení na titulní stránce
+        type: object
+        fields:
+          - name: featured
+            label: Zobrazit v hlavním zpravodaji
+            type: boolean
+            default: false
+          - name: order
+            label: Pořadí na titulní stránce
+            type: number
+            default: 0
       - name: status
         component: status
       - name: seo

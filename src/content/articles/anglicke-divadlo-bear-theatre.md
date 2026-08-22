@@ -7,6 +7,9 @@ categories: [Akce]
 tags: [angličtina, divadlo]
 programs: [strojirenstvi, informacni-technologie, prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
 related: [cambridge-certifikaty]
+homepage:
+  featured: true
+  order: 50
 status: published
 ---
 
