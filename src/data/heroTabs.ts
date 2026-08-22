@@ -102,7 +102,7 @@ export const heroTabs: HeroTab[] = [
   {
     id: 'skola',
     label: 'Škola',
-    color: '#08243A',
+    color: '#6B7280',
     textColor: '#FFFFFF',
     image: schoolImage,
     eyebrow: 'Střední škola průmyslová a umělecká · Opava',
