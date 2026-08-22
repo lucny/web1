@@ -33,6 +33,23 @@
   .quick-link { @apply grid h-7 w-7 place-items-center rounded-full border border-white/35 text-white no-underline transition hover:border-accent hover:bg-accent hover:text-night; }
   .quick-link svg { @apply h-4 w-4; }
   body.menu-open { overflow: hidden; }
+  .alert-card { @apply relative overflow-hidden rounded-2xl; }
+  .alert-meta { @apply text-xs font-semibold uppercase tracking-[0.14em]; }
+  .alert-tone-night { @apply bg-night text-white shadow-lift; }
+  .alert-tone-brand { @apply bg-brand text-white shadow-lift; }
+  .alert-tone-mist { @apply border border-ink/10 bg-mist text-ink shadow-soft; }
+  .alert-tone-accent { @apply bg-accent text-night shadow-soft; }
+  .alert-text-card h3 { @apply text-night; }
+  .alert-tone-night h3, .alert-tone-brand h3 { @apply text-white; }
+  .alert-tone-night .alert-meta, .alert-tone-brand .alert-meta { @apply text-accent; }
+  .alert-tone-mist .alert-meta { @apply text-brand; }
+  .alert-tone-accent .alert-meta { @apply text-night/70; }
+  .alert-description { @apply text-ink/75; }
+  .alert-tone-night .alert-description, .alert-tone-brand .alert-description { @apply text-white/80; }
+  .alert-tone-accent .alert-description { @apply text-night/75; }
+  .alert-link { @apply text-brand; }
+  .alert-tone-night .alert-link, .alert-tone-brand .alert-link { @apply text-white; }
+  .alert-tone-accent .alert-link { @apply text-night; }
   .hero-panel[hidden] { display: none; }
   .hero-tab { position: relative; background-color: var(--tab-color); color: var(--tab-text); }
   .hero-tab[aria-selected='true'] .hero-tab-label { text-decoration-line: underline; text-decoration-style: dotted; text-decoration-thickness: 2px; text-underline-offset: 0.35rem; }

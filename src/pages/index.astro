@@ -3,18 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import NewsFilters from '../components/NewsFilters.astro';
 import HeroTabs from '../components/home/HeroTabs.astro';
+import AlertSection from '../components/alerts/AlertSection.astro';
+import { resolveHomepageAlerts } from '../data/alerts';
 import { entries, formatDate, withBase } from '../lib/content';
 const [articles, programs, galleries, eventEntries] = await Promise.all([entries('articles'), entries('programs'), entries('galleries'), entries('events')]);
 const events = eventEntries.filter((event) => event.data.start >= new Date('2026-08-20')).sort((a, b) => Number(a.data.start) - Number(b.data.start));
 const categories = [...new Set(articles.flatMap((article) => article.data.categories))];
+const alerts = resolveHomepageAlerts(articles);
 ---
 <BaseLayout title="SŠPU Opava" description="Technika, digitální svět a tvorba. Poznejte pět oborů Střední školy průmyslové a umělecké v Opavě.">
   <HeroTabs />
-
-  <section class="container-page grid gap-8 pb-16 sm:pb-20 lg:grid-cols-[1.2fr_.8fr]">
-    <div><p class="eyebrow">Střední škola průmyslová a umělecká</p><h2 class="mt-3">Pět oborů. Jedna škola. Spousta možností.</h2><p class="prose-school mt-5">Spojujeme techniku, digitální svět a tvorbu. V dílnách, ateliérech i laboratořích si zkoušíte, co dokážete — s lidmi, kteří rozumí oboru i praxi.</p><a href={withBase('/obory/')} class="mt-6 inline-flex font-bold text-brand no-underline hover:text-night">Prozkoumat všechny obory →</a></div>
-    <aside class="rounded-3xl bg-night p-7 text-white"><p class="text-sm font-bold uppercase tracking-wider text-accent">Nepřehlédněte</p><h2 class="mt-3 text-2xl text-white">Zahájení školního roku 2026/2027</h2><p class="mt-3 leading-7 text-white/75">V úterý 1. září v 8:00. První ročníky začínají v aule, vyšší ročníky v kmenových učebnách.</p><a href={withBase('/aktuality/zahajeni-skolniho-roku-2026/')} class="mt-5 inline-flex font-bold text-white">Praktické informace →</a></aside>
-  </section>
+  <AlertSection alerts={alerts} />
 
   <section class="bg-mist py-16 sm:py-20"><div class="container-page"><div class="flex flex-wrap items-end justify-between gap-5"><div><p class="eyebrow">Školní zpravodaj</p><h2 class="mt-2">Co se ve škole děje</h2></div><a class="button-secondary" href={withBase('/aktuality/')}>Všechny aktuality</a></div><NewsFilters categories={categories} programs={programs.map((program) => ({ id: program.id, title: program.data.title }))} /><div class="mt-7 grid gap-6 lg:grid-cols-3">{articles.slice(0, 6).map((article) => <ArticleCard article={article} />)}</div></div></section>
 
