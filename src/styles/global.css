@@ -38,6 +38,17 @@
   .prose-school :where(figure) { @apply my-8; }
   .prose-school :where(figure img) { @apply w-full rounded-2xl shadow-soft; }
   .prose-school :where(figcaption) { @apply mt-3 text-sm leading-6 text-ink/65; }
+  .article-body-columns :where(h2, h3) { @apply mb-4 mt-10; }
+  .article-body-columns :where(h2) { @apply text-2xl leading-tight sm:text-3xl; }
+  .article-body-columns :where(h3) { @apply text-xl leading-snug sm:text-2xl; }
+  .article-body-columns :where(h2:first-child, h3:first-child) { @apply mt-0; }
+  .article-body-columns :where(p) { @apply my-5; }
+  .article-body-columns :where(ul, ol) { @apply my-5; }
+  .article-body-columns :where(figure, iframe, audio, table) { @apply my-7; }
+  .article-body-columns :where(h2, h3) + :where(p, ul, ol, figure, iframe, audio, table) { @apply mt-3; }
+  .article-body-columns > :where(h2, h3, figure, iframe, audio, table, blockquote, pre) { break-inside: avoid; }
+  .article-body-columns > :where(h2, h3) { break-after: avoid; }
+  .article-wide-section { column-span: all; }
   .skip-link { @apply sr-only fixed left-4 top-4 z-[100] rounded-lg bg-night px-4 py-3 font-bold text-white focus:not-sr-only; }
   .quick-link { @apply grid h-7 w-7 place-items-center rounded-full border border-white/35 text-white no-underline transition hover:border-accent hover:bg-accent hover:text-night; }
   .quick-link svg { @apply h-4 w-4; }
@@ -105,6 +116,10 @@
   .info-panel { @apply rounded-xl border border-ink/10 bg-mist/70 p-5 sm:p-6; }
   .meta-label { @apply text-xs font-bold uppercase tracking-[0.14em] text-brand; }
   .color-rule { @apply h-1 rounded-full; background: linear-gradient(90deg, #1A4053 0 20%, #59BDDC 20% 40%, #ECAFAC 40% 60%, #D0D543 60% 80%, #C42079 80% 100%); }
+}
+
+@media (min-width: 1024px) {
+  .article-body-columns { columns: 2; column-gap: 3.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
