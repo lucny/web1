@@ -26,6 +26,7 @@ const mediaImageClass = 'news-card-homepage-image transition duration-500 group-
   data-category={article.data.categories.join('|')}
   data-program={article.data.programs.join('|')}
   data-year={article.data.publishedAt.getFullYear()}
+  data-author={article.data.author}
   data-tags={article.data.tags.join('|')}
   data-title={article.data.title.toLocaleLowerCase('cs-CZ')}
   data-news-deferred={deferred ? 'true' : undefined}

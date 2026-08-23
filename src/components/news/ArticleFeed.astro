@@ -54,9 +54,11 @@ const firstBatch = Math.min(initialCount, articles.length);
       const category = value('category');
       const program = value('program');
       const year = value('year');
+      const author = value('author');
       return (!category || card.dataset.category?.split('|').includes(category))
         && (!program || card.dataset.program?.split('|').includes(program))
-        && (!year || card.dataset.year === year);
+        && (!year || card.dataset.year === year)
+        && (!author || card.dataset.author === author);
     };
     const word = (count: number) => count === 1 ? 'aktualitu' : count < 5 ? 'aktuality' : 'aktualit';
 

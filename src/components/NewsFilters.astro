@@ -1,7 +1,7 @@
 ---
 import ArticleFilters from './news/ArticleFilters.astro';
 
-const { categories = [], programs = [], years = [] } = Astro.props;
+const { categories = [], programs = [], years = [], authors = [] } = Astro.props;
 ---
 
-<ArticleFilters categories={categories} programs={programs} years={years} />
+<ArticleFilters categories={categories} programs={programs} years={years} authors={authors} />

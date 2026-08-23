@@ -7,12 +7,13 @@ import { entries } from '../../lib/content';
 const [articles, programs] = await Promise.all([entries('articles'), entries('programs')]);
 const categories = [...new Set(articles.flatMap((article) => article.data.categories))];
 const years = [...new Set(articles.map((article) => article.data.publishedAt.getFullYear()))].sort((a, b) => b - a);
+const authors = [...new Set(articles.map((article) => article.data.author))].sort((a, b) => a.localeCompare(b, 'cs'));
 ---
 <BaseLayout title="Aktuality" description="Školní zpravodaj SŠPU Opava: projekty, úspěchy, akce a důležité informace.">
   <PageHero eyebrow="Školní zpravodaj" title="Aktuality, které stojí za pozornost." description="Filtrujte podle rubriky, oboru nebo roku. Každá aktualita má vlastní URL, metadata a doporučený související obsah." accent="#C42079" />
   <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Přehled aktualit</span>
-    <ArticleFilters categories={categories} programs={programs.map((program) => ({ id: program.id, title: program.data.title }))} years={years} />
+    <ArticleFilters categories={categories} programs={programs.map((program) => ({ id: program.id, title: program.data.title }))} years={years} authors={authors} />
     <ArticleFeed articles={articles} initialCount={6} batchSize={6} class="mt-8" />
   </section>
 </BaseLayout>

@@ -4,12 +4,13 @@ interface Props {
   categories?: string[];
   programs?: ProgramOption[];
   years?: number[];
+  authors?: string[];
 }
 
-const { categories = [], programs = [], years = [] } = Astro.props;
+const { categories = [], programs = [], years = [], authors = [] } = Astro.props;
 ---
 
-<form class="card mt-8 grid gap-4 p-5 sm:grid-cols-3 sm:p-6" aria-label="Filtrování aktualit" data-news-filters>
+<form class="card mt-8 grid gap-4 p-5 sm:grid-cols-2 sm:p-6 lg:grid-cols-4" aria-label="Filtrování aktualit" data-news-filters>
   <label class="grid gap-2 text-sm font-bold" for="news-category">Rubrika
     <select id="news-category" class="rounded-xl border border-ink/15 bg-paper px-3 py-2.5 font-normal shadow-inner focus:border-school-cyan" name="category">
       <option value="">Všechny rubriky</option>
@@ -28,7 +29,13 @@ const { categories = [], programs = [], years = [] } = Astro.props;
       {years.map((year) => <option value={year}>{year}</option>)}
     </select>
   </label>
-  <div class="flex flex-wrap items-center justify-between gap-3 sm:col-span-3">
+  <label class="grid gap-2 text-sm font-bold" for="news-author">Autor
+    <select id="news-author" class="rounded-xl border border-ink/15 bg-paper px-3 py-2.5 font-normal shadow-inner focus:border-school-cyan" name="author">
+      <option value="">Všichni autoři</option>
+      {authors.map((author) => <option value={author}>{author}</option>)}
+    </select>
+  </label>
+  <div class="flex flex-wrap items-center justify-between gap-3 sm:col-span-2 lg:col-span-4">
     <p class="text-sm font-medium text-ink/70" aria-live="polite" data-filter-status>Vyberte rubriku, obor nebo rok.</p>
     <button type="reset" class="text-sm font-bold text-brand underline underline-offset-4 hover:text-school-magenta">Zrušit filtry</button>
   </div>
@@ -37,7 +44,7 @@ const { categories = [], programs = [], years = [] } = Astro.props;
 <script>
   const filterForms = [...document.querySelectorAll<HTMLFormElement>('[data-news-filters]')];
   filterForms.forEach((form) => {
-    const names = ['category', 'program', 'year'];
+    const names = ['category', 'program', 'year', 'author'];
     const status = form.querySelector<HTMLElement>('[data-filter-status]');
     const params = new URLSearchParams(window.location.search);
     names.forEach((name) => {
