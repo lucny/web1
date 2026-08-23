@@ -16,9 +16,9 @@ Hosted Pages CMS je pro tento experiment doporučený. Self-hosting není potře
 
 | Oblast | Markdown umístění | Praktický model v Pages CMS |
 | --- | --- | --- |
-| Stránky | `src/content/pages/` | Rich-text hlavního obsahu, SEO a bloky |
-| Aktuality | `src/content/articles/` | Autor → lidé; obory, kategorie, galerie a doporučené články → reference |
-| Obory | `src/content/programs/` | Pět stávajících oborů; kontakty → lidé |
+| Stránky | `src/content/pages/` | Metadata stránky, `contentBlocks`, SEO a vztahy |
+| Aktuality | `src/content/articles/` | Metadata článku, `contentBlocks`; autor → lidé; obory, kategorie, galerie a doporučené články → reference |
+| Obory | `src/content/programs/` | Metadata oboru, `contentBlocks`; pět stávajících oborů; kontakty → lidé |
 | Galerie | `src/content/galleries/` | Seřaditelný seznam snímků s povinným ALT textem |
 | Dokumenty | `src/content/documents/` | Soubor, platnost, kategorie, štítky, obory a stránky |
 | Události | `src/content/events/` | Začátek/konec, obory, článek a galerie → reference |
@@ -29,9 +29,11 @@ Kategorie jsou samostatné entity. Štítky zůstávají záměrně volným opak
 
 ## Obsahové bloky a editor
 
-Stránky mají omezenou, konkrétní sadu bloků: text, obrázek, 2 a 3 sloupce, informační box, CTA, galerie, seznam dokumentů, seznam aktualit, kontaktní osoby a FAQ. Vztahové bloky volí existující položky místo ručního zadávání slugů. [Block field](https://pagescms.org/docs/configuration/fields/block/) ukládá čitelný YAML frontmatter s klíčem `type`.
+Stránky, články a obory používají stejný blokový obsah v poli `contentBlocks`. Renderer je v `src/components/content/ContentRenderer.astro` a routy mu předávají například `<ContentRenderer blocks={entry.data.contentBlocks} />`. Podporuje nadpis, text, obrázek, YouTube, audio, tabulku, 2/3 sloupce, informační box, CTA, galerii, seznam dokumentů, seznam aktualit, kontaktní osoby a FAQ. Vztahové bloky volí existující položky místo ručního zadávání slugů. [Block field](https://pagescms.org/docs/configuration/fields/block/) ukládá čitelný YAML frontmatter s klíčem `type`.
 
-Hlavní text stránek, článků, oborů a poznámek galerií používá Pages CMS `rich-text` v Markdown formátu. Přepínač **Editor / Source** je zapnutý, takže lze kontrolovat i ručně upravovat čistý Markdown ve VS Code či přes Git.
+Starší Markdownové tělo zůstává dočasně jako fallback pro již existující články, obory a stránky. Jakmile položka dostane neprázdné `contentBlocks`, zobrazí se pouze blokový obsah; nová tvorba přes Pages CMS proto používá `contentBlocks` jako jediný zdroj obsahové kompozice. Kompatibilní wrapper `ContentBlocks.astro` zůstává kvůli starším importům, vlastní logika je pouze v `ContentRenderer.astro`.
+
+Přepínač **Editor / Source** zůstává zapnutý u staršího Markdownového fallbacku, takže dosavadní obsah lze kontrolovat a ručně upravovat ve VS Code či přes Git. Nový obsah se skládá z bloků v čistém YAML frontmatteru.
 
 ## Média
 

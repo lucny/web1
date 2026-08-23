@@ -157,7 +157,7 @@ collections:
       - { label: Nadřazený popisek, name: eyebrow, widget: string, required: false }
       - { label: Zvýrazněná informace, name: highlight, widget: text, required: false }
       - label: Obsahové bloky
-        name: blocks
+        name: contentBlocks
         widget: list
         required: false
         types:

@@ -3,7 +3,7 @@ title: Škola, která spojuje techniku a tvorbu
 description: SŠPU Opava nabízí technické i umělecké vzdělávání s důrazem na samostatnost, praxi a zodpovědnost.
 eyebrow: O škole
 highlight: Naše škola žáky vybavuje znalostmi a dovednostmi pro budoucí povolání i orientaci v současném světě.
-blocks:
+contentBlocks:
   - type: text
     title: Škola v souvislostech
     text: Technické a umělecké obory sdílí zázemí, projekty i prostor pro vlastní nápady.

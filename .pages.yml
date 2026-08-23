@@ -42,7 +42,8 @@ media:
     label: Přílohy článků
     input: public/uploads/attachments
     output: /uploads/attachments
-    categories: [document, image]
+    extensions: [mp3, wav, ogg, m4a, pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx, jpg, jpeg, png, webp, avif]
+    categories: [document, image, audio]
     rename: safe
 
 components:
@@ -110,6 +111,222 @@ components:
         type: boolean
         required: false
         default: false
+  contentBlocks:
+    type: block
+    label: Obsahové bloky
+    list: true
+    blockKey: type
+    blocks:
+      - name: heading
+        label: Nadpis
+        fields:
+          - name: level
+            label: Úroveň
+            type: select
+            options:
+              values: [h2, h3]
+            default: h2
+          - name: text
+            label: Text nadpisu
+            type: string
+      - name: text
+        label: Text
+        fields:
+          - name: title
+            label: Nadpis bloku
+            type: string
+            required: false
+          - name: text
+            label: Text
+            type: text
+      - name: image
+        label: Obrázek
+        fields:
+          - name: image
+            label: Obrázek
+            type: image
+            options:
+              media: images
+              rename: safe
+          - name: alt
+            label: ALT text
+            type: string
+            description: Popište obsah obrázku; prázdný ALT použijte jen pro čistě dekorativní obrázek.
+          - name: caption
+            label: Popisek
+            type: text
+            required: false
+      - name: youtube
+        label: YouTube video
+        fields:
+          - name: url
+            label: URL videa
+            type: string
+            description: Vložte odkaz ve tvaru https://www.youtube.com/watch?v=… nebo https://youtu.be/…
+          - name: title
+            label: Popisek videa
+            type: string
+            required: false
+      - name: audio
+        label: Zvukový přehrávač
+        fields:
+          - name: src
+            label: Soubor nebo URL audia
+            type: file
+            options:
+              media: attachments
+              categories: [audio]
+          - name: title
+            label: Popisek audia
+            type: string
+            required: false
+      - name: table
+        label: Tabulka
+        fields:
+          - name: caption
+            label: Nadpis tabulky
+            type: string
+            required: false
+          - name: headers
+            label: Záhlaví sloupců
+            type: string
+            list: true
+          - name: rows
+            label: Řádky
+            type: object
+            list: true
+            fields:
+              - name: cells
+                label: Buňky řádku zleva doprava
+                type: string
+                list: true
+      - name: twoColumns
+        label: 2 sloupce
+        fields:
+          - name: items
+            label: Sloupce
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Nadpis
+                type: string
+              - name: text
+                label: Text
+                type: text
+      - name: threeColumns
+        label: 3 sloupce
+        fields:
+          - name: items
+            label: Sloupce
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Nadpis
+                type: string
+              - name: text
+                label: Text
+                type: text
+      - name: columns
+        label: 2–4 sloupce (kompatibilní)
+        fields:
+          - name: items
+            label: Sloupce
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Nadpis
+                type: string
+              - name: text
+                label: Text
+                type: text
+      - name: notice
+        label: Informační box
+        fields:
+          - name: title
+            label: Nadpis
+            type: string
+          - name: text
+            label: Text
+            type: text
+      - name: cta
+        label: Výzva k akci (CTA)
+        fields:
+          - name: title
+            label: Nadpis
+            type: string
+          - name: text
+            label: Text
+            type: text
+          - name: label
+            label: Text tlačítka
+            type: string
+          - name: href
+            label: Odkaz
+            type: string
+      - name: gallery
+        label: Galerie
+        fields:
+          - name: gallery
+            label: Vybraná galerie
+            type: reference
+            options:
+              collection: galleries
+              value: "{name}"
+              label: "{title}"
+              search: "title,description"
+      - name: documents
+        label: Seznam dokumentů
+        fields:
+          - name: documents
+            label: Dokumenty
+            type: reference
+            options:
+              collection: documents
+              multiple: true
+              value: "{name}"
+              label: "{title}"
+              search: "title,description,category"
+      - name: articles
+        label: Seznam aktualit
+        fields:
+          - name: articles
+            label: Aktuality
+            type: reference
+            options:
+              collection: articles
+              multiple: true
+              value: "{name}"
+              label: "{title}"
+              search: "title,description,author"
+      - name: people
+        label: Osoby a kontakty
+        fields:
+          - name: people
+            label: Kontaktní osoby
+            type: reference
+            options:
+              collection: people
+              multiple: true
+              value: "{name}"
+              label: "{name}"
+              search: "name,role,department"
+      - name: faq
+        label: FAQ
+        fields:
+          - name: items
+            label: Otázky a odpovědi
+            type: object
+            list: true
+            fields:
+              - name: question
+                label: Otázka
+                type: string
+              - name: answer
+                label: Odpověď
+                type: text
 
 content:
   - name: web-pages
@@ -142,159 +359,16 @@ content:
         label: Zvýrazněná informace
         type: text
         required: false
-      - name: blocks
-        label: Obsahové bloky
-        type: block
-        list: true
-        blockKey: type
-        blocks:
-          - name: text
-            label: Text
-            fields:
-              - name: title
-                label: Nadpis
-                type: string
-                required: false
-              - name: text
-                label: Text
-                type: text
-          - name: image
-            label: Obrázek
-            fields:
-              - name: image
-                label: Obrázek
-                type: image
-                options:
-                  media: images
-                  rename: safe
-              - name: alt
-                label: ALT text
-                type: string
-                description: Popište obsah obrázku; prázdný ALT použijte jen pro čistě dekorativní obrázek.
-              - name: caption
-                label: Popisek
-                type: text
-                required: false
-          - name: twoColumns
-            label: 2 sloupce
-            fields:
-              - name: items
-                label: Sloupce
-                type: object
-                list: true
-                fields:
-                  - name: title
-                    label: Nadpis
-                    type: string
-                  - name: text
-                    label: Text
-                    type: text
-          - name: threeColumns
-            label: 3 sloupce
-            fields:
-              - name: items
-                label: Sloupce
-                type: object
-                list: true
-                fields:
-                  - name: title
-                    label: Nadpis
-                    type: string
-                  - name: text
-                    label: Text
-                    type: text
-          - name: notice
-            label: Informační box
-            fields:
-              - name: title
-                label: Nadpis
-                type: string
-              - name: text
-                label: Text
-                type: text
-          - name: cta
-            label: Výzva k akci (CTA)
-            fields:
-              - name: title
-                label: Nadpis
-                type: string
-              - name: text
-                label: Text
-                type: text
-              - name: label
-                label: Text tlačítka
-                type: string
-              - name: href
-                label: Odkaz
-                type: string
-          - name: gallery
-            label: Galerie
-            fields:
-              - name: gallery
-                label: Vybraná galerie
-                type: reference
-                options:
-                  collection: galleries
-                  value: "{name}"
-                  label: "{title}"
-                  search: "title,description"
-          - name: documents
-            label: Seznam dokumentů
-            fields:
-              - name: documents
-                label: Dokumenty
-                type: reference
-                options:
-                  collection: documents
-                  multiple: true
-                  value: "{name}"
-                  label: "{title}"
-                  search: "title,description,category"
-          - name: articles
-            label: Seznam aktualit
-            fields:
-              - name: articles
-                label: Aktuality
-                type: reference
-                options:
-                  collection: articles
-                  multiple: true
-                  value: "{name}"
-                  label: "{title}"
-                  search: "title,description,author"
-          - name: people
-            label: Osoby a kontakty
-            fields:
-              - name: people
-                label: Kontaktní osoby
-                type: reference
-                options:
-                  collection: people
-                  multiple: true
-                  value: "{name}"
-                  label: "{name}"
-                  search: "name,role,department"
-          - name: faq
-            label: FAQ
-            fields:
-              - name: items
-                label: Otázky a odpovědi
-                type: object
-                list: true
-                fields:
-                  - name: question
-                    label: Otázka
-                    type: string
-                  - name: answer
-                    label: Odpověď
-                    type: text
+      - name: contentBlocks
+        component: contentBlocks
       - name: status
         component: status
       - name: seo
         component: seo
       - name: body
-        label: Hlavní text
+        label: Starší Markdownový text (kompatibilita)
         type: rich-text
+        description: Používá se jen u položek bez contentBlocks; pro nový obsah použijte Obsahové bloky.
         options:
           media: images
           path: pages
@@ -407,13 +481,16 @@ content:
             label: Pořadí na titulní stránce
             type: number
             default: 0
+      - name: contentBlocks
+        component: contentBlocks
       - name: status
         component: status
       - name: seo
         component: seo
       - name: body
-        label: Obsah článku
+        label: Starší Markdownový text (kompatibilita)
         type: rich-text
+        description: Používá se jen u článků bez contentBlocks; pro nový obsah použijte Obsahové bloky.
         options:
           media: images
           path: articles
@@ -481,13 +558,16 @@ content:
           value: "{name}"
           label: "{name}"
           search: "name,role,department"
+      - name: contentBlocks
+        component: contentBlocks
       - name: status
         component: status
       - name: seo
         component: seo
       - name: body
-        label: Detail oboru
+        label: Starší Markdownový text (kompatibilita)
         type: rich-text
+        description: Používá se jen u oborů bez contentBlocks; pro nový obsah použijte Obsahové bloky.
         options:
           media: images
           path: programs

@@ -19,12 +19,20 @@ const seo = z.object({
   noindex: z.boolean().default(false)
 }).optional();
 
-const blocks = z.array(z.discriminatedUnion('type', [
+const tableRow = z.union([
+  z.array(z.string()),
+  z.object({ cells: z.array(z.string()) })
+]);
+const contentBlock = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('heading'), level: z.enum(['h2', 'h3']).default('h2'), text: z.string() }),
   z.object({ type: z.literal('text'), title: z.string().optional(), text: z.string() }),
   z.object({ type: z.literal('image'), image: z.string(), alt: z.string(), caption: z.string().optional() }),
+  z.object({ type: z.literal('youtube'), url: z.string().url(), title: z.string().optional() }),
+  z.object({ type: z.literal('audio'), src: z.string().min(1), title: z.string().optional() }),
+  z.object({ type: z.literal('table'), caption: z.string().optional(), headers: z.array(z.string()).min(1), rows: z.array(tableRow).default([]) }),
   z.object({ type: z.literal('notice'), title: z.string(), text: z.string() }),
   z.object({ type: z.literal('cta'), title: z.string(), text: z.string(), label: z.string(), href: z.string() }),
-  // `columns` stays for the existing Decap content; Pages CMS offers the clearer 2/3-column variants below.
+  // `columns` stays for existing content; Pages CMS offers the clearer 2/3-column variants below.
   z.object({ type: z.literal('columns'), items: z.array(z.object({ title: z.string(), text: z.string() })).min(2).max(4) }),
   z.object({ type: z.literal('twoColumns'), items: z.array(z.object({ title: z.string(), text: z.string() })).length(2) }),
   z.object({ type: z.literal('threeColumns'), items: z.array(z.object({ title: z.string(), text: z.string() })).length(3) }),
@@ -33,7 +41,8 @@ const blocks = z.array(z.discriminatedUnion('type', [
   z.object({ type: z.literal('articles'), articles: slugList }),
   z.object({ type: z.literal('people'), people: slugList }),
   z.object({ type: z.literal('faq'), items: z.array(z.object({ question: z.string(), answer: z.string() })) })
-])).default([]);
+]);
+const contentBlocks = z.array(contentBlock).default([]);
 
 const articles = defineCollection({
   type: 'content',
@@ -50,6 +59,7 @@ const articles = defineCollection({
     gallery: contentReference.optional(),
     attachments: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
     related: slugList,
+    contentBlocks,
     homepage: z.object({
       featured: z.boolean().default(false),
       order: z.number().int().default(0)
@@ -71,6 +81,7 @@ const programs = defineCollection({
     highlights: z.array(z.string()),
     careers: z.array(z.string()),
     relatedPeople: slugList,
+    contentBlocks,
     status,
     seo
   })
@@ -152,7 +163,7 @@ const pages = defineCollection({
     description: z.string(),
     eyebrow: z.string().optional(),
     highlight: z.string().optional(),
-    blocks,
+    contentBlocks,
     status,
     seo
   })

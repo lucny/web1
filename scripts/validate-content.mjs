@@ -60,14 +60,20 @@ for (const { file, data } of records.events) {
   if (data.gallery) requireReferences('events', file, 'gallery', [data.gallery], ids('galleries'));
 }
 for (const { file, data } of records.people) requireReferences('people', file, 'programs', data.programs, ids('programs'));
-for (const { file, data } of records.pages) {
-  for (const [index, block] of (data.blocks ?? []).entries()) {
-    if (block.type === 'gallery') requireReferences('pages', file, `blocks[${index}].gallery`, [block.gallery], ids('galleries'));
-    if (block.type === 'documents') requireReferences('pages', file, `blocks[${index}].documents`, block.documents, ids('documents'));
-    if (block.type === 'articles') requireReferences('pages', file, `blocks[${index}].articles`, block.articles, ids('articles'));
-    if (block.type === 'people') requireReferences('pages', file, `blocks[${index}].people`, block.people, ids('people'));
+const validateBlocks = (collection, file, data) => {
+  // `blocks` is accepted only as a migration alias for older page files.
+  for (const [index, block] of (data.contentBlocks ?? data.blocks ?? []).entries()) {
+    const path = `contentBlocks[${index}]`;
+    if (block.type === 'gallery') requireReferences(collection, file, `${path}.gallery`, [block.gallery], ids('galleries'));
+    if (block.type === 'documents') requireReferences(collection, file, `${path}.documents`, block.documents, ids('documents'));
+    if (block.type === 'articles') requireReferences(collection, file, `${path}.articles`, block.articles, ids('articles'));
+    if (block.type === 'people') requireReferences(collection, file, `${path}.people`, block.people, ids('people'));
   }
-}
+};
+
+for (const { file, data } of records.pages) validateBlocks('pages', file, data);
+for (const { file, data } of records.articles) validateBlocks('articles', file, data);
+for (const { file, data } of records.programs) validateBlocks('programs', file, data);
 
 if (errors.length) { console.error('Kontrola obsahu selhala:\n- ' + errors.join('\n- ')); process.exit(1); }
 console.log('Kontrola obsahu a vztahů proběhla úspěšně.');

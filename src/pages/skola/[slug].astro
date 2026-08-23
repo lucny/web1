@@ -1,11 +1,11 @@
 ---
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContentBlocks from '../../components/ContentBlocks.astro';
+import ContentRenderer from '../../components/content/ContentRenderer.astro';
 import PageHero from '../../components/content/PageHero.astro';
 import { entries } from '../../lib/content';
 export async function getStaticPaths() { return (await entries('pages')).map((page) => ({ params: { slug: page.id }, props: { page } })); }
 const { page } = Astro.props;
 const { Content } = await render(page);
 ---
-<BaseLayout title={page.data.title} description={page.data.description} seo={page.data.seo} breadcrumbs={[{ label: 'Škola', href: '/skola/o-skole/' }, { label: page.data.title }]}><PageHero eyebrow={page.data.eyebrow ?? 'Škola'} title={page.data.title} description={page.data.highlight} accent="#1A4053" /><article class="container-page pb-14 sm:pb-20" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Stránka</span><div class="prose-school mt-10"><Content /></div><ContentBlocks blocks={page.data.blocks} /></article></BaseLayout>
+<BaseLayout title={page.data.title} description={page.data.description} seo={page.data.seo} breadcrumbs={[{ label: 'Škola', href: '/skola/o-skole/' }, { label: page.data.title }]}><PageHero eyebrow={page.data.eyebrow ?? 'Škola'} title={page.data.title} description={page.data.highlight} accent="#1A4053" /><article class="container-page pb-14 sm:pb-20" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Stránka</span><div class="mt-10"><ContentRenderer blocks={page.data.contentBlocks}><Content /></ContentRenderer></div></article></BaseLayout>
