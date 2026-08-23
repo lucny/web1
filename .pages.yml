@@ -312,7 +312,7 @@ components:
               multiple: true
               value: "{name}"
               label: "{name}"
-              search: "name,role,department"
+              search: "name,position,workplace"
       - name: faq
         label: FAQ
         fields:
@@ -876,22 +876,30 @@ content:
     filename: "{primary}.md"
     view:
       primary: name
-      fields: [name, role, department, status]
-      search: [name, role, department, email, programs]
+      fields: [name, position, workplace, showInContacts, status]
+      search: [name, position, workplace, email, studyFields]
       sort: [name]
     fields:
       - name: name
         label: Jméno
         type: string
         required: true
-      - name: role
-        label: Titul / funkce
+      - name: titlesBefore
+        label: Tituly před jménem
+        type: string
+        required: false
+      - name: titlesAfter
+        label: Tituly za jménem
+        type: string
+        required: false
+      - name: position
+        label: Funkce / pozice
         type: string
         required: true
-      - name: department
+      - name: workplace
         label: Pracoviště
         type: string
-        required: true
+        required: false
       - name: phone
         label: Telefon
         type: string
@@ -910,17 +918,29 @@ content:
         options:
           media: people
           rename: safe
+      - name: photoAlt
+        label: ALT fotografie
+        type: string
+        required: false
+      - name: photoFocalPoint
+        label: Ohnisko fotografie
+        type: string
+        required: false
+        description: Volitelně např. 50% 35% pro nastavení výřezu fotografie.
       - name: profile
         label: Stručný profil
         type: text
         required: false
-      - name: programs
+        description: Starší krátký profil; pro nový obsah použijte obsahové bloky níže.
+      - name: contentBlocks
+        component: contentBlocks
+      - name: studyFields
         component: programs
-      - name: contactVisible
+      - name: showInContacts
         label: Zobrazit v přehledu kontaktů
         type: boolean
-        default: true
-        description: Vypněte pro technické autorské záznamy, které nesmí být veřejným kontaktem.
+        default: false
+        description: Zapněte pro osobu, která má být ve veřejném přehledu kontaktů.
       - name: status
         component: status
       - name: seo

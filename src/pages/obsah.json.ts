@@ -15,7 +15,8 @@ export const GET: APIRoute = async () => {
   const collections = ['pages', 'articles', 'programs', 'galleries', 'documents', 'events', 'people'] as const;
   const all = await Promise.all(collections.map(async (collection) => (await entries(collection)).map((item) => {
     const data = item.data as Record<string, unknown>;
-    const metadata = [data.categories, data.tags, data.programs, data.category, data.type, data.department, data.role, data.code]
+    const studyFields = Array.isArray(data.studyFields) && data.studyFields.length > 0 ? data.studyFields : data.programs;
+    const metadata = [data.categories, data.tags, studyFields, data.category, data.type, data.workplace ?? data.department, data.position ?? data.role, data.code]
       .flat()
       .filter((value): value is string => typeof value === 'string')
       .join(' ');

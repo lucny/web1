@@ -1,0 +1,40 @@
+---
+import type { PersonEntry } from '../../lib/people';
+import { getPersonStudyFields, getPersonWorkplace, getPhoneHref } from '../../lib/people';
+import { entries, withBase } from '../../lib/content';
+
+interface Props {
+  person: PersonEntry;
+  showWorkplace?: boolean;
+  showPhone?: boolean;
+  showStudyFields?: boolean;
+  compact?: boolean;
+}
+
+const {
+  person,
+  showWorkplace = true,
+  showPhone = true,
+  showStudyFields = true,
+  compact = false
+} = Astro.props as Props;
+const data = person.data;
+const workplace = getPersonWorkplace(data);
+const studyFields = getPersonStudyFields(data);
+const programs = showStudyFields && studyFields.length > 0 ? await entries('programs') : [];
+const programById = new Map(programs.map((program) => [program.id, program]));
+---
+
+<div class:list={["person-meta", compact && "person-meta-compact"]}>
+  {showWorkplace && workplace && <span class="person-meta-workplace">{workplace}</span>}
+  <a class="person-meta-link" href={`mailto:${data.email}`}>{data.email}</a>
+  {showPhone && data.phone && <a class="person-meta-link" href={getPhoneHref(data.phone)}>{data.phone}</a>}
+  {showStudyFields && studyFields.length > 0 && <div class="person-meta-fields" aria-label="Studijní obory">
+    {studyFields.map((field) => {
+      const program = programById.get(field);
+      return program
+        ? <a class="person-field-tag" href={withBase(`/obory/${program.id}/`)}>{program.data.title}</a>
+        : <span class="person-field-tag">{field}</span>;
+    })}
+  </div>}
+</div>

@@ -2,10 +2,38 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { entries } from '../../lib/content';
 import PageHero from '../../components/content/PageHero.astro';
-export async function getStaticPaths() { return (await entries('people')).filter((person) => person.data.contactVisible).map((person) => ({ params: { slug: person.id }, props: { person } })); }
+import ContentRenderer from '../../components/content/ContentRenderer.astro';
+import PersonMeta from '../../components/people/PersonMeta.astro';
+import { formatPersonName, getPersonPhoto, getPersonPosition, getPersonStudyFields, getPersonWorkplace } from '../../lib/people';
+import { withBase } from '../../lib/content';
+export async function getStaticPaths() { return (await entries('people')).map((person) => ({ params: { slug: person.id }, props: { person } })); }
 const { person } = Astro.props;
-const schema = { '@context': 'https://schema.org', '@type': 'Person', name: person.data.name, jobTitle: person.data.role, email: person.data.email, worksFor: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
+const name = formatPersonName(person.data);
+const position = getPersonPosition(person.data);
+const workplace = getPersonWorkplace(person.data);
+const photo = getPersonPhoto(person.data);
+const studyFields = getPersonStudyFields(person.data);
+const hasProfile = person.data.contentBlocks.length > 0 || Boolean(person.data.profile?.trim());
+const schema = { '@context': 'https://schema.org', '@type': 'Person', name, jobTitle: position, email: person.data.email, worksFor: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
 ---
-<BaseLayout title={person.data.name} description={`${person.data.role}, SŠPU Opava`} seo={person.data.seo} breadcrumbs={[{ label: 'Kontakty', href: '/kontakt/' }, { label: person.data.name }]} schema={schema}>
-  <PageHero eyebrow={person.data.department} title={person.data.name} description={person.data.role} accent="#ECAFAC" /><article class="container-page pb-12 sm:pb-16" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Osoba</span>{person.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}<div class="mx-auto max-w-2xl rounded-3xl bg-mist p-7 sm:p-10"><p class="leading-8">{person.data.profile}</p><dl class="mt-8 grid gap-4 border-t border-ink/15 pt-7">{person.data.phone && <div><dt class="text-sm font-bold text-ink/65">Telefon</dt><dd><a href={`tel:${person.data.phone.replaceAll(' ', '')}`}>{person.data.phone}</a></dd></div>}<div><dt class="text-sm font-bold text-ink/65">E-mail</dt><dd><a href={`mailto:${person.data.email}`}>{person.data.email}</a></dd></div></dl></div></article>
+<BaseLayout title={name} description={`${position}, SŠPU Opava`} seo={person.data.seo} breadcrumbs={[{ label: 'Kontakty', href: '/kontakt/' }, { label: name }]} schema={schema}>
+  <PageHero eyebrow={workplace || 'Kontakt'} title={name} description={position} accent="#ECAFAC" />
+  <article class="container-page pb-12 sm:pb-16" data-pagefind-body>
+    <span class="sr-only" data-pagefind-filter="typ">Osoba</span>
+    {studyFields.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}
+    <div class="mx-auto mt-10 grid max-w-5xl gap-8 lg:grid-cols-[1fr_18rem] lg:items-start">
+      <div class="min-w-0 rounded-3xl bg-mist p-7 sm:p-10">
+        {photo && <img class="mb-8 aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" src={withBase(photo.src)} alt={photo.alt} style={photo.focalPoint ? `object-position:${photo.focalPoint}` : undefined} />}
+        {hasProfile && <ContentRenderer blocks={person.data.contentBlocks}>
+          <p class="whitespace-pre-line">{person.data.profile}</p>
+        </ContentRenderer>}
+      </div>
+      <aside class="card p-6 sm:p-7">
+        <p class="section-label">Kontakt</p>
+        <h2 class="mt-2 text-2xl">{name}</h2>
+        <p class="mt-2 text-sm font-bold text-brand">{position}</p>
+        <PersonMeta person={person} showWorkplace showPhone showStudyFields compact />
+      </aside>
+    </div>
+  </article>
 </BaseLayout>

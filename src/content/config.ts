@@ -158,16 +158,37 @@ const people = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
-    role: z.string(),
-    department: z.string(),
+    titlesBefore: optionalString,
+    titlesAfter: optionalString,
+    position: optionalString,
+    workplace: optionalString,
+    // Legacy aliases kept so existing Pages CMS records remain valid.
+    role: optionalString,
+    department: optionalString,
     phone: z.string().optional(),
     email: z.string().email(),
-    photo: z.string().optional(),
+    photo: z.union([
+      z.string(),
+      z.object({ src: z.string(), alt: z.string().default(''), focalPoint: optionalString })
+    ]).optional(),
+    photoAlt: optionalString,
+    photoFocalPoint: optionalString,
     profile: z.string().default(''),
+    contentBlocks,
+    studyFields: slugList,
+    // Legacy alias kept for existing content and third-party imports.
     programs: slugList,
-    contactVisible: z.boolean().default(true),
+    showInContacts: z.boolean().optional(),
+    contactVisible: z.boolean().optional(),
     status,
     seo
+  }).superRefine((person, context) => {
+    if (!person.position && !person.role) {
+      context.addIssue({ code: z.ZodIssueCode.custom, path: ['position'], message: 'Vyplňte funkci nebo pozici osoby.' });
+    }
+    if (!person.workplace && !person.department) {
+      context.addIssue({ code: z.ZodIssueCode.custom, path: ['workplace'], message: 'Vyplňte pracoviště osoby.' });
+    }
   })
 });
 

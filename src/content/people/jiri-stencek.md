@@ -1,9 +1,10 @@
 ---
 name: Jiří Štencek
-role: Vedoucí ateliéru
-department: Průmyslový design
+position: Vedoucí ateliéru
+workplace: Průmyslový design
 email: sspu@sspu-opava.cz
 profile: Vede ateliérovou práci a výstavní projekty studentů průmyslového designu.
-programs: [prumyslovy-design]
+studyFields: [prumyslovy-design]
+showInContacts: true
 status: published
 ---

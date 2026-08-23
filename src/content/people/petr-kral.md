@@ -1,9 +1,10 @@
 ---
 name: Petr Král
-role: Vedoucí ateliéru
-department: Grafický design
+position: Vedoucí ateliéru
+workplace: Grafický design
 email: sspu@sspu-opava.cz
 profile: Konzultuje autorské projekty, vizuální komunikaci a tvorbu studentského portfolia.
-programs: [graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [graficky-design, tvorba-hracek-a-hernich-predmetu]
+showInContacts: true
 status: published
 ---

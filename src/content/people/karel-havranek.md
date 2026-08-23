@@ -1,9 +1,10 @@
 ---
 name: Karel Havránek
-role: Koordinátor technických oborů
-department: Strojírenství
+position: Koordinátor technických oborů
+workplace: Strojírenství
 email: sspu@sspu-opava.cz
 profile: Kontaktní osoba pro zájemce o studium strojírenství, spolupráci s firmami a odbornou praxi.
-programs: [strojirenstvi]
+studyFields: [strojirenstvi]
+showInContacts: true
 status: published
 ---

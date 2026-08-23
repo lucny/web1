@@ -1,10 +1,11 @@
 ---
 name: Redakce školy
-role: Redakce veřejného webu
-department: Komunikace školy
+position: Redakce veřejného webu
+workplace: Komunikace školy
 email: sspu@sspu-opava.cz
 profile: Společný autorský záznam pro aktuality vydané redakcí školy.
-programs: []
+studyFields: []
 contactVisible: false
+showInContacts: false
 status: published
 ---

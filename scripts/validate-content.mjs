@@ -75,7 +75,10 @@ for (const { file, data } of records.events) {
   if (data.article) requireReferences('events', file, 'article', [data.article], ids('articles'));
   if (data.gallery) requireReferences('events', file, 'gallery', [data.gallery], ids('galleries'));
 }
-for (const { file, data } of records.people) requireReferences('people', file, 'programs', data.programs, ids('programs'));
+for (const { file, data } of records.people) {
+  const studyFields = data.studyFields?.length ? data.studyFields : data.programs;
+  requireReferences('people', file, 'studyFields', studyFields, ids('programs'));
+}
 const validateBlocks = (collection, file, data) => {
   // `blocks` is accepted only as a migration alias for older page files.
   for (const [index, block] of (data.contentBlocks ?? data.blocks ?? []).entries()) {

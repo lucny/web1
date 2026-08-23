@@ -165,13 +165,19 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: Jméno, name: name, widget: string }
-      - { label: Funkce, name: role, widget: string }
-      - { label: Pracoviště, name: department, widget: string }
+      - { label: Tituly před jménem, name: titlesBefore, widget: string, required: false }
+      - { label: Tituly za jménem, name: titlesAfter, widget: string, required: false }
+      - { label: Funkce / pozice, name: position, widget: string }
+      - { label: Pracoviště, name: workplace, widget: string, required: false }
       - { label: Telefon, name: phone, widget: string, required: false }
       - { label: E-mail, name: email, widget: string }
       - { label: Fotografie, name: photo, widget: image, required: false }
-      - { label: Profil, name: profile, widget: text }
-      - { label: Obory, name: programs, widget: list, required: false }
+      - { label: ALT fotografie, name: photoAlt, widget: string, required: false }
+      - { label: Ohnisko fotografie, name: photoFocalPoint, widget: string, required: false }
+      - { label: Starší krátký profil, name: profile, widget: text, required: false }
+      - { label: Obsahové bloky, name: contentBlocks, widget: list, required: false }
+      - { label: Studijní obory, name: studyFields, widget: list, required: false }
+      - { label: Zobrazit v přehledu kontaktů, name: showInContacts, widget: boolean, default: false, required: false }
       - { label: Stav, name: status, widget: select, options: [published, draft], default: published }
   - name: pages
     label: Informační stránky
