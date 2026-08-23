@@ -29,6 +29,15 @@
   .prose-school :where(h2,h3) { @apply mt-10; }
   .prose-school :where(a) { @apply font-semibold text-brand decoration-2 decoration-school-cyan/70 hover:text-school-magenta; }
   .prose-school :where(ul) { @apply my-6 list-disc space-y-2 pl-6; }
+  .prose-school :where(ol) { @apply my-6 list-decimal space-y-2 pl-6; }
+  .prose-school :where(table) { @apply my-8 w-full border-collapse overflow-hidden text-left text-sm; }
+  .prose-school :where(th) { @apply border border-ink/15 bg-mist px-3 py-3 font-bold text-night; }
+  .prose-school :where(td) { @apply border border-ink/15 px-3 py-3 align-top; }
+  .prose-school :where(iframe) { @apply my-8 aspect-video w-full rounded-2xl border-0 bg-night shadow-soft; }
+  .prose-school :where(audio) { @apply my-6 w-full; }
+  .prose-school :where(figure) { @apply my-8; }
+  .prose-school :where(figure img) { @apply w-full rounded-2xl shadow-soft; }
+  .prose-school :where(figcaption) { @apply mt-3 text-sm leading-6 text-ink/65; }
   .skip-link { @apply sr-only fixed left-4 top-4 z-[100] rounded-lg bg-night px-4 py-3 font-bold text-white focus:not-sr-only; }
   .quick-link { @apply grid h-7 w-7 place-items-center rounded-full border border-white/35 text-white no-underline transition hover:border-accent hover:bg-accent hover:text-night; }
   .quick-link svg { @apply h-4 w-4; }
