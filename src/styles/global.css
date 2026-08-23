@@ -116,6 +116,71 @@
   .info-panel { @apply rounded-xl border border-ink/10 bg-mist/70 p-5 sm:p-6; }
   .meta-label { @apply text-xs font-bold uppercase tracking-[0.14em] text-brand; }
   .color-rule { @apply h-1 rounded-full; background: linear-gradient(90deg, #1A4053 0 20%, #59BDDC 20% 40%, #ECAFAC 40% 60%, #D0D543 60% 80%, #C42079 80% 100%); }
+  .event-section-list { @apply grid gap-4; }
+  .event-preview { @apply relative grid gap-4 border-l-4 p-4 transition hover:-translate-y-0.5 hover:shadow-soft sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-center sm:p-5; border-left-color: var(--event-accent, #6B7280); }
+  .event-preview-multi-day { border-left-color: var(--event-accent, #6B7280); }
+  .event-preview-date { @apply flex items-center gap-2 rounded-xl bg-mist px-3 py-2 text-brand sm:block sm:px-3 sm:py-3; }
+  .event-preview-date-day { @apply font-display text-2xl font-bold leading-none; }
+  .event-preview-date-month { @apply text-xs font-bold uppercase tracking-wide text-ink/60 sm:mt-1 sm:block; }
+  .event-preview-date-range { @apply ml-auto text-lg font-bold text-school-cyan sm:mt-2 sm:block; }
+  .event-preview-kicker { @apply text-xs font-bold uppercase tracking-[0.14em] text-brand; }
+  .event-preview-title { @apply mt-1 text-lg sm:text-xl; }
+  .event-preview-title a { @apply no-underline hover:text-school-magenta; }
+  .event-preview-excerpt { @apply mt-2 max-w-3xl leading-7 text-ink/70; }
+  .event-preview-calendar-tags { @apply mt-2 text-xs font-bold text-ink/60; }
+  .event-meta { @apply mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-ink/70; }
+  .event-meta-date { @apply font-bold text-night; }
+  .event-meta-location { @apply before:mr-3 before:text-ink/30 before:content-['·']; }
+  .event-meta-tags { @apply flex flex-wrap gap-1.5; }
+  .event-tag { @apply rounded-sm border border-ink/10 bg-mist px-2 py-1 text-xs font-semibold text-brand no-underline hover:border-school-cyan hover:bg-school-cyan/15; }
+  .event-meta-compact { @apply mt-2 text-xs; }
+  .event-meta-compact .event-meta-tags { @apply hidden; }
+  .event-list { @apply mt-5 grid gap-4; }
+  .event-list-item[hidden] { display: none; }
+  .event-list-empty { @apply mt-5; }
+  .event-filters { @apply rounded-2xl border border-ink/10 bg-white p-4 shadow-soft; }
+  .event-filter-toolbar { @apply flex flex-wrap items-center gap-3; }
+  .event-filter-heading { @apply flex min-w-max items-center gap-3; }
+  .event-filter-heading .eyebrow { @apply mb-0; }
+  .event-filter-count { @apply rounded-full bg-mist px-2.5 py-1 text-xs font-bold text-ink/60; }
+  .event-filter-form { @apply min-w-0 flex-1; }
+  .event-filter-input { @apply min-h-10 w-full rounded-xl border border-ink/15 bg-paper px-3 py-2 text-sm text-ink outline-none transition placeholder:text-ink/45 focus:border-school-cyan focus:ring-2 focus:ring-school-cyan/20; }
+  .event-filter-clear { @apply shrink-0 text-sm font-bold text-brand underline decoration-brand/40 underline-offset-4 hover:text-school-magenta; }
+  .event-active-filters { @apply mt-3 flex flex-wrap items-center gap-2; }
+  .event-active-filters[hidden] { display: none; }
+  .event-active-filters-label { @apply text-xs font-bold uppercase tracking-[0.12em] text-ink/55; }
+  .event-active-filter { @apply rounded-full bg-brand px-3 py-1.5 text-xs font-bold text-white no-underline hover:bg-school-magenta; }
+  .event-calendar { @apply min-w-0; }
+  .event-calendar-weekdays { @apply grid grid-cols-7 border-b border-ink/10 bg-mist text-center text-xs font-bold uppercase tracking-wide text-ink/60; }
+  .event-calendar-weekdays span { @apply px-1 py-3; }
+  .event-calendar-grid { @apply grid grid-cols-7; }
+  .event-calendar-cell { @apply min-h-20 border-b border-r border-ink/10 p-1.5 last:border-r-0 sm:min-h-24 sm:p-2; }
+  .event-calendar-cell:nth-child(7n) { @apply border-r-0; }
+  .event-calendar-cell-empty { @apply bg-paper/60; }
+  .event-calendar-day { @apply relative z-0 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-ink transition hover:bg-mist disabled:pointer-events-none disabled:opacity-0; }
+  .event-calendar-day::before { content: ''; @apply absolute inset-0 -z-10 rounded-full border-2 border-transparent transition; }
+  .event-calendar-day-has-event::before { border-color: var(--event-day-color, #6B7280); }
+  .event-calendar-day-event-start { color: var(--event-day-text, #FFFFFF); }
+  .event-calendar-day-event-start::before { background: var(--event-day-color, #6B7280); }
+  .event-calendar-day-overlap::after { content: ''; @apply absolute -inset-1 -z-20 rounded-full border border-current; color: var(--event-day-color, #6B7280); }
+  .event-calendar-day-today { @apply outline outline-2 outline-offset-2 outline-accent; }
+  .event-calendar-day-selected { @apply outline outline-2 outline-offset-2 outline-brand; }
+  .event-calendar-legend-start, .event-calendar-legend-continuing, .event-calendar-legend-overlap { @apply mr-1 inline-flex h-6 w-6 items-center justify-center rounded-full text-[0.65rem] font-bold; }
+  .event-calendar-legend-start { @apply bg-brand text-white; }
+  .event-calendar-legend-continuing { @apply border-2 border-brand text-brand; }
+  .event-calendar-legend-overlap { @apply border-2 border-brand text-brand ring-1 ring-brand ring-offset-1; }
+  .event-calendar-legend-today { @apply rounded bg-accent/30 px-1.5 py-0.5 text-xs font-bold text-brand; }
+  .event-attachments { @apply mt-12 border-t border-ink/10 pt-10; }
+  .event-attachment-type { @apply grid h-10 w-12 shrink-0 place-items-center rounded-lg bg-brand text-[0.65rem] font-bold text-white; }
+  .event-dialog { @apply m-auto w-[min(92vw,60rem)] max-w-none rounded-3xl border-0 bg-paper p-0 text-ink shadow-2xl; max-height: 90vh; }
+  .event-dialog::backdrop { @apply bg-night/70; }
+  .event-dialog-shell { @apply relative max-h-[90vh] overflow-y-auto; }
+  .event-dialog-close-form { @apply sticky right-0 top-0 z-10 flex justify-end p-3; }
+  .event-dialog-close { @apply grid h-11 w-11 place-items-center rounded-full bg-night text-3xl leading-none text-white shadow-soft transition hover:bg-brand; }
+  .event-dialog-header { @apply -mt-14 border-b border-ink/10 px-6 pb-7 pt-16 sm:px-10; }
+  .event-dialog-body { @apply px-6 pb-8 sm:px-10 sm:pb-12; }
+  .event-dialog-body > .prose-school { @apply max-w-none; }
+  body.event-dialog-open { overflow: hidden; }
 }
 
 @media (min-width: 1024px) {
@@ -129,4 +194,9 @@
 
 @media (max-width: 420px) {
   .hero-tab { @apply min-h-24 px-3 py-3 text-[0.68rem] tracking-[0.04em]; }
+}
+
+@media (max-width: 640px) {
+  .event-calendar-cell { min-height: 4.75rem; padding: .25rem; }
+  .event-calendar-day { height: 2rem; width: 2rem; font-size: .75rem; }
 }

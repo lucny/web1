@@ -12,6 +12,14 @@ const programColors: Record<string, string> = {
   'graficky-design': '#C42079'
 };
 
+const programTextColors: Record<string, string> = {
+  strojirenstvi: '#FFFFFF',
+  'informacni-technologie': '#08243A',
+  'tvorba-hracek-a-hernich-predmetu': '#08243A',
+  'prumyslovy-design': '#08243A',
+  'graficky-design': '#FFFFFF'
+};
+
 const categoryFallbacks: Record<string, ArticleFallbackVisual> = {
   úspěchy: { label: 'Úspěchy', primary: '#C42079', secondary: '#ECAFAC' },
   studium: { label: 'Studium', primary: '#59BDDC', secondary: '#1A4053' },
@@ -25,6 +33,14 @@ const categoryFallbacks: Record<string, ArticleFallbackVisual> = {
 
 export function getArticleHeroColor(programs: string[]) {
   return programs.map((program) => programColors[program]).find(Boolean) ?? '#6B7280';
+}
+
+export function getProgramColor(programs: string[]) {
+  return programs.map((program) => programColors[program]).find(Boolean) ?? '#6B7280';
+}
+
+export function getProgramTextColor(programs: string[]) {
+  return programs.map((program) => programTextColors[program]).find(Boolean) ?? '#FFFFFF';
 }
 
 export function getArticleFallback(categories: string[]): ArticleFallbackVisual {

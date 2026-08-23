@@ -1,13 +1,42 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { entries, formatDate, withBase } from '../../lib/content';
+import EventCalendar from '../../components/events/EventCalendar.astro';
+import EventFilters from '../../components/events/EventFilters.astro';
+import EventList from '../../components/events/EventList.astro';
 import PageHero from '../../components/content/PageHero.astro';
-const events = (await entries('events')).sort((a, b) => Number(a.data.start) - Number(b.data.start));
+import { EVENT_TAG_OPTIONS } from '../../data/eventTags';
+import { currentMonthKey, eventMatchesPrograms, eventMatchesTags, eventOccursInMonth, eventOccursOn, eventStartKey } from '../../lib/events';
+import { entries } from '../../lib/content';
+
+const [allEvents, programs] = await Promise.all([entries('events'), entries('programs')]);
+const selectedTags = [...new Set(Astro.url.searchParams.getAll('stitky').flatMap((value) => value.split(',')).filter(Boolean))];
+const selectedPrograms = [...new Set(Astro.url.searchParams.getAll('obor').flatMap((value) => value.split(',')).filter(Boolean))];
+const requestedMonth = Astro.url.searchParams.get('mesic') ?? '';
+const selectedMonth = /^\d{4}-\d{2}$/.test(requestedMonth) ? requestedMonth : currentMonthKey();
+const requestedDay = Astro.url.searchParams.get('den') ?? '';
+const selectedDay = /^\d{4}-\d{2}-\d{2}$/.test(requestedDay) ? requestedDay : '';
+const filteredEvents = allEvents
+  .filter((event) => eventMatchesTags(event, selectedTags))
+  .filter((event) => eventMatchesPrograms(event, selectedPrograms))
+  .filter((event) => eventOccursInMonth(event, selectedMonth))
+  .filter((event) => !selectedDay || eventOccursOn(event, selectedDay))
+  .sort((a, b) => eventStartKey(a).localeCompare(eventStartKey(b)));
 ---
 <BaseLayout title="Kalendář akcí" description="Nejbližší akce SŠPU Opava: dny otevřených dveří, výstavy, školní termíny a setkání s praxí.">
-  <PageHero eyebrow="Kalendář akcí" title="Co nás čeká v nejbližších měsících." description="Termíny pro uchazeče, školní setkání, výstavy i příležitosti potkat školu osobně." accent="#D0D543" />
-  <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
+  <PageHero eyebrow="Kalendář akcí" title="Co nás čeká v nejbližších měsících." description="Procházejte akce podle měsíce, štítků nebo oboru. Kliknutím na událost otevřete rychlý detail; samostatná URL zůstává dostupná jako fallback." accent="#D0D543" />
+  <section class="container-page pb-16 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Přehled událostí</span>
-    <div class="mt-10 space-y-4">{events.map((event) => <article class="card grid gap-5 border-l-4 border-l-school-lime p-5 transition hover:shadow-soft sm:grid-cols-[7rem_1fr_auto] sm:items-center"><time class="rounded-2xl bg-mist p-4 text-center text-sm font-bold text-brand" datetime={event.data.start.toISOString()}>{formatDate(event.data.start, { day: 'numeric', month: 'long', year: 'numeric' })}<span class="mt-1 block text-xs text-ink/70">{formatDate(event.data.start, { hour: '2-digit', minute: '2-digit' })}</span></time><div><p class="meta-label">{event.data.type}</p><h2 class="mt-2 text-2xl"><a class="no-underline hover:text-school-magenta" href={withBase(`/udalosti/${event.id}/`)}>{event.data.title}</a></h2><p class="mt-2 leading-7 text-ink/70">{event.data.description}</p><p class="mt-2 text-sm font-bold">{event.data.location}</p></div><a class="button-secondary" href={withBase(`/udalosti/${event.id}/`)}>Detail</a></article>)}</div>
+    <div class="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start">
+      <EventCalendar events={allEvents} initialMonth={selectedMonth} />
+      <div>
+        <EventFilters tags={EVENT_TAG_OPTIONS} programs={programs.map((program) => ({ id: program.id, title: program.data.title }))} selectedTags={selectedTags} selectedPrograms={selectedPrograms} selectedMonth={selectedMonth} selectedDay={selectedDay} resultCount={filteredEvents.length} />
+        {/**
+         * GitHub Pages serves this route as static HTML. Query parameters therefore
+         * cannot determine the server-rendered list; the client-side calendar
+         * synchronizes this complete fallback list with the active filters.
+         */}
+        <EventList events={allEvents} variant="compact" monthFilter={true} />
+      </div>
+    </div>
   </section>
 </BaseLayout>

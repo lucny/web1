@@ -23,10 +23,10 @@ export const GET: APIRoute = async () => {
       type: labels[collection],
       title: data.title ?? data.name,
       url: withBase(routeFor(collection, item.id)),
-      description: data.description ?? data.profile,
+      description: data.description ?? data.excerpt ?? data.profile,
       text: item.body,
       metadata,
-      updated: data.updatedAt ?? data.publishedAt ?? data.date ?? data.start ?? null
+      updated: data.updatedAt ?? data.publishedAt ?? data.date ?? data.startDate ?? data.start ?? null
     };
   })));
   return new Response(JSON.stringify({ name: 'SŠPU Opava', generatedAt: new Date().toISOString(), content: all.flat() }, null, 2), { headers: { 'Content-Type': 'application/json; charset=utf-8' } });

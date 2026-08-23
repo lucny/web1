@@ -21,7 +21,7 @@ Hosted Pages CMS je pro tento experiment doporučený. Self-hosting není potře
 | Obory | `src/content/programs/` | Metadata oboru, `contentBlocks`; pět stávajících oborů; kontakty → lidé |
 | Galerie | `src/content/galleries/` | Seřaditelný seznam snímků s povinným ALT textem |
 | Dokumenty | `src/content/documents/` | Soubor, platnost, kategorie, štítky, obory a stránky |
-| Události | `src/content/events/` | Začátek/konec, obory, článek a galerie → reference |
+| Události | `src/content/events/` | Kalendářová událost s datem/časem, štítky, přílohami, blokovým obsahem a vazbami na obory, článek nebo galerii |
 | Lidé | `src/content/people/` | Kontaktní údaje, foto, profil a obory |
 | Kategorie | `src/content/categories/` | Řízená klasifikace použitá v článcích, galeriích a dokumentech |
 
@@ -29,9 +29,15 @@ Kategorie jsou samostatné entity. Štítky zůstávají záměrně volným opak
 
 ## Obsahové bloky a editor
 
-Stránky, články a obory používají stejný blokový obsah v poli `contentBlocks`. Renderer je v `src/components/content/ContentRenderer.astro` a routy mu předávají například `<ContentRenderer blocks={entry.data.contentBlocks} />`. Podporuje nadpis, text, obrázek, YouTube, audio, tabulku, 2/3 sloupce, informační box, CTA, galerii, seznam dokumentů, seznam aktualit, kontaktní osoby a FAQ. Vztahové bloky volí existující položky místo ručního zadávání slugů. [Block field](https://pagescms.org/docs/configuration/fields/block/) ukládá čitelný YAML frontmatter s klíčem `type`.
+Stránky, články, obory a události používají stejný blokový obsah v poli `contentBlocks`. Renderer je v `src/components/content/ContentRenderer.astro` a routy mu předávají například `<ContentRenderer blocks={entry.data.contentBlocks} />`. Podporuje nadpis, text, obrázek, YouTube, audio, tabulku, 2/3 sloupce, informační box, CTA, galerii, seznam dokumentů, seznam aktualit, kontaktní osoby a FAQ. Vztahové bloky volí existující položky místo ručního zadávání slugů. [Block field](https://pagescms.org/docs/configuration/fields/block/) ukládá čitelný YAML frontmatter s klíčem `type`.
 
-Starší Markdownové tělo zůstává dočasně jako fallback pro již existující články, obory a stránky. Jakmile položka dostane neprázdné `contentBlocks`, zobrazí se pouze blokový obsah; nová tvorba přes Pages CMS proto používá `contentBlocks` jako jediný zdroj obsahové kompozice. Kompatibilní wrapper `ContentBlocks.astro` zůstává kvůli starším importům, vlastní logika je pouze v `ContentRenderer.astro`.
+Starší Markdownové tělo zůstává dočasně jako fallback pro již existující články, obory a stránky. Jakmile položka dostane neprázdné `contentBlocks`, zobrazí se pouze blokový obsah; nová tvorba přes Pages CMS proto používá `contentBlocks` jako jediný zdroj obsahové kompozice. Události mají stejný renderer v modálním detailu i na samostatné URL. Kompatibilní wrapper `ContentBlocks.astro` zůstává kvůli starším importům, vlastní logika je pouze v `ContentRenderer.astro`.
+
+## Kalendář událostí
+
+Kolekce `events` používá civilní datum `startDate`/`endDate` ve formátu `RRRR-MM-DD` a samostatný lokální čas `startTime`/`endTime` ve formátu `HH:mm`. Datum se záměrně neukládá jako JavaScriptový timestamp, aby se při publikaci na GitHub Pages neposouvalo mezi časovými pásmy. Volitelné pole `tags` používá stabilní hodnoty z `src/data/eventTags.ts`; redakční popisky se mohou změnit bez rozbití URL filtrů.
+
+Stránka `/udalosti/` kombinuje kalendář, URL filtry `mesic`, `den`, `stitky` a `obor`, seznam událostí a nativní `<dialog>`. Události jsou v seznamu vyrenderované jako statický fallback a po načtení se synchronizují s filtry v prohlížeči, což je důležité pro hosting na GitHub Pages. Každá událost má navíc samostatnou URL `/udalosti/<slug>/`, která funguje i bez JavaScriptu. Blok `EventSection.astro` stejným způsobem poskytuje výběry na homepage, stránkách oborů, uchazečů a studentů.
 
 Přepínač **Editor / Source** zůstává zapnutý u staršího Markdownového fallbacku, takže dosavadní obsah lze kontrolovat a ručně upravovat ve VS Code či přes Git. Nový obsah se skládá z bloků v čistém YAML frontmatteru.
 

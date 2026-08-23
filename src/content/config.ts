@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { EVENT_TAG_VALUES } from '../data/eventTags';
 
 const status = z.enum(['published', 'draft']).default('published');
 // Pages CMS reference fields naturally store a collection entry name such as
@@ -11,6 +12,7 @@ const contentReference = z.preprocess(
 const slugList = z.array(contentReference).default([]);
 const optionalDate = z.preprocess((value) => value === '' ? undefined : value, z.coerce.date().optional());
 const optionalUrl = z.preprocess((value) => value === '' ? undefined : value, z.string().url().optional());
+const optionalString = z.preprocess((value) => value === '' ? undefined : value, z.string().optional());
 const seo = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
@@ -43,6 +45,9 @@ const contentBlock = z.discriminatedUnion('type', [
   z.object({ type: z.literal('faq'), items: z.array(z.object({ question: z.string(), answer: z.string() })) })
 ]);
 const contentBlocks = z.array(contentBlock).default([]);
+const civilDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Použijte datum ve formátu RRRR-MM-DD.');
+const localTime = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Použijte čas ve formátu HH:mm.');
+const eventTags = z.array(z.enum(EVENT_TAG_VALUES)).default([]);
 
 const articles = defineCollection({
   type: 'content',
@@ -125,17 +130,27 @@ const events = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    description: z.string(),
-    start: z.coerce.date(),
-    end: optionalDate,
-    location: z.string(),
-    url: z.string().optional(),
-    type: z.string(),
+    excerpt: z.string(),
+    contentBlocks,
+    startDate: civilDate,
+    startTime: optionalString.pipe(localTime.optional()),
+    endDate: optionalString.pipe(civilDate.optional()),
+    endTime: optionalString.pipe(localTime.optional()),
+    location: optionalString,
+    tags: eventTags,
     programs: slugList,
+    attachments: z.array(z.object({ file: z.string().min(1), label: z.string(), description: z.string().optional() })).default([]),
+    url: optionalUrl,
     article: contentReference.optional(),
     gallery: contentReference.optional(),
     status,
     seo
+  }).superRefine((event, context) => {
+    const endDate = event.endDate ?? event.startDate;
+    if (endDate < event.startDate) context.addIssue({ code: z.ZodIssueCode.custom, path: ['endDate'], message: 'Konec události nemůže být před začátkem.' });
+    if (endDate === event.startDate && event.startTime && event.endTime && event.endTime <= event.startTime) {
+      context.addIssue({ code: z.ZodIssueCode.custom, path: ['endTime'], message: 'Čas konce musí být pozdější než čas začátku.' });
+    }
   })
 });
 

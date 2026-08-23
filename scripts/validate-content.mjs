@@ -55,6 +55,22 @@ for (const { file, data } of records.documents) {
   requireReferences('documents', file, 'pages', data.pages, ids('pages'));
 }
 for (const { file, data } of records.events) {
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+  const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
+  const eventTags = new Set(['vystava', 'prace-zaku', 'uchazeci', 'maturanti', 'akce', 'soutez', 'prednaska', 'exkurze', 'prumyslovy-design', 'graficky-design', 'informacni-technologie', 'strojirenstvi', 'design-hracek']);
+  if (!data.excerpt?.trim()) errors.push(`events/${file}: chybí excerpt.`);
+  if (!datePattern.test(data.startDate ?? '')) errors.push(`events/${file}: startDate musí mít formát RRRR-MM-DD.`);
+  if (data.startTime && !timePattern.test(data.startTime)) errors.push(`events/${file}: startTime musí mít formát HH:mm.`);
+  if (data.endDate && !datePattern.test(data.endDate)) errors.push(`events/${file}: endDate musí mít formát RRRR-MM-DD.`);
+  if (data.endTime && !timePattern.test(data.endTime)) errors.push(`events/${file}: endTime musí mít formát HH:mm.`);
+  const endDate = data.endDate ?? data.startDate;
+  if (data.startDate && endDate < data.startDate) errors.push(`events/${file}: endDate je před startDate.`);
+  if (data.startDate === endDate && data.startTime && data.endTime && data.endTime <= data.startTime) errors.push(`events/${file}: endTime musí být později než startTime.`);
+  for (const tag of data.tags ?? []) if (!eventTags.has(tag)) errors.push(`events/${file}: neznámý štítek „${tag}“.`);
+  for (const [index, attachment] of (data.attachments ?? []).entries()) {
+    if (!attachment.file) errors.push(`events/${file}: attachments[${index}] nemá soubor.`);
+    if (!attachment.label?.trim()) errors.push(`events/${file}: attachments[${index}] nemá viditelný název.`);
+  }
   requireReferences('events', file, 'programs', data.programs, ids('programs'));
   if (data.article) requireReferences('events', file, 'article', [data.article], ids('articles'));
   if (data.gallery) requireReferences('events', file, 'gallery', [data.gallery], ids('galleries'));
@@ -74,6 +90,7 @@ const validateBlocks = (collection, file, data) => {
 for (const { file, data } of records.pages) validateBlocks('pages', file, data);
 for (const { file, data } of records.articles) validateBlocks('articles', file, data);
 for (const { file, data } of records.programs) validateBlocks('programs', file, data);
+for (const { file, data } of records.events) validateBlocks('events', file, data);
 
 if (errors.length) { console.error('Kontrola obsahu selhala:\n- ' + errors.join('\n- ')); process.exit(1); }
 console.log('Kontrola obsahu a vztahů proběhla úspěšně.');

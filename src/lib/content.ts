@@ -8,9 +8,12 @@ export async function entries<T extends Name>(collection: T) {
   return collectionEntries
     .filter((entry) => entry.data.status === 'published')
     .sort((a, b) => {
-      const aData = a.data as { publishedAt?: Date; date?: Date; start?: Date };
-      const bData = b.data as { publishedAt?: Date; date?: Date; start?: Date };
-      return Number(bData.publishedAt ?? bData.date ?? bData.start ?? 0) - Number(aData.publishedAt ?? aData.date ?? aData.start ?? 0);
+      const value = (data: { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) => {
+        if (data.publishedAt || data.date || data.start) return Number(data.publishedAt ?? data.date ?? data.start);
+        if (data.startDate) return Number(new Date(`${data.startDate}T${data.startTime ?? '00:00'}:00`));
+        return 0;
+      };
+      return value(b.data as { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) - value(a.data as { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string });
     })
     // Legacy Astro content collections retain `.md` in `id`; public relations and URLs use the stable slug.
     .map((entry) => ({ ...entry, id: entry.slug })) as CollectionEntry<T>[];

@@ -1,10 +1,24 @@
 ---
 title: Den otevřených dveří
-description: Seznamte se s obory, prostory školy i pedagogy. Součástí budou ukázky odborné a ateliérové práce.
-start: 2026-11-12T14:00:00+01:00
-end: 2026-11-12T18:00:00+01:00
+excerpt: Seznamte se s obory, prostory školy i pedagogy. Součástí budou ukázky odborné a ateliérové práce.
+startDate: '2026-11-12'
+startTime: '14:00'
+endDate: '2026-11-12'
+endTime: '18:00'
 location: SŠPU Opava, Praskova 399/8
-type: Pro uchazeče
-programs: [strojirenstvi, informacni-technologie, prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+tags:
+  - uchazeci
+  - akce
+  - strojirenstvi
+  - informacni-technologie
+  - prumyslovy-design
+  - graficky-design
+  - design-hracek
+programs:
+  - strojirenstvi
+  - informacni-technologie
+  - prumyslovy-design
+  - graficky-design
+  - tvorba-hracek-a-hernich-predmetu
 status: published
 ---

@@ -4,23 +4,27 @@ interface Photo { src: string; alt: string; caption?: string }
 const { photos, title } = Astro.props as { photos: Photo[]; title: string };
 const renderedPhotos = photos.map((photo) => ({ ...photo, src: withBase(photo.src) }));
 ---
+<div data-gallery-instance>
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-gallery data-photos={JSON.stringify(renderedPhotos)}>
   {renderedPhotos.map((photo, index) => <button type="button" class="group relative overflow-hidden rounded-2xl bg-night text-left" data-gallery-open={index} aria-haspopup="dialog" aria-label={`Otevřít fotografii ${index + 1}: ${photo.alt}`}><img src={photo.src} alt={photo.alt} class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" loading="lazy" /><span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/80 to-transparent px-4 pb-3 pt-12 text-sm font-bold text-white">{photo.caption ?? photo.alt}</span></button>)}
 </div>
 <dialog class="m-auto w-[min(92vw,72rem)] rounded-3xl border-0 bg-night p-0 text-white shadow-2xl backdrop:bg-night/80" aria-label={`Galerie: ${title}`} data-gallery-dialog>
   <div class="relative"><img class="max-h-[78vh] w-full object-contain" src={renderedPhotos[0]?.src} alt={renderedPhotos[0]?.alt} data-gallery-image /><button type="button" class="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-white text-2xl text-night" data-gallery-close aria-label="Zavřít galerii">×</button><div class="flex items-center justify-between gap-4 p-4"><button class="button-secondary !min-h-10 !px-4" type="button" data-gallery-prev>← Předchozí</button><p class="text-sm" data-gallery-caption></p><button class="button-secondary !min-h-10 !px-4" type="button" data-gallery-next>Další →</button></div></div>
 </dialog>
+</div>
 <script>
-  const root = document.querySelector('[data-gallery]');
-  const photos = JSON.parse(root?.getAttribute('data-photos') || '[]');
-  const dialog = document.querySelector<HTMLDialogElement>('[data-gallery-dialog]');
-  const image = document.querySelector<HTMLImageElement>('[data-gallery-image]');
-  const caption = document.querySelector<HTMLElement>('[data-gallery-caption]');
-  let active = 0;
-  const update = () => { const photo = photos[active]; if (image) { image.src = photo.src; image.alt = photo.alt; } if (caption) caption.textContent = photo.caption || photo.alt; };
-  root?.addEventListener('click', (event) => { const target = event.target; const button = target instanceof Element ? target.closest<HTMLElement>('[data-gallery-open]') : null; if (!button || !dialog) return; active = Number(button.getAttribute('data-gallery-open')); update(); dialog.showModal(); dialog.querySelector<HTMLElement>('[data-gallery-close]')?.focus(); });
-  dialog?.querySelector('[data-gallery-close]')?.addEventListener('click', () => dialog.close());
-  dialog?.querySelector('[data-gallery-prev]')?.addEventListener('click', () => { active = (active - 1 + photos.length) % photos.length; update(); });
-  dialog?.querySelector('[data-gallery-next]')?.addEventListener('click', () => { active = (active + 1) % photos.length; update(); });
-  dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  document.querySelectorAll<HTMLElement>('[data-gallery-instance]').forEach((instance) => {
+    const root = instance.querySelector<HTMLElement>('[data-gallery]');
+    const photos = JSON.parse(root?.getAttribute('data-photos') || '[]');
+    const dialog = instance.querySelector<HTMLDialogElement>('[data-gallery-dialog]');
+    const image = instance.querySelector<HTMLImageElement>('[data-gallery-image]');
+    const caption = instance.querySelector<HTMLElement>('[data-gallery-caption]');
+    let active = 0;
+    const update = () => { const photo = photos[active]; if (!photo) return; if (image) { image.src = photo.src; image.alt = photo.alt; } if (caption) caption.textContent = photo.caption || photo.alt; };
+    root?.addEventListener('click', (event) => { const target = event.target; const button = target instanceof Element ? target.closest<HTMLElement>('[data-gallery-open]') : null; if (!button || !dialog) return; active = Number(button.getAttribute('data-gallery-open')); update(); dialog.showModal(); dialog.querySelector<HTMLElement>('[data-gallery-close]')?.focus(); });
+    dialog?.querySelector('[data-gallery-close]')?.addEventListener('click', () => dialog.close());
+    dialog?.querySelector('[data-gallery-prev]')?.addEventListener('click', () => { active = (active - 1 + photos.length) % photos.length; update(); });
+    dialog?.querySelector('[data-gallery-next]')?.addEventListener('click', () => { active = (active + 1) % photos.length; update(); });
+    dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  });
 </script>

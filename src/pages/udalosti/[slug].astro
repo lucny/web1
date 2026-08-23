@@ -1,11 +1,26 @@
 ---
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentRenderer from '../../components/content/ContentRenderer.astro';
+import EventAttachments from '../../components/events/EventAttachments.astro';
+import EventMeta from '../../components/events/EventMeta.astro';
 import PageHero from '../../components/content/PageHero.astro';
-import { entries, formatDate } from '../../lib/content';
+import { entries, withBase } from '../../lib/content';
 export async function getStaticPaths() { return (await entries('events')).map((event) => ({ params: { slug: event.id }, props: { event } })); }
 const { event } = Astro.props;
-const schema = { '@context': 'https://schema.org', '@type': 'Event', name: event.data.title, description: event.data.description, startDate: event.data.start.toISOString(), endDate: event.data.end?.toISOString(), location: { '@type': 'Place', name: event.data.location }, organizer: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
+const { Content } = await render(event);
+const schema = { '@context': 'https://schema.org', '@type': 'Event', name: event.data.title, description: event.data.excerpt, startDate: `${event.data.startDate}${event.data.startTime ? `T${event.data.startTime}` : ''}`, endDate: event.data.endDate ? `${event.data.endDate}${event.data.endTime ? `T${event.data.endTime}` : ''}` : undefined, location: event.data.location ? { '@type': 'Place', name: event.data.location } : undefined, organizer: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
 ---
-<BaseLayout title={event.data.title} description={event.data.description} seo={event.data.seo} breadcrumbs={[{ label: 'Kalendář akcí', href: '/udalosti/' }, { label: event.data.title }]} schema={schema}>
-  <PageHero eyebrow={event.data.type} title={event.data.title} description={event.data.description} accent="#D0D543" /><article class="container-page pb-12 sm:pb-16" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Událost</span>{event.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}<div class="mx-auto max-w-3xl"><dl class="mt-10 grid gap-5 rounded-3xl bg-mist p-6 sm:grid-cols-2"><div><dt class="font-bold text-ink/65">Začátek</dt><dd class="mt-1">{formatDate(event.data.start, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</dd></div>{event.data.end && <div><dt class="font-bold text-ink/65">Konec</dt><dd class="mt-1">{formatDate(event.data.end, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</dd></div>}<div><dt class="font-bold text-ink/65">Místo</dt><dd class="mt-1">{event.data.location}</dd></div></dl>{event.data.url && <a class="button-primary mt-8" href={event.data.url}>Více informací</a>}</div></article>
+<BaseLayout title={event.data.title} description={event.data.excerpt} seo={event.data.seo} breadcrumbs={[{ label: 'Kalendář akcí', href: '/udalosti/' }, { label: event.data.title }]} schema={schema}>
+  <PageHero eyebrow="Kalendář akcí" title={event.data.title} description={event.data.excerpt} accent="#D0D543" />
+  <article class="container-page pb-14 sm:pb-20" data-pagefind-body>
+    <span class="sr-only" data-pagefind-filter="typ">Událost</span>
+    {event.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}
+    {event.data.tags.map((tag) => <span class="sr-only" data-pagefind-filter="stitek">{tag}</span>)}
+    <div class="event-detail-meta mt-10"><EventMeta event={event} /></div>
+    {event.data.url && <a class="button-primary mt-6" href={event.data.url}>Více informací <span aria-hidden="true" class="ml-2">↗</span></a>}
+    <div class="event-detail-content mt-10"><ContentRenderer blocks={event.data.contentBlocks}><Content /></ContentRenderer></div>
+    <EventAttachments attachments={event.data.attachments} />
+    {(event.data.article || event.data.gallery) && <div class="mt-12 flex flex-wrap gap-3 border-t border-ink/10 pt-8">{event.data.article && <a class="button-secondary" href={withBase(`/aktuality/${event.data.article}/`)}>Související aktualita</a>}{event.data.gallery && <a class="button-secondary" href={withBase(`/galerie/${event.data.gallery}/`)}>Související galerie</a>}</div>}
+  </article>
 </BaseLayout>

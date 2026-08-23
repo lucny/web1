@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { byId, entries, withBase } from '../lib/content';
 import PageHero from '../components/content/PageHero.astro';
 import ContentRenderer from '../components/content/ContentRenderer.astro';
+import EventSection from '../components/events/EventSection.astro';
 const [page, programs, documents, events] = await Promise.all([byId('pages', 'uchazeci'), entries('programs'), entries('documents'), entries('events')]);
 if (!page) throw new Error('Chybí obsahová stránka pro uchazeče.');
 const { Content } = await render(page);
@@ -14,6 +15,7 @@ const { Content } = await render(page);
     <span class="sr-only" data-pagefind-filter="typ">Stránka</span>
     <div class="mt-10"><ContentRenderer blocks={page.data.contentBlocks}><Content /></ContentRenderer></div>
     <div class="mt-14"><p class="section-label">Obory</p><h2 class="mt-3">Najděte si svůj směr</h2><div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{programs.map((program) => <a href={withBase(`/obory/${program.id}/`)} class="card border-t-4 border-t-school-cyan p-5 no-underline transition hover:-translate-y-1 hover:shadow-soft"><p class="meta-label">{program.data.code}</p><h3 class="mt-2">{program.data.title}</h3></a>)}</div></div>
-    <div class="mt-14 grid gap-6 lg:grid-cols-2"><section class="info-panel"><p class="section-label">Podklady</p><h2 class="mt-3">Podklady pro přijetí</h2><ul class="mt-5 space-y-3">{documents.filter((document) => document.data.tags.includes('uchazeči')).map((document) => <li><a class="font-bold text-brand" href={withBase(`/dokumenty/${document.id}/`)}>{document.data.title}</a></li>)}</ul></section><section class="info-panel"><p class="section-label">Setkání</p><h2 class="mt-3">Navštivte nás</h2><ul class="mt-5 space-y-3">{events.filter((event) => event.data.type === 'Pro uchazeče').map((event) => <li><a class="font-bold text-brand" href={withBase(`/udalosti/${event.id}/`)}>{event.data.title}</a></li>)}</ul></section></div>
+    <div class="mt-14"><section class="info-panel"><p class="section-label">Podklady</p><h2 class="mt-3">Podklady pro přijetí</h2><ul class="mt-5 space-y-3">{documents.filter((document) => document.data.tags.includes('uchazeči')).map((document) => <li><a class="font-bold text-brand" href={withBase(`/dokumenty/${document.id}/`)}>{document.data.title}</a></li>)}</ul></section></div>
   </section>
+  <EventSection events={events} eyebrow="Pro uchazeče" title="Navštivte nás" variant="applicants" tags={['uchazeci']} limit={4} from="now" showMoreLink={true} background="mist" />
 </BaseLayout>

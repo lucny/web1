@@ -735,54 +735,115 @@ content:
         component: seo
 
   - name: events
-    label: Události
+    label: Kalendář akcí
     type: collection
     path: src/content/events
     filename: "{primary}.md"
     view:
       primary: title
-      fields: [title, start, type, location, status]
-      search: [title, description, type, location]
-      sort: [start, title]
+      fields: [title, startDate, endDate, location, status]
+      search: [title, excerpt, location, tags]
+      sort: [startDate, title]
       default:
-        sort: start
+        sort: startDate
         order: asc
     fields:
       - name: title
         label: Název události
         type: string
         required: true
-      - name: description
-        label: Popis
+      - name: excerpt
+        label: Perex události
         type: text
         required: true
-      - name: start
-        label: Začátek
+      - name: contentBlocks
+        component: contentBlocks
+      - name: startDate
+        label: Datum začátku
         type: date
         required: true
         options:
-          time: true
-          format: yyyy-MM-dd'T'HH:mm:ssXXX
-      - name: end
-        label: Konec
+          format: yyyy-MM-dd
+      - name: startTime
+        label: Čas začátku
+        type: string
+        required: false
+        pattern:
+          regex: "^([01]\\d|2[0-3]):[0-5]\\d$"
+          message: Zadejte čas ve formátu HH:mm.
+      - name: endDate
+        label: Datum konce
         type: date
         required: false
         default: ""
         options:
-          time: true
-          format: yyyy-MM-dd'T'HH:mm:ssXXX
+          format: yyyy-MM-dd
+      - name: endTime
+        label: Čas konce
+        type: string
+        required: false
+        pattern:
+          regex: "^([01]\\d|2[0-3]):[0-5]\\d$"
+          message: Zadejte čas ve formátu HH:mm.
       - name: location
         label: Místo
-        type: string
-        required: true
-      - name: type
-        label: Typ události
-        type: string
-        required: true
+        type: text
+        required: false
+      - name: tags
+        label: Štítky
+        type: select
+        list: true
+        options:
+          values:
+            - name: vystava
+              label: Výstava
+            - name: prace-zaku
+              label: Práce žáků
+            - name: uchazeci
+              label: Uchazeči
+            - name: maturanti
+              label: Maturanti
+            - name: akce
+              label: Akce
+            - name: soutez
+              label: Soutěž
+            - name: prednaska
+              label: Přednáška
+            - name: exkurze
+              label: Exkurze
+            - name: prumyslovy-design
+              label: Průmyslový design
+            - name: graficky-design
+              label: Grafický design
+            - name: informacni-technologie
+              label: Informační technologie
+            - name: strojirenstvi
+              label: Strojírenství
+            - name: design-hracek
+              label: Design hraček
       - name: url
         label: Odkaz pro více informací
         type: string
         required: false
+      - name: attachments
+        label: Přílohy
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: file
+            label: Soubor
+            type: file
+            options:
+              media: attachments
+              categories: [document, image, audio]
+          - name: label
+            label: Název odkazu
+            type: string
+          - name: description
+            label: Popis přílohy
+            type: text
+            required: false
       - name: programs
         component: programs
       - name: article

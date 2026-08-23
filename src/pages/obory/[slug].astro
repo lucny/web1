@@ -2,13 +2,14 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleSection from '../../components/news/ArticleSection.astro';
+import EventSection from '../../components/events/EventSection.astro';
 import ContentRenderer from '../../components/content/ContentRenderer.astro';
 import PageHero from '../../components/content/PageHero.astro';
 import { entries, withBase } from '../../lib/content';
 export async function getStaticPaths() { return (await entries('programs')).map((program) => ({ params: { slug: program.id }, props: { program } })); }
 const { program } = Astro.props;
 const { Content } = await render(program);
-const [articles, galleries, people] = await Promise.all([entries('articles'), entries('galleries'), entries('people')]);
+const [articles, galleries, people, events] = await Promise.all([entries('articles'), entries('galleries'), entries('people'), entries('events')]);
 const relatedArticles = articles.filter((article) => article.data.programs.includes(program.id)).slice(0, 3);
 const relatedGalleries = galleries.filter((gallery) => gallery.data.programs.includes(program.id));
 const advisors = people.filter((person) => person.data.programs.includes(program.id) && person.data.contactVisible);
@@ -18,5 +19,6 @@ const accent = program.id === 'strojirenstvi' ? '#1A4053' : program.id === 'info
   <PageHero eyebrow={`${program.data.code} · ${program.data.form}`} title={program.data.title} description={program.data.description} accent={accent} image={program.data.heroImage} />
   <section class="container-page pb-14 sm:pb-16" data-pagefind-body><span class="sr-only" data-pagefind-filter="typ">Obor</span><span class="sr-only" data-pagefind-filter="obor">{program.data.title}</span><div class="flex flex-wrap gap-3"><a href={withBase('/uchazeci/')} class="button-primary">Chci se přihlásit</a><a href="#kontakt-oboru" class="button-secondary">Kontakt k oboru</a></div><div class="mt-14 grid gap-10 lg:grid-cols-[1.1fr_.9fr]"><article class="prose-school"><ContentRenderer blocks={program.data.contentBlocks}><Content /></ContentRenderer></article><aside class="card h-fit p-6"><h2 class="text-2xl">Co vás čeká</h2><ul class="mt-5 space-y-3">{program.data.highlights.map((highlight) => <li class="flex gap-3"><span class="mt-1 font-bold text-brand" aria-hidden="true">✓</span><span>{highlight}</span></li>)}</ul><h3 class="mt-8 text-lg">Kam můžete dál</h3><p class="mt-3 text-sm leading-6 text-ink/70">{program.data.careers.join(' · ')}</p></aside></div></section>
   {relatedArticles.length > 0 && <ArticleSection articles={relatedArticles} eyebrow="Z oboru" title="Aktuality a projekty" background="mist" />}
+  <EventSection events={events} eyebrow="Z oboru" title="Akce oboru" variant="field" programs={[program.id]} limit={3} from="now" background="paper" />
   <section id="kontakt-oboru" class="container-page py-16"><div class="grid gap-8 lg:grid-cols-2"><div><p class="eyebrow">Kontakt k oboru</p><h2 class="mt-2">Ptejte se konkrétně.</h2><p class="mt-4 max-w-xl leading-7 text-ink/75">Rádi vám pomůžeme s volbou oboru, přijímacím řízením i návštěvou školy.</p></div><div class="grid gap-4">{advisors.map((person) => <article class="card p-5"><h3 class="text-xl">{person.data.name}</h3><p class="mt-1 text-sm font-bold text-brand">{person.data.role}</p><a class="mt-3 inline-block" href={`mailto:${person.data.email}`}>{person.data.email}</a></article>)}</div></div>{relatedGalleries.length > 0 && <p class="mt-10 text-sm text-ink/70">Související galerie: {relatedGalleries.map((gallery) => <a class="font-bold text-brand" href={withBase(`/galerie/${gallery.id}/`)}>{gallery.data.title}</a>)}</p>}</section>
 </BaseLayout>

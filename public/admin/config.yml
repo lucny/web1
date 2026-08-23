@@ -117,19 +117,46 @@ collections:
       - { label: Štítky, name: tags, widget: list, required: false }
       - { label: Stav, name: status, widget: select, options: [published, draft], default: published }
   - name: events
-    label: Události
+    label: Kalendář akcí
     folder: src/content/events
     create: true
     slug: "{{slug}}"
     fields:
       - { label: Název, name: title, widget: string }
-      - { label: Popis, name: description, widget: text }
-      - { label: Začátek, name: start, widget: datetime }
-      - { label: Konec, name: end, widget: datetime, required: false }
-      - { label: Místo, name: location, widget: string }
+      - { label: Perex, name: excerpt, widget: text }
+      - { label: Datum začátku, name: startDate, widget: date, format: "YYYY-MM-DD" }
+      - { label: Čas začátku, name: startTime, widget: string, required: false, pattern: ["^([01]\\d|2[0-3]):[0-5]\\d$", "Použijte formát HH:mm."] }
+      - { label: Datum konce, name: endDate, widget: date, format: "YYYY-MM-DD", required: false }
+      - { label: Čas konce, name: endTime, widget: string, required: false, pattern: ["^([01]\\d|2[0-3]):[0-5]\\d$", "Použijte formát HH:mm."] }
+      - { label: Místo, name: location, widget: text, required: false }
       - { label: Odkaz, name: url, widget: string, required: false }
-      - { label: Typ události, name: type, widget: string }
+      - label: Štítky
+        name: tags
+        widget: select
+        multiple: true
+        options: [vystava, prace-zaku, uchazeci, maturanti, akce, soutez, prednaska, exkurze, prumyslovy-design, graficky-design, informacni-technologie, strojirenstvi, design-hracek]
       - { label: Obory, name: programs, widget: list, required: false }
+      - label: Přílohy
+        name: attachments
+        widget: list
+        required: false
+        fields:
+          - { label: Soubor, name: file, widget: file }
+          - { label: Název odkazu, name: label, widget: string }
+          - { label: Popis, name: description, widget: text, required: false }
+      - label: Obsahové bloky
+        name: contentBlocks
+        widget: list
+        required: false
+        types:
+          - label: Upozornění
+            name: notice
+            widget: object
+            fields: [{ label: Typ, name: type, widget: hidden, default: notice }, { label: Titulek, name: title, widget: string }, { label: Text, name: text, widget: text }]
+          - label: Výzva k akci
+            name: cta
+            widget: object
+            fields: [{ label: Typ, name: type, widget: hidden, default: cta }, { label: Titulek, name: title, widget: string }, { label: Text, name: text, widget: text }, { label: Text odkazu, name: label, widget: string }, { label: Odkaz, name: href, widget: string }]
       - { label: Stav, name: status, widget: select, options: [published, draft], default: published }
   - name: people
     label: Lidé

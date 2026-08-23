@@ -1,11 +1,27 @@
 ---
 title: Výstava plakátů – Průmyslový design
-description: Výstava plakátů žáků SŠPU Opava v pobočce Kateřinky Knihovny Petra Bezruče.
-start: 2026-07-03T09:00:00+02:00
-end: 2026-08-31T18:00:00+02:00
+excerpt: Výstava plakátů žáků SŠPU Opava v pobočce Kateřinky Knihovny Petra Bezruče.
+startDate: '2026-07-03'
+startTime: '09:00'
+endDate: '2026-08-31'
+endTime: '18:00'
 location: Knihovna Petra Bezruče, pobočka Kateřinky, Opava
-type: Výstava
-programs: [prumyslovy-design]
+tags:
+  - vystava
+  - prace-zaku
+  - prumyslovy-design
+programs:
+  - prumyslovy-design
+contentBlocks:
+  - type: text
+    title: O výstavě
+    text: Plakáty vznikly v rámci ateliérové práce oboru Průmyslový design. Výstava je přístupná v otevírací době knihovny.
+  - type: gallery
+    gallery: studentske-prace
+attachments:
+  - file: /uploads/dji_20000818175753_0227_d.jpg
+    label: Ukázková fotografie z výstavy
+    description: Doprovodný obrazový materiál k výstavě.
 article: plakaty-prumyslovy-design
 gallery: studentske-prace
 status: published
