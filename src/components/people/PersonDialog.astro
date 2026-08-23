@@ -28,8 +28,10 @@ const hasProfile = data.contentBlocks.length > 0 || Boolean(data.profile?.trim()
         {workplace && <p class="person-dialog-workplace">{workplace}</p>}
         <h2 id={`${dialogId}-title`}>{name}</h2>
         <p class="person-dialog-position">{position}</p>
-        <PersonMeta person={person} showWorkplace={false} showPhone compact />
       </div>
+    </div>
+    <div class="person-dialog-contact-row">
+      <PersonMeta person={person} showWorkplace={false} showPhone compact />
     </div>
     {hasProfile && <div class="person-dialog-body">
       <ContentRenderer blocks={data.contentBlocks}>

@@ -28,33 +28,35 @@
   .people-section { @apply min-w-0; }
   .contact-page-heading { @apply pt-8 pb-4 sm:pt-10 sm:pb-5; }
   .contact-people { @apply pb-16 sm:pb-24; }
-  .people-section-heading { @apply mb-5; }
-  .people-section-heading h2 { @apply text-2xl leading-tight sm:text-3xl; }
-  .people-list { @apply mt-4 grid min-w-0 gap-3; }
+  .people-section-heading { @apply mb-4 border-b border-ink/10 pb-3; }
+  .people-section-heading h2 { @apply m-0 text-xl font-semibold leading-tight sm:text-2xl; }
+  .people-list { @apply mt-4 grid min-w-0 gap-3 sm:gap-4; }
   .people-list-vertical { @apply sm:grid-cols-2; }
-  .people-list-compact { @apply sm:grid-cols-2 lg:grid-cols-3; }
+  .people-list-compact { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .people-list-compact > .people-list-entry { @apply lg:col-span-3; }
   .people-list-list { @apply gap-3; }
   .people-list-entry { @apply min-w-0; }
-  .person-card { @apply relative min-w-0 cursor-pointer overflow-hidden rounded-xl border border-ink/10 bg-white text-left shadow-soft transition duration-200 hover:-translate-y-0.5 hover:shadow-lift focus-visible:-translate-y-0.5 focus-visible:shadow-lift; }
+  .person-card { @apply relative min-w-0 cursor-pointer overflow-hidden rounded-none border border-ink/10 bg-white text-left shadow-none transition-colors duration-200 hover:bg-mist/35 hover:shadow-soft focus-visible:shadow-soft; }
   .person-card-vertical { @apply flex flex-col; }
-  .person-card-compact { @apply grid grid-cols-[4rem_minmax(0,1fr)] gap-3 p-3; }
-  .person-card-compact:not(.person-card-has-photo) { @apply block p-4; }
+  .person-card-compact { display: grid; grid-template-columns: 3.75rem minmax(0, 1fr); align-items: start; column-gap: 1rem; padding: 1rem; }
+  .person-card-compact:not(.person-card-has-photo) { display: block; padding: 1rem; }
   .person-card-list { @apply grid gap-4 p-5 sm:grid-cols-[minmax(10rem,.35fr)_1fr] sm:items-center; }
   .person-card-photo { @apply block shrink-0 overflow-hidden bg-mist no-underline; }
   .person-card-vertical .person-card-photo { @apply aspect-[16/9] w-full; }
-  .person-card-compact .person-card-photo { @apply h-16 w-16 rounded-full border border-ink/10; }
+  .person-card-compact .person-card-photo { @apply h-[3.75rem] w-[3.75rem] rounded-full border border-ink/10; }
   .person-card-list .person-card-photo { @apply aspect-[4/3] w-full rounded-xl; }
   .person-card-photo img { @apply h-full w-full object-cover object-top transition duration-500; }
   .person-card:hover .person-card-photo img, .person-card:focus-visible .person-card-photo img { @apply scale-[1.03]; }
   .person-card-content { @apply min-w-0 p-4; }
-  .person-card-compact .person-card-content, .person-card-list .person-card-content { @apply p-0; }
-  .person-card-workplace { @apply text-[0.65rem] font-bold uppercase leading-4 tracking-[0.12em] text-brand; }
-  .person-card-name { @apply mt-1 text-base leading-tight sm:text-lg; }
-  .person-card-position { @apply mt-1 text-xs font-semibold leading-5 text-ink/70; }
+  .person-card-compact .person-card-content, .person-card-list .person-card-content { @apply p-0 pt-0.5; }
+  .person-card-workplace { @apply text-[0.62rem] font-bold uppercase leading-4 tracking-[0.11em] text-brand; }
+  .person-card-name { @apply mt-0 text-[0.92rem] font-semibold leading-tight sm:text-base; }
+  .person-card-position { @apply mt-1 text-[0.7rem] font-semibold leading-5 text-ink/70; }
   .person-meta { @apply mt-3 grid gap-1.5 text-xs leading-4 text-ink/70; }
-  .person-meta-compact { @apply mt-2 gap-1 text-[0.68rem] leading-4; }
+  .person-meta-compact { @apply mt-3 gap-1.5 text-xs leading-5; }
   .person-meta-item { @apply flex min-w-0 items-start gap-1.5; }
   .person-meta-icon { @apply mt-0.5 h-3.5 w-3.5 shrink-0 fill-none stroke-current stroke-[1.7]; }
+  .person-card-compact .person-meta-icon { @apply h-3.5 w-3.5; }
   .person-meta-workplace { @apply font-semibold text-ink/70; }
   .person-meta-link { @apply min-w-0 break-all font-semibold text-brand no-underline hover:text-school-magenta; }
   .person-meta-fields { @apply flex flex-wrap gap-1.5; }
@@ -72,7 +74,7 @@
   .person-dialog-workplace { @apply mb-1 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-brand; }
   .person-dialog-position { @apply mt-1 text-sm font-semibold leading-5 text-ink/70; }
   .person-dialog-photo { @apply mb-4 h-24 w-24 overflow-hidden rounded-full border border-ink/10 bg-mist shadow-soft; }
-  .person-dialog-photo img { @apply h-full w-full object-cover; }
+  .person-dialog-photo img { @apply h-full w-full object-cover object-top; }
   .person-dialog-body { @apply px-6 pb-7 pt-5; }
   .person-dialog-body > .prose-school { @apply max-w-none; }
   .person-dialog-footer { @apply border-t border-ink/10 px-6 py-5 text-sm font-bold sm:px-10; }
@@ -265,8 +267,94 @@
   body.event-dialog-open { overflow: hidden; }
 }
 
+.person-card-compact {
+  display: grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr);
+  align-items: start;
+  column-gap: 1rem;
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
+}
+
+.person-card-compact:not(.person-card-has-photo) {
+  display: block;
+  padding: 1rem;
+}
+
+.people-list-compact > .people-list-entry {
+  display: flex;
+}
+
+.person-card-contact-row {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-top: .85rem;
+  border-top: 1px solid rgb(38 52 59 / 12%);
+  padding-top: .65rem;
+}
+
+.person-card-contact-row .person-meta {
+  margin-top: 0;
+  gap: .25rem;
+}
+
+.contact-page-heading {
+  padding-top: 2.25rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+}
+
+.contact-page-title {
+  margin: 0;
+  color: #1a4053;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.people-section-heading {
+  margin-bottom: 1rem;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.people-section-heading h2 {
+  margin: 0;
+  color: rgb(38 52 59 / 62%);
+  font-size: .82rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.person-dialog-contact-row {
+  width: 100%;
+  border-top: 1px solid rgb(38 52 59 / 14%);
+  padding: .95rem 1.5rem 1rem;
+}
+
+.person-dialog-contact-row .person-meta {
+  max-width: 22rem;
+  margin: 0 auto;
+  gap: .35rem;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .contact-page-title { font-size: 2.25rem; }
+}
+
 @media (min-width: 1024px) {
+  .people-list-compact { grid-template-columns: repeat(12, minmax(0, 1fr)); }
   .article-body-columns { columns: 2; column-gap: 3.5rem; }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .people-list-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

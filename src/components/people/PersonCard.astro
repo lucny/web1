@@ -48,6 +48,9 @@ const profileUrl = withBase(`/kontakt/?osoba=${encodeURIComponent(person.id)}`);
     {workplace && <p class="person-card-workplace">{workplace}</p>}
     <h2 class="person-card-name"><a href={profileUrl} class="no-underline hover:text-brand">{name}</a></h2>
     <p class="person-card-position">{position}</p>
-    <PersonMeta person={person} showWorkplace={showWorkplace && !workplace} showPhone={showPhone} showStudyFields={showStudyFields} compact={variant !== 'vertical'} />
+    {variant !== 'compact' && <PersonMeta person={person} showWorkplace={showWorkplace && !workplace} showPhone={showPhone} phoneLimit={undefined} showStudyFields={showStudyFields} compact={variant !== 'vertical'} />}
   </div>
+  {variant === 'compact' && <div class="person-card-contact-row">
+    <PersonMeta person={person} showWorkplace={showWorkplace && !workplace} showPhone={showPhone} phoneLimit={1} showStudyFields={showStudyFields} compact />
+  </div>}
 </article>
