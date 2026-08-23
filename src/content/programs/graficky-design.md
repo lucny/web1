@@ -10,7 +10,7 @@ highlights:
   - Práce v ateliéru a digitálních médiích
   - Portfolio a prezentace autorských projektů
 careers: [Grafický designér, Ilustrátor, DTP specialista, Tvůrce vizuální identity]
-relatedPeople: [petr-kral]
+relatedPeople: [marek-sedlecky]
 status: published
 ---
 

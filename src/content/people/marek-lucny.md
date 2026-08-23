@@ -1,14 +1,13 @@
 ---
 name: Marek Lučný
-position: učitel odborných předmětů
-workplace: informační technologie
-phone: +420 553 621 580
+titlesBefore: Mgr.
+position: odborné předměty ICT
+phones:
+  - +420 553 621 580 / 130
 email: lucny@sspu-opava.cz
-studyFields:
-  - informacni-technologie.md
-contactVisible: true
+photo: /uploads/people/avatar-male.jpg
+groups: [ucitele]
+studyFields: [informacni-technologie]
 showInContacts: true
 status: published
-seo:
-  noindex: false
 ---

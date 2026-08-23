@@ -1,14 +1,13 @@
 ---
 name: Daniela Kubová
-position: protidrogový preventista
-workplace: umělecké obory
-phone: +420 553 621 580
+titlesBefore: Mgr.
+position: ŠPP - školní metodik prevence, umělecké obory
+phones:
+  - +420 553 621 580 / 122
 email: kubova@sspu-opava.cz
-profile: Zajišťuje vedení školy, veřejné informace a koordinaci klíčových
-  školních aktivit.
-status: published
-contactVisible: true
+photo: /uploads/people/avatar-female.jpg
+groups: [kolegium]
+studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
 showInContacts: true
-seo:
-  noindex: false
+status: published
 ---

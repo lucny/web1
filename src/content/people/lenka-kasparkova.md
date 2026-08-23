@@ -1,0 +1,14 @@
+---
+name: Lenka Kašpárková
+titlesBefore: Mgr.
+titlesAfter: Ph.D.
+position: odborné předměty UO
+phones:
+  - +420 553 621 580 / 122
+email: kasparkova@sspu-opava.cz
+photo: /uploads/people/lenka-kasparkova.jpg
+groups: [ucitele]
+studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+showInContacts: true
+status: published
+---

@@ -10,7 +10,7 @@ highlights:
   - CNC obrábění, CAM a 3D tisk
   - Odborná praxe v regionálních firmách
 careers: [Konstruktér, Technolog, Technik výroby, Specialista CAD/CAM]
-relatedPeople: [karel-havranek]
+relatedPeople: [pavel-cajka]
 status: published
 ---
 

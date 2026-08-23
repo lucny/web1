@@ -14,6 +14,7 @@ interface Props {
   showWorkplace?: boolean;
   showStudyFields?: boolean;
   includeDialogs?: boolean;
+  groups?: string[];
   class?: string;
 }
 
@@ -28,9 +29,12 @@ const {
   showWorkplace = true,
   showStudyFields = false,
   includeDialogs = true,
+  groups = [],
   class: className
 } = Astro.props as Props;
-const visiblePeople = people.filter((person) => isPersonVisible(person.data));
+const visiblePeople = people
+  .filter((person) => groups.length === 0 || groups.some((group) => person.data.groups.includes(group)))
+  .filter((person) => isPersonVisible(person.data));
 ---
 
 {visiblePeople.length > 0 && <section class:list={["people-section", className]}>

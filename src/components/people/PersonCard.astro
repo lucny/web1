@@ -30,7 +30,7 @@ const photo = getPersonPhoto(data);
 const name = formatPersonName(data);
 const position = getPersonPosition(data);
 const workplace = getPersonWorkplace(data);
-const profileUrl = withBase(`/kontakt/${person.id}/`);
+const profileUrl = withBase(`/kontakt/?osoba=${encodeURIComponent(person.id)}`);
 ---
 
 <article

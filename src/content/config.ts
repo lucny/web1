@@ -166,6 +166,7 @@ const people = defineCollection({
     role: optionalString,
     department: optionalString,
     phone: z.string().optional(),
+    phones: z.array(z.string()).default([]),
     email: z.string().email(),
     photo: z.union([
       z.string(),
@@ -175,6 +176,7 @@ const people = defineCollection({
     photoFocalPoint: optionalString,
     profile: z.string().default(''),
     contentBlocks,
+    groups: z.array(z.string()).default([]),
     studyFields: slugList,
     // Legacy alias kept for existing content and third-party imports.
     programs: slugList,
@@ -186,7 +188,7 @@ const people = defineCollection({
     if (!person.position && !person.role) {
       context.addIssue({ code: z.ZodIssueCode.custom, path: ['position'], message: 'Vyplňte funkci nebo pozici osoby.' });
     }
-    if (!person.workplace && !person.department) {
+    if (!person.workplace && !person.department && person.groups.length === 0) {
       context.addIssue({ code: z.ZodIssueCode.custom, path: ['workplace'], message: 'Vyplňte pracoviště osoby.' });
     }
   })

@@ -1,17 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { entries } from '../../lib/content';
-import PageHero from '../../components/content/PageHero.astro';
 import PeopleSection from '../../components/people/PeopleSection.astro';
+import SchoolContact from '../../components/people/SchoolContact.astro';
 const people = await entries('people');
 ---
-<BaseLayout title="Kontakty" description="Vedení školy, koordinátoři oborů a kontaktní údaje SŠPU Opava.">
-  <PageHero eyebrow="Lidé a kontakty" title="Máte otázku? Obraťte se na správného člověka." description="Najděte spojení na vedení školy, koordinátory oborů i další členy týmu. Kontaktovat nás můžete telefonicky nebo e-mailem." accent="#ECAFAC" />
-  <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
+<BaseLayout title="Lidé a kontakty" description="Oficiální kontaktní údaje, adresy školních budov, úřední hodiny a kontakty na zaměstnance SŠPU Opava.">
+  <header class="contact-page-heading container-page">
+    <p class="eyebrow">Lidé a kontakty</p>
+  </header>
+  <div data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Kontakty</span>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[.75fr_1.25fr]">
-      <aside class="overflow-hidden rounded-3xl bg-night p-7 text-white shadow-lift"><p class="section-label !text-school-cyan">Adresa školy</p><h2 class="mt-3 text-2xl text-white">SŠPU Opava</h2><address class="mt-5 not-italic leading-8 text-white/80">Praskova 399/8<br />746 01 Opava<br /><a class="font-bold text-white" href="tel:+420553621580">+420 553 621 580</a><br /><a class="font-bold text-white" href="mailto:sspu@sspu-opava.cz">sspu@sspu-opava.cz</a></address><p class="mt-8 border-t border-white/15 pt-6 text-sm leading-6 text-white/65">IČ: 47813121 · IZO: 000601896<br />Zřizovatel: Moravskoslezský kraj</p></aside>
-      <PeopleSection people={people} eyebrow="Kontaktní tým" title="Lidé, na které se můžete obrátit" description="Vyberte osobu pro rychlý náhled profilu, nebo otevřete její samostatnou stránku." variant="vertical" showPhoto showPhone={false} showWorkplace showStudyFields includeDialogs />
-    </div>
-  </section>
+    <SchoolContact />
+    <section class="container-page contact-people" aria-label="Kontakty na zaměstnance školy">
+      <PeopleSection people={people} groups={["vedeni"]} title="Vedení školy" variant="compact" showPhoto showPhone showWorkplace={false} includeDialogs />
+      <PeopleSection people={people} groups={["kolegium"]} title="Kolegium ředitele školy" variant="compact" showPhoto showPhone showWorkplace={false} includeDialogs class="mt-10 sm:mt-12" />
+      <PeopleSection people={people} groups={["administrativa"]} title="Administrativa školy" variant="compact" showPhoto showPhone showWorkplace={false} includeDialogs class="mt-10 sm:mt-12" />
+      <PeopleSection people={people} groups={["ucitele"]} title="Učitelé" variant="compact" showPhoto showPhone showWorkplace={false} includeDialogs class="mt-10 sm:mt-12" />
+    </section>
+  </div>
 </BaseLayout>

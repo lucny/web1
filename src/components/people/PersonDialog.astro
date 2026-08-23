@@ -18,15 +18,17 @@ const hasProfile = data.contentBlocks.length > 0 || Boolean(data.profile?.trim()
 <dialog id={dialogId} class="person-dialog" data-person-dialog data-person-dialog-id={person.id} data-pagefind-ignore aria-labelledby={`${dialogId}-title`}>
   <div class="person-dialog-shell">
     <form method="dialog" class="person-dialog-close-form">
-      <button type="submit" class="person-dialog-close" aria-label="Zavřít profil osoby">×</button>
+      <button type="submit" class="person-dialog-close" aria-label="Zavřít profil osoby">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+      </button>
     </form>
     <div class="person-dialog-header">
       {photo && <div class="person-dialog-photo"><img src={withBase(photo.src)} alt={photo.alt} style={photo.focalPoint ? `object-position:${photo.focalPoint}` : undefined} /></div>}
       <div class="person-dialog-heading">
-        {workplace && <p class="eyebrow">{workplace}</p>}
-        <h2 id={`${dialogId}-title`} class="mt-2 text-3xl sm:text-4xl">{name}</h2>
-        <p class="mt-3 text-base font-bold text-brand">{position}</p>
-        <PersonMeta person={person} showWorkplace={false} showPhone showStudyFields compact />
+        {workplace && <p class="person-dialog-workplace">{workplace}</p>}
+        <h2 id={`${dialogId}-title`}>{name}</h2>
+        <p class="person-dialog-position">{position}</p>
+        <PersonMeta person={person} showWorkplace={false} showPhone compact />
       </div>
     </div>
     {hasProfile && <div class="person-dialog-body">
@@ -34,9 +36,6 @@ const hasProfile = data.contentBlocks.length > 0 || Boolean(data.profile?.trim()
         <p class="whitespace-pre-line">{data.profile}</p>
       </ContentRenderer>
     </div>}
-    <div class="person-dialog-footer">
-      <a href={withBase(`/kontakt/${person.id}/`)}>Otevřít samostatný profil</a>
-    </div>
   </div>
 </dialog>
 

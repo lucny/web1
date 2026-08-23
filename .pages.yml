@@ -904,6 +904,11 @@ content:
         label: Telefon
         type: string
         required: false
+      - name: phones
+        label: Telefonní čísla
+        type: string
+        list: true
+        required: false
       - name: email
         label: E-mail
         type: string
@@ -936,6 +941,11 @@ content:
         component: contentBlocks
       - name: studyFields
         component: programs
+      - name: groups
+        label: Skupiny kontaktů
+        type: string
+        list: true
+        required: false
       - name: showInContacts
         label: Zobrazit v přehledu kontaktů
         type: boolean

@@ -17,8 +17,7 @@ careers:
   - Webový vývojář
   - IT analytik
 relatedPeople:
-  - jana-novotna
-  - marek-lucny.md
+  - marek-lucny
 status: published
 seo:
   noindex: false

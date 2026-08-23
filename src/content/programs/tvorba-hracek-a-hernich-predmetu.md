@@ -10,7 +10,7 @@ highlights:
   - Práce s materiálem a prostorovou formou
   - Autorské projekty a výstavní prezentace
 careers: [Designér hraček, Autor herních objektů, Modelář, Výtvarník]
-relatedPeople: [lucie-vesela]
+relatedPeople: [jitka-obonova]
 status: published
 ---
 

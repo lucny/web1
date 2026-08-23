@@ -23,6 +23,10 @@ export function getPersonWorkplace(data: Pick<PersonData, 'workplace' | 'departm
   return data.workplace?.trim() || data.department?.trim() || '';
 }
 
+export function getPersonPhones(data: Pick<PersonData, 'phone' | 'phones'>) {
+  return data.phones?.length ? data.phones : data.phone ? [data.phone] : [];
+}
+
 export function getPersonStudyFields(data: Pick<PersonData, 'studyFields' | 'programs'>) {
   return data.studyFields?.length ? data.studyFields : data.programs;
 }
@@ -44,5 +48,6 @@ export function getPersonPhoto(data: Pick<PersonData, 'photo' | 'photoAlt' | 'ph
 }
 
 export function getPhoneHref(phone: string) {
-  return `tel:${phone.replace(/[^\d+]/g, '')}`;
+  const firstNumber = phone.match(/\+?\d[\d\s]{7,}/)?.[0] ?? phone;
+  return `tel:${firstNumber.replace(/[^\d+]/g, '')}`;
 }
