@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ArticleCard from '../components/ArticleCard.astro';
+import ArticleSection from '../components/news/ArticleSection.astro';
 import HeroTabs from '../components/home/HeroTabs.astro';
 import AlertSection from '../components/alerts/AlertSection.astro';
 import { resolveHomepageAlerts } from '../data/alerts';
@@ -17,7 +17,7 @@ const homepageArticles = articles
   <HeroTabs />
   <AlertSection alerts={alerts} />
 
-  <section class="bg-mist py-10 sm:py-12"><div class="container-page"><div class="flex flex-wrap items-end justify-between gap-5"><div><p class="eyebrow">Školní zpravodaj</p></div><a class="button-secondary" href={withBase('/aktuality/')}>Všechny aktuality</a></div><div class="mt-6 grid gap-5 lg:grid-cols-3">{homepageArticles.map((article) => <ArticleCard article={article} variant="homepage" />)}</div></div></section>
+  <ArticleSection articles={homepageArticles} eyebrow="Školní zpravodaj" title="Co se právě děje" href="/aktuality/" linkLabel="Všechny aktuality" variant="homepage" background="mist" />
 
   <section class="container-page grid gap-8 py-10 lg:grid-cols-[1.15fr_.85fr]"><div><p class="eyebrow">Co se chystá</p><div class="mt-5 space-y-3">{events.slice(0, 3).map((event) => <article class="card flex gap-4 p-4 sm:p-5"><time class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-mist text-center text-xs font-bold text-brand" datetime={event.data.start.toISOString()}>{formatDate(event.data.start, { day: 'numeric', month: 'short' })}</time><div><p class="text-xs font-bold uppercase tracking-wide text-brand">{event.data.type}</p><h3 class="mt-1 text-lg"><a href={withBase(`/udalosti/${event.id}/`)} class="no-underline hover:text-brand">{event.data.title}</a></h3><p class="mt-1 text-sm text-ink/70">{event.data.location}</p></div></article>)}</div><a href={withBase('/udalosti/')} class="mt-6 inline-flex font-bold text-brand">Celý přehled akcí →</a></div><aside class="rounded-3xl bg-brand p-7 text-white"><p class="text-sm font-bold uppercase tracking-wider text-white/70">Pro uchazeče</p><h2 class="mt-4 text-3xl text-white">Nejlepší způsob, jak si vybrat? Přijít se podívat.</h2><p class="mt-4 leading-7 text-white/80">Seznamte se s ateliéry, dílnami, laboratořemi i lidmi, kteří budou u vašeho studia.</p><a href={withBase('/uchazeci/')} class="button-primary mt-7 !bg-white !text-night hover:!bg-accent">Přijímací řízení</a></aside></section>
 

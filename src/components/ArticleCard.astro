@@ -1,17 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { formatDate, withBase } from '../lib/content';
+import ArticlePreview from './news/ArticlePreview.astro';
 interface Props { article: CollectionEntry<'articles'>; featured?: boolean; variant?: 'default' | 'homepage' }
 const { article, featured = false, variant = 'default' } = Astro.props;
-const compact = variant === 'homepage';
+const previewVariant = variant === 'homepage' ? 'homepage' : featured ? 'featured' : 'default';
 ---
-<article class:list={[compact ? 'group news-card-homepage overflow-hidden border-t border-ink/15 bg-white/60 transition-colors hover:border-ink/35' : 'group card overflow-hidden border-t-4 border-school-cyan transition duration-300 hover:-translate-y-1 hover:shadow-soft', featured && 'md:grid md:grid-cols-[1.05fr_1fr]']} data-news-card data-category={article.data.categories.join(' ')} data-program={article.data.programs.join(' ')} data-year={article.data.publishedAt.getFullYear()}>
-  {article.data.cover && <img src={withBase(article.data.cover)} alt="" class:list={[compact ? 'news-card-homepage-image h-40 w-full object-cover sm:h-44' : 'h-48 w-full object-cover transition duration-500 group-hover:scale-[1.03]', featured && !compact && 'md:h-full']} loading="lazy" />}
-  <div class={compact ? 'p-4 sm:p-5' : 'p-6 sm:p-7'}>
-    {compact ? <div class="text-xs text-ink/60"><time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time></div> : <div class="flex flex-wrap gap-2 meta-label"><span>{article.data.categories[0]?.replace('-', ' ') ?? 'Aktualita'}</span><span aria-hidden="true">·</span><time datetime={article.data.publishedAt.toISOString()}>{formatDate(article.data.publishedAt)}</time></div>}
-    <h3 class:list={[compact ? 'mt-2 text-lg leading-snug' : 'mt-3']}><a href={withBase(`/aktuality/${article.id}/`)} class="no-underline hover:text-brand">{article.data.title}</a></h3>
-    <p class:list={[compact ? 'mt-2 text-sm leading-6 text-ink/70' : 'mt-3 leading-7 text-ink/75']}>{article.data.description}</p>
-    {compact && article.data.categories.length > 0 && <div class="mt-3 flex flex-wrap gap-1.5" aria-label="Kategorie">{article.data.categories.map((category) => <span class="rounded-sm border border-ink/10 bg-ink/5 px-2 py-1 text-[0.68rem] font-medium text-ink/60">{category}</span>)}</div>}
-    <a href={withBase(`/aktuality/${article.id}/`)} class:list={[compact ? 'mt-4 text-sm font-semibold' : 'mt-5 font-bold', 'inline-flex text-brand no-underline transition group-hover:text-school-magenta']}>{compact ? 'Podrobnosti' : 'Číst aktualitu'} <span aria-hidden="true" class="ml-2">→</span></a>
-  </div>
-</article>
+<ArticlePreview article={article} variant={previewVariant} />

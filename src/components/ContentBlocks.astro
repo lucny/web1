@@ -1,5 +1,6 @@
 ---
 import GalleryLightbox from './GalleryLightbox.astro';
+import ArticleSection from './news/ArticleSection.astro';
 import { entries, withBase } from '../lib/content';
 
 type TextItem = { title: string; text: string };
@@ -39,7 +40,7 @@ const selected = <T extends { id: string }>(items: T[], ids: string[]) => items.
   }
   if (block.type === 'articles') {
     const items = selected(articles, block.articles);
-    return items.length > 0 && <section class="my-10"><p class="section-label">Související</p><h2 class="mt-2 text-2xl">Aktuality</h2><ul class="mt-5 grid gap-3">{items.map((item) => <li><a class="card block border-l-4 border-l-school-magenta p-5 no-underline hover:shadow-soft" href={withBase(`/aktuality/${item.id}/`)}><strong>{item.data.title}</strong><span class="mt-1 block text-sm leading-6 text-ink/70">{item.data.description}</span></a></li>)}</ul></section>;
+    return items.length > 0 && <ArticleSection articles={items} eyebrow="Související" title="Aktuality" variant="compact" />;
   }
   if (block.type === 'people') {
     const items = selected(people, block.people);
