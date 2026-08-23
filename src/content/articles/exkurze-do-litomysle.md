@@ -2,10 +2,10 @@
 title: Exkurze do Litomyšle
 description: Studenti se vydali za architekturou, kulturou a inspirací do Litomyšle.
 publishedAt: 2026-06-25
-updatedAt: 2026-08-20T17:18:00.000+02:00
 author: Redakce školy
 categories:
   - Akce
+  - Projekty
 tags:
   - exkurze
   - kultura
@@ -18,12 +18,14 @@ related:
   - plakaty-prumyslovy-design
   - myty-versus-realita
 attachments:
-  - url: /uploads/dji_20000818175753_0227_d.jpg
-    label: Předávání diplomů - obrázek
+  - label: Předávání diplomů - obrázek
+    url: /uploads/dji_20000818175753_0227_d.jpg
 homepage:
   featured: true
   order: 40
 status: published
+seo:
+  noindex: false
 ---
 Společná cesta nabídla prostor pro pozorování detailu, diskuzi o architektuře a propojení výuky s místem, které je samo o sobě živou kulturní učebnicí.
 
@@ -37,22 +39,20 @@ Další inspiraci jsme hledali v [programu města Litomyšl](https://www.litomys
 
 ## Krátká videozastávka
 
-<iframe src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ" title="Ukázkové video k práci s obrazem a prostorem" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 ## Zvukový záznam cesty
 
 Přehrávač níže slouží jako ukázka zvukové stopy vložené přímo do článku.
 
-<audio controls preload="none" aria-label="Ukázkový zvukový záznam">
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-  Váš prohlížeč nepodporuje přehrávání zvuku.
-</audio>
+Váš prohlížeč nepodporuje přehrávání zvuku.
 
 ## Program dne
 
+
 | Čas | Místo | Zaměření |
-| --- | --- | --- |
+| ----- | -------------- | ------------------------------------ |
 | 8:00 | Opava | Odjezd od školy |
 | 10:15 | Litomyšl | Prohlídka historického centra |
 | 13:00 | Zámecké návrší | Skicování a fotografická dokumentace |
 | 16:30 | Opava | Návrat a sdílení poznámek |
+
+
