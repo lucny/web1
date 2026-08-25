@@ -23,7 +23,7 @@ const { articles, eyebrow, title, description, href, linkLabel = 'Všechny aktua
     <div class="flex flex-wrap items-end justify-between gap-5">
       <div>
         {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-        {titleStyle === 'eyebrow' ? <h2 class="eyebrow !text-xs !leading-normal">{title}</h2> : <h2 class:list={[eyebrow && 'mt-2']}>{title}</h2>}
+        {title && (titleStyle === 'eyebrow' ? <h2 class="eyebrow !text-xs !leading-normal">{title}</h2> : <h2 class:list={[eyebrow && 'mt-2']}>{title}</h2>)}
         {description && <p class="mt-3 max-w-2xl leading-7 text-ink/70">{description}</p>}
       </div>
       {href && <a class="button-secondary" href={withBase(href)}>{linkLabel}</a>}

@@ -16,10 +16,10 @@ const homepageGalleries = galleries.slice(0, 4);
   <HeroTabs />
   <AlertSection alerts={alerts} />
 
-  <ArticleSection articles={homepageArticles} eyebrow="Školní zpravodaj" title="Co se právě děje" href="/aktuality/" linkLabel="Všechny aktuality" variant="homepage" background="mist" />
+  <ArticleSection articles={homepageArticles} eyebrow="Školní zpravodaj" title="" href="/aktuality/" linkLabel="Všechny aktuality" variant="homepage" background="mist" />
 
   <section class="container-page grid gap-8 py-12 lg:grid-cols-2 lg:items-start">
-    <EventSection embedded events={events} eyebrow="Kalendář akcí" title="Co se chystá" variant="homepage" limit={3} from="now" showMoreLink={false} showCalendarLink={true} />
+    <EventSection embedded events={events} eyebrow="Kalendář akcí" title="" variant="homepage" limit={3} from="now" showMoreLink={false} showCalendarLink={true} />
     <aside class="rounded-3xl bg-brand p-7 text-white sm:p-9"><p class="text-sm font-bold uppercase tracking-wider text-white/70">Pro uchazeče</p><h2 class="mt-4 text-3xl text-white">Nejlepší způsob, jak si vybrat? Přijít se podívat.</h2><p class="mt-4 leading-7 text-white/80">Seznamte se s ateliéry, dílnami, laboratořemi i lidmi, kteří budou u vašeho studia.</p><a href={withBase('/uchazeci/')} class="button-primary mt-7 !bg-white !text-night hover:!bg-accent">Přijímací řízení</a></aside>
   </section>
 

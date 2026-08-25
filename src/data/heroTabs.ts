@@ -18,10 +18,12 @@ export type HeroTab = {
   actions: HeroAction[];
 };
 
-const technicalImage = 'https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/8f/37/8f370c1d-8cc3-4d32-a898-d7acb536fb45/technicke-obory.jpg__800x450_q85_subject_location-400%2C225_subsampling-2.jpg';
-const artImage = 'https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/34/72/3472e38f-edaa-49e3-9fed-99dd126f36d5/umelecke-obory.jpg__800x450_q85_subject_location-400%2C225_subsampling-2.jpg';
-const graphicImage = 'https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/0e/02/0e025e71-03dd-45f1-ba31-35781e0494e4/vystavy.jpg__800x450_q85_subject_location-400%2C225_subsampling-2.jpg';
-const schoolImage = 'https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/31/c3/31c3e069-9a95-46ef-a414-b8f0304833df/obrazovy-pruvodce-skolou.jpg__800x450_q85_subject_location-400%2C225_subsampling-2.jpg';
+const strojirenstviImage = '/images/programs/strojirenstvi-banner.jpg';
+const informacniTechnologieImage = '/images/programs/informacni-technologie-banner.jpg';
+const designHracekImage = '/images/programs/obor-design-hracek-banner.jpg';
+const prumyslovyDesignImage = '/images/programs/prumyslovy-design-banner.jpg';
+const graphicImage = '/images/programs/graficky-design-banner.jpg';
+const schoolImage = '/images/programs/skola-budova.jpg';
 
 export const heroTabs: HeroTab[] = [
   {
@@ -29,13 +31,13 @@ export const heroTabs: HeroTab[] = [
     label: 'Strojírenství',
     color: '#1A4053',
     textColor: '#FFFFFF',
-    image: technicalImage,
+    image: strojirenstviImage,
     eyebrow: 'Technický obor',
     title: 'Strojírenství',
     motto: 'Od nápadu k přesnému řešení.',
     description: 'Konstrukce, výroba a digitální technologie v jednom praktickém studiu.',
     actions: [
-      { label: 'Poznejte obor', href: '/obory/strojirenstvi/', variant: 'primary' },
+      { label: 'Chci studovat Strojírenství', href: '/obory/strojirenstvi/', variant: 'primary' },
       { label: 'Podmínky přijetí', href: '/uchazeci/', variant: 'secondary' }
     ]
   },
@@ -44,13 +46,13 @@ export const heroTabs: HeroTab[] = [
     label: 'Informační technologie',
     color: '#59BDDC',
     textColor: '#102A43',
-    image: technicalImage,
+    image: informacniTechnologieImage,
     eyebrow: 'Technický obor',
     title: 'Informační technologie',
     motto: 'Kód, který má smysl.',
     description: 'Programování, sítě a digitální tvorba pro svět, který se mění.',
     actions: [
-      { label: 'Poznejte obor', href: '/obory/informacni-technologie/', variant: 'primary' },
+      { label: 'Chci studovat Informační technologie', href: '/obory/informacni-technologie/', variant: 'primary' },
       { label: 'Podmínky přijetí', href: '/uchazeci/', variant: 'secondary' }
     ]
   },
@@ -59,13 +61,13 @@ export const heroTabs: HeroTab[] = [
     label: 'Design hraček',
     color: '#ECAFAC',
     textColor: '#102A43',
-    image: artImage,
+    image: designHracekImage,
     eyebrow: 'Umělecký obor',
     title: 'Design hraček',
     motto: 'Tvořit znamená probouzet zvědavost.',
     description: 'Nápad, materiál a příběh se potkávají v originálním produktu.',
     actions: [
-      { label: 'Poznejte obor', href: '/obory/tvorba-hracek-a-hernich-predmetu/', variant: 'primary' },
+      { label: 'Chci studovat Design hraček', href: '/obory/tvorba-hracek-a-hernich-predmetu/', variant: 'primary' },
       { label: 'Podmínky přijetí', href: '/uchazeci/', variant: 'secondary' }
     ]
   },
@@ -74,13 +76,13 @@ export const heroTabs: HeroTab[] = [
     label: 'Průmyslový design',
     color: '#D0D543',
     textColor: '#102A43',
-    image: artImage,
+    image: prumyslovyDesignImage,
     eyebrow: 'Umělecký obor',
     title: 'Průmyslový design',
     motto: 'Forma, která slouží člověku.',
     description: 'Navrhujte předměty, které fungují, komunikují a zůstávají.',
     actions: [
-      { label: 'Poznejte obor', href: '/obory/prumyslovy-design/', variant: 'primary' },
+      { label: 'Chci studovat Průmyslový design', href: '/obory/prumyslovy-design/', variant: 'primary' },
       { label: 'Podmínky přijetí', href: '/uchazeci/', variant: 'secondary' }
     ]
   },
@@ -95,7 +97,7 @@ export const heroTabs: HeroTab[] = [
     motto: 'Myšlenka, která je vidět.',
     description: 'Typografie, obraz a digitální média pro přesvědčivou komunikaci.',
     actions: [
-      { label: 'Poznejte obor', href: '/obory/graficky-design/', variant: 'primary' },
+      { label: 'Chci studovat Grafický design', href: '/obory/graficky-design/', variant: 'primary' },
       { label: 'Podmínky přijetí', href: '/uchazeci/', variant: 'secondary' }
     ]
   },

@@ -197,12 +197,12 @@
   .alert-tone-night .alert-link, .alert-tone-brand .alert-link { @apply text-white; }
   .alert-tone-accent .alert-link { @apply text-night; }
   .hero-panel[hidden] { display: none; }
-  .hero-panel-overlay {
-    background: linear-gradient(90deg, color-mix(in srgb, var(--hero-color) 76%, #08243A 24%) 0%, color-mix(in srgb, var(--hero-color) 64%, #08243A 36%) 52%, rgb(8 36 58 / 52%) 100%);
-  }
-  .hero-panel-content {
+  .hero-panel-overlay { background: transparent; }
+  .hero-panel-copy {
+    width: fit-content;
+    max-width: 100%;
     border-inline-start: 0.25rem solid color-mix(in srgb, var(--hero-color) 90%, white 10%);
-    background: linear-gradient(90deg, color-mix(in srgb, var(--hero-color) 78%, #08243A 22%) 0%, color-mix(in srgb, var(--hero-color) 64%, #08243A 36%) 78%, transparent 100%);
+    background: linear-gradient(90deg, rgb(8 36 58 / 90%) 0%, rgb(8 36 58 / 72%) 62%, transparent 100%);
   }
   .hero-panel-eyebrow { color: color-mix(in srgb, var(--hero-color) 65%, white 35%); }
   .hero-action-primary { background-color: var(--hero-action-bg, #D0D543); color: var(--hero-action-text, #08243A); }
