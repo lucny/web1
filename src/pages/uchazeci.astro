@@ -6,12 +6,13 @@ import PageHero from '../components/content/PageHero.astro';
 import ContentRenderer from '../components/content/ContentRenderer.astro';
 import AttachmentLink from '../components/content/AttachmentLink.astro';
 import EventSection from '../components/events/EventSection.astro';
+import { heroImages } from '../data/heroImages';
 const [page, programs, documents, events] = await Promise.all([byId('pages', 'uchazeci'), entries('programs'), entries('documents'), entries('events')]);
 if (!page) throw new Error('Chybí obsahová stránka pro uchazeče.');
 const { Content } = await render(page);
 ---
 <BaseLayout title={page.data.title} description={page.data.description} seo={page.data.seo} breadcrumbs={[{ label: 'Uchazeči' }]}>
-  <PageHero eyebrow={page.data.eyebrow ?? 'Uchazeči'} title={page.data.title} description={page.data.highlight} accent="#D0D543" />
+  <PageHero eyebrow={page.data.eyebrow ?? 'Uchazeči'} title={page.data.title} description={page.data.highlight} accent="#D0D543" icon={heroImages.admissions} iconBackground="#001731" />
   <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Stránka</span>
     <div class="mt-10"><ContentRenderer blocks={page.data.contentBlocks}><Content /></ContentRenderer></div>

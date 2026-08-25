@@ -8,6 +8,7 @@ export const legacyRedirects: Record<string, string> = {
   '/cs/aktuality/galerie/': '/galerie/',
   '/cs/kalendar/': '/udalosti/',
   '/cs/kontakty/': '/kontakt/',
+  '/cs/zaci/': '/zaci/',
   '/cs/historie-soucasnost/': '/skola/historie-soucasnost/',
   '/cs/umelecka-rada/': '/skola/umelecka-rada/',
   '/cs/studentsky-parlament/': '/skola/studentsky-parlament/',

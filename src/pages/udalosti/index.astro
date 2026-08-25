@@ -7,6 +7,7 @@ import PageHero from '../../components/content/PageHero.astro';
 import { EVENT_TAG_OPTIONS } from '../../data/eventTags';
 import { currentMonthKey, eventMatchesPrograms, eventMatchesTags, eventOccursInMonth, eventOccursOn, eventStartKey } from '../../lib/events';
 import { entries } from '../../lib/content';
+import { heroImages } from '../../data/heroImages';
 
 const [allEvents, programs] = await Promise.all([entries('events'), entries('programs')]);
 const selectedTags = [...new Set(Astro.url.searchParams.getAll('stitky').flatMap((value) => value.split(',')).filter(Boolean))];
@@ -23,7 +24,7 @@ const filteredEvents = allEvents
   .sort((a, b) => eventStartKey(a).localeCompare(eventStartKey(b)));
 ---
 <BaseLayout title="Kalendář akcí" description="Nejbližší akce SŠPU Opava: dny otevřených dveří, výstavy, školní termíny a setkání s praxí.">
-  <PageHero eyebrow="Kalendář akcí" title="Co nás čeká v nejbližších měsících." description="Procházejte akce podle měsíce, štítků nebo oboru. Kliknutím na událost otevřete rychlý detail; samostatná URL zůstává dostupná jako fallback." accent="#D0D543" />
+  <PageHero eyebrow="Kalendář akcí" title="Co nás čeká v nejbližších měsících." description="Procházejte akce podle měsíce, štítků nebo oboru. Kliknutím na událost otevřete rychlý detail; samostatná URL zůstává dostupná jako fallback." accent="#D0D543" icon={heroImages.calendar} iconBackground="#001731" />
   <section class="container-page pb-16 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Přehled událostí</span>
     <div class="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start">

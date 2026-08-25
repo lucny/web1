@@ -2,11 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { entries, withBase } from '../../lib/content';
 import PageHero from '../../components/content/PageHero.astro';
+import { heroImages } from '../../data/heroImages';
 const programs = await entries('programs');
 const colors = ['border-school-steel', 'border-school-cyan', 'border-school-coral', 'border-school-lime', 'border-school-magenta'];
 ---
 <BaseLayout title="Obory a studium" description="Pět maturitních oborů SŠPU Opava: technika, informační technologie, design a tvorba.">
-  <PageHero eyebrow="Obory a studium" title="Vyberte si směr, ve kterém budete mít co říct." description="Pět čtyřletých maturitních oborů. Každý nabízí vlastní prostředí, projekty a cestu k dalšímu studiu nebo praxi." accent="#C42079" />
+  <PageHero eyebrow="Obory a studium" title="Vyberte si směr, ve kterém budete mít co říct." description="Pět čtyřletých maturitních oborů. Každý nabízí vlastní prostředí, projekty a cestu k dalšímu studiu nebo praxi." accent="#C42079" icon={heroImages.studyFields} iconBackground="#001731" />
   <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
     <div class="grid gap-6 lg:grid-cols-2">
       {programs.map((program, index) => <article class:list={["group card overflow-hidden border-t-4 transition duration-300 hover:-translate-y-1 hover:shadow-soft sm:grid sm:grid-cols-[.85fr_1.15fr]", colors[index % colors.length]]}>

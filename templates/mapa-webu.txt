@@ -1,0 +1,44 @@
+ŠKOLA (skola.png)
+-----------
+Historie a současnost (skola.png)
+Lidé a kontakty (kontakty.png)
+Žáci a třídy (studenti.png)
+Školní zpravodaj (aktuality.png)
+Kalendář akcí (kalendar.png)
+Fotogalerie (fotogalerie.png)
+Školská rada (rada.png)
+Umělecká rada (rada.png)
+Studentský parlament (parlament.png)
+Spolupráce (spoluprace.png)
+Projekty (projekty.png)
+Nabídka pronájmu (pronajem.png)
+
+
+UCHAZEČI (studenti.png)
+--------
+Studijní obory (obory.png)
+Přijímací řízení na technické obory (prijimacky.png)
+Přijímací řízení na umělecké obory (prijimacky.png)
+Akce pro ZŠ (akce.png)
+
+
+STUDENTI (studenti.png)
+--------
+Rozvrh (rozvrh.png)
+Školní řád (skolni-rad.png)
+Maturity (maturity.png)
+Školní poradenské pracoviště (poradna.png)
+Výukové materiály (materialy.png)
+Nabídky zaměstnání (nabidka-zamestnani.png)
+Pro studenty a rodiče (studenti.png)
+
+
+DOKUMENTY (dokumenty.png)
+---------
+Výroční zpráva školy (zprava.png)
+Inspekční zprávy (zprava.png)
+Veřejné zakázky (verejne-zakazky.png)
+Rozpočet (rozpocet.png)
+Ochrana osobních údajů (osobni-udaje.png)
+Ochrana oznamovatelů (oznamovatele.png)
+Prohlášení o přístupnosti (pristupnost.png)

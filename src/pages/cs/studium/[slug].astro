@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ContentRenderer from '../../../components/content/ContentRenderer.astro';
 import PageHero from '../../../components/content/PageHero.astro';
 import { entries, withBase } from '../../../lib/content';
+import { heroImages } from '../../../data/heroImages';
 
 export async function getStaticPaths() {
   const pageIds = new Set([
@@ -22,6 +23,11 @@ const accents: Record<string, string> = {
   'prijimaci-rizeni-technicke-obory': '#59BDDC',
   'prijimaci-rizeni-umelecke-obory': '#C42079',
   spp: '#D0D543'
+};
+const heroIcons: Record<string, string> = {
+  'prijimaci-rizeni-technicke-obory': heroImages.admissions,
+  'prijimaci-rizeni-umelecke-obory': heroImages.admissions,
+  spp: heroImages.students
 };
 const sidebars: Record<string, { eyebrow: string; title: string; text: string; links: { label: string; href: string }[] }> = {
   'prijimaci-rizeni-technicke-obory': {
@@ -62,7 +68,7 @@ const sidebar = sidebars[page.id];
   breadcrumbs={[{ label: 'Uchazeči', href: '/uchazeci/' }, { label: page.data.title }]}
   schema={{ '@context': 'https://schema.org', '@type': 'WebPage', name: page.data.title, description: page.data.description }}
 >
-  <PageHero eyebrow={page.data.eyebrow ?? 'Studium'} title={page.data.title} description={page.data.highlight} accent={accents[page.id] ?? '#59BDDC'} />
+  <PageHero eyebrow={page.data.eyebrow ?? 'Studium'} title={page.data.title} description={page.data.highlight} accent={accents[page.id] ?? '#59BDDC'} icon={heroIcons[page.id]} iconBackground="#001731" />
   <section class="admission-page container-page pb-14 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Studium</span>
     <div class="admission-layout mt-8 sm:mt-12">

@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/content/PageHero.astro';
 import { entries } from '../../lib/content';
+import { heroImages } from '../../data/heroImages';
 import PeopleSection from '../../components/people/PeopleSection.astro';
 import SchoolContact from '../../components/people/SchoolContact.astro';
 const people = await entries('people');
 ---
 <BaseLayout title="Lidé a kontakty" description="Oficiální kontaktní údaje, adresy školních budov, úřední hodiny a kontakty na zaměstnance SŠPU Opava.">
-  <header class="contact-page-heading container-page">
-    <h1 class="contact-page-title">Lidé a kontakty</h1>
-  </header>
+  <PageHero eyebrow="Škola" title="Lidé a kontakty" description="Kontaktní údaje školy, adresy budov, úřední hodiny a kontakty na zaměstnance SŠPU Opava." accent="#59BDDC" icon={heroImages.contacts} iconBackground="#001731" />
   <div data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Kontakty</span>
     <SchoolContact />

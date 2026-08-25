@@ -2,12 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { entries, withBase } from '../../lib/content';
 import PageHero from '../../components/content/PageHero.astro';
+import { heroImages } from '../../data/heroImages';
 const documentPages = (await entries('pages'))
   .filter((page) => page.id.startsWith('dokumenty-'))
   .sort((a, b) => a.data.title.localeCompare(b.data.title, 'cs'));
 ---
 <BaseLayout title="Dokumenty" description="Přehled důležitých dokumentů a povinně zveřejňovaných informací školy.">
-  <PageHero eyebrow="Dokumenty" title="Důležité školní dokumenty" description="Přehled předpisů, zpráv, rozvrhů a dalších veřejných informací školy." accent="#59BDDC" decorativeArt={false} />
+  <PageHero eyebrow="Dokumenty" title="Důležité školní dokumenty" description="Přehled předpisů, zpráv, rozvrhů a dalších veřejných informací školy." accent="#59BDDC" icon={heroImages.documents} iconBackground="#001731" />
   <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Přehled dokumentů</span>
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

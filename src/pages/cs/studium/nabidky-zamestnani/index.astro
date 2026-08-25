@@ -4,6 +4,7 @@ import PageHero from '../../../../components/content/PageHero.astro';
 import JobOfferCard from '../../../../components/jobs/JobOfferCard.astro';
 import { entries } from '../../../../lib/content';
 import { sortJobOffers } from '../../../../lib/jobOffers';
+import { heroImages } from '../../../../data/heroImages';
 
 const offers = (await entries('jobOffers')).sort(sortJobOffers);
 ---
@@ -13,7 +14,7 @@ const offers = (await entries('jobOffers')).sort(sortJobOffers);
   description="Aktuální pracovní nabídky, brigády, stáže a praxe pro studenty, absolventy i veřejnost."
   schema={{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Nabídky zaměstnání a brigád', description: 'Přehled pracovních nabídek, brigád, stáží a praxí.' }}
 >
-  <PageHero eyebrow="Studium · Kariéra" title="Nabídky zaměstnání a brigád" description="Příležitosti od firem, se kterými škola spolupracuje nebo které hledají technicky a umělecky zaměřené studenty a absolventy." accent="#59BDDC" icon="/images/banners/nabidky-zamestnani.png" iconBackground="#001731" />
+  <PageHero eyebrow="Studium · Kariéra" title="Nabídky zaměstnání a brigád" description="Příležitosti od firem, se kterými škola spolupracuje nebo které hledají technicky a umělecky zaměřené studenty a absolventy." accent="#59BDDC" icon={heroImages.jobs} iconBackground="#001731" />
 
   <section class="container-page pb-16 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Nabídky zaměstnání</span>

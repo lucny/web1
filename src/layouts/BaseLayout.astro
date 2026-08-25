@@ -7,8 +7,8 @@ import { withBase } from '../lib/content';
 
 interface Crumb { label: string; href?: string }
 interface Seo { title?: string; description?: string; canonical?: string; image?: string; noindex?: boolean }
-interface Props { title?: string; description?: string; breadcrumbs?: Crumb[]; schema?: Record<string, unknown>; seo?: Seo }
-const { title = 'SŠPU Opava', description = 'Moderní web Střední školy průmyslové a umělecké Opava.', breadcrumbs = [], schema, seo } = Astro.props;
+interface Props { title?: string; description?: string; breadcrumbs?: Crumb[]; showBreadcrumbs?: boolean; schema?: Record<string, unknown>; seo?: Seo }
+const { title = 'SŠPU Opava', description = 'Moderní web Střední školy průmyslové a umělecké Opava.', breadcrumbs = [], showBreadcrumbs = false, schema, seo } = Astro.props;
 const resolvedTitle = seo?.title || title;
 const resolvedDescription = seo?.description || description;
 const pageTitle = resolvedTitle === 'SŠPU Opava' ? resolvedTitle : `${resolvedTitle} | SŠPU Opava`;
@@ -43,7 +43,7 @@ const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org'
   </head>
   <body>
     <Header />
-    {breadcrumbs.length > 1 && <nav aria-label="Drobečková navigace" class="container-page pt-6 text-sm text-ink/70"><ol class="flex flex-wrap gap-x-2 gap-y-1">{breadcrumbs.map((crumb, index) => <li class="flex items-center gap-2">{index > 0 && <span aria-hidden="true">/</span>}{crumb.href && index < breadcrumbs.length - 1 ? <a href={withBase(crumb.href)}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}</li>)}</ol></nav>}
+    {showBreadcrumbs && breadcrumbs.length > 1 && <nav aria-label="Drobečková navigace" class="container-page pt-6 text-sm text-ink/70"><ol class="flex flex-wrap gap-x-2 gap-y-1">{breadcrumbs.map((crumb, index) => <li class="flex items-center gap-2">{index > 0 && <span aria-hidden="true">/</span>}{crumb.href && index < breadcrumbs.length - 1 ? <a href={withBase(crumb.href)}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}</li>)}</ol></nav>}
     <main id="main-content"><slot /></main>
     <Footer />
     <AttachmentModal />

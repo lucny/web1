@@ -84,7 +84,7 @@ export const mainNavigation: NavGroup[] = [
     label: 'Studenti a rodiče',
     href: '/studenti/',
     items: [
-      { label: 'Přehled tříd', href: '/studenti/' },
+      { label: 'Žáci a třídy', href: '/zaci/' },
       { label: 'Školní poradenské pracoviště', href: '/cs/studium/spp/' },
       { label: 'Nabídky zaměstnání a brigád', href: '/cs/studium/nabidky-zamestnani/' },
       { label: 'Protidrogová prevence', href: '/studenti/' },

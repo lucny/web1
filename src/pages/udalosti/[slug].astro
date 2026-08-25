@@ -5,6 +5,7 @@ import ContentRenderer from '../../components/content/ContentRenderer.astro';
 import EventAttachments from '../../components/events/EventAttachments.astro';
 import EventMeta from '../../components/events/EventMeta.astro';
 import PageHero from '../../components/content/PageHero.astro';
+import { heroImages } from '../../data/heroImages';
 import { entries, withBase } from '../../lib/content';
 export async function getStaticPaths() { return (await entries('events')).map((event) => ({ params: { slug: event.id }, props: { event } })); }
 const { event } = Astro.props;
@@ -12,7 +13,7 @@ const { Content } = await render(event);
 const schema = { '@context': 'https://schema.org', '@type': 'Event', name: event.data.title, description: event.data.excerpt, startDate: `${event.data.startDate}${event.data.startTime ? `T${event.data.startTime}` : ''}`, endDate: event.data.endDate ? `${event.data.endDate}${event.data.endTime ? `T${event.data.endTime}` : ''}` : undefined, location: event.data.location ? { '@type': 'Place', name: event.data.location } : undefined, organizer: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
 ---
 <BaseLayout title={event.data.title} description={event.data.excerpt} seo={event.data.seo} breadcrumbs={[{ label: 'Kalendář akcí', href: '/udalosti/' }, { label: event.data.title }]} schema={schema}>
-  <PageHero eyebrow="Kalendář akcí" title={event.data.title} description={event.data.excerpt} accent="#D0D543" />
+  <PageHero eyebrow="Kalendář akcí" title={event.data.title} description={event.data.excerpt} accent="#D0D543" icon={heroImages.calendar} iconBackground="#001731" />
   <article class="container-page pb-14 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Událost</span>
     {event.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}

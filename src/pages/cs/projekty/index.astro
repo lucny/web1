@@ -5,6 +5,7 @@ import ProjectCard from '../../../components/projects/ProjectCard.astro';
 import ProjectFilters from '../../../components/projects/ProjectFilters.astro';
 import { entries } from '../../../lib/content';
 import { projectStatusLabel, projectYears } from '../../../lib/projects';
+import { heroImages } from '../../../data/heroImages';
 
 const projects = (await entries('projects')).sort((a, b) => {
   if (a.data.featured !== b.data.featured) return Number(b.data.featured) - Number(a.data.featured);
@@ -19,7 +20,7 @@ const statuses = (['active', 'completed', 'archived'] as const).map((value) => (
 ---
 
 <BaseLayout title="Projekty" description="Přehled probíhajících, ukončených a archivních projektů SŠPU Opava." breadcrumbs={[{ label: 'Projekty' }]}>
-  <PageHero eyebrow="Škola" title="Projekty" description="Projekty, které rozvíjejí odborné vzdělávání, moderní technologie, mezinárodní zkušenosti i spolupráci školy s partnery." accent="#D0D543" icon="/images/banners/projekty.png" iconBackground="#000A25" />
+  <PageHero eyebrow="Škola" title="Projekty" description="Projekty, které rozvíjejí odborné vzdělávání, moderní technologie, mezinárodní zkušenosti i spolupráci školy s partnery." accent="#D0D543" icon={heroImages.projects} iconBackground="#001731" />
   <section class="container-page pb-16 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Projekty</span>
     <ProjectFilters statuses={statuses} programmes={programmes} topics={topics} years={years} />
