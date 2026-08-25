@@ -20,7 +20,7 @@ for (const file of files) {
       continue;
     }
     const localPathname = configuredBase === '/' ? pathname : pathname.slice(configuredBase.length - 1);
-    if (/\.(css|js|png|jpe?g|webp|avif|svg|ico|xml|json|txt)$/i.test(localPathname)) continue;
+    if (/\.(css|js|png|jpe?g|webp|avif|svg|ico|xml|json|txt|pdf|docx?|xlsx?|pptx?|zip|rar|7z|odt|ods|csv)$/i.test(localPathname)) continue;
     const target = localPathname === '/' ? join(dist, 'index.html') : join(dist, localPathname.replace(/^\//, ''), 'index.html');
     try { await stat(target); } catch { missing.push(`${relative(dist, file)} → ${href}`); }
   }

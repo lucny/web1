@@ -13,8 +13,6 @@ contentBlocks:
         text: Studenti pracují s konstrukcí, výrobou, digitálními technologiemi a reálnými zadáními.
       - title: Tvorba
         text: Ateliéry rozvíjejí autorský přístup, vizuální komunikaci i práci s materiálem.
-  - type: gallery
-    gallery: obrazovy-pruvodce-skolou
   - type: documents
     documents: [prohlaseni-o-pristupnosti]
   - type: people

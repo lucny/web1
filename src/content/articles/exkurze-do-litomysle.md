@@ -1,68 +1,26 @@
 ---
-title: Exkurze do Litomyšle
-description: Studenti se vydali za architekturou, kulturou a inspirací do Litomyšle.
-publishedAt: 2026-06-25
-author: Redakce školy
-categories:
-  - Akce
-  - Projekty
-tags:
-  - exkurze
-  - kultura
-programs:
-  - prumyslovy-design
-  - graficky-design
-cover: https://www.sspu-opava.cz/media/filer_public_thumbnails/filer_public/bc/b4/bcb41064-6097-477b-bf92-7c0b68754952/erasmus-2024-09.jpg__1600x1200_q85_subsampling-2.jpg
-gallery: obrazovy-pruvodce-skolou
-related:
-  - plakaty-prumyslovy-design
-  - myty-versus-realita
-attachments:
-  - label: Předávání diplomů - obrázek
-    url: /uploads/dji_20000818175753_0227_d.jpg
+title: "Exkurze do Litomyšle"
+description: "Žáci třídy U3 se během třídenní exkurze vydali do malebné Litomyšle, kde je čekal pestrý program propojující historii, umění i možnosti dalšího vzdělávání."
+publishedAt: 2026-06-29
+author: "Alena Biskupová"
+categories: ["Umělecké obory"]
+tags: ["exkurze"]
+programs: []
+cover: "/uploads/articles/exkurze-do-litomysle/cover.jpg"
+gallery: "exkurze-do-litomysle-galerie"
+attachments: []
+related: []
 homepage:
-  featured: true
-  order: 40
+  featured: false
+  order: 0
 status: published
-seo:
-  noindex: false
 ---
-Společná cesta nabídla prostor pro pozorování detailu, diskuzi o architektuře a propojení výuky s místem, které je samo o sobě živou kulturní učebnicí.
-
-![Předávání diplomů](../../../public/uploads/dji_20000818175753_0227_d.jpg "Předávání diplomů vítězům")
-
-## Architektura jako učebnice
-
-V Litomyšli jsme sledovali, jak se historické prostředí potkává se současnou architekturou. Každá zastávka nabízela jiné měřítko, materiál i způsob práce se světlem.
-
-Další inspiraci jsme hledali v [programu města Litomyšl](https://www.litomysl.cz/) a v materiálech [Národního památkového ústavu](https://www.npu.cz/).
-
-## Krátká videozastávka
-
-## Zvukový záznam cesty
-
-Přehrávač níže slouží jako ukázka zvukové stopy vložené přímo do článku.
-
-Váš prohlížeč nepodporuje přehrávání zvuku.
-
-fhfhf fdh **gfdd** hfdh [dgfhdgf](https://github.com)
-
-> dgdfsgdf gdgdfs gsdf gdfs gdf gdfsg dfs gdfs gdfgdf 
->
-> dsfsdf sfdsfaasf dasfsd
-
-- dgdfg dsgdfsg dfgdf
-- gd gdfsg dfsgsdf
--  gdfgdfgfdgdfgdf
-
-## Program dne
 
 
-| Čas | Místo | Zaměření |
-| ----- | -------------- | ------------------------------------ |
-| 8:00 | Opava | Odjezd od školy |
-| 10:15 | Litomyšl | Prohlídka historického centra |
-| 13:00 | Zámecké návrší | Skicování a fotografická dokumentace |
-| 16:30 | Opava | Návrat a sdílení poznámek |
+<p>Žáci třídy U3 se během třídenní exkurze vydali do malebné Litomyšle, kde je čekal pestrý program propojující historii, umění i možnosti dalšího vzdělávání.<br>
+Jednou z prvních zastávek byl rodný dům významného českého skladatele Bedřicha Smetany, kde se žáci seznámili s jeho životem a tvorbou. Návštěva tohoto místa nabídla zajímavý pohled na kulturní dědictví města a osobnost jednoho z nejvýznamnějších českých hudebních skladatelů.<br>
+Součástí exkurze byl také edukační program v Městské galerii Litomyšl zaměřený na téma portrétů. Žáci se inspirovali současným pojetím portrétu a sami vytvořili vlastní koláže, ve kterých uplatnili kreativitu i nové výtvarné postupy.</p>
 
+<p>Velmi přínosná byla návštěva ateliérů Fakulty restaurování Univerzity Pardubice. Žáci měli možnost nahlédnout do práce restaurátorů a seznámit se s obory, které pro ně mohou představovat zajímavou možnost dalšího studia.</p>
 
+<p>Exkurzi doplnily návštěvy dalších výstav, například tvorba sochaře Olbrama Zoubka nebo výstava věnovaná výtvarníkovi, animátorovi a režisérovi Janu Švankmajerovi. Žáci tak mohli porovnat různé přístupy k umění a získat inspiraci pro vlastní tvorbu.</p>

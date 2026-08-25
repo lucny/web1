@@ -7,6 +7,5 @@ location: SŠPU Opava, Praskova 399/8
 tags:
   - akce
 programs: []
-article: zahajeni-skolniho-roku-2026
 status: published
 ---

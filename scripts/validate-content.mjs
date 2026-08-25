@@ -32,6 +32,8 @@ for (const [collection, items] of Object.entries(records)) {
 const ids = (collection) => new Set(records[collection].map((item) => item.id));
 const categoryTitles = new Set(records.categories.map((item) => item.data.title));
 const peopleNames = new Set(records.people.map((item) => item.data.name));
+const authorName = (value) => String(value ?? '').replace(/,\s*(?:Ph\.D\.|M\.A\.)$/i, '').trim();
+const authorNames = new Set([...peopleNames, ...records.people.map((item) => authorName(item.data.name))]);
 const collectiveAuthors = new Set(['Redakce školy']);
 const contentReference = (value) => typeof value === 'string' ? value.replace(/\.md$/i, '') : value;
 const requireReferences = (source, file, field, values, available) => {
@@ -39,7 +41,7 @@ const requireReferences = (source, file, field, values, available) => {
 };
 
 for (const { file, data } of records.articles) {
-  if (!peopleNames.has(data.author) && !collectiveAuthors.has(data.author)) errors.push(`articles/${file}: author „${data.author}“ není v people.`);
+  if (!authorNames.has(authorName(data.author)) && !collectiveAuthors.has(data.author)) errors.push(`articles/${file}: author „${data.author}“ není v people.`);
   requireReferences('articles', file, 'categories', data.categories, categoryTitles);
   requireReferences('articles', file, 'programs', data.programs, ids('programs'));
   requireReferences('articles', file, 'related', data.related, ids('articles'));

@@ -17,12 +17,12 @@ contentBlocks:
     title: O výstavě
     text: Plakáty vznikly v rámci ateliérové práce oboru Průmyslový design. Výstava je přístupná v otevírací době knihovny.
   - type: gallery
-    gallery: studentske-prace
+    gallery: plakaty-prumyslovy-design-galerie
 attachments:
   - file: /uploads/dji_20000818175753_0227_d.jpg
     label: Ukázková fotografie z výstavy
     description: Doprovodný obrazový materiál k výstavě.
 article: plakaty-prumyslovy-design
-gallery: studentske-prace
+gallery: plakaty-prumyslovy-design-galerie
 status: published
 ---

@@ -24,14 +24,6 @@ export type ResolvedHomepageAlert = HomepageAlertDefinition & {
  */
 export const homepageAlertDefinitions: HomepageAlertDefinition[] = [
   {
-    id: 'school-year-start',
-    articleId: 'zahajeni-skolniho-roku-2026',
-    enabled: true,
-    variant: 'banner',
-    tone: 'night',
-    desktopColumns: 6
-  },
-  {
     id: 'industrial-design-posters',
     articleId: 'plakaty-prumyslovy-design',
     enabled: true,

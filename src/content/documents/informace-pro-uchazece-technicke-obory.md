@@ -1,7 +1,7 @@
 ---
 title: Informace pro uchazeče – technické obory
-description: Přehled přijímacího řízení a studia strojírenství a informačních technologií.
-file: https://www.sspu-opava.cz/cs/studium/
+description: Aktuální informační leták školy pro uchazeče o technické obory včetně oboru informační technologie.
+file: https://www.sspu-opava.cz/media/filer_public/d8/5e/d85eb22c-731e-41ec-b8ee-9f807dab7bd3/letak_sspu_opava_2025_26.pdf
 category: Přijímací řízení
 date: 2026-01-15
 validUntil: 2026-08-31

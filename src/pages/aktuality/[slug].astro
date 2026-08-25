@@ -13,5 +13,5 @@ const schema = { '@context': 'https://schema.org', '@type': 'NewsArticle', headl
 ---
 <BaseLayout title={article.data.title} description={article.data.description} seo={article.data.seo} breadcrumbs={[{ label: 'Aktuality', href: '/aktuality/' }, { label: article.data.title }]} schema={schema}>
   <ArticleDetail article={article}><ContentRenderer blocks={article.data.contentBlocks} legacyClass=""><Content /></ContentRenderer></ArticleDetail>
-  <RelatedArticles article={article} articles={allArticles} />
+  {article.data.related.length > 0 && <RelatedArticles article={article} articles={allArticles} />}
 </BaseLayout>

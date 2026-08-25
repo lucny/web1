@@ -59,7 +59,7 @@ export const mainNavigation: NavGroup[] = [
       { label: 'Kontakty', href: '/kontakt/' },
       { label: 'Projekty', href: '/aktuality/' },
       { label: 'Spolupráce', href: '/kontakt/' },
-      { label: 'Prostory školy', href: '/galerie/obrazovy-pruvodce-skolou/' }
+      { label: 'Prostory školy', href: '/galerie/' }
     ]
   },
   {
@@ -70,7 +70,7 @@ export const mainNavigation: NavGroup[] = [
       { label: 'Přehled pro uchazeče', href: '/uchazeci/' },
       { label: 'Obory', href: '/obory/' },
       { label: 'Přijímací řízení', href: '/uchazeci/' },
-      { label: 'Prohlídka školy', href: '/galerie/obrazovy-pruvodce-skolou/' },
+      { label: 'Prohlídka školy', href: '/galerie/' },
       { label: 'Dny otevřených dveří', href: '/udalosti/den-otevrenych-dveri/' },
       { label: 'Informace pro uchazeče', href: '/uchazeci/' }
     ]
