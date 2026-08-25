@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 import { EVENT_TAG_VALUES } from '../data/eventTags';
 
 const status = z.enum(['published', 'draft']).default('published');
@@ -44,6 +45,7 @@ const contentBlock = z.discriminatedUnion('type', [
   z.object({ type: z.literal('articles'), articles: slugList }),
   z.object({ type: z.literal('people'), people: slugList }),
   z.object({ type: z.literal('downloads'), title: z.string().optional(), items: z.array(z.object({ label: z.string(), url: z.string(), description: z.string().optional() })).default([]) }),
+  z.object({ type: z.literal('links'), title: z.string().optional(), items: z.array(z.object({ label: z.string(), url: z.string().min(1), description: z.string().optional(), kind: z.enum(['external', 'document']).default('external') })).default([]) }),
   z.object({ type: z.literal('faq'), items: z.array(z.object({ question: z.string(), answer: z.string() })) })
 ]);
 const contentBlocks = z.array(contentBlock).default([]);
@@ -236,6 +238,35 @@ const pages = defineCollection({
   })
 });
 
+const jobOffers = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/job-offers' }),
+  schema: z.object({
+    title: z.string(),
+    // Astro derives the public slug from the filename; keep the field optional
+    // so CMS-authored records can still carry the explicit identifier.
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug smí obsahovat pouze malá písmena, číslice a pomlčky.').optional(),
+    company: z.string(),
+    companyUrl: optionalUrl,
+    position: z.string(),
+    type: z.enum(['job', 'brigade', 'internship', 'practice']).default('job'),
+    status: z.enum(['active', 'needs-review', 'closed', 'archived']),
+    visible: z.boolean().default(true),
+    needsReview: z.boolean().default(false),
+    location: optionalString,
+    employmentType: optionalString,
+    field: optionalString,
+    summary: optionalString,
+    publishedAt: optionalDate,
+    expiresAt: optionalDate,
+    featured: z.boolean().default(false),
+    applyUrl: optionalUrl,
+    attachments: z.array(z.object({ label: z.string(), file: z.string().min(1), type: optionalString })).default([]),
+    sourceLinks: z.array(z.object({ label: z.string(), url: z.string().min(1), type: optionalString })).default([]),
+    contactEmail: optionalString,
+    contactPhone: optionalString
+  })
+});
+
 const categories = defineCollection({
   type: 'content',
   schema: z.object({
@@ -245,4 +276,4 @@ const categories = defineCollection({
   })
 });
 
-export const collections = { articles, programs, galleries, documents, projects, events, people, pages, categories };
+export const collections = { articles, programs, galleries, documents, projects, events, people, pages, jobOffers, categories };

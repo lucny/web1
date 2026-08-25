@@ -45,6 +45,13 @@ media:
     extensions: [mp3, wav, ogg, m4a, pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx, jpg, jpeg, png, webp, avif]
     categories: [document, image, audio]
     rename: safe
+  - name: job-offers
+    label: Inzeráty pracovních nabídek
+    input: public/uploads/job-offers
+    output: /uploads/job-offers
+    extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx, jpg, jpeg, png, webp, avif]
+    categories: [document, image]
+    rename: safe
 
 components:
   status:
@@ -289,6 +296,34 @@ components:
               value: "{name}"
               label: "{title}"
               search: "title,description,category"
+      - name: links
+        label: Odkazy a dokumenty
+        fields:
+          - name: title
+            label: Nadpis
+            type: string
+            required: false
+          - name: items
+            label: Odkazy
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Název odkazu
+                type: string
+              - name: url
+                label: URL nebo soubor
+                type: string
+              - name: description
+                label: Popis
+                type: text
+                required: false
+              - name: kind
+                label: Typ
+                type: select
+                options:
+                  values: [external, document]
+                default: external
       - name: articles
         label: Seznam aktualit
         fields:
@@ -374,6 +409,163 @@ content:
           path: pages
           extensions: [jpg, jpeg, png, webp, avif]
           rename: safe
+          switcher: true
+
+  - name: jobOffers
+    label: Nabídky zaměstnání a brigád
+    type: collection
+    path: src/content/job-offers
+    filename: "{slug}.md"
+    media_folder: public/uploads/job-offers
+    public_folder: /uploads/job-offers
+    view:
+      primary: position
+      fields: [company, position, type, status, location, needsReview]
+      search: [title, company, position, summary, location, field]
+      sort: [status, publishedAt, company]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - name: title
+        label: Název nabídky
+        type: string
+        required: true
+      - name: slug
+        label: URL identifikátor
+        type: string
+        required: true
+        pattern:
+          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          message: Použijte malá písmena bez diakritiky a slova oddělte pomlčkami.
+      - name: company
+        label: Firma
+        type: string
+        required: true
+      - name: companyUrl
+        label: Web firmy
+        type: string
+        required: false
+      - name: position
+        label: Pracovní pozice
+        type: string
+        required: true
+      - name: type
+        label: Typ nabídky
+        type: select
+        required: false
+        options:
+          values: [job, brigade, internship, practice]
+          labels: [Pracovní nabídka, Brigáda, Stáž, Praxe]
+          default: job
+      - name: status
+        label: Stav nabídky
+        type: select
+        required: true
+        options:
+          values: [active, needs-review, closed, archived]
+          labels: [Aktuální, Vyžaduje ověření, Uzavřená, Archivní]
+      - name: visible
+        label: Zobrazit veřejně
+        type: boolean
+        required: true
+        default: true
+      - name: needsReview
+        label: Vyžaduje ověření aktuálnosti
+        type: boolean
+        required: false
+        default: false
+      - name: location
+        label: Lokalita
+        type: string
+        required: false
+      - name: employmentType
+        label: Pracovní vztah
+        type: string
+        required: false
+      - name: field
+        label: Oblast
+        type: string
+        required: false
+      - name: summary
+        label: Krátký popis pro kartu
+        type: text
+        required: false
+      - name: publishedAt
+        label: Datum zveřejnění
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: expiresAt
+        label: Termín platnosti
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: featured
+        label: Zvýraznit v přehledu
+        type: boolean
+        required: false
+        default: false
+      - name: applyUrl
+        label: Hlavní odkaz pro reakci
+        type: string
+        required: false
+      - name: attachments
+        label: Přílohy nabídky
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: label
+            label: Název přílohy
+            type: string
+            required: true
+          - name: file
+            label: Soubor
+            type: file
+            required: true
+            options:
+              media: job-offers
+          - name: type
+            label: Typ souboru
+            type: string
+            required: false
+      - name: sourceLinks
+        label: Externí odkazy
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: label
+            label: Název odkazu
+            type: string
+            required: true
+          - name: url
+            label: URL
+            type: string
+            required: true
+          - name: type
+            label: Typ odkazu
+            type: string
+            required: false
+      - name: contactEmail
+        label: Kontaktní e-mail
+        type: string
+        required: false
+      - name: contactPhone
+        label: Kontaktní telefon
+        type: string
+        required: false
+      - name: body
+        label: Podrobný text nabídky
+        type: rich-text
+        required: false
+        options:
+          media: images
+          path: job-offers
+          extensions: [jpg, jpeg, png, webp, avif]
           switcher: true
 
   - name: projects

@@ -27,7 +27,7 @@ for (const item of content) {
   }
 }
 
-for (const expected of ['web-pages', 'articles', 'programs', 'galleries', 'documents', 'projects', 'events', 'people', 'categories']) {
+for (const expected of ['web-pages', 'articles', 'programs', 'galleries', 'documents', 'projects', 'events', 'people', 'jobOffers', 'categories']) {
   if (!names.has(expected)) errors.push(`Chybí požadovaná Pages CMS kolekce: ${expected}.`);
 }
 

@@ -226,6 +226,50 @@ collections:
       - { label: Skupiny, name: groups, widget: list, required: false }
       - { label: Zobrazit v přehledu kontaktů, name: showInContacts, widget: boolean, default: false, required: false }
       - { label: Stav, name: status, widget: select, options: [published, draft], default: published }
+  - name: jobOffers
+    label: Nabídky zaměstnání a brigád
+    folder: src/content/job-offers
+    create: true
+    slug: "{{slug}}"
+    media_folder: public/uploads/job-offers
+    public_folder: /uploads/job-offers
+    fields:
+      - { label: Název nabídky, name: title, widget: string }
+      - { label: URL identifikátor, name: slug, widget: string }
+      - { label: Firma, name: company, widget: string }
+      - { label: Web firmy, name: companyUrl, widget: string, required: false }
+      - { label: Pracovní pozice, name: position, widget: string }
+      - { label: Typ nabídky, name: type, widget: select, options: [job, brigade, internship, practice], default: job }
+      - { label: Stav nabídky, name: status, widget: select, options: [active, needs-review, closed, archived] }
+      - { label: Zobrazit veřejně, name: visible, widget: boolean, default: true }
+      - { label: Vyžaduje ověření aktuálnosti, name: needsReview, widget: boolean, default: false, required: false }
+      - { label: Lokalita, name: location, widget: string, required: false }
+      - { label: Pracovní vztah, name: employmentType, widget: string, required: false }
+      - { label: Oblast, name: field, widget: string, required: false }
+      - { label: Krátký popis pro kartu, name: summary, widget: text, required: false }
+      - { label: Datum zveřejnění, name: publishedAt, widget: date, required: false, format: "YYYY-MM-DD" }
+      - { label: Termín platnosti, name: expiresAt, widget: date, required: false, format: "YYYY-MM-DD" }
+      - { label: Zvýraznit v přehledu, name: featured, widget: boolean, default: false, required: false }
+      - { label: Hlavní odkaz pro reakci, name: applyUrl, widget: string, required: false }
+      - label: Přílohy nabídky
+        name: attachments
+        widget: list
+        required: false
+        fields:
+          - { label: Název přílohy, name: label, widget: string }
+          - { label: Soubor, name: file, widget: file }
+          - { label: Typ souboru, name: type, widget: string, required: false }
+      - label: Externí odkazy
+        name: sourceLinks
+        widget: list
+        required: false
+        fields:
+          - { label: Název odkazu, name: label, widget: string }
+          - { label: URL, name: url, widget: string }
+          - { label: Typ odkazu, name: type, widget: string, required: false }
+      - { label: Kontaktní e-mail, name: contactEmail, widget: string, required: false }
+      - { label: Kontaktní telefon, name: contactPhone, widget: string, required: false }
+      - { label: Podrobný text nabídky, name: body, widget: markdown, required: false }
   - name: pages
     label: Informační stránky
     folder: src/content/pages
@@ -275,6 +319,20 @@ collections:
                 name: items
                 widget: list
                 fields: [{ label: Název, name: label, widget: string }, { label: Soubor nebo URL, name: url, widget: file }, { label: Popis, name: description, widget: text, required: false }]
+          - label: Odkazy a dokumenty
+            name: links
+            widget: object
+            fields:
+              - { label: Typ, name: type, widget: hidden, default: links }
+              - { label: Nadpis, name: title, widget: string, required: false }
+              - label: Odkazy
+                name: items
+                widget: list
+                fields:
+                  - { label: Název odkazu, name: label, widget: string }
+                  - { label: URL nebo soubor, name: url, widget: string }
+                  - { label: Popis, name: description, widget: text, required: false }
+                  - { label: Typ odkazu, name: kind, widget: select, options: [external, document], default: external }
           - label: FAQ
             name: faq
             widget: object

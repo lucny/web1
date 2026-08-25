@@ -205,6 +205,64 @@
   .page-hero-art span:nth-child(1) { inset: 0; border-radius: 32% 68% 48% 52% / 42% 34% 66% 58%; background: color-mix(in srgb, var(--page-hero-accent) 75%, transparent); }
   .page-hero-art span:nth-child(2) { inset: 2rem; border-radius: 50%; background: rgb(255 255 255 / 8%); }
   .page-hero-art span:nth-child(3) { inset: 5rem 1rem 1rem 5rem; border-radius: 1.5rem; transform: rotate(28deg); }
+  .admission-layout { @apply grid gap-8 lg:grid-cols-[minmax(14rem,18rem)_minmax(0,1fr)] lg:items-start lg:gap-12; }
+  .admission-sidebar { @apply rounded-2xl border border-ink/10 bg-white p-5 shadow-soft sm:p-6 lg:sticky lg:top-6; }
+  .admission-sidebar-link { @apply flex items-center justify-between gap-3 border-t border-ink/10 py-3 text-sm font-bold text-brand no-underline transition hover:border-school-cyan hover:text-school-magenta; }
+  .admission-sidebar-link span { @apply text-school-cyan transition; }
+  .admission-sidebar-link:hover span { @apply translate-x-0.5; }
+  .admission-content { @apply min-w-0; }
+  .admission-content > :first-child { @apply mt-0; }
+  .admission-content .content-block-text { @apply max-w-none; }
+  .admission-content .content-block-heading { @apply scroll-mt-8; }
+  .job-offer-intro { @apply mt-10 flex flex-wrap items-end justify-between gap-6 rounded-2xl border border-ink/10 bg-white p-6 shadow-soft sm:p-8; }
+  .job-offer-filters { @apply mt-8 rounded-2xl border border-ink/10 bg-mist p-5 shadow-soft sm:p-7; }
+  .job-offer-filter-grid { @apply mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-5; }
+  .job-offer-filter-grid label { @apply grid gap-1.5 text-xs font-bold text-ink/75; }
+  .job-offer-filter-grid input, .job-offer-filter-grid select { @apply min-h-11 w-full rounded-lg border border-ink/15 bg-white px-3 text-sm font-normal text-ink outline-none transition focus:border-school-cyan focus:ring-2 focus:ring-school-cyan/20; }
+  .job-offer-filter-clear { @apply text-sm font-bold text-brand underline decoration-brand/40 underline-offset-4 hover:text-school-magenta; }
+  .job-offer-filter-result { @apply mt-4 text-sm text-ink/65; }
+  .job-offer-section { @apply mt-14; }
+  .job-offer-section-heading { @apply flex flex-wrap items-end justify-between gap-4 border-b border-ink/10 pb-4; }
+  .job-offer-count { @apply rounded-full bg-school-cyan/15 px-3 py-1 text-xs font-bold text-brand; }
+  .job-offer-grid { @apply mt-6 grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3; }
+  .job-offer-card { @apply flex h-full min-w-0 flex-col border-t-4 border-t-school-cyan p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-lift; }
+  .job-offer-card[hidden] { display: none; }
+  .job-offer-card-top { @apply flex items-start justify-between gap-4; }
+  .job-offer-company { @apply text-xs font-bold uppercase tracking-[0.12em] text-brand; }
+  .job-offer-company a { @apply no-underline hover:text-school-magenta; }
+  .job-offer-title { @apply mt-2 text-xl leading-tight; }
+  .job-offer-title a { @apply no-underline hover:text-school-magenta; }
+  .job-offer-status { @apply inline-flex max-w-[12rem] shrink-0 rounded-full border px-2.5 py-1 text-right text-[0.63rem] font-bold uppercase leading-4 tracking-[0.08em]; }
+  .job-offer-status-active { @apply border-school-lime/60 bg-school-lime/25 text-night; }
+  .job-offer-status-needs-review { @apply border-school-magenta/35 bg-school-magenta/10 text-school-magenta; }
+  .job-offer-status-closed, .job-offer-status-archived { @apply border-ink/15 bg-mist text-ink/70; }
+  .job-offer-meta { @apply mt-5 grid grid-cols-3 gap-2 border-y border-ink/10 py-4; }
+  .job-offer-meta dt, .job-offer-detail-meta dt { @apply text-[0.62rem] font-bold uppercase tracking-[0.1em] text-ink/55; }
+  .job-offer-meta dd { @apply mt-1 break-words text-xs font-semibold leading-5 text-night; }
+  .job-offer-summary { @apply mt-4 text-sm leading-6 text-ink/75; }
+  .job-offer-card-footer { @apply mt-auto flex flex-wrap items-center justify-between gap-3 pt-6; }
+  .job-offer-actions { @apply ml-auto flex items-center gap-2; }
+  .job-offer-symbol-button { @apply grid h-9 min-w-9 place-items-center rounded-lg border border-brand/25 bg-white px-2 text-[0.62rem] font-black uppercase tracking-[0.06em] text-brand no-underline shadow-soft transition hover:-translate-y-0.5 hover:border-school-cyan hover:bg-school-cyan/10 hover:text-school-magenta focus:outline-none focus:ring-2 focus:ring-school-cyan/40; }
+  .job-offer-review-note { @apply inline-flex items-center gap-1.5 text-xs font-bold text-school-magenta; }
+  .job-offer-review-note span { @apply grid h-5 w-5 place-items-center rounded-full bg-school-magenta text-xs text-white; }
+  .job-offer-detail-link { @apply ml-auto text-sm font-bold text-brand no-underline hover:text-school-magenta; }
+  .job-offer-empty { @apply mt-6 rounded-xl border border-dashed border-ink/20 bg-mist/50 p-5 text-ink/70; }
+  .job-offer-detail-grid { @apply mt-10 grid items-start gap-8 lg:grid-cols-[18rem_minmax(0,1fr)] lg:gap-12; }
+  .job-offer-detail-aside { @apply rounded-2xl border border-ink/10 bg-white p-5 shadow-soft sm:p-7 lg:sticky lg:top-6; }
+  .job-offer-detail-company { @apply border-b border-ink/10 pb-6; }
+  .job-offer-detail-meta { @apply grid gap-4 pt-6; }
+  .job-offer-detail-meta dd { @apply mt-1 text-sm font-semibold leading-6 text-night; }
+  .job-offer-detail-meta .job-offer-status { @apply whitespace-normal text-left; }
+  .job-offer-review-panel { @apply mt-6 border-l-4 border-school-magenta bg-school-magenta/10 p-4 text-sm leading-6 text-ink/80; }
+  .job-offer-review-panel strong { @apply text-school-magenta; }
+  .job-offer-review-panel p { @apply mt-1; }
+  .job-offer-detail-content { @apply min-w-0; }
+  .job-offer-body { @apply max-w-none; }
+  .job-offer-body > :first-child { @apply mt-0; }
+  .job-offer-contact, .job-offer-source-links { @apply mt-12 border-t border-ink/10 pt-10; }
+  .job-offer-source-link { @apply flex h-full items-center justify-between gap-4 rounded-xl border border-ink/10 bg-white p-4 font-bold text-brand no-underline shadow-soft transition hover:-translate-y-0.5 hover:border-school-cyan hover:text-school-magenta; }
+  .job-offer-source-link small { @apply ml-2 rounded bg-mist px-2 py-1 text-[0.62rem] font-bold uppercase tracking-[0.08em] text-ink/55; }
+  .job-offer-back-link { @apply mt-12 inline-flex text-sm font-bold text-brand no-underline hover:text-school-magenta; }
   .page-intro { @apply relative overflow-hidden rounded-[2rem] border border-ink/10 bg-white px-6 py-8 shadow-lift sm:px-10 sm:py-10; }
   .page-intro::after { content: ''; @apply absolute inset-x-0 bottom-0 h-1; background: linear-gradient(90deg, #1A4053 0 20%, #59BDDC 20% 40%, #ECAFAC 40% 60%, #D0D543 60% 80%, #C42079 80% 100%); }
   .project-section-heading { @apply border-b border-ink/10 pb-4; }

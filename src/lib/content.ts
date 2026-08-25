@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'projects' | 'events' | 'people' | 'pages' | 'categories';
+type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'projects' | 'events' | 'people' | 'pages' | 'jobOffers' | 'categories';
 type Entry<T extends Name> = CollectionEntry<T>;
 
 export async function entries<T extends Name>(collection: T) {
@@ -8,7 +8,9 @@ export async function entries<T extends Name>(collection: T) {
   return collectionEntries
     .filter((entry) => collection === 'projects'
       ? (entry.data as { publicationStatus?: string }).publicationStatus !== 'draft'
-      : (entry.data as { status?: string }).status === 'published')
+      : collection === 'jobOffers'
+        ? (entry.data as { visible?: boolean }).visible !== false
+        : (entry.data as { status?: string }).status === 'published')
     .sort((a, b) => {
       const value = (data: { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) => {
         if (data.publishedAt || data.date || data.start) return Number(data.publishedAt ?? data.date ?? data.start);
@@ -18,7 +20,7 @@ export async function entries<T extends Name>(collection: T) {
       return value(b.data as { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) - value(a.data as { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string });
     })
     // Legacy Astro content collections retain `.md` in `id`; public relations and URLs use the stable slug.
-    .map((entry) => ({ ...entry, id: entry.slug })) as CollectionEntry<T>[];
+    .map((entry) => ({ ...entry, id: (entry as { slug?: string }).slug ?? entry.id })) as CollectionEntry<T>[];
 }
 
 export async function byId<T extends Name>(collection: T, id: string) {
@@ -31,7 +33,7 @@ export function formatDate(date: Date, options: Intl.DateTimeFormatOptions = { d
 
 export function routeFor(collection: Name, id: string) {
   const routes: Record<Exclude<Name, 'categories'>, string> = {
-    articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', projects: '/cs/projekty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/'
+    articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', projects: '/cs/projekty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/', jobOffers: '/cs/studium/nabidky-zamestnani/'
   };
   if (collection === 'categories') throw new Error('Kategorie nemají veřejnou detailní trasu.');
   if (collection === 'documents') return routes.documents;

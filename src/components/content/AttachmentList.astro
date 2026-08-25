@@ -11,13 +11,14 @@ interface Props {
   attachments: Attachment[];
   eyebrow?: string;
   title?: string;
+  id?: string;
   class?: string;
 }
 
-const { attachments, eyebrow = 'Ke stažení', title = 'Přílohy', class: className } = Astro.props;
+const { attachments, eyebrow = 'Ke stažení', title = 'Přílohy', id, class: className } = Astro.props;
 ---
 
-{attachments.length > 0 && <section class:list={['attachment-list', className]} aria-labelledby={title ? 'attachment-list-title' : undefined}>
+{attachments.length > 0 && <section id={id} class:list={['attachment-list', className]} aria-labelledby={title ? 'attachment-list-title' : undefined}>
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
   {title && <h2 id="attachment-list-title" class="mt-2 text-2xl">{title}</h2>}
   <ul class="mt-5 grid gap-3">

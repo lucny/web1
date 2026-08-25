@@ -72,7 +72,8 @@ export const mainNavigation: NavGroup[] = [
     items: [
       { label: 'Přehled pro uchazeče', href: '/uchazeci/' },
       { label: 'Obory', href: '/obory/' },
-      { label: 'Přijímací řízení', href: '/uchazeci/' },
+      { label: 'Přijímačky – technické obory', href: '/cs/studium/prijimaci-rizeni-technicke-obory/' },
+      { label: 'Přijímačky – umělecké obory', href: '/cs/studium/prijimaci-rizeni-umelecke-obory/' },
       { label: 'Prohlídka školy', href: '/galerie/' },
       { label: 'Dny otevřených dveří', href: '/udalosti/den-otevrenych-dveri/' },
       { label: 'Informace pro uchazeče', href: '/uchazeci/' }
@@ -84,7 +85,8 @@ export const mainNavigation: NavGroup[] = [
     href: '/studenti/',
     items: [
       { label: 'Přehled tříd', href: '/studenti/' },
-      { label: 'Výchovné poradenství', href: '/studenti/' },
+      { label: 'Školní poradenské pracoviště', href: '/cs/studium/spp/' },
+      { label: 'Nabídky zaměstnání a brigád', href: '/cs/studium/nabidky-zamestnani/' },
       { label: 'Protidrogová prevence', href: '/studenti/' },
       { label: 'Výukové materiály', href: '/studenti/' },
       { label: 'Školní systémy', href: '/studenti/' },
