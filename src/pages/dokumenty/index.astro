@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { entries, formatDate, withBase } from '../../lib/content';
+import { entries, formatDate } from '../../lib/content';
+import AttachmentLink from '../../components/content/AttachmentLink.astro';
 import PageHero from '../../components/content/PageHero.astro';
 const documents = await entries('documents');
 const categories = [...new Set(documents.map((document) => document.data.category))];
@@ -10,6 +11,6 @@ const categories = [...new Set(documents.map((document) => document.data.categor
   <section class="container-page pb-10 sm:pb-14" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Přehled dokumentů</span>
     <nav class="mt-7 flex flex-wrap gap-2" aria-label="Kategorie dokumentů">{categories.map((category) => <a href={`#${category.toLowerCase().replaceAll(' ', '-')}`} class="button-secondary !min-h-0 !px-4 !py-2 text-sm">{category}</a>)}</nav>
-    <div class="mt-10 space-y-8">{categories.map((category) => <section id={category.toLowerCase().replaceAll(' ', '-')}><p class="section-label">Kategorie</p><h2 class="mt-3 text-2xl">{category}</h2><div class="mt-4 grid gap-4">{documents.filter((document) => document.data.category === category).map((document) => <article class="card flex flex-col gap-5 border-l-4 border-l-school-cyan p-5 transition hover:shadow-soft sm:flex-row sm:items-center sm:justify-between"><div><p class="meta-label">Aktualizováno {formatDate(document.data.date)}</p><h3 class="mt-2 text-xl"><a href={withBase(`/dokumenty/${document.id}/`)} class="no-underline hover:text-school-magenta">{document.data.title}</a></h3><p class="mt-2 text-sm leading-6 text-ink/70">{document.data.description}</p></div><a class="button-secondary shrink-0" href={withBase(`/dokumenty/${document.id}/`)}>Detail</a></article>)}</div></section>)}</div>
+    <div class="mt-10 space-y-8">{categories.map((category) => <section id={category.toLowerCase().replaceAll(' ', '-')}><p class="section-label">Kategorie</p><h2 class="mt-3 text-2xl">{category}</h2><div class="mt-4 grid gap-4">{documents.filter((document) => document.data.category === category).map((document) => <AttachmentLink label={document.data.title} url={document.data.file} description={document.data.description} class="card flex flex-col gap-5 border-l-4 border-l-school-cyan p-5 no-underline transition hover:shadow-soft sm:flex-row sm:items-center sm:justify-between"><div><p class="meta-label">Aktualizováno {formatDate(document.data.date)}</p><h3 class="mt-2 text-xl text-night">{document.data.title}</h3><p class="mt-2 text-sm leading-6 text-ink/70">{document.data.description}</p></div><span class="button-secondary shrink-0">Náhled a stažení</span></AttachmentLink>)}</div></section>)}</div>
   </section>
 </BaseLayout>

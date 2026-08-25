@@ -32,6 +32,7 @@ export function routeFor(collection: Name, id: string) {
     articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/'
   };
   if (collection === 'categories') throw new Error('Kategorie nemají veřejnou detailní trasu.');
+  if (collection === 'documents') return routes.documents;
   return `${routes[collection]}${id}/`;
 }
 

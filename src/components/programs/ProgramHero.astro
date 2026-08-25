@@ -1,5 +1,6 @@
 ---
 import { withBase } from '../../lib/content';
+import AttachmentLink from '../content/AttachmentLink.astro';
 
 interface Program {
   code: string;
@@ -15,14 +16,22 @@ interface Props {
   program: Program;
   tagline?: string;
   applicantHref: string;
+  studyPlanDocument?: DocumentRef;
+  applicantDocument?: DocumentRef;
 }
 
-const { accent, program, tagline, applicantHref } = Astro.props as Props;
+interface DocumentRef {
+  file: string;
+  title: string;
+  description: string;
+}
+
+const { accent, program, tagline, applicantHref, studyPlanDocument, applicantDocument } = Astro.props as Props;
 const links = [
-  { label: 'Školní vzdělávací plán', href: '/dokumenty/' },
+  { label: 'Školní vzdělávací plán', href: '/dokumenty/', document: studyPlanDocument },
   { label: 'Průběh studia', href: '#obor-content' },
   { label: 'Přijímací řízení', href: '/uchazeci/' },
-  { label: 'Informace pro uchazeče', href: applicantHref }
+  { label: 'Informace pro uchazeče', href: applicantHref, document: applicantDocument }
 ];
 ---
 
@@ -39,7 +48,7 @@ const links = [
       <p class="mt-4 max-w-4xl text-base leading-7 text-night/80 sm:text-lg">{program.description}</p>
       <p class="mt-6 text-xl font-black text-white sm:text-2xl">Přijímáme {program.capacity} žáků</p>
       <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {links.map((link) => <a href={withBase(link.href)} class="flex min-h-14 items-center justify-center rounded-xl border border-white/25 bg-white/20 px-4 py-3 text-center text-sm font-bold text-night no-underline transition hover:-translate-y-0.5 hover:bg-white hover:shadow-soft">{link.label}</a>)}
+        {links.map((link) => link.document ? <AttachmentLink label={link.label} url={link.document.file} description={link.document.description} class="flex min-h-14 items-center justify-center rounded-xl border border-white/25 bg-white/20 px-4 py-3 text-center text-sm font-bold text-night no-underline transition hover:-translate-y-0.5 hover:bg-white hover:shadow-soft">{link.label}</AttachmentLink> : <a href={withBase(link.href)} class="flex min-h-14 items-center justify-center rounded-xl border border-white/25 bg-white/20 px-4 py-3 text-center text-sm font-bold text-night no-underline transition hover:-translate-y-0.5 hover:bg-white hover:shadow-soft">{link.label}</a>)}
       </div>
     </div>
   </div>

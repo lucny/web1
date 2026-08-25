@@ -111,9 +111,9 @@ export const mainNavigation: NavGroup[] = [
     href: '/dokumenty/',
     items: [
       { label: 'Přehled dokumentů', href: '/dokumenty/' },
-      { label: 'Školní řád', href: '/dokumenty/skolni-rad/' },
-      { label: 'Výroční zprávy', href: '/dokumenty/vyrocni-zprava/' },
-      { label: 'Inspekční zprávy', href: '/dokumenty/' },
+      { label: 'Školní řád a předpisy', href: '/dokumenty/#vnitřní-předpisy' },
+      { label: 'Výroční zprávy', href: '/dokumenty/#výroční-dokumenty' },
+      { label: 'Inspekční zprávy', href: '/dokumenty/#povinně-zveřejňované-informace' },
       { label: 'Formuláře', href: '/dokumenty/' },
       { label: 'Úřední informace', href: '/dokumenty/' }
     ]
