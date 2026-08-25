@@ -42,6 +42,7 @@ const contentBlock = z.discriminatedUnion('type', [
   z.object({ type: z.literal('documents'), documents: slugList }),
   z.object({ type: z.literal('articles'), articles: slugList }),
   z.object({ type: z.literal('people'), people: slugList }),
+  z.object({ type: z.literal('downloads'), title: z.string().optional(), items: z.array(z.object({ label: z.string(), url: z.string(), description: z.string().optional() })).default([]) }),
   z.object({ type: z.literal('faq'), items: z.array(z.object({ question: z.string(), answer: z.string() })) })
 ]);
 const contentBlocks = z.array(contentBlock).default([]);

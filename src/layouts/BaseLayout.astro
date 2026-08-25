@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import AttachmentModal from '../components/content/AttachmentModal.astro';
 import { withBase } from '../lib/content';
 
 interface Crumb { label: string; href?: string }
@@ -45,5 +46,6 @@ const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org'
     {breadcrumbs.length > 1 && <nav aria-label="Drobečková navigace" class="container-page pt-6 text-sm text-ink/70"><ol class="flex flex-wrap gap-x-2 gap-y-1">{breadcrumbs.map((crumb, index) => <li class="flex items-center gap-2">{index > 0 && <span aria-hidden="true">/</span>}{crumb.href && index < breadcrumbs.length - 1 ? <a href={withBase(crumb.href)}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}</li>)}</ol></nav>}
     <main id="main-content"><slot /></main>
     <Footer />
+    <AttachmentModal />
   </body>
 </html>

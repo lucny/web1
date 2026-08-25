@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { entries, formatDate, withBase } from '../../lib/content';
 import GalleryLightbox from '../GalleryLightbox.astro';
 import ArticleHero from './ArticleHero.astro';
+import AttachmentList from '../content/AttachmentList.astro';
 
 interface Props { article: CollectionEntry<'articles'> }
 const { article } = Astro.props;
@@ -35,9 +36,6 @@ const gallery = article.data.gallery ? galleries.find((item) => item.id === arti
       <p class="mt-3 max-w-3xl leading-7 text-ink/70">{gallery.data.description}</p>
       <div class="mt-6"><GalleryLightbox photos={gallery.data.photos} title={gallery.data.title} /></div>
     </section>}
-    {article.data.attachments.length > 0 && <section class="article-wide-section mx-auto mt-10 max-w-3xl rounded-2xl bg-mist p-6">
-      <h2 class="text-xl">Přílohy</h2>
-      <ul>{article.data.attachments.map((attachment) => <li><a href={withBase(attachment.url)}>{attachment.label}</a></li>)}</ul>
-    </section>}
+    <AttachmentList attachments={article.data.attachments} class="article-wide-section mx-auto mt-10 max-w-3xl rounded-2xl bg-mist p-6" />
   </div>
 </article>

@@ -1,0 +1,31 @@
+---
+import AttachmentLink from './AttachmentLink.astro';
+
+interface Attachment {
+  label: string;
+  url: string;
+  description?: string;
+}
+
+interface Props {
+  attachments: Attachment[];
+  eyebrow?: string;
+  title?: string;
+  class?: string;
+}
+
+const { attachments, eyebrow = 'Ke stažení', title = 'Přílohy', class: className } = Astro.props;
+---
+
+{attachments.length > 0 && <section class:list={['attachment-list', className]} aria-labelledby={title ? 'attachment-list-title' : undefined}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  {title && <h2 id="attachment-list-title" class="mt-2 text-2xl">{title}</h2>}
+  <ul class="mt-5 grid gap-3">
+    {attachments.map((attachment) => <li>
+      <AttachmentLink label={attachment.label} url={attachment.url} description={attachment.description} class="attachment-list-item card flex items-start gap-4 p-4 no-underline transition hover:-translate-y-0.5 hover:shadow-soft">
+        <span class="event-attachment-type" aria-hidden="true">{attachment.url.split(/[?#]/)[0].split('.').pop()?.toUpperCase() ?? 'SOUBOR'}</span>
+        <span class="min-w-0"><strong class="block break-words text-night">{attachment.label}</strong>{attachment.description && <span class="mt-1 block break-words text-sm leading-6 text-ink/70">{attachment.description}</span>}</span>
+      </AttachmentLink>
+    </li>)}
+  </ul>
+</section>}

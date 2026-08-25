@@ -204,6 +204,32 @@ collections:
             name: cta
             widget: object
             fields: [{ label: Typ, name: type, widget: hidden, default: cta }, { label: Titulek, name: title, widget: string }, { label: Text, name: text, widget: text }, { label: Text odkazu, name: label, widget: string }, { label: Odkaz, name: href, widget: string }]
+          - label: Nadpis
+            name: heading
+            widget: object
+            fields: [{ label: Typ, name: type, widget: hidden, default: heading }, { label: Úroveň, name: level, widget: select, options: [h2, h3], default: h2 }, { label: Text, name: text, widget: string }]
+          - label: Text
+            name: text
+            widget: object
+            fields: [{ label: Typ, name: type, widget: hidden, default: text }, { label: Nadpis, name: title, widget: string, required: false }, { label: Text, name: text, widget: text }]
+          - label: Obrázek
+            name: image
+            widget: object
+            fields: [{ label: Typ, name: type, widget: hidden, default: image }, { label: Obrázek, name: image, widget: image }, { label: ALT text, name: alt, widget: string }, { label: Popisek, name: caption, widget: string, required: false }]
+          - label: YouTube video
+            name: youtube
+            widget: object
+            fields: [{ label: Typ, name: type, widget: hidden, default: youtube }, { label: URL videa, name: url, widget: string }, { label: Popisek, name: title, widget: string, required: false }]
+          - label: Přílohy ke stažení
+            name: downloads
+            widget: object
+            fields:
+              - { label: Typ, name: type, widget: hidden, default: downloads }
+              - { label: Nadpis, name: title, widget: string, required: false }
+              - label: Soubory
+                name: items
+                widget: list
+                fields: [{ label: Název, name: label, widget: string }, { label: Soubor nebo URL, name: url, widget: file }, { label: Popis, name: description, widget: text, required: false }]
           - label: FAQ
             name: faq
             widget: object

@@ -1,0 +1,29 @@
+---
+import { withBase } from '../../lib/content';
+
+interface Props {
+  label: string;
+  url: string;
+  description?: string;
+  class?: string;
+}
+
+const { label, url, description, class: className } = Astro.props;
+const resolvedUrl = withBase(url);
+const extension = url.split(/[?#]/)[0].split('.').pop()?.toUpperCase() || 'SOUBOR';
+---
+
+<a
+  href={resolvedUrl}
+  target="_blank"
+  rel="noopener"
+  class={className}
+  data-attachment-open
+  data-attachment-url={resolvedUrl}
+  data-attachment-label={label}
+  data-attachment-description={description}
+  data-attachment-extension={extension}
+  aria-haspopup="dialog"
+>
+  <slot>{label}</slot>
+</a>

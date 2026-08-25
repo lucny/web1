@@ -54,11 +54,14 @@ export const mainNavigation: NavGroup[] = [
     href: '/skola/o-skole/',
     items: [
       { label: 'Přehled školy', href: '/skola/o-skole/' },
-      { label: 'Historie', href: '/skola/o-skole/' },
+      { label: 'Historie', href: '/skola/historie-soucasnost/' },
       { label: 'Vedení školy', href: '/kontakt/' },
       { label: 'Kontakty', href: '/kontakt/' },
       { label: 'Projekty', href: '/aktuality/' },
-      { label: 'Spolupráce', href: '/kontakt/' },
+      { label: 'Spolupráce', href: '/skola/spoluprace/' },
+      { label: 'Umělecká rada', href: '/skola/umelecka-rada/' },
+      { label: 'Studentský parlament', href: '/skola/studentsky-parlament/' },
+      { label: 'Nabídka pronájmu', href: '/skola/nabidka-pronajmu/' },
       { label: 'Prostory školy', href: '/galerie/' }
     ]
   },
