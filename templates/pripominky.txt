@@ -14,3 +14,22 @@ Odstraň zbytečné podnadpisy Ke stažení a Zápisy ke stažení.
 Na stránce spoluprace:
 1. Rozlišuj lépe hlavní nadpisy Program Naše škola, Certifikované centrum Cambridge English, Asociace středních a vyšších odborných škol s výtvarnými a uměleckořemeslnými obory ČR od méně podstatných podnadpisů.
 2. Proveď sjednocující úpravu bloku KE STAŽENÍ a Důležitý odkaz - nepoužívej u těchto nadpisů odsazující vodorovnou čáru vlevo, naopak hezky působí tmavě modrý blok s bílým nadpisem a výrazným odkazem (to lze v podobných případech využívat i na dalších stránkách).
+
+----------
+
+Na stránce projekty uprav nadpisy Aktuálně a Archiv bez odsazení vlevo.
+
+------
+
+Na stránce studijni-obory:
+1. Změnit nadpis v hero bloku na Vyberte si správný směr.
+2. Rozdělit menšími nadpisy a použít správné oborové barvy podle školního loga:
+TECHNICKÉ OBORY
+Blok Strojírenství (tmavá modrá) a Blok Informační technologie (tyrkysová)
+
+UMĚLECKÉ OBORY
+Desing hraček místo Tvorba hraček a herních předmětů (světle červená)
+Průmyslový design (světle zelená)
+Grafický design (magenta)
+
+Použij rovněž výřezy správných oborových bannerů (viz přílohy)
