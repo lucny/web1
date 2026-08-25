@@ -1,8 +1,5 @@
 ---
-import { entries, withBase } from '../lib/content';
-import AttachmentLink from './content/AttachmentLink.astro';
-const documents = await entries('documents');
-const accessibilityDocument = documents.find((document) => document.id === 'prohlaseni-o-pristupnosti');
+import { withBase } from '../lib/content';
 ---
 <footer data-pagefind-ignore class="mt-12 overflow-hidden bg-night text-white sm:mt-16">
   <div class="grid h-1.5 grid-cols-5" aria-hidden="true"><span class="bg-school-steel"></span><span class="bg-school-cyan"></span><span class="bg-school-coral"></span><span class="bg-school-lime"></span><span class="bg-school-magenta"></span></div>
@@ -38,7 +35,7 @@ const accessibilityDocument = documents.find((document) => document.id === 'proh
             <li><a href="https://portal.office.com/" target="_blank" rel="noreferrer" class="hover:text-accent">Office 365 <span aria-hidden="true">↗</span></a></li>
             <li><a href={withBase('/uchazeci/')} class="hover:text-accent">Přijímací řízení</a></li>
             <li><a href={withBase('/dokumenty/')} class="hover:text-accent">Dokumenty</a></li>
-            <li>{accessibilityDocument ? <AttachmentLink label="Prohlášení o přístupnosti" url={accessibilityDocument.data.file} description={accessibilityDocument.data.description} class="hover:text-accent">Prohlášení o přístupnosti</AttachmentLink> : <a href={withBase('/dokumenty/')} class="hover:text-accent">Prohlášení o přístupnosti</a>}</li>
+            <li><a href={withBase('/cs/dokumenty/prohlaseni-o-pristupnosti-webu/')} target="_blank" rel="noopener" class="hover:text-accent">Prohlášení o přístupnosti <span aria-hidden="true">↗</span></a></li>
           </ul>
         </section>
       </div>

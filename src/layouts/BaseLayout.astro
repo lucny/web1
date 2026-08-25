@@ -20,7 +20,7 @@ const organization = {
   url: new URL(import.meta.env.BASE_URL, publicSite).href, telephone: '+420553621580', email: 'sspu@sspu-opava.cz',
   address: { '@type': 'PostalAddress', streetAddress: 'Praskova 399/8', addressLocality: 'Opava', postalCode: '746 01', addressCountry: 'CZ' }
 };
-const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: breadcrumbs.map((crumb, index) => ({ '@type': 'ListItem', position: index + 1, name: crumb.label, item: crumb.href ? new URL(crumb.href, Astro.site ?? Astro.url.origin).href : canonical })) } : undefined;
+const breadcrumbSchema = breadcrumbs.length ? { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: breadcrumbs.map((crumb, index) => ({ '@type': 'ListItem', position: index + 1, name: crumb.label, item: crumb.href ? new URL(withBase(crumb.href), Astro.site ?? Astro.url.origin).href : canonical })) } : undefined;
 ---
 <!doctype html>
 <html lang="cs">

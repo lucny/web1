@@ -103,6 +103,7 @@ export const mainNavigation: NavGroup[] = [
       { label: 'Školní zpravodaj', href: '/aktuality/' },
       { label: 'Kalendář akcí', href: '/udalosti/' },
       { label: 'Galerie', href: '/galerie/' },
+      { label: 'Fotogalerie uměleckých oborů', href: '/cs/aktuality/fotogalerie-umeleckych-oboru/' },
       { label: 'Úspěchy', href: '/aktuality/' },
       { label: 'Projekty a soutěže', href: '/aktuality/' }
     ]
@@ -113,11 +114,15 @@ export const mainNavigation: NavGroup[] = [
     href: '/dokumenty/',
     items: [
       { label: 'Přehled dokumentů', href: '/dokumenty/' },
-      { label: 'Školní řád a předpisy', href: '/dokumenty/#vnitřní-předpisy' },
-      { label: 'Výroční zprávy', href: '/dokumenty/#výroční-dokumenty' },
-      { label: 'Inspekční zprávy', href: '/dokumenty/#povinně-zveřejňované-informace' },
-      { label: 'Formuláře', href: '/dokumenty/' },
-      { label: 'Úřední informace', href: '/dokumenty/' }
+      { label: 'Školní řád', href: '/cs/dokumenty/skolni-rad/' },
+      { label: 'Výroční zprávy', href: '/cs/dokumenty/vyrocni-zprava-skoly/' },
+      { label: 'Inspekční zprávy', href: '/cs/dokumenty/inspekcni-zpravy/' },
+      { label: 'Veřejné zakázky', href: '/cs/dokumenty/verejne-zakazky/' },
+      { label: 'Rozpočet', href: '/cs/dokumenty/rozpocet/' },
+      { label: 'Ochrana osobních údajů', href: '/cs/dokumenty/ochrana-osobnich-udaju/' },
+      { label: 'Ochrana oznamovatelů', href: '/cs/dokumenty/ochrana-oznamovatelu/' },
+      { label: 'Prohlášení o přístupnosti', href: '/cs/dokumenty/prohlaseni-o-pristupnosti-webu/' },
+      { label: 'Rozvrhy', href: '/cs/dokumenty/rozvrhy/' }
     ]
   }
 ];
