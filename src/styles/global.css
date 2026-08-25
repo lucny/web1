@@ -98,6 +98,26 @@
   .attachment-list-item-night .event-attachment-type { @apply bg-accent text-night; }
   .attachment-list-item-night .attachment-list-item-copy strong { @apply text-white; }
   .attachment-list-item-night .attachment-list-item-copy > span { @apply text-white/70; }
+  .learning-materials { @apply max-w-5xl; }
+  .learning-material-category { @apply border-b border-ink/10 pb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand; }
+  .learning-material-group { @apply overflow-hidden border border-ink/10 bg-white shadow-soft; }
+  .learning-material-group[open] { @apply shadow-lift; }
+  .learning-material-summary { @apply flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 transition hover:bg-mist/60 sm:px-6; }
+  .learning-material-summary::-webkit-details-marker { display: none; }
+  .learning-material-summary::after { content: '+'; @apply shrink-0 text-2xl font-light leading-none text-brand transition; }
+  .learning-material-group[open] .learning-material-summary::after { content: '−'; }
+  .learning-material-index { @apply mr-3 inline-block text-[0.68rem] font-bold tracking-[0.12em] text-school-cyan; }
+  .learning-material-group-title { @apply text-base font-bold leading-snug text-night sm:text-lg; }
+  .learning-material-group-description { @apply mt-1 block text-sm leading-6 text-ink/65; }
+  .learning-material-count { @apply hidden shrink-0 text-xs font-bold uppercase tracking-[0.08em] text-ink/45 sm:block; }
+  .learning-material-body { @apply border-t border-ink/10 bg-paper/45 px-4 py-4 sm:px-6 sm:py-5; }
+  .learning-material-list { @apply grid gap-2 sm:grid-cols-2; }
+  .learning-material-link { @apply flex min-h-12 items-center gap-3 border border-ink/10 bg-white px-3 py-2.5 text-sm no-underline transition hover:-translate-y-0.5 hover:border-school-cyan hover:shadow-soft; }
+  .learning-material-link strong { @apply min-w-0 break-words font-semibold leading-5 text-night; }
+  .learning-material-link small { @apply mt-1 block text-xs leading-5 text-ink/60; }
+  .learning-material-filetype { @apply grid h-8 w-9 shrink-0 place-items-center bg-brand text-[0.58rem] font-bold tracking-wide text-white; }
+  .learning-material-filetype-external { @apply bg-school-cyan/15 text-brand; }
+  .learning-material-empty { @apply text-sm text-ink/65; }
   .school-contact { @apply container-page pb-10 sm:pb-14; }
   .school-contact-intro { @apply overflow-hidden rounded-3xl bg-white shadow-lift; }
   .school-contact-brand { @apply grid gap-6 p-6 sm:grid-cols-[minmax(10rem,15rem)_1fr] sm:items-center sm:p-8; }

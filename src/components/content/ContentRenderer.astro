@@ -9,6 +9,9 @@ import { findPersonByDisplayName, normalizePersonText } from '../../lib/people';
 
 type TextItem = { title: string; text: string };
 type TableRow = string[] | { cells: string[] };
+type ResourceItem = { label: string; url: string; description?: string; kind?: 'external' | 'document' };
+type ResourceSeries = { urlTemplate: string; labelTemplate?: string; count: number; start?: number; pad?: number; kind?: 'external' | 'document' };
+type ResourceGroup = { title: string; category?: string; description?: string; items: ResourceItem[]; series: ResourceSeries[] };
 type Block =
   | { type: 'heading'; level?: 'h2' | 'h3'; text: string }
   | { type: 'text'; title?: string; text: string }
@@ -24,7 +27,8 @@ type Block =
   | { type: 'articles'; articles: string[] }
   | { type: 'people'; people: string[]; showHeading?: boolean; eyebrow?: string; title?: string }
   | { type: 'downloads'; eyebrow?: string; title?: string; showHeading?: boolean; variant?: 'default' | 'night'; items: { label: string; url: string; description?: string }[] }
-  | { type: 'links'; title?: string; items: { label: string; url: string; description?: string; kind?: 'external' | 'document' }[] }
+  | { type: 'links'; eyebrow?: string; title?: string; items: { label: string; url: string; description?: string; kind?: 'external' | 'document' }[] }
+  | { type: 'resourceGroups'; eyebrow?: string; title?: string; groups: ResourceGroup[] }
   | { type: 'faq'; items: { question: string; answer: string }[] };
 
 const { blocks = [], legacyClass = 'prose-school' } = Astro.props as { blocks?: Block[]; legacyClass?: string };
@@ -50,6 +54,25 @@ function youtubeEmbedUrl(value: string) {
 
 function tableCells(row: TableRow) {
   return Array.isArray(row) ? row : row.cells;
+}
+
+function expandResourceSeries(series: ResourceSeries) {
+  const start = series.start ?? 1;
+  const pad = series.pad ?? 2;
+  return Array.from({ length: series.count }, (_, offset) => {
+    const number = String(start + offset).padStart(pad, '0');
+    const replaceToken = (template: string) => template.replaceAll('{n}', number);
+    const url = replaceToken(series.urlTemplate);
+    return {
+      label: replaceToken(series.labelTemplate ?? url.split('/').pop() ?? `Materiál ${start + offset}`),
+      url,
+      kind: series.kind ?? 'document'
+    } satisfies ResourceItem;
+  });
+}
+
+function resourceItems(group: ResourceGroup): ResourceItem[] {
+  return [...group.items, ...group.series.flatMap(expandResourceSeries)];
 }
 
 const renderLegacyContent = blocks.length === 0;
@@ -100,7 +123,8 @@ const renderLegacyContent = blocks.length === 0;
       const showHeading = block.showHeading ?? true;
       return <AttachmentList attachments={block.items} eyebrow={showHeading ? block.eyebrow : ''} title={showHeading ? block.title ?? 'Přílohy ke stažení' : ''} variant={block.variant} class="my-10" />;
     }
-    if (block.type === 'links') return <section class="my-10"><p class="section-label">Odkazy a dokumenty</p>{block.title && <h2 class="mt-2 text-2xl">{block.title}</h2>}<ul class="mt-5 grid gap-3 sm:grid-cols-2">{block.items.map((item) => <li>{item.kind === 'document' ? <AttachmentLink label={item.label} url={item.url} description={item.description} class="card flex h-full items-start gap-4 p-5 no-underline transition hover:-translate-y-0.5 hover:shadow-soft"><span class="event-attachment-type" aria-hidden="true">{item.url.split(/[?#]/)[0].split('.').pop()?.toUpperCase() ?? 'PDF'}</span><span class="min-w-0"><strong class="block text-night">{item.label}</strong>{item.description && <span class="mt-1 block text-sm leading-6 text-ink/70">{item.description}</span>}</span></AttachmentLink> : <a href={withBase(item.url)} target={item.url.startsWith('http') ? '_blank' : undefined} rel={item.url.startsWith('http') ? 'noopener' : undefined} class="card flex h-full items-start gap-4 p-5 no-underline transition hover:-translate-y-0.5 hover:shadow-soft"><span class="event-attachment-type bg-school-cyan/15 text-brand" aria-hidden="true">↗</span><span class="min-w-0"><strong class="block text-night">{item.label}</strong>{item.description && <span class="mt-1 block text-sm leading-6 text-ink/70">{item.description}</span>}</span></a>}</li>)}</ul></section>;
+    if (block.type === 'links') return <section class="my-10"><p class="section-label">{block.eyebrow ?? 'Odkazy a dokumenty'}</p>{block.title && <h2 class="mt-2 text-2xl">{block.title}</h2>}<ul class="mt-5 grid gap-3 sm:grid-cols-2">{block.items.map((item) => <li>{item.kind === 'document' ? <AttachmentLink label={item.label} url={item.url} description={item.description} class="card flex h-full items-start gap-4 p-5 no-underline transition hover:-translate-y-0.5 hover:shadow-soft"><span class="event-attachment-type" aria-hidden="true">{item.url.split(/[?#]/)[0].split('.').pop()?.toUpperCase() ?? 'PDF'}</span><span class="min-w-0"><strong class="block text-night">{item.label}</strong>{item.description && <span class="mt-1 block text-sm leading-6 text-ink/70">{item.description}</span>}</span></AttachmentLink> : <a href={withBase(item.url)} target={item.url.startsWith('http') ? '_blank' : undefined} rel={item.url.startsWith('http') ? 'noopener' : undefined} class="card flex h-full items-start gap-4 p-5 no-underline transition hover:-translate-y-0.5 hover:shadow-soft"><span class="event-attachment-type bg-school-cyan/15 text-brand" aria-hidden="true">↗</span><span class="min-w-0"><strong class="block text-night">{item.label}</strong>{item.description && <span class="mt-1 block text-sm leading-6 text-ink/70">{item.description}</span>}</span></a>}</li>)}</ul></section>;
+    if (block.type === 'resourceGroups') return <section class="learning-materials my-12"><div class="max-w-3xl">{block.eyebrow && <p class="eyebrow">{block.eyebrow}</p>}{block.title && <h2 class="mt-2 text-2xl sm:text-3xl">{block.title}</h2>}</div><div class="mt-6 grid gap-7">{block.groups.map((group, groupIndex) => { const items = resourceItems(group); const isNewCategory = group.category && block.groups[groupIndex - 1]?.category !== group.category; return <div>{isNewCategory && <h3 class="learning-material-category">{group.category}</h3>}<details class="learning-material-group" open={groupIndex === 0}><summary class="learning-material-summary"><span class="min-w-0"><span class="learning-material-index">{String(groupIndex + 1).padStart(2, '0')}</span><span class="learning-material-group-title">{group.title}</span>{group.description && <span class="learning-material-group-description">{group.description}</span>}</span><span class="learning-material-count">{items.length} {items.length === 1 ? 'materiál' : items.length < 5 ? 'materiály' : 'materiálů'}</span></summary><div class="learning-material-body">{items.length > 0 ? <ul class="learning-material-list">{items.map((item) => <li>{item.kind === 'document' ? <AttachmentLink label={item.label} url={item.url} description={item.description} class="learning-material-link"><span class="learning-material-filetype" aria-hidden="true">PDF</span><span class="min-w-0"><strong>{item.label}</strong>{item.description && <small>{item.description}</small>}</span></AttachmentLink> : <a href={withBase(item.url)} target={item.url.startsWith('http') ? '_blank' : undefined} rel={item.url.startsWith('http') ? 'noopener' : undefined} class="learning-material-link"><span class="learning-material-filetype learning-material-filetype-external" aria-hidden="true">↗</span><span class="min-w-0"><strong>{item.label}</strong>{item.description && <small>{item.description}</small>}</span></a>}</li>)}</ul> : <p class="learning-material-empty">Materiály budou doplněny.</p>}</div></details></div>; })}</div></section>;
     if (block.type === 'faq') return <section class="my-10"><p class="section-label">Praktické informace</p><h2 class="mt-3">Časté otázky</h2><div class="mt-4 divide-y divide-ink/15 overflow-hidden rounded-2xl border border-ink/15 bg-white shadow-soft">{block.items.map((item) => <details class="p-5"><summary class="cursor-pointer font-bold">{item.question}</summary><p class="mt-3 whitespace-pre-line leading-7">{item.answer}</p></details>)}</div></section>;
     return null;
   })

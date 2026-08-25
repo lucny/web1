@@ -340,6 +340,10 @@ components:
       - name: links
         label: Odkazy a dokumenty
         fields:
+          - name: eyebrow
+            label: Nadřazený popisek
+            type: string
+            required: false
           - name: title
             label: Nadpis
             type: string
@@ -365,6 +369,83 @@ components:
                 options:
                   values: [external, document]
                 default: external
+      - name: resourceGroups
+        label: Tematické skupiny materiálů
+        fields:
+          - name: eyebrow
+            label: Nadřazený popisek
+            type: string
+            required: false
+          - name: title
+            label: Nadpis seznamu
+            type: string
+            required: false
+          - name: groups
+            label: Skupiny materiálů
+            type: object
+            list: true
+            fields:
+              - name: title
+                label: Název skupiny
+                type: string
+              - name: category
+                label: Hlavní kategorie
+                type: string
+                required: false
+              - name: description
+                label: Popis skupiny
+                type: text
+                required: false
+              - name: items
+                label: Jednotlivé materiály
+                type: object
+                list: true
+                fields:
+                  - name: label
+                    label: Název
+                    type: string
+                  - name: url
+                    label: URL nebo soubor
+                    type: string
+                  - name: description
+                    label: Popis
+                    type: text
+                    required: false
+                  - name: kind
+                    label: Typ
+                    type: select
+                    options:
+                      values: [external, document]
+                    default: document
+              - name: series
+                label: Série s číslovanými materiály
+                type: object
+                list: true
+                fields:
+                  - name: urlTemplate
+                    label: Vzor URL ({n} = číslo)
+                    type: string
+                  - name: labelTemplate
+                    label: Vzor názvu ({n} = číslo)
+                    type: string
+                    required: false
+                  - name: count
+                    label: Počet položek
+                    type: number
+                  - name: start
+                    label: První číslo
+                    type: number
+                    default: 1
+                  - name: pad
+                    label: Počet číslic
+                    type: number
+                    default: 2
+                  - name: kind
+                    label: Typ
+                    type: select
+                    options:
+                      values: [external, document]
+                    default: document
       - name: articles
         label: Seznam aktualit
         fields:
