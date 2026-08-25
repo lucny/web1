@@ -8,6 +8,7 @@ contentBlocks:
     level: h2
     text: Zápisy z jednání studentského parlamentu
   - type: downloads
+    showHeading: false
     title: Zápisy ke stažení
     items:
       - label: 1. zasedání 15. října 2019

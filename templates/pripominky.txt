@@ -1,0 +1,16 @@
+Na stránce zaci-a-tridy: 
+1. Po kliknutí na kartičku osoby by se mělo objevit modální okno s bližšími informacemi, ale bez přepínání na stránku Lidé a kontakty.
+2. Jestli v systému ještě existuje stará stránka zaci, odstraň ji, protože je duplicitní.  
+Na stránce umelecka-rada:
+1. Odstraň zbytečné podnadpisy Kontakty a Na koho se obrátit.
+2. Po kliknutí na kartičku osoby by se mělo objevit modální okno s bližšími informacemi, ale bez přepínání na stránku Lidé a kontakty.
+Na stránce skolska-rada doplň obsah podle [https://www.sspu-opava.cz/cs/skolska-rada/](https://www.sspu-opava.cz/cs/skolska-rada/) a uprav přehled Členové školské rady podle vzoru stránky umelecka-rada.
+
+----------------
+
+Na stránce studentsky-parlament:
+Odstraň zbytečné podnadpisy Ke stažení a Zápisy ke stažení.
+
+Na stránce spoluprace:
+1. Rozlišuj lépe hlavní nadpisy Program Naše škola, Certifikované centrum Cambridge English, Asociace středních a vyšších odborných škol s výtvarnými a uměleckořemeslnými obory ČR od méně podstatných podnadpisů.
+2. Proveď sjednocující úpravu bloku KE STAŽENÍ a Důležitý odkaz - nepoužívej u těchto nadpisů odsazující vodorovnou čáru vlevo, naopak hezky působí tmavě modrý blok s bílým nadpisem a výrazným odkazem (to lze v podobných případech využívat i na dalších stránkách).

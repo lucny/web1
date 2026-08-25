@@ -10,6 +10,7 @@ contentBlocks:
     level: h2
     text: Členové umělecké rady
   - type: people
+    showHeading: false
     people: [lubomir-anlauf, marek-sedlecky, jitka-obonova, jan-ermis, lenka-kasparkova, lenka-szwedova]
 status: published
 ---

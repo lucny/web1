@@ -27,11 +27,11 @@ const statuses = (['active', 'completed', 'archived'] as const).map((value) => (
 
     <div class="mt-12 space-y-14">
       <section aria-labelledby="active-projects-title">
-        <div class="project-section-heading"><p class="section-label">Aktuálně</p><h2 id="active-projects-title" class="mt-2">Probíhající projekty</h2></div>
+        <div class="project-section-heading"><p class="eyebrow">Aktuálně</p><h2 id="active-projects-title" class="mt-2">Probíhající projekty</h2></div>
         {activeProjects.length > 0 ? <div class="project-grid">{activeProjects.map((project) => <ProjectCard project={project} />)}</div> : <p class="project-empty">Momentálně není evidován žádný probíhající projekt.</p>}
       </section>
       <section aria-labelledby="historical-projects-title">
-        <div class="project-section-heading"><p class="section-label">Archiv</p><h2 id="historical-projects-title" class="mt-2">Ukončené a archivní projekty</h2></div>
+        <div class="project-section-heading"><p class="eyebrow">Archiv</p><h2 id="historical-projects-title" class="mt-2">Ukončené a archivní projekty</h2></div>
         {historicalProjects.length > 0 ? <div class="project-grid">{historicalProjects.map((project) => <ProjectCard project={project} />)}</div> : <p class="project-empty">Historické projekty zatím nejsou evidovány.</p>}
       </section>
     </div>

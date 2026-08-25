@@ -14,6 +14,7 @@ contentBlocks:
 
       Cílem programu je zvýšit úroveň vzdělávání žáků technických oborů školy, zvyšovat technickou odbornost pedagogických pracovníků, propagovat školu a pomoci jí po hmotné stránce. Program má zároveň podpořit otevření dvou strojírenských tříd v ročníku při plném naplnění tříd kvalitními žáky.
   - type: downloads
+    variant: night
     title: Podrobnější informace o projektu
     items:
       - label: Program Naše škola (PDF)

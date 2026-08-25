@@ -296,6 +296,47 @@ components:
               value: "{name}"
               label: "{title}"
               search: "title,description,category"
+      - name: downloads
+        label: Ke stažení
+        fields:
+          - name: eyebrow
+            label: Nadřazený popisek
+            type: string
+            required: false
+          - name: title
+            label: Nadpis seznamu
+            type: string
+            required: false
+          - name: showHeading
+            label: Zobrazit nadpisy bloku
+            type: boolean
+            default: true
+            required: false
+          - name: variant
+            label: Vzhled bloku
+            type: select
+            options:
+              values:
+                - name: default
+                  label: Běžný
+                - name: night
+                  label: Tmavě modrý
+            default: default
+          - name: items
+            label: Soubory a odkazy
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Název odkazu
+                type: string
+              - name: url
+                label: URL nebo soubor
+                type: string
+              - name: description
+                label: Popis
+                type: text
+                required: false
       - name: links
         label: Odkazy a dokumenty
         fields:
@@ -339,6 +380,19 @@ components:
       - name: people
         label: Osoby a kontakty
         fields:
+          - name: showHeading
+            label: Zobrazit nadpis Kontakty
+            type: boolean
+            default: true
+            required: false
+          - name: eyebrow
+            label: Nadřazený popisek
+            type: string
+            required: false
+          - name: title
+            label: Nadpis seznamu
+            type: string
+            required: false
           - name: people
             label: Kontaktní osoby
             type: reference

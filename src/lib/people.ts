@@ -51,3 +51,17 @@ export function getPhoneHref(phone: string) {
   const firstNumber = phone.match(/\+?\d[\d\s]{7,}/)?.[0] ?? phone;
   return `tel:${firstNumber.replace(/[^\d+]/g, '')}`;
 }
+
+export function normalizePersonText(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLocaleLowerCase('cs-CZ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+export function findPersonByDisplayName(people: PersonEntry[], value: string) {
+  const normalizedValue = normalizePersonText(value);
+  return people.find((person) => normalizedValue.includes(normalizePersonText(person.data.name)));
+}

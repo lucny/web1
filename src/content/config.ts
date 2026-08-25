@@ -43,8 +43,8 @@ const contentBlock = z.discriminatedUnion('type', [
   z.object({ type: z.literal('gallery'), gallery: contentReference }),
   z.object({ type: z.literal('documents'), documents: slugList }),
   z.object({ type: z.literal('articles'), articles: slugList }),
-  z.object({ type: z.literal('people'), people: slugList }),
-  z.object({ type: z.literal('downloads'), title: z.string().optional(), items: z.array(z.object({ label: z.string(), url: z.string(), description: z.string().optional() })).default([]) }),
+  z.object({ type: z.literal('people'), people: slugList, showHeading: z.boolean().default(true), eyebrow: z.string().optional(), title: z.string().optional() }),
+  z.object({ type: z.literal('downloads'), eyebrow: z.string().optional(), title: z.string().optional(), showHeading: z.boolean().default(true), variant: z.enum(['default', 'night']).default('default'), items: z.array(z.object({ label: z.string(), url: z.string(), description: z.string().optional() })).default([]) }),
   z.object({ type: z.literal('links'), title: z.string().optional(), items: z.array(z.object({ label: z.string(), url: z.string().min(1), description: z.string().optional(), kind: z.enum(['external', 'document']).default('external') })).default([]) }),
   z.object({ type: z.literal('faq'), items: z.array(z.object({ question: z.string(), answer: z.string() })) })
 ]);

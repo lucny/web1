@@ -9,7 +9,7 @@ import ProgramsPage from './obory/index.astro';
 import ProjectsPage from './cs/projekty/index.astro';
 import JobsPage from './cs/studium/nabidky-zamestnani/index.astro';
 import ContactPage from './kontakt/index.astro';
-import StudentsPage from './zaci.astro';
+import StudentsPage from '../components/students/StudentsPage.astro';
 import ArtGalleryPage from './cs/aktuality/fotogalerie-umeleckych-oboru/index.astro';
 
 type Alias = {
@@ -31,7 +31,7 @@ export const aliases: Alias[] = [
   { slug: 'prijimaci-rizeni-umelecke-obory', pageId: 'prijimaci-rizeni-umelecke-obory', icon: heroImages.admissions, accent: '#C42079', eyebrow: 'Uchazeči' },
   { slug: 'skolni-poradenske-pracoviste', pageId: 'spp', icon: '/images/banners/poradna.png', accent: '#D0D543', eyebrow: 'Studenti' },
   { slug: 'pro-studenty-a-rodice', pageId: 'pro-studenty', icon: heroImages.students, eyebrow: 'Studenti' },
-  { slug: 'zaci-a-tridy', pageId: 'zaci-tridy', icon: heroImages.students, eyebrow: 'Studenti' },
+  { slug: 'zaci-a-tridy', kind: 'students' },
   { slug: 'rozvrh', pageId: 'dokumenty-rozvrhy', icon: heroImages.schedules, eyebrow: 'Studenti' },
   { slug: 'skolni-rad', pageId: 'dokumenty-skolni-rad', icon: heroImages.schoolRules, eyebrow: 'Studenti' },
   { slug: 'skolska-rada', pageId: 'skolska-rada', icon: heroImages.schoolBoard, eyebrow: 'Škola' },

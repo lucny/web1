@@ -91,6 +91,13 @@
   .attachment-dialog-empty { @apply max-w-xl px-6 py-16 text-center text-sm leading-6 text-ink/70; }
   .attachment-dialog-footer { @apply flex justify-end border-t border-ink/10 px-6 py-5 sm:px-8; }
   .attachment-list-item { @apply no-underline; }
+  .content-callout { @apply overflow-hidden rounded-2xl bg-night p-6 text-white shadow-lift sm:p-8; }
+  .content-callout h2 { @apply text-white; }
+  .content-callout .eyebrow { @apply text-accent; }
+  .attachment-list-item-night { @apply border-white/15 bg-white/10 shadow-none hover:bg-white/15; }
+  .attachment-list-item-night .event-attachment-type { @apply bg-accent text-night; }
+  .attachment-list-item-night .attachment-list-item-copy strong { @apply text-white; }
+  .attachment-list-item-night .attachment-list-item-copy > span { @apply text-white/70; }
   .school-contact { @apply container-page pb-10 sm:pb-14; }
   .school-contact-intro { @apply overflow-hidden rounded-3xl bg-white shadow-lift; }
   .school-contact-brand { @apply grid gap-6 p-6 sm:grid-cols-[minmax(10rem,15rem)_1fr] sm:items-center sm:p-8; }
@@ -100,6 +107,8 @@
   .school-contact-building { @apply aspect-[16/7] w-full object-cover; }
   .school-contact-grid { @apply mt-6 grid gap-6 lg:grid-cols-2; }
   .school-contact-panel { @apply rounded-3xl bg-mist p-6 sm:p-8; }
+  .school-contact-section-label { @apply gap-0; }
+  .school-contact-section-label::before { display: none; }
   .school-contact-data { @apply mt-5 grid gap-4; }
   .school-contact-data div { @apply border-t border-ink/10 pt-3; }
   .school-contact-data dt { @apply text-xs font-bold uppercase tracking-[0.12em] text-ink/55; }
@@ -110,6 +119,7 @@
   .school-hours th, .school-hours td { @apply py-2.5 text-left; }
   .school-hours th { @apply font-semibold text-ink/75; }
   .school-hours td { @apply text-right font-bold text-night; }
+  .teacher-table-link { @apply font-semibold text-brand underline decoration-brand/35 underline-offset-4 transition hover:text-school-magenta hover:decoration-school-magenta; }
   .school-buildings { @apply mt-8; }
   .school-building-grid { @apply grid gap-4 lg:grid-cols-2; }
   .school-building-card { @apply grid min-w-0 overflow-hidden rounded-xl border border-ink/10 bg-white shadow-soft; grid-template-rows: 10.5rem 15rem; }
