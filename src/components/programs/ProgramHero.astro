@@ -1,6 +1,7 @@
 ---
 import { withBase } from '../../lib/content';
 import AttachmentLink from '../content/AttachmentLink.astro';
+import ProgramHeroMedia from './ProgramHeroMedia.astro';
 
 interface Program {
   code: string;
@@ -9,6 +10,7 @@ interface Program {
   capacity: number;
   description: string;
   heroImage?: string;
+  heroVideo?: string;
 }
 
 interface Props {
@@ -38,8 +40,7 @@ const links = [
 <section class="container-page pb-10 sm:pb-14">
   <div class="overflow-hidden rounded-2xl shadow-lift" style={`background-color: ${accent}`}>
     <div class="relative aspect-[1600/600] min-h-[15rem]" style={`background-color: ${accent}`}>
-      {program.heroImage && <img src={program.heroImage} alt={program.title} class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />}
-      <div class="absolute inset-0" style={`background-color: color-mix(in srgb, ${accent} 35%, transparent)`}></div>
+      <ProgramHeroMedia accent={accent} alt={program.title} image={program.heroImage} video={program.heroVideo} />
     </div>
     <div class="px-6 py-8 text-night sm:px-10 sm:py-10 lg:px-14 lg:py-12" style={`background-color: ${accent}`}>
       <p class="text-xs font-bold uppercase tracking-[0.18em] text-night/70">{program.form}</p>
