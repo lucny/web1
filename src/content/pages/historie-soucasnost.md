@@ -40,7 +40,7 @@ contentBlocks:
     text: Současnost ve znamení technických a uměleckých oborů
   - type: text
     text: |
-      V roce 1993 byla škola rozšířena o umělecké obory – průmyslový design, grafický design a tvorbu hraček a herních předmětů – a v roce 1997 o obor informační technologie. Tato skladba oborů přetrvává do současné doby a nabízí inspirativní propojení technického uvažování strojařů a informatiků s kreativním přístupem umělců.
+      V roce 1993 byla škola rozšířena o umělecké obory – průmyslový design, grafický design a obor Design hraček – a v roce 1997 o obor informační technologie. Tato skladba oborů přetrvává do současné doby a nabízí inspirativní propojení technického uvažování strojařů a informatiků s kreativním přístupem umělců.
 
       O absolventy všech oborů je zájem, o čemž svědčí opakovaně získané ocenění v projektu Škola doporučená zaměstnavateli v rámci Moravskoslezského kraje. Získané znalosti a dovednosti uplatňují naši studenti nejen v praxi, ale i v navazujícím studiu na vysokých školách. Významných úspěchů dosahují také v regionálních i celostátních soutěžích a svými projekty, realizovanými návrhy nebo výstavami se podílejí na společenském a kulturním životě Opavska.
 

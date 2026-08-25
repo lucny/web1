@@ -7,7 +7,7 @@ phones:
 email: hrabcu@sspu-opava.cz
 photo: /uploads/people/avatar-male.jpg
 groups: [ucitele]
-studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [prumyslovy-design, graficky-design, design-hracek]
 showInContacts: true
 status: published
 ---

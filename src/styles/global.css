@@ -348,6 +348,7 @@
   .project-detail-meta-wrap { @apply mt-8 rounded-2xl bg-mist p-5 sm:p-7; }
   .project-detail-meta-wrap .project-meta { @apply border-0 py-0 lg:grid-cols-3; }
   .project-detail-content { @apply mx-auto mt-12 max-w-4xl; }
+  #kontakt-oboru > .grid { grid-template-columns: minmax(0, 1fr); }
   .project-detail-section { @apply mx-auto mt-14 max-w-5xl; }
   .project-funding-badge { @apply mt-6 flex max-w-xl items-center gap-3 border-t border-white/20 pt-4 text-sm font-semibold leading-6 text-white/80; }
   .project-funding-mark { @apply grid h-9 w-9 shrink-0 place-items-center rounded-full border border-school-cyan bg-school-cyan/20 text-[0.65rem] font-black text-white; }
@@ -505,6 +506,16 @@
   gap: .35rem;
   text-align: left;
 }
+
+/* The IT detail hero uses a fixed cyan background rather than ProgramHero's accent prop. */
+div[class*='bg-[#59BDDC]'] h1.text-white,
+div[class*='bg-[#59BDDC]'] p.text-white { color: #08243A; }
+div[class*='bg-[#59BDDC]'] a {
+  border-color: rgb(8 36 58 / 18%);
+  background-color: rgb(8 36 58 / 10%);
+  color: #08243A;
+}
+div[class*='bg-[#59BDDC]'] a:hover { background-color: #FFFFFF; }
 
 @media (min-width: 640px) {
   .contact-page-title { font-size: 2.25rem; }

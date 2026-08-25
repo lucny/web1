@@ -7,7 +7,7 @@ phones:
 email: biskupova@sspu-opava.cz
 photo: /uploads/people/alena-biskupova.jpg
 groups: [ucitele]
-studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [prumyslovy-design, graficky-design, design-hracek]
 showInContacts: true
 status: published
 ---

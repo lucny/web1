@@ -7,7 +7,7 @@ export type ArticleFallbackVisual = {
 const programColors: Record<string, string> = {
   strojirenstvi: '#1A4053',
   'informacni-technologie': '#59BDDC',
-  'tvorba-hracek-a-hernich-predmetu': '#ECAFAC',
+  'design-hracek': '#ECAFAC',
   'prumyslovy-design': '#D0D543',
   'graficky-design': '#C42079'
 };
@@ -15,7 +15,7 @@ const programColors: Record<string, string> = {
 const programTextColors: Record<string, string> = {
   strojirenstvi: '#FFFFFF',
   'informacni-technologie': '#08243A',
-  'tvorba-hracek-a-hernich-predmetu': '#08243A',
+  'design-hracek': '#08243A',
   'prumyslovy-design': '#08243A',
   'graficky-design': '#FFFFFF'
 };

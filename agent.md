@@ -313,7 +313,7 @@ Založ pět demonstračních oborů:
 * Informační technologie,
 * Průmyslový design,
 * Grafický design,
-* Tvorba hraček a herních předmětů.
+* Design hraček.
 
 Obor je samostatná datová entita, nikoli pouze textový tag.
 

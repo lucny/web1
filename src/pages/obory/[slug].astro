@@ -29,7 +29,7 @@ const programVisuals = [
   ...(program.data.heroImage ? [{ src: program.data.heroImage, alt: program.data.title }] : [])
 ];
 const advisors = people.filter((person) => getPersonStudyFields(person.data).includes(program.id) && isPersonVisible(person.data));
-const accent = program.id === 'strojirenstvi' ? '#1A4053' : program.id === 'informacni-technologie' ? '#59BDDC' : program.id === 'tvorba-hracek-a-hernich-predmetu' ? '#ECAFAC' : program.id === 'prumyslovy-design' ? '#D0D543' : '#C42079';
+const accent = program.id === 'strojirenstvi' ? '#1A4053' : program.id === 'informacni-technologie' ? '#59BDDC' : program.id === 'design-hracek' ? '#ECAFAC' : program.id === 'prumyslovy-design' ? '#D0D543' : '#C42079';
 const isItProgram = program.id === 'informacni-technologie';
 const itAdditionalBlocks = program.data.contentBlocks.slice(13);
 const schoolPlanDocument = documents.find((document) => document.id === 'skolni-vzdelavaci-program-informacni-technologie');
@@ -52,14 +52,14 @@ const programTaglines: Record<string, string> = {
   strojirenstvi: 'se zaměřením na výpočetní techniku',
   'prumyslovy-design': 'od nápadu k výrobku',
   'graficky-design': 'od kresby k vizuální komunikaci',
-  'tvorba-hracek-a-hernich-predmetu': 'od nápadu k hračce a hernímu objektu'
+  'design-hracek': 'od nápadu k hračce a hernímu objektu'
 };
 const applicantHref = '/dokumenty/';
 const programHeroVideos: Record<string, string> = {
   strojirenstvi: '/videos/banners/strojirenstvi.mp4',
   'prumyslovy-design': '/videos/banners/prumyslovy-design.mp4',
   'graficky-design': '/videos/banners/graficky-design.mp4',
-  'tvorba-hracek-a-hernich-predmetu': '/videos/banners/design-hracek.mp4',
+  'design-hracek': '/videos/banners/design-hracek.mp4',
   'informacni-technologie': '/videos/banners/informacni-technologie.mp4'
 };
 const heroVideo = programHeroVideos[program.id];

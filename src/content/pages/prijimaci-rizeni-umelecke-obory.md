@@ -25,7 +25,7 @@ contentBlocks:
     headers: [Kód oboru, Obor, Počet přijímaných]
     rows:
       - cells: [82-41-M/04, Průmyslový design, 6 žáků]
-      - cells: [82-41-M/08, Tvorba hraček a herních předmětů, 6 žáků]
+      - cells: [82-41-M/08, Design hraček, 6 žáků]
       - cells: [82-41-M/05, Grafický design, 12 žáků]
   - type: notice
     title: Podmínky přijetí

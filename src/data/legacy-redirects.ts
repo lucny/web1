@@ -19,5 +19,6 @@ export const legacyRedirects: Record<string, string> = {
   '/cs/informacni-technologie/': '/obory/informacni-technologie/',
   '/cs/prumyslovy-design/': '/obory/prumyslovy-design/',
   '/cs/graficky-design/': '/obory/graficky-design/',
-  '/cs/design-hracek/': '/obory/tvorba-hracek-a-hernich-predmetu/'
+  '/cs/design-hracek/': '/obory/design-hracek/',
+  '/obory/tvorba-hracek-a-hernich-predmetu/': '/obory/design-hracek/'
 };

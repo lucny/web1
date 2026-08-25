@@ -82,7 +82,7 @@ photos:
     alt: "Klauzury - první pololetí školního roku 2023/24 — Instalace — fotografie 38"
   - src: "/uploads/galleries/klauzury-prvni-pololeti-2023-24-instalace/klauzury-leden-2024-instalace-39.jpg"
     alt: "Klauzury - první pololetí školního roku 2023/24 — Instalace — fotografie 39"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

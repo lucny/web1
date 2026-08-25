@@ -144,7 +144,7 @@ photos:
     alt: "Klauzury - první pololetí školního roku 2024/25 — Instalace — fotografie 69"
   - src: "/uploads/galleries/klauzury-prvni-pololeti-2024-25-instalace/klauzury-2025-instalace-70.jpg"
     alt: "Klauzury - první pololetí školního roku 2024/25 — Instalace — fotografie 70"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

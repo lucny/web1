@@ -88,7 +88,7 @@ photos:
     alt: "Výstava maturitních prací 2025 v Knihovně Petra Bezruče v Opavě — fotografie 41"
   - src: "/uploads/galleries/vystava-maturitnich-praci-2025-v-knihovne-petra-bezruce-v-opave/vystava-maturitnich-praci-2025-42.jpg"
     alt: "Výstava maturitních prací 2025 v Knihovně Petra Bezruče v Opavě — fotografie 42"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

@@ -17,7 +17,7 @@ status: published
 ---
 
 
-<p>V únoru 2025 byli přizvání ke spolupráci studenti uměleckých oborů Střední školy průmyslové a umělecké, Opava, aby se zamysleli nad novou podobou fasády a prostoru u továrny v ulici Oreo ve Vávrovicích. Jejich úkolem bylo navrhnout vizuálně atraktivní a zábavnou instalaci, která propojuje realitu dnešního závodu s pekařskou tradicí Opavy. V minulém týdnu na setkání se studenty oborů designu hraček a herních předmětů a grafického designu byly oznámeny návrhy, které chce továrna realizovat.</p>
+<p>V únoru 2025 byli přizváni ke spolupráci studenti uměleckých oborů Střední školy průmyslové a umělecké, Opava, aby se zamysleli nad novou podobou fasády a prostoru u továrny v ulici Oreo ve Vávrovicích. Jejich úkolem bylo navrhnout vizuálně atraktivní a zábavnou instalaci, která propojuje realitu dnešního závodu s pekařskou tradicí Opavy. V minulém týdnu na setkání se studenty oborů Design hraček a grafický design byly oznámeny návrhy, které chce továrna realizovat.</p>
 
 <a href="/uploads/attachments/tiskova-zprava-studenti-meni-tvar-opavske-tovarny-mondelez-international/soubor-1.pdf" target="_blank">
 

@@ -57,7 +57,7 @@ export const heroTabs: HeroTab[] = [
     ]
   },
   {
-    id: 'tvorba-hracek-a-hernich-predmetu',
+    id: 'design-hracek',
     label: 'Design hraček',
     color: '#ECAFAC',
     textColor: '#102A43',
@@ -67,7 +67,7 @@ export const heroTabs: HeroTab[] = [
     motto: 'Tvořit znamená probouzet zvědavost.',
     description: 'Nápad, materiál a příběh se potkávají v originálním produktu.',
     actions: [
-      { label: 'Chci studovat Design hraček', href: '/obory/tvorba-hracek-a-hernich-predmetu/', variant: 'primary' },
+      { label: 'Chci studovat Design hraček', href: '/obory/design-hracek/', variant: 'primary' },
       { label: 'Podmínky přijetí', href: '/uchazeci/', variant: 'secondary' }
     ]
   },

@@ -42,7 +42,7 @@ photos:
     alt: "Klauzury - první pololetí školního roku 2023/24 — Výstava pro veřejnost — fotografie 18"
   - src: "/uploads/galleries/klauzury-prvni-pololeti-2023-24-vystava-pro-verejnost/klauzury-leden-2024-vystava-19.jpg"
     alt: "Klauzury - první pololetí školního roku 2023/24 — Výstava pro veřejnost — fotografie 19"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

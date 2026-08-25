@@ -1,6 +1,6 @@
 ---
 title: "Land art ve Svobodných Heřmanicích"
-description: "Land art je když: žáci třetího a čtvrtého ročníku oboru Tvorba hraček a herních předmětů za příznivého počasí odjedou do volné přírody a její rozličná zákoutí přetvoří k obrazu svému."
+description: "Land art je když: žáci třetího a čtvrtého ročníku oboru Design hraček za příznivého počasí odjedou do volné přírody a její rozličná zákoutí přetvoří k obrazu svému."
 publishedAt: 2025-09-23
 author: "Petr Marcalík"
 categories: ["Umělecké obory","Design hraček"]
@@ -17,4 +17,4 @@ status: published
 ---
 
 
-<p>Land art je když: žáci třetího a čtvrtého ročníku oboru Tvorba hraček a herních předmětů za příznivého počasí odjedou do volné přírody a její rozličná zákoutí přetvoří k obrazu svému.</p>
+<p>Land art je když: žáci třetího a čtvrtého ročníku oboru Design hraček za příznivého počasí odjedou do volné přírody a její rozličná zákoutí přetvoří k obrazu svému.</p>

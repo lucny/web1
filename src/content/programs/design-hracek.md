@@ -1,5 +1,5 @@
 ---
-title: Tvorba hraček a herních předmětů
+title: Design hraček
 code: 82-41-M/15
 form: Čtyřleté denní studium s maturitou
 capacity: 30

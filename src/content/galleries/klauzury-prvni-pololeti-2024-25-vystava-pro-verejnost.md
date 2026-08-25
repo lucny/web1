@@ -66,7 +66,7 @@ photos:
     alt: "Klauzury - první pololetí školního roku 2024/25 — Výstava pro veřejnost — fotografie 30"
   - src: "/uploads/galleries/klauzury-prvni-pololeti-2024-25-vystava-pro-verejnost/klauzury-2025-verejnost-31.jpg"
     alt: "Klauzury - první pololetí školního roku 2024/25 — Výstava pro veřejnost — fotografie 31"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

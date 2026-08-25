@@ -5,7 +5,7 @@ Audit byl proveden nad veřejným webem `https://www.sspu-opava.cz/cs/` v srpnu 
 ## Nalezeno
 
 - Hlavní oblasti: Škola, Studium, Aktuality, Dokumenty a cílově orientovaný rozcestník pro uchazeče, veřejnost a studenty/rodiče.
-- Pět oborů: Strojírenství, Informační technologie, Průmyslový design, Grafický design a Tvorba hraček a herních předmětů.
+- Pět oborů: Strojírenství, Informační technologie, Průmyslový design, Grafický design a Design hraček.
 - Typy obsahu: dlouhé oborové stránky, školní zpravodaj s rubrikami/štítky/archivem, kalendář, galerie, kontakty, veřejné dokumenty a odkazy na Škola Online, Moodle, Office 365 a Outlook.
 - Reprezentativní aktuální obsah: zahájení roku 2026/2027, články o profesním vzdělávání, výstavě plakátů, exkurzích a České AI olympiádě.
 - Významné staré URL vzory: `/cs/<stranka>/`, `/cs/zpravy/`, `/cs/aktuality/galerie/`, `/cs/kalendar/`, `/cs/kontakty/`, `/cs/dokumenty/` a jednotlivé URL oborů.

@@ -24,4 +24,4 @@ Pro umělecký obor grafický design jsme v rámci EDUgrantu požádali o grafic
 
 Tablety budou využívány zejména v praktických výtvarných předmětech, jako jsou navrhování, praktická cvičení, propagační grafika, základy fotografování, ICT nebo písmo. Uplatní se během celého studia, napříč všemi čtyřmi ročníky. Již v 1. ročníku v předmětech ICT a základy fotografování mohou být žáci poprvé seznamováni s těmito tablety, aby jim pak ve vyšších ročnících zjednodušily práci v grafických programech a umožnily dosahovat lepších výsledků při tvorbě jejich návrhů, ilustrací, fotografií atd.
 
-Primárně mají být tablety určeny pro žáky oboru Grafický design. Dále je ale také možné, aby s tablety pracovali i žáci dalších dvou výtvarných oborů, které na škole máme, a to jsou Průmyslový design a Tvorba hraček a herních předmětů, kde mohou také najít široké uplatnění.
+Primárně mají být tablety určeny pro žáky oboru Grafický design. Dále je ale také možné, aby s tablety pracovali i žáci dalších dvou výtvarných oborů, které na škole máme, a to jsou Průmyslový design a Design hraček, kde mohou také najít široké uplatnění.

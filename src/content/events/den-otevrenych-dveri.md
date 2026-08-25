@@ -19,6 +19,6 @@ programs:
   - informacni-technologie
   - prumyslovy-design
   - graficky-design
-  - tvorba-hracek-a-hernich-predmetu
+  - design-hracek
 status: published
 ---

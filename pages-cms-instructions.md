@@ -200,7 +200,7 @@ Zachovej pět existujících oborů:
 * Informační technologie,
 * Průmyslový design,
 * Grafický design,
-* Tvorba hraček a herních předmětů.
+* Design hraček.
 
 Administrátor musí být schopen přiřazovat jeden nebo více oborů:
 

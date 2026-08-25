@@ -210,7 +210,7 @@ photos:
     alt: "Dny otevřených dveří na uměleckých oborech - 17. až 19. října 2024 — fotografie 102"
   - src: "/uploads/galleries/dny-otevrenych-dveri-na-umeleckych-oborech-2024/107-IMGP7610.jpg"
     alt: "Dny otevřených dveří na uměleckých oborech - 17. až 19. října 2024 — fotografie 103"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

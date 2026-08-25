@@ -7,7 +7,7 @@ phones:
 email: anlauf@sspu-opava.cz
 photo: /uploads/people/lubomir-anlauf.jpg
 groups: [vedeni]
-studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [prumyslovy-design, graficky-design, design-hracek]
 showInContacts: true
 status: published
 ---

@@ -154,7 +154,7 @@ photos:
     alt: "Klauzurní práce 2. pololetí 2025 — fotografie 74"
   - src: "/uploads/galleries/klauzurni-prace-2-pololeti-2025/klauzury-2025-druhe-pololeti-75.jpg"
     alt: "Klauzurní práce 2. pololetí 2025 — fotografie 75"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published

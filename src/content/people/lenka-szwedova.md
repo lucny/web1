@@ -8,7 +8,7 @@ phones:
 email: szwedova@sspu-opava.cz
 photo: /uploads/people/lenka-szwedova.jpg
 groups: [kolegium]
-studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [prumyslovy-design, graficky-design, design-hracek]
 showInContacts: true
 status: published
 ---

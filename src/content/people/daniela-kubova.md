@@ -7,7 +7,7 @@ phones:
 email: kubova@sspu-opava.cz
 photo: /uploads/people/avatar-female.jpg
 groups: [kolegium]
-studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [prumyslovy-design, graficky-design, design-hracek]
 showInContacts: true
 status: published
 ---

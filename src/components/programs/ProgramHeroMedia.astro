@@ -14,7 +14,7 @@ const { accent, alt, image, video } = Astro.props as Props;
 <div class="relative aspect-[1600/600] min-h-[15rem] overflow-hidden" style={`background-color: ${accent}`}>
   {video ? <video class="absolute inset-0 h-full w-full object-cover" autoplay muted playsinline preload="auto" poster={image ? withBase(image) : undefined} aria-hidden="true">
     <source src={withBase(video)} type="video/mp4" />
-    {image && <img src={image} alt={alt} class="h-full w-full object-cover" />}
-  </video> : image && <img src={image} alt={alt} class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />}
+    {image && <img src={withBase(image)} alt={alt} class="h-full w-full object-cover" />}
+  </video> : image && <img src={withBase(image)} alt={alt} class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />}
   <div class="absolute inset-0" style={`background-color: color-mix(in srgb, ${accent} 35%, transparent)`}></div>
 </div>

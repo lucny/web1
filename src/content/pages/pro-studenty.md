@@ -84,7 +84,7 @@ contentBlocks:
       - label: Pomůcky a vybavení pro žáky oboru Strojírenství
         url: https://www.sspu-opava.cz/media/filer_public/50/d2/50d2ab6f-11b2-4331-be6c-3747b13943c3/sv1ab_vybaveni_zaku_dilny_2020.pdf
         kind: document
-      - label: Pomůcky a vybavení pro obory Tvorba hraček a Průmyslový design
+      - label: Pomůcky a vybavení pro obory Design hraček a Průmyslový design
         url: https://www.sspu-opava.cz/media/filer_public/66/c9/66c9f4aa-a85f-48fb-adb1-72ce49461967/pomucky_-_hracka_a_design_-_2022-2023pdf.pdf
         kind: document
       - label: Pomůcky a vybavení pro žáky oboru Grafický design

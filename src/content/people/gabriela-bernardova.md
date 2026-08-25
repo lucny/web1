@@ -5,7 +5,7 @@ position: odborné předměty UO
 email: bernardova@sspu-opava.cz
 photo: /uploads/people/gabriela-bernardova.jpg
 groups: [ucitele]
-studyFields: [prumyslovy-design, graficky-design, tvorba-hracek-a-hernich-predmetu]
+studyFields: [prumyslovy-design, graficky-design, design-hracek]
 showInContacts: true
 status: published
 ---

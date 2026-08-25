@@ -42,7 +42,7 @@ photos:
     alt: "Klauzury - první pololetí školního roku 2023/24 — Obhajoby — fotografie 18"
   - src: "/uploads/galleries/klauzury-prvni-pololeti-2023-24-obhajoby/klauzury-leden-2024-obhajoby-19.jpg"
     alt: "Klauzury - první pololetí školního roku 2023/24 — Obhajoby — fotografie 19"
-programs: ["graficky-design","prumyslovy-design","tvorba-hracek-a-hernich-predmetu"]
+programs: ["graficky-design","prumyslovy-design","design-hracek"]
 categories: ["Umělecké obory"]
 tags: ["umělecké obory", "fotogalerie"]
 status: published
