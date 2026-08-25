@@ -21,7 +21,6 @@ import { mainNavigation } from '../../data/navigation';
     <nav aria-label="Mobilní navigace" class="mt-4">
       <a href={withBase('/')} class="block rounded-lg px-4 py-3 font-semibold no-underline transition hover:bg-mist hover:text-brand">Úvodní stránka</a>
       {mainNavigation.map((group: NavGroupData) => <NavGroup group={group} variant="mobile" />)}
-      <a href={withBase('/kontakt/')} class="mt-1 block rounded-lg px-4 py-3 font-semibold no-underline transition hover:bg-mist hover:text-brand">Kontakty</a>
     </nav>
     <section class="mt-6 border-t border-ink/10 pt-5" aria-labelledby="mobile-systems-heading">
       <p id="mobile-systems-heading" class="eyebrow">Online služby</p>

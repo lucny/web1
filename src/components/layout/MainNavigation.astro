@@ -1,16 +1,11 @@
 ---
 import { mainNavigation } from '../../data/navigation';
 import NavGroup from '../navigation/NavGroup.astro';
-import { withBase } from '../../lib/content';
-
-const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
-const currentPath = Astro.url.pathname.startsWith(basePath) ? Astro.url.pathname.slice(basePath.length) || '/' : Astro.url.pathname;
 ---
 
 <nav aria-label="Hlavní navigace" class="hidden min-w-0 flex-1 xl:block">
   <ul class="flex items-center justify-end gap-0.5" data-desktop-navigation>
     {mainNavigation.map((group) => <li><NavGroup group={group} /></li>)}
-    <li><a href={withBase('/kontakt/')} class:list={['rounded-lg px-2.5 py-2 text-[0.82rem] font-semibold no-underline transition hover:bg-white hover:text-brand', currentPath.startsWith('/kontakt/') && 'bg-white text-brand']} aria-current={currentPath.startsWith('/kontakt/') ? 'page' : undefined}>Kontakty</a></li>
   </ul>
 </nav>
 

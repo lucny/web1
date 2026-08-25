@@ -17,52 +17,31 @@ export type UtilityLink = NavItem & {
 };
 
 export const utilityLinks: UtilityLink[] = [
-  {
-    id: 'facebook',
-    label: 'SŠPU Opava na Facebooku',
-    shortLabel: 'Facebook',
-    href: 'https://www.facebook.com/sspuopava',
-    external: true
-  },
-  {
-    id: 'moodle',
-    label: 'Moodle SŠPU Opava',
-    shortLabel: 'Moodle',
-    href: 'https://moodle.sspu-opava.cz',
-    external: true
-  },
-  {
-    id: 'office',
-    label: 'Microsoft 365',
-    shortLabel: 'Microsoft 365',
-    href: 'https://portal.office.com',
-    external: true
-  },
-  {
-    id: 'skola-online',
-    label: 'Škola Online',
-    shortLabel: 'Škola Online',
-    href: 'https://skolaonline.cz',
-    external: true
-  }
+  { id: 'facebook', label: 'SŠPU Opava na Facebooku', shortLabel: 'Facebook', href: 'https://www.facebook.com/sspuopava', external: true },
+  { id: 'moodle', label: 'Moodle SŠPU Opava', shortLabel: 'Moodle', href: 'https://moodle.sspu-opava.cz', external: true },
+  { id: 'office', label: 'Microsoft 365', shortLabel: 'Microsoft 365', href: 'https://portal.office.com', external: true },
+  { id: 'skola-online', label: 'Škola Online', shortLabel: 'Škola Online', href: 'https://skolaonline.cz', external: true }
 ];
 
 export const mainNavigation: NavGroup[] = [
   {
     id: 'skola',
-    label: 'O škole',
-    href: '/skola/o-skole/',
+    label: 'Škola',
+    href: '/skola/',
     items: [
-      { label: 'Přehled školy', href: '/skola/o-skole/' },
-      { label: 'Historie', href: '/skola/historie-soucasnost/' },
-      { label: 'Vedení školy', href: '/kontakt/' },
-      { label: 'Kontakty', href: '/kontakt/' },
-      { label: 'Projekty', href: '/cs/projekty/' },
-      { label: 'Spolupráce', href: '/skola/spoluprace/' },
-      { label: 'Umělecká rada', href: '/skola/umelecka-rada/' },
-      { label: 'Studentský parlament', href: '/skola/studentsky-parlament/' },
-      { label: 'Nabídka pronájmu', href: '/skola/nabidka-pronajmu/' },
-      { label: 'Prostory školy', href: '/galerie/' }
+      { label: 'Přehled školy', href: '/skola/' },
+      { label: 'Historie a současnost', href: '/historie-a-soucasnost/' },
+      { label: 'Lidé a kontakty', href: '/lide-a-kontakty/' },
+      { label: 'Žáci a třídy', href: '/zaci-a-tridy/' },
+      { label: 'Školní zpravodaj', href: '/skolni-zpravodaj/' },
+      { label: 'Kalendář akcí', href: '/kalendar-akci/' },
+      { label: 'Fotogalerie', href: '/fotogalerie/' },
+      { label: 'Školská rada', href: '/skolska-rada/' },
+      { label: 'Umělecká rada', href: '/umelecka-rada/' },
+      { label: 'Studentský parlament', href: '/studentsky-parlament/' },
+      { label: 'Spolupráce', href: '/spoluprace/' },
+      { label: 'Projekty', href: '/projekty/' },
+      { label: 'Nabídka pronájmu', href: '/nabidka-pronajmu/' }
     ]
   },
   {
@@ -71,41 +50,25 @@ export const mainNavigation: NavGroup[] = [
     href: '/uchazeci/',
     items: [
       { label: 'Přehled pro uchazeče', href: '/uchazeci/' },
-      { label: 'Obory', href: '/obory/' },
-      { label: 'Přijímačky – technické obory', href: '/cs/studium/prijimaci-rizeni-technicke-obory/' },
-      { label: 'Přijímačky – umělecké obory', href: '/cs/studium/prijimaci-rizeni-umelecke-obory/' },
-      { label: 'Prohlídka školy', href: '/galerie/' },
-      { label: 'Dny otevřených dveří', href: '/udalosti/den-otevrenych-dveri/' },
-      { label: 'Informace pro uchazeče', href: '/uchazeci/' }
+      { label: 'Studijní obory', href: '/studijni-obory/' },
+      { label: 'Přijímací řízení na technické obory', href: '/prijimaci-rizeni-technicke-obory/' },
+      { label: 'Přijímací řízení na umělecké obory', href: '/prijimaci-rizeni-umelecke-obory/' },
+      { label: 'Akce pro ZŠ', href: '/akce-pro-zs/' }
     ]
   },
   {
     id: 'studenti',
-    label: 'Studenti a rodiče',
+    label: 'Studenti',
     href: '/studenti/',
     items: [
-      { label: 'Žáci a třídy', href: '/zaci/' },
-      { label: 'Školní poradenské pracoviště', href: '/cs/studium/spp/' },
-      { label: 'Nabídky zaměstnání a brigád', href: '/cs/studium/nabidky-zamestnani/' },
-      { label: 'Protidrogová prevence', href: '/studenti/' },
-      { label: 'Výukové materiály', href: '/studenti/' },
-      { label: 'Školní systémy', href: '/studenti/' },
-      { label: 'Moodle', href: 'https://moodle.sspu-opava.cz', external: true },
-      { label: 'Škola Online', href: 'https://skolaonline.cz', external: true },
-      { label: 'Microsoft 365', href: 'https://portal.office.com', external: true }
-    ]
-  },
-  {
-    id: 'aktualne',
-    label: 'Aktuálně',
-    href: '/aktuality/',
-    items: [
-      { label: 'Školní zpravodaj', href: '/aktuality/' },
-      { label: 'Kalendář akcí', href: '/udalosti/' },
-      { label: 'Galerie', href: '/galerie/' },
-      { label: 'Fotogalerie uměleckých oborů', href: '/cs/aktuality/fotogalerie-umeleckych-oboru/' },
-      { label: 'Úspěchy', href: '/aktuality/' },
-      { label: 'Projekty a soutěže', href: '/aktuality/' }
+      { label: 'Přehled pro studenty', href: '/studenti/' },
+      { label: 'Rozvrh', href: '/rozvrh/' },
+      { label: 'Školní řád', href: '/skolni-rad/' },
+      { label: 'Maturity', href: '/maturity/' },
+      { label: 'Školní poradenské pracoviště', href: '/skolni-poradenske-pracoviste/' },
+      { label: 'Výukové materiály', href: '/vyukove-materialy/' },
+      { label: 'Nabídky zaměstnání', href: '/nabidky-zamestnani/' },
+      { label: 'Pro studenty a rodiče', href: '/pro-studenty-a-rodice/' }
     ]
   },
   {
@@ -114,15 +77,24 @@ export const mainNavigation: NavGroup[] = [
     href: '/dokumenty/',
     items: [
       { label: 'Přehled dokumentů', href: '/dokumenty/' },
-      { label: 'Školní řád', href: '/cs/dokumenty/skolni-rad/' },
-      { label: 'Výroční zprávy', href: '/cs/dokumenty/vyrocni-zprava-skoly/' },
-      { label: 'Inspekční zprávy', href: '/cs/dokumenty/inspekcni-zpravy/' },
-      { label: 'Veřejné zakázky', href: '/cs/dokumenty/verejne-zakazky/' },
-      { label: 'Rozpočet', href: '/cs/dokumenty/rozpocet/' },
-      { label: 'Ochrana osobních údajů', href: '/cs/dokumenty/ochrana-osobnich-udaju/' },
-      { label: 'Ochrana oznamovatelů', href: '/cs/dokumenty/ochrana-oznamovatelu/' },
-      { label: 'Prohlášení o přístupnosti', href: '/cs/dokumenty/prohlaseni-o-pristupnosti-webu/' },
-      { label: 'Rozvrhy', href: '/cs/dokumenty/rozvrhy/' }
+      { label: 'Výroční zpráva školy', href: '/vyrocni-zprava-skoly/' },
+      { label: 'Inspekční zprávy', href: '/inspekcni-zpravy/' },
+      { label: 'Veřejné zakázky', href: '/verejne-zakazky/' },
+      { label: 'Rozpočet', href: '/rozpocet/' },
+      { label: 'Ochrana osobních údajů', href: '/ochrana-osobnich-udaju/' },
+      { label: 'Ochrana oznamovatelů', href: '/ochrana-oznamovatelu/' },
+      { label: 'Prohlášení o přístupnosti', href: '/prohlaseni-o-pristupnosti-webu/' }
+    ]
+  },
+  {
+    id: 'ostatni',
+    label: 'Ostatní',
+    href: '/ostatni/',
+    items: [
+      { label: 'Přehled ostatních stránek', href: '/ostatni/' },
+      { label: 'Přehled školy', href: '/skola/o-skole/' },
+      { label: 'Fotogalerie uměleckých oborů', href: '/fotogalerie-umeleckych-oboru/' },
+      { label: 'Vyhledávání', href: '/vyhledavani/' }
     ]
   }
 ];
