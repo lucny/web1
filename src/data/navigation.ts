@@ -57,7 +57,7 @@ export const mainNavigation: NavGroup[] = [
       { label: 'Historie', href: '/skola/historie-soucasnost/' },
       { label: 'Vedení školy', href: '/kontakt/' },
       { label: 'Kontakty', href: '/kontakt/' },
-      { label: 'Projekty', href: '/aktuality/' },
+      { label: 'Projekty', href: '/cs/projekty/' },
       { label: 'Spolupráce', href: '/skola/spoluprace/' },
       { label: 'Umělecká rada', href: '/skola/umelecka-rada/' },
       { label: 'Studentský parlament', href: '/skola/studentsky-parlament/' },

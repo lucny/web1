@@ -376,6 +376,151 @@ content:
           rename: safe
           switcher: true
 
+  - name: projects
+    label: Projekty
+    type: collection
+    path: src/content/projects
+    filename: "{slug}.md"
+    view:
+      primary: title
+      fields: [title, status, startDate, endDate, programme]
+      search: [title, summary, programme, topics, registrationNumber, projectNumber]
+      sort: [status, startDate, title]
+      default:
+        sort: startDate
+        order: desc
+    fields:
+      - name: title
+        label: Název projektu
+        type: string
+        required: true
+      - name: slug
+        label: URL identifikátor
+        type: string
+        required: true
+        description: Malá písmena bez diakritiky, slova oddělujte pomlčkami.
+      - name: status
+        label: Stav projektu
+        type: select
+        required: true
+        options:
+          values: [active, completed, archived]
+          labels: [Probíhá, Ukončený, Archivní]
+      - name: publicationStatus
+        component: status
+      - name: startDate
+        label: Začátek realizace
+        type: string
+        required: false
+        description: Rok, měsíc nebo datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD.
+      - name: endDate
+        label: Konec realizace
+        type: string
+        required: false
+        description: Rok, měsíc nebo datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD.
+      - name: programme
+        label: Program
+        type: string
+        required: false
+      - name: call
+        label: Výzva
+        type: string
+        required: false
+      - name: registrationNumber
+        label: Registrační číslo
+        type: string
+        required: false
+      - name: projectNumber
+        label: Číslo projektu
+        type: string
+        required: false
+      - name: funding
+        label: Financování
+        type: text
+        required: false
+      - name: topics
+        label: Tematické oblasti
+        type: string
+        list: true
+        required: false
+      - name: summary
+        label: Krátké shrnutí
+        type: text
+        required: true
+      - name: featured
+        label: Zvýraznit v přehledu
+        type: boolean
+        default: false
+      - name: heroImage
+        label: Hlavní obrázek
+        type: image
+        required: false
+        options:
+          media: images
+          rename: safe
+      - name: gallery
+        label: Galerie projektu
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: src
+            label: Obrázek
+            type: image
+            options:
+              media: images
+              rename: safe
+          - name: alt
+            label: ALT text
+            type: string
+          - name: caption
+            label: Popisek
+            type: text
+            required: false
+      - name: partners
+        label: Partneři
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: name
+            label: Název partnera
+            type: string
+          - name: url
+            label: Web partnera
+            type: string
+            required: false
+      - name: links
+        label: Související odkazy
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: label
+            label: Název odkazu
+            type: string
+          - name: url
+            label: URL nebo soubor
+            type: string
+          - name: type
+            label: Typ odkazu
+            type: select
+            required: false
+            options:
+              values: [external, document, video]
+              labels: [Externí web, Dokument, Video]
+      - name: seo
+        component: seo
+      - name: body
+        label: Obsah projektu
+        type: rich-text
+        options:
+          media: images
+          path: projects
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+          switcher: true
+
   - name: articles
     label: Aktuality a články
     type: collection

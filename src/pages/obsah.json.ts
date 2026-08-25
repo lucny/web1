@@ -7,12 +7,13 @@ const labels = {
   programs: 'Obor',
   galleries: 'Galerie',
   documents: 'Dokument',
+  projects: 'Projekt',
   events: 'Událost',
   people: 'Osoba'
 } as const;
 
 export const GET: APIRoute = async () => {
-  const collections = ['pages', 'articles', 'programs', 'galleries', 'documents', 'events', 'people'] as const;
+  const collections = ['pages', 'articles', 'programs', 'galleries', 'documents', 'projects', 'events', 'people'] as const;
   const all = await Promise.all(collections.map(async (collection) => (await entries(collection)).map((item) => {
     const data = item.data as Record<string, unknown>;
     const studyFields = Array.isArray(data.studyFields) && data.studyFields.length > 0 ? data.studyFields : data.programs;

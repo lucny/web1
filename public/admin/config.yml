@@ -116,6 +116,51 @@ collections:
       - { label: Obory, name: programs, widget: list, required: false }
       - { label: Štítky, name: tags, widget: list, required: false }
       - { label: Stav, name: status, widget: select, options: [published, draft], default: published }
+  - name: projects
+    label: Projekty
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Název projektu, name: title, widget: string }
+      - { label: URL identifikátor, name: slug, widget: string, hint: Malá písmena bez diakritiky, slova oddělujte pomlčkami. }
+      - { label: Stav projektu, name: status, widget: select, options: [active, completed, archived] }
+      - { label: Stav publikace, name: publicationStatus, widget: select, options: [published, draft], default: published }
+      - { label: Začátek realizace, name: startDate, widget: string, required: false }
+      - { label: Konec realizace, name: endDate, widget: string, required: false }
+      - { label: Program, name: programme, widget: string, required: false }
+      - { label: Výzva, name: call, widget: string, required: false }
+      - { label: Registrační číslo, name: registrationNumber, widget: string, required: false }
+      - { label: Číslo projektu, name: projectNumber, widget: string, required: false }
+      - { label: Financování, name: funding, widget: text, required: false }
+      - { label: Tematické oblasti, name: topics, widget: list, required: false }
+      - { label: Krátké shrnutí, name: summary, widget: text }
+      - { label: Zvýraznit v přehledu, name: featured, widget: boolean, default: false }
+      - { label: Hlavní obrázek, name: heroImage, widget: image, required: false }
+      - label: Galerie projektu
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - { label: Obrázek, name: src, widget: image }
+          - { label: ALT text, name: alt, widget: string }
+          - { label: Popisek, name: caption, widget: string, required: false }
+      - label: Partneři
+        name: partners
+        widget: list
+        required: false
+        fields:
+          - { label: Název partnera, name: name, widget: string }
+          - { label: Web partnera, name: url, widget: string, required: false }
+      - label: Související odkazy
+        name: links
+        widget: list
+        required: false
+        fields:
+          - { label: Název odkazu, name: label, widget: string }
+          - { label: URL nebo soubor, name: url, widget: string }
+          - { label: Typ odkazu, name: type, widget: select, options: [external, document, video], required: false }
+      - { label: Obsah projektu, name: body, widget: markdown, required: false }
   - name: events
     label: Kalendář akcí
     folder: src/content/events

@@ -13,6 +13,7 @@ const slugList = z.array(contentReference).default([]);
 const optionalDate = z.preprocess((value) => value === '' ? undefined : value, z.coerce.date().optional());
 const optionalUrl = z.preprocess((value) => value === '' ? undefined : value, z.string().url().optional());
 const optionalString = z.preprocess((value) => value === '' ? undefined : value, z.string().optional());
+const projectDate = z.string().regex(/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/, 'Použijte rok, měsíc nebo datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD.').optional();
 const seo = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
@@ -127,6 +128,33 @@ const documents = defineCollection({
   })
 });
 
+const projects = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    // Astro exposes the filename slug as `entry.slug` and omits the reserved
+    // frontmatter key from `data`, so CMS-authored records keep this field optional.
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug smí obsahovat pouze malá písmena, číslice a pomlčky.').optional(),
+    status: z.enum(['active', 'completed', 'archived']),
+    publicationStatus: z.enum(['published', 'draft']).default('published'),
+    startDate: projectDate,
+    endDate: projectDate,
+    programme: optionalString,
+    call: optionalString,
+    registrationNumber: optionalString,
+    projectNumber: optionalString,
+    funding: optionalString,
+    topics: z.array(z.string()).default([]),
+    summary: z.string(),
+    featured: z.boolean().default(false),
+    heroImage: z.string().optional(),
+    gallery: z.array(z.object({ src: z.string().min(1), alt: z.string().min(1), caption: z.string().optional() })).default([]),
+    partners: z.array(z.object({ name: z.string(), url: optionalUrl })).default([]),
+    links: z.array(z.object({ label: z.string(), url: z.string().min(1), type: z.enum(['external', 'document', 'video']).optional() })).default([]),
+    seo
+  })
+});
+
 const events = defineCollection({
   type: 'content',
   schema: z.object({
@@ -217,4 +245,4 @@ const categories = defineCollection({
   })
 });
 
-export const collections = { articles, programs, galleries, documents, events, people, pages, categories };
+export const collections = { articles, programs, galleries, documents, projects, events, people, pages, categories };

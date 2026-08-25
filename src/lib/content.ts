@@ -1,12 +1,14 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'events' | 'people' | 'pages' | 'categories';
+type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'projects' | 'events' | 'people' | 'pages' | 'categories';
 type Entry<T extends Name> = CollectionEntry<T>;
 
 export async function entries<T extends Name>(collection: T) {
   const collectionEntries = await getCollection(collection);
   return collectionEntries
-    .filter((entry) => entry.data.status === 'published')
+    .filter((entry) => collection === 'projects'
+      ? (entry.data as { publicationStatus?: string }).publicationStatus !== 'draft'
+      : (entry.data as { status?: string }).status === 'published')
     .sort((a, b) => {
       const value = (data: { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) => {
         if (data.publishedAt || data.date || data.start) return Number(data.publishedAt ?? data.date ?? data.start);
@@ -29,7 +31,7 @@ export function formatDate(date: Date, options: Intl.DateTimeFormatOptions = { d
 
 export function routeFor(collection: Name, id: string) {
   const routes: Record<Exclude<Name, 'categories'>, string> = {
-    articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/'
+    articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', projects: '/cs/projekty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/'
   };
   if (collection === 'categories') throw new Error('Kategorie nemají veřejnou detailní trasu.');
   if (collection === 'documents') return routes.documents;
