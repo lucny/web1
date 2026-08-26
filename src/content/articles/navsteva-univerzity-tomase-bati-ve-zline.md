@@ -6,7 +6,7 @@ author: "Alena Biskupová"
 categories: ["Umělecké obory"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/navsteva-univerzity-tomase-bati-ve-zline/cover.jpg"
+cover: "/uploads/articles/navsteva-univerzity-tomase-bati-ve-zline/cover.webp"
 gallery: "navsteva-univerzity-tomase-bati-ve-zline-galerie"
 attachments: []
 related: []

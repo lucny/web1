@@ -6,7 +6,7 @@ author: "Eva Vengřínová"
 categories: ["Škola","Informační technologie","Strojírenství"]
 tags: ["soutěž","matematika"]
 programs: []
-cover: "/uploads/articles/nasi-studenti-vynikli-v-soutezi-mathing/cover.jpg"
+cover: "/uploads/articles/nasi-studenti-vynikli-v-soutezi-mathing/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -22,6 +22,6 @@ status: published
 
 <p>Letošní ročník byl pro nás výzvou. Sestavili jsme dva týmy z nejlepších studentů obou technických oborů. Konkurence byla veliká, vždyť 87 % týmů tvořili studenti gymnázií. O to víc nás těší zmíněný úspěch našich studentů.</p>
 
-<p><img src="/uploads/articles/nasi-studenti-vynikli-v-soutezi-mathing/image-01.jpg" class="img-fluid" alt="Fotografie – Mathing jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/nasi-studenti-vynikli-v-soutezi-mathing/image-01.webp" class="img-fluid" alt="Fotografie – Mathing jpg 1600x1200 q85 subsampling"></p>
 
 <p><em>Děkujeme všem studentům za výbornou reprezentaci a přejeme hodně úspěchů do dalších soutěží.</em></p>

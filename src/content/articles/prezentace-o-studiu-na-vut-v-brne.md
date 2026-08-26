@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/prezentace-o-studiu-na-vut-v-brne/cover.jpg"
+cover: "/uploads/articles/prezentace-o-studiu-na-vut-v-brne/cover.webp"
 attachments: []
 related: []
 homepage:

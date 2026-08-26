@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-ve-firmach-marlenka-a-hyundai/cover.jpg"
+cover: "/uploads/articles/exkurze-ve-firmach-marlenka-a-hyundai/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -20,6 +20,6 @@ status: published
 
 <p>Druhou exkurzí byla návštěva <strong>Hyundai Motor Manufacturing Czech s.r.o.</strong> v Nošovicích.  Tento jediný závod firmy Hyundai v Evropě, je jednou z nejmodernějších automobilek vůbec. Po úvodní instruktáži a představení firmy žáci nasedli do speciálního vláčku. Tímto vláčkem měli možnost projet závodem, vidět jednotlivé etapy výroby automobilů a vyslechnout k tomu zasvěcený komentář průvodce.</p>
 
-<p><img src="/uploads/articles/exkurze-ve-firmach-marlenka-a-hyundai/image-01.jpg" class="img-fluid" alt="Fotografie – Exkurze hyundai jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/exkurze-ve-firmach-marlenka-a-hyundai/image-01.webp" class="img-fluid" alt="Fotografie – Exkurze hyundai jpg 1600x1200 q85 subsampling"></p>
 
-<p><img src="/uploads/articles/exkurze-ve-firmach-marlenka-a-hyundai/image-02.jpg" class="img-fluid" alt="Fotografie – Exkurze hyundai jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/exkurze-ve-firmach-marlenka-a-hyundai/image-02.webp" class="img-fluid" alt="Fotografie – Exkurze hyundai jpg 1600x1200 q85 subsampling"></p>

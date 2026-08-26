@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Průmyslový design"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/vernisaz-tri-umeleckych-oboru-ve-slezskem-divadle-opava/cover.jpg"
+cover: "/uploads/articles/vernisaz-tri-umeleckych-oboru-ve-slezskem-divadle-opava/cover.webp"
 gallery: "vernisaz-tri-umeleckych-oboru-ve-slezskem-divadle-opava-galerie"
 attachments: []
 related: []

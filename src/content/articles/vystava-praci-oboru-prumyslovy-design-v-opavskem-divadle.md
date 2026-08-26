@@ -6,7 +6,7 @@ author: "Jan Ermis"
 categories: ["Umělecké obory","Průmyslový design"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/vystava-praci-oboru-prumyslovy-design-v-opavskem-divadle/cover.jpg"
+cover: "/uploads/articles/vystava-praci-oboru-prumyslovy-design-v-opavskem-divadle/cover.webp"
 gallery: "vystava-praci-oboru-prumyslovy-design-v-opavskem-divadle-galerie"
 attachments: []
 related: []

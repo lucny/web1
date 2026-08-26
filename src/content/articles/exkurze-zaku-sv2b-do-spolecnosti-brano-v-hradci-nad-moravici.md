@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství","Technické obory"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-zaku-sv2b-do-spolecnosti-brano-v-hradci-nad-moravici/cover.jpg"
+cover: "/uploads/articles/exkurze-zaku-sv2b-do-spolecnosti-brano-v-hradci-nad-moravici/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -24,4 +24,4 @@ status: published
 
 <p>Exkurze žákům přiblížila moderní průmyslovou praxi a ukázala jim, jak se tradiční strojírenská výroba propojuje s vývojem, automatizací a robotizací.</p>
 
-<p><img src="/uploads/articles/exkurze-zaku-sv2b-do-spolecnosti-brano-v-hradci-nad-moravici/image-01.jpg" class="img-fluid" alt="Fotografie – Brano jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/exkurze-zaku-sv2b-do-spolecnosti-brano-v-hradci-nad-moravici/image-01.webp" class="img-fluid" alt="Fotografie – Brano jpg 1600x1200 q85 subsampling"></p>

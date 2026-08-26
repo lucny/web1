@@ -6,7 +6,7 @@ author: "Pavel Hulva"
 categories: ["Škola"]
 tags: ["kurz"]
 programs: []
-cover: "/uploads/articles/lyzarsky-kurz-2025/cover.jpg"
+cover: "/uploads/articles/lyzarsky-kurz-2025/cover.webp"
 gallery: "lyzarsky-kurz-2025-galerie"
 attachments: []
 related: []

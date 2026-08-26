@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Škola","Strojírenství"]
 tags: ["kurz"]
 programs: []
-cover: "/uploads/articles/turisticky-kurz-v-jesenikach/cover.jpg"
+cover: "/uploads/articles/turisticky-kurz-v-jesenikach/cover.webp"
 gallery: "turisticky-kurz-v-jesenikach-galerie"
 attachments: []
 related: []

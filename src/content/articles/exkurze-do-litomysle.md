@@ -6,7 +6,7 @@ author: "Alena Biskupová"
 categories: ["Umělecké obory"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-do-litomysle/cover.jpg"
+cover: "/uploads/articles/exkurze-do-litomysle/cover.webp"
 gallery: "exkurze-do-litomysle-galerie"
 attachments: []
 related: []

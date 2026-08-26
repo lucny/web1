@@ -6,7 +6,7 @@ author: "Daniel Jedlička, M.A."
 categories: ["Škola","Informační technologie"]
 tags: ["soutěž","angličtina"]
 programs: []
-cover: "/uploads/articles/dalsi-uspech-v-okresnim-kole-olympiady-v-anglickem-jazyce/cover.jpg"
+cover: "/uploads/articles/dalsi-uspech-v-okresnim-kole-olympiady-v-anglickem-jazyce/cover.webp"
 attachments: [{"label":"Výsledková listina okresního kola (PDF)","url":"/uploads/attachments/dalsi-uspech-v-okresnim-kole-olympiady-v-anglickem-jazyce/soubor-1.pdf"}]
 related: []
 homepage:

@@ -6,7 +6,7 @@ author: "Lenka Kašpárková, Ph.D."
 categories: ["Umělecké obory"]
 tags: ["workshop"]
 programs: []
-cover: "/uploads/articles/vytvarny-workshop-zivot-ve-meste-2/cover.jpg"
+cover: "/uploads/articles/vytvarny-workshop-zivot-ve-meste-2/cover.webp"
 gallery: "vytvarny-workshop-zivot-ve-meste-2-galerie"
 attachments: []
 related: []

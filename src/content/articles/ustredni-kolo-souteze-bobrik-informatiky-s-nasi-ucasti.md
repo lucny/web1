@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/ustredni-kolo-souteze-bobrik-informatiky-s-nasi-ucasti/cover.jpg"
+cover: "/uploads/articles/ustredni-kolo-souteze-bobrik-informatiky-s-nasi-ucasti/cover.webp"
 gallery: "ustredni-kolo-souteze-bobrik-informatiky-s-nasi-ucasti-galerie"
 attachments: []
 related: []

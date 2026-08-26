@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-ve-firme-remante-group-s-r-o/cover.jpg"
+cover: "/uploads/articles/exkurze-ve-firme-remante-group-s-r-o/cover.webp"
 attachments: []
 related: []
 homepage:

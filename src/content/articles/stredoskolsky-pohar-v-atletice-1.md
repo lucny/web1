@@ -6,7 +6,7 @@ author: "Eva Zemanová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/stredoskolsky-pohar-v-atletice-1/cover.jpg"
+cover: "/uploads/articles/stredoskolsky-pohar-v-atletice-1/cover.webp"
 gallery: "stredoskolsky-pohar-v-atletice-1-galerie"
 attachments: []
 related: []

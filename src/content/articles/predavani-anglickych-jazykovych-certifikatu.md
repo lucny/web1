@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola"]
 tags: ["angličtina","certifikáty"]
 programs: []
-cover: "/uploads/articles/predavani-anglickych-jazykovych-certifikatu/cover.jpg"
+cover: "/uploads/articles/predavani-anglickych-jazykovych-certifikatu/cover.webp"
 gallery: "predavani-anglickych-jazykovych-certifikatu-galerie"
 attachments: []
 related: []

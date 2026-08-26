@@ -6,7 +6,7 @@ author: "Petra Bajerová"
 categories: ["Škola"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/prednaska-o-podnikani/cover.jpg"
+cover: "/uploads/articles/prednaska-o-podnikani/cover.webp"
 attachments: []
 related: []
 homepage:

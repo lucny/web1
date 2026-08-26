@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/krajske-kolo-souteze-haxagon-skirmish-2025-nasi-studenti-predcili-konkurenci/cover.jpg"
+cover: "/uploads/articles/krajske-kolo-souteze-haxagon-skirmish-2025-nasi-studenti-predcili-konkurenci/cover.webp"
 attachments: []
 related: []
 homepage:

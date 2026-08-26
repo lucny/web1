@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-v-opavske-firme-prestar/cover.jpg"
+cover: "/uploads/articles/exkurze-v-opavske-firme-prestar/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -25,4 +25,4 @@ Firma Prestar, s.r.o. se zabývá návrhem, výrobou a dodávkami průmyslových
 
 <p data-is-last-node="" data-end="942" data-start="811" data-is-only-node="">
 
-<img src="/uploads/articles/exkurze-v-opavske-firme-prestar/image-01.jpg" class="img-fluid" alt="Fotografie – Exkurze prestar jpg 926x600 q85 subsampling"></p>
+<img src="/uploads/articles/exkurze-v-opavske-firme-prestar/image-01.webp" class="img-fluid" alt="Fotografie – Exkurze prestar jpg 926x600 q85 subsampling"></p>

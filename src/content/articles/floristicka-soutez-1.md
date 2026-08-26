@@ -6,7 +6,7 @@ author: "Zuzana Vildomcová"
 categories: ["Umělecké obory"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/floristicka-soutez-1/cover.jpg"
+cover: "/uploads/articles/floristicka-soutez-1/cover.webp"
 attachments: []
 related: []
 homepage:

@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/nasi-studenti-ovladli-okresni-kolo-programatorske-souteze/cover.jpg"
+cover: "/uploads/articles/nasi-studenti-ovladli-okresni-kolo-programatorske-souteze/cover.webp"
 attachments: [{"label":"Výsledková listina okresního kola Soutěže v programování - 2025","url":"/uploads/attachments/nasi-studenti-ovladli-okresni-kolo-programatorske-souteze/soubor-1.pdf"}]
 related: []
 homepage:

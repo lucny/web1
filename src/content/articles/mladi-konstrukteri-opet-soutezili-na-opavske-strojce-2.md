@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola","Strojírenství"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/mladi-konstrukteri-opet-soutezili-na-opavske-strojce-2/cover.jpg"
+cover: "/uploads/articles/mladi-konstrukteri-opet-soutezili-na-opavske-strojce-2/cover.webp"
 gallery: "mladi-konstrukteri-opet-soutezili-na-opavske-strojce-2-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Petra Bajerová"
 categories: ["Škola"]
 tags: ["projekt"]
 programs: []
-cover: "/uploads/articles/projekt-financni-gramotnost/cover.jpg"
+cover: "/uploads/articles/projekt-financni-gramotnost/cover.webp"
 attachments: []
 related: []
 homepage:

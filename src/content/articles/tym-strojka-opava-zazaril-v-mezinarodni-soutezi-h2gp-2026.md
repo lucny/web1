@@ -6,7 +6,7 @@ author: "Radim Sonnek"
 categories: ["Strojírenství"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/tym-strojka-opava-zazaril-v-mezinarodni-soutezi-h2gp-2026/cover.jpg"
+cover: "/uploads/articles/tym-strojka-opava-zazaril-v-mezinarodni-soutezi-h2gp-2026/cover.webp"
 gallery: "tym-strojka-opava-zazaril-v-mezinarodni-soutezi-h2gp-2026-galerie"
 attachments: []
 related: []
@@ -23,7 +23,7 @@ status: published
 
 <p>Soutěž H2GP patří mezi prestižní technologické projekty podporující vzdělávání v oblasti moderní energetiky a ekologické mobility. Studenti během příprav navrhovali konstrukci vozu, optimalizovali jeho výkon a řešili hospodaření s energií během vytrvalostních závodů. Výsledkem byla skvělá reprezentace školy i celého regionu.</p>
 
-<p><img src="/uploads/articles/tym-strojka-opava-zazaril-v-mezinarodni-soutezi-h2gp-2026/image-01.jpg" class="img-fluid" alt="Fotografie – H2gp jpg 1600x1067 q85 subsampling"></p>
+<p><img src="/uploads/articles/tym-strojka-opava-zazaril-v-mezinarodni-soutezi-h2gp-2026/image-01.webp" class="img-fluid" alt="Fotografie – H2gp jpg 1600x1067 q85 subsampling"></p>
 
 <p>Úspěch týmu Strojka Opava je důkazem, že mladí lidé z Moravskoslezského kraje mají schopnosti uspět i v mezinárodní konkurenci. Soutěž H2GP zároveň ukazuje, že budoucnost dopravy a energetiky bude stát na inovacích, udržitelnosti a technickém vzdělávání.</p>
 

@@ -6,7 +6,7 @@ author: "Radim Sonnek"
 categories: ["Škola"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/navsteva-vystavy-telo-v-pohybu/cover.jpg"
+cover: "/uploads/articles/navsteva-vystavy-telo-v-pohybu/cover.webp"
 gallery: "navsteva-vystavy-telo-v-pohybu-galerie"
 attachments: []
 related: []

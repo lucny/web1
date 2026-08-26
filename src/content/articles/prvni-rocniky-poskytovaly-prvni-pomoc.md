@@ -6,7 +6,7 @@ author: "Daniela Kubová"
 categories: ["Škola"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/prvni-rocniky-poskytovaly-prvni-pomoc/cover.jpg"
+cover: "/uploads/articles/prvni-rocniky-poskytovaly-prvni-pomoc/cover.webp"
 gallery: "prvni-rocniky-poskytovaly-prvni-pomoc-galerie"
 attachments: []
 related: []

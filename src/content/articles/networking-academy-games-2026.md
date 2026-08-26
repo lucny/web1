@@ -6,7 +6,7 @@ author: "Radek Mikeš"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/networking-academy-games-2026/cover.jpg"
+cover: "/uploads/articles/networking-academy-games-2026/cover.webp"
 attachments: []
 related: []
 homepage:

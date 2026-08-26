@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/informatici-z-nasi-skoly-vynikli-v-krajskem-kole-soc/cover.jpg"
+cover: "/uploads/articles/informatici-z-nasi-skoly-vynikli-v-krajskem-kole-soc/cover.webp"
 attachments: []
 related: []
 homepage:

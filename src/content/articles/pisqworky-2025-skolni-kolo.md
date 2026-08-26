@@ -6,7 +6,7 @@ author: "Vladimíra Blaschke"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/pisqworky-2025-skolni-kolo/cover.jpg"
+cover: "/uploads/articles/pisqworky-2025-skolni-kolo/cover.webp"
 gallery: "pisqworky-2025-skolni-kolo-galerie"
 attachments: []
 related: []

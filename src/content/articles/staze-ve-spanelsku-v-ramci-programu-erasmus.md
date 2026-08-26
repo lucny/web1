@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola","Strojírenství","Umělecké obory"]
 tags: ["spolupráce","stáže"]
 programs: []
-cover: "/uploads/articles/staze-ve-spanelsku-v-ramci-programu-erasmus/cover.jpg"
+cover: "/uploads/articles/staze-ve-spanelsku-v-ramci-programu-erasmus/cover.webp"
 gallery: "staze-ve-spanelsku-v-ramci-programu-erasmus-galerie"
 attachments: []
 related: []

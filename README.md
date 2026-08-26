@@ -30,7 +30,12 @@ Potom otevřete `http://localhost:4321/admin/`. Lokální backend Decap CMS zapi
 | Kontrola typů a obsahu | `npm run check` |
 | Kompletní ověření | `npm test` |
 | Kontrola interních odkazů po buildu | `npm run check:links` |
+| Migrace lokálních JPG na WebP | `npm run media:convert` |
 | Vytvoření galerie | `npm run gallery:create -- <složka> <slug> "Název"` |
+
+`media:convert` je jednorázová migrace existujících obrázků: zachová cestu a název souboru, upraví lokální odkazy, použije maximálně 2400 px na delší straně a po úspěšném ověření odstraní původní JPG.
+
+JPG obrázky odkazované z externího webu zůstávají beze změny, protože jejich soubory nejsou součástí tohoto repozitáře.
 
 Například `npm run gallery:create -- C:\fotky\den-otevrenych-dveri den-otevrenych-dveri "Den otevřených dveří"` vytvoří optimalizované WebP kopie v `public/uploads/galleries/`, založí koncept galerie a záměrně označí ALT texty k redakčnímu doplnění.
 

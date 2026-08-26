@@ -6,7 +6,7 @@ author: "Eva Vengřínová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/mezinarodni-matematicka-soutez-naboj-1/cover.jpg"
+cover: "/uploads/articles/mezinarodni-matematicka-soutez-naboj-1/cover.webp"
 attachments: []
 related: []
 homepage:

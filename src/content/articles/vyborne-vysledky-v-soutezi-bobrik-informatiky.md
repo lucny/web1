@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/vyborne-vysledky-v-soutezi-bobrik-informatiky/cover.jpg"
+cover: "/uploads/articles/vyborne-vysledky-v-soutezi-bobrik-informatiky/cover.webp"
 attachments: []
 related: []
 homepage:

@@ -6,7 +6,7 @@ author: "Daniel Jedlička, M.A."
 categories: ["Škola","Informační technologie"]
 tags: ["soutěž","angličtina"]
 programs: []
-cover: "/uploads/articles/druhe-misto-v-krajskem-kole-olympiady-v-anglickem-jazyce/cover.jpg"
+cover: "/uploads/articles/druhe-misto-v-krajskem-kole-olympiady-v-anglickem-jazyce/cover.webp"
 attachments: []
 related: []
 homepage:

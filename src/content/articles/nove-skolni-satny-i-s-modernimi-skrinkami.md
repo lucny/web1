@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/nove-skolni-satny-i-s-modernimi-skrinkami/cover.jpg"
+cover: "/uploads/articles/nove-skolni-satny-i-s-modernimi-skrinkami/cover.webp"
 gallery: "nove-skolni-satny-i-s-modernimi-skrinkami-galerie"
 attachments: []
 related: []

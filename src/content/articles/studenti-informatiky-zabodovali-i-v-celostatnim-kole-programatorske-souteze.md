@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/studenti-informatiky-zabodovali-i-v-celostatnim-kole-programatorske-souteze/cover.jpg"
+cover: "/uploads/articles/studenti-informatiky-zabodovali-i-v-celostatnim-kole-programatorske-souteze/cover.webp"
 gallery: "studenti-informatiky-zabodovali-i-v-celostatnim-kole-programatorske-souteze-galerie"
 attachments: []
 related: []

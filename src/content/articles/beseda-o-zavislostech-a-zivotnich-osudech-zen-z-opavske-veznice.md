@@ -6,7 +6,7 @@ author: "Alena Biskupová"
 categories: ["Škola"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/beseda-o-zavislostech-a-zivotnich-osudech-zen-z-opavske-veznice/cover.jpg"
+cover: "/uploads/articles/beseda-o-zavislostech-a-zivotnich-osudech-zen-z-opavske-veznice/cover.webp"
 attachments: []
 related: []
 homepage:

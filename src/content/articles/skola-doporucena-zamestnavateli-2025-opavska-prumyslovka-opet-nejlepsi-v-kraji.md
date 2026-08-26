@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola"]
 tags: ["ocenění"]
 programs: []
-cover: "/uploads/articles/skola-doporucena-zamestnavateli-2025-opavska-prumyslovka-opet-nejlepsi-v-kraji/cover.jpg"
+cover: "/uploads/articles/skola-doporucena-zamestnavateli-2025-opavska-prumyslovka-opet-nejlepsi-v-kraji/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -37,4 +37,4 @@ Toto ocenění uděluje <em>Klub zaměstnavatelů Praha</em> a jeho cílem je vy
 
 <p>Navštivte náš <strong>Den otevřených dveří 22. ledna 2026</strong>, kde vám rádi představíme moderní učebny, špičkové vybavení i konkrétní možnosti studia a budování vaší kariéry.</p>
 
-<img src="/uploads/articles/skola-doporucena-zamestnavateli-2025-opavska-prumyslovka-opet-nejlepsi-v-kraji/image-01.jpg" class="img-fluid" alt="Fotografie – Szd diplom png 522x736 q85 subsampling">
+<img src="/uploads/articles/skola-doporucena-zamestnavateli-2025-opavska-prumyslovka-opet-nejlepsi-v-kraji/image-01.webp" class="img-fluid" alt="Fotografie – Szd diplom png 522x736 q85 subsampling">

@@ -19,7 +19,7 @@ contentBlocks:
   - type: gallery
     gallery: plakaty-prumyslovy-design-galerie
 attachments:
-  - file: /uploads/dji_20000818175753_0227_d.jpg
+  - file: /uploads/dji_20000818175753_0227_d.webp
     label: Ukázková fotografie z výstavy
     description: Doprovodný obrazový materiál k výstavě.
 article: plakaty-prumyslovy-design

@@ -6,7 +6,7 @@ author: "Marek Sedlecký"
 categories: ["Umělecké obory","Grafický design"]
 tags: ["výstava"]
 programs: []
-cover: "/uploads/articles/vystava-klauzurnich-praci-zaku-2-rocniku-oboru-graficky-design/cover.jpg"
+cover: "/uploads/articles/vystava-klauzurnich-praci-zaku-2-rocniku-oboru-graficky-design/cover.webp"
 gallery: "vystava-klauzurnich-praci-zaku-2-rocniku-oboru-graficky-design-galerie"
 attachments: []
 related: []

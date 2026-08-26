@@ -6,7 +6,7 @@ author: "Lenka Kašpárková, Ph.D."
 categories: ["Umělecké obory"]
 tags: ["spolupráce","workshop","práce žáků"]
 programs: []
-cover: "/uploads/articles/workshop-mozaiky-v-polske-ratibori/cover.jpg"
+cover: "/uploads/articles/workshop-mozaiky-v-polske-ratibori/cover.webp"
 gallery: "workshop-mozaiky-v-polske-ratibori-galerie"
 attachments: []
 related: []

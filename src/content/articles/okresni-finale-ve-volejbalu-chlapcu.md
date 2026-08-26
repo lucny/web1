@@ -6,7 +6,7 @@ author: "Pavel Hulva"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/okresni-finale-ve-volejbalu-chlapcu/cover.jpg"
+cover: "/uploads/articles/okresni-finale-ve-volejbalu-chlapcu/cover.webp"
 gallery: "okresni-finale-ve-volejbalu-chlapcu-galerie"
 attachments: []
 related: []

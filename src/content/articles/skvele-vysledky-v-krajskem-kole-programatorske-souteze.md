@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž","programování"]
 programs: []
-cover: "/uploads/articles/skvele-vysledky-v-krajskem-kole-programatorske-souteze/cover.jpg"
+cover: "/uploads/articles/skvele-vysledky-v-krajskem-kole-programatorske-souteze/cover.webp"
 attachments: [{"label":"Kategorie Programování mikrořadičů","url":"/uploads/attachments/skvele-vysledky-v-krajskem-kole-programatorske-souteze/soubor-1.pdf"},{"label":"Kategorie Programovací jazyky - mládež","url":"/uploads/attachments/skvele-vysledky-v-krajskem-kole-programatorske-souteze/soubor-2.pdf"}]
 related: []
 homepage:

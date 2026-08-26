@@ -6,7 +6,7 @@ author: "Jan Ermis"
 categories: ["Umělecké obory"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-na-design-blok-2025/cover.jpg"
+cover: "/uploads/articles/exkurze-na-design-blok-2025/cover.webp"
 attachments: []
 related: []
 homepage:

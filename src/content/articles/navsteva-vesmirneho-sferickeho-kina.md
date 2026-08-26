@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/navsteva-vesmirneho-sferickeho-kina/cover.jpg"
+cover: "/uploads/articles/navsteva-vesmirneho-sferickeho-kina/cover.webp"
 gallery: "navsteva-vesmirneho-sferickeho-kina-galerie"
 attachments: []
 related: []

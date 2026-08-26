@@ -6,7 +6,7 @@ author: "Karel Procházka"
 categories: ["Strojírenství"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/druhe-misto-nasich-strojaru-v-krajskem-kole-soc/cover.jpg"
+cover: "/uploads/articles/druhe-misto-nasich-strojaru-v-krajskem-kole-soc/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -22,4 +22,4 @@ status: published
 
 <p>Blahopřejeme oběma studentům k tomuto významnému úspěchu!</p>
 
-<p><img src="/uploads/articles/druhe-misto-nasich-strojaru-v-krajskem-kole-soc/image-01.jpg" class="img-fluid" alt="Fotografie – Soc strojari jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/druhe-misto-nasich-strojaru-v-krajskem-kole-soc/image-01.webp" class="img-fluid" alt="Fotografie – Soc strojari jpg 1600x1200 q85 subsampling"></p>

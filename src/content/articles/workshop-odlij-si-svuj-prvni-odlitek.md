@@ -6,7 +6,7 @@ author: "Iva Procházková"
 categories: ["Strojírenství"]
 tags: ["workshop"]
 programs: []
-cover: "/uploads/articles/workshop-odlij-si-svuj-prvni-odlitek/cover.jpg"
+cover: "/uploads/articles/workshop-odlij-si-svuj-prvni-odlitek/cover.webp"
 gallery: "workshop-odlij-si-svuj-prvni-odlitek-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola"]
 tags: ["angličtina"]
 programs: []
-cover: "/uploads/articles/cambridgeske-jazykove-zkousky-3/cover.jpg"
+cover: "/uploads/articles/cambridgeske-jazykove-zkousky-3/cover.webp"
 gallery: "cambridgeske-jazykove-zkousky-3-galerie"
 attachments: []
 related: []

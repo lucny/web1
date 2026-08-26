@@ -6,7 +6,7 @@ author: "Eva Vengřínová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/postup-do-krajskeho-kola-v-soutezi-financni-gramotnost/cover.jpg"
+cover: "/uploads/articles/postup-do-krajskeho-kola-v-soutezi-financni-gramotnost/cover.webp"
 attachments: []
 related: []
 homepage:

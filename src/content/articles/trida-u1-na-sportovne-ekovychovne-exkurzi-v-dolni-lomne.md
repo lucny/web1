@@ -6,7 +6,7 @@ author: "Lenka Kašpárková, Ph.D."
 categories: ["Umělecké obory"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/trida-u1-na-sportovne-ekovychovne-exkurzi-v-dolni-lomne/cover.jpg"
+cover: "/uploads/articles/trida-u1-na-sportovne-ekovychovne-exkurzi-v-dolni-lomne/cover.webp"
 gallery: "trida-u1-na-sportovne-ekovychovne-exkurzi-v-dolni-lomne-galerie"
 attachments: []
 related: []

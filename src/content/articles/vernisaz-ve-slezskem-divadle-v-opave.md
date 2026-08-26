@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/vernisaz-ve-slezskem-divadle-v-opave/cover.jpg"
+cover: "/uploads/articles/vernisaz-ve-slezskem-divadle-v-opave/cover.webp"
 gallery: "vernisaz-ve-slezskem-divadle-v-opave-galerie"
 attachments: []
 related: []

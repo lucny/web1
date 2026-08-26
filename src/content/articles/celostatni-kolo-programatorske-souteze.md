@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/celostatni-kolo-programatorske-souteze/cover.jpg"
+cover: "/uploads/articles/celostatni-kolo-programatorske-souteze/cover.webp"
 attachments: []
 related: []
 homepage:

@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/design-hracek-vystavuje-ve-slezskem-divadle/cover.jpg"
+cover: "/uploads/articles/design-hracek-vystavuje-ve-slezskem-divadle/cover.webp"
 gallery: "design-hracek-vystavuje-ve-slezskem-divadle-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/zaverecne-prace-studentu-oboru-it-1/cover.jpg"
+cover: "/uploads/articles/zaverecne-prace-studentu-oboru-it-1/cover.webp"
 gallery: "zaverecne-prace-studentu-oboru-it-1-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["studentů","práce"]
 programs: []
-cover: "/uploads/articles/obhajoby-zaverecnych-praci-tridy-it4/cover.jpg"
+cover: "/uploads/articles/obhajoby-zaverecnych-praci-tridy-it4/cover.webp"
 gallery: "obhajoby-zaverecnych-praci-tridy-it4-galerie"
 attachments: []
 related: []

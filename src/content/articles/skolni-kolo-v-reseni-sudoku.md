@@ -6,7 +6,7 @@ author: "Eva Zemanová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/skolni-kolo-v-reseni-sudoku/cover.jpg"
+cover: "/uploads/articles/skolni-kolo-v-reseni-sudoku/cover.webp"
 attachments: []
 related: []
 homepage:

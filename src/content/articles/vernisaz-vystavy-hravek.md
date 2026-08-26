@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["výstava","práce žáků","spolupráce"]
 programs: []
-cover: "/uploads/articles/vernisaz-vystavy-hravek/cover.jpg"
+cover: "/uploads/articles/vernisaz-vystavy-hravek/cover.webp"
 gallery: "vernisaz-vystavy-hravek-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Vladimíra Blaschke"
 categories: ["Škola"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/energie-pro-bezemisni-budoucnost-1/cover.jpg"
+cover: "/uploads/articles/energie-pro-bezemisni-budoucnost-1/cover.webp"
 gallery: "energie-pro-bezemisni-budoucnost-1-galerie"
 attachments: []
 related: []

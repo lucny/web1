@@ -6,7 +6,7 @@ author: "Zuzana Vildomcová"
 categories: ["Škola"]
 tags: ["spolupráce"]
 programs: []
-cover: "/uploads/articles/projekt-nase-krev-nas-kraj-opet-na-nasi-skole/cover.jpg"
+cover: "/uploads/articles/projekt-nase-krev-nas-kraj-opet-na-nasi-skole/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -22,4 +22,4 @@ status: published
 
 V minulých letech se po podobné besedě někteří naši studenti rozhodli darovat krev. Věříme, že i tentokrát se najdou noví dobrovolníci – pro zájemce plánujeme společnou návštěvu transfuzního oddělení v březnu příštího roku.
 
-<img src="/uploads/articles/projekt-nase-krev-nas-kraj-opet-na-nasi-skole/image-01.jpg" class="img-fluid" alt="Fotografie – Darci krve jpg 1600x1205 q85 subsampling">
+<img src="/uploads/articles/projekt-nase-krev-nas-kraj-opet-na-nasi-skole/image-01.webp" class="img-fluid" alt="Fotografie – Darci krve jpg 1600x1205 q85 subsampling">

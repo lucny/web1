@@ -6,7 +6,7 @@ author: "Eva Zemanová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/uspech-naseho-tymu-v-krajskem-kole-turnaje-triclennych-druzstev-v-sudoku/cover.jpg"
+cover: "/uploads/articles/uspech-naseho-tymu-v-krajskem-kole-turnaje-triclennych-druzstev-v-sudoku/cover.webp"
 attachments: []
 related: []
 homepage:

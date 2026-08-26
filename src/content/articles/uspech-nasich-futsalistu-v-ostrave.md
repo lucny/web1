@@ -6,7 +6,7 @@ author: "Eva Zemanová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/uspech-nasich-futsalistu-v-ostrave/cover.jpg"
+cover: "/uploads/articles/uspech-nasich-futsalistu-v-ostrave/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -20,4 +20,4 @@ status: published
 Po velmi bojovném výkonu a díky skvěle připravenému brankáři se nám podařilo <strong>postoupit do dalšího kola soutěže</strong>.<br>
 Všem hráčům děkujeme za výbornou reprezentaci školy, gratulujeme k zaslouženému úspěchu a <strong>držíme palce do dalšího kola</strong>!</p>
 
-<img src="/uploads/articles/uspech-nasich-futsalistu-v-ostrave/image-01.jpg" class="img-fluid" alt="Fotografie – Futsal jpg 1200x1600 q85 subsampling">
+<img src="/uploads/articles/uspech-nasich-futsalistu-v-ostrave/image-01.webp" class="img-fluid" alt="Fotografie – Futsal jpg 1200x1600 q85 subsampling">

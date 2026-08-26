@@ -6,7 +6,7 @@ author: "Monika Žurková"
 categories: ["Škola"]
 tags: ["angličtina","workshop"]
 programs: []
-cover: "/uploads/articles/anglicky-workshop-v-knihovne/cover.jpg"
+cover: "/uploads/articles/anglicky-workshop-v-knihovne/cover.webp"
 gallery: "anglicky-workshop-v-knihovne-galerie"
 attachments: []
 related: []

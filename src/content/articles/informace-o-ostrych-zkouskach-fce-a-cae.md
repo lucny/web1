@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola"]
 tags: ["certifikáty"]
 programs: []
-cover: "/uploads/articles/informace-o-ostrych-zkouskach-fce-a-cae/cover.jpg"
+cover: "/uploads/articles/informace-o-ostrych-zkouskach-fce-a-cae/cover.webp"
 attachments: [{"label":"PŘIHLÁŠKA červen ke zkouškám Cambridge English","url":"/uploads/attachments/informace-o-ostrych-zkouskach-fce-a-cae/soubor-1.pdf"}]
 related: []
 homepage:

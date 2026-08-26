@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/kapka-krve-pro-dobrou-vec/cover.jpg"
+cover: "/uploads/articles/kapka-krve-pro-dobrou-vec/cover.webp"
 attachments: []
 related: []
 homepage:

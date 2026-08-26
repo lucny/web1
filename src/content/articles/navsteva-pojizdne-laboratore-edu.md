@@ -6,7 +6,7 @@ author: "Radek Hendrych"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/navsteva-pojizdne-laboratore-edu/cover.jpg"
+cover: "/uploads/articles/navsteva-pojizdne-laboratore-edu/cover.webp"
 gallery: "navsteva-pojizdne-laboratore-edu-galerie"
 attachments: []
 related: []

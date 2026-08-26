@@ -6,7 +6,7 @@ author: "Daniela Kubová"
 categories: ["Umělecké obory"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/hudba-ma-vliv/cover.jpg"
+cover: "/uploads/articles/hudba-ma-vliv/cover.webp"
 gallery: "hudba-ma-vliv-galerie"
 attachments: []
 related: []

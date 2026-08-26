@@ -6,7 +6,7 @@ author: "Gabriela Bernardová"
 categories: ["Umělecké obory","Design hraček","Grafický design"]
 tags: ["práce žáků","spolupráce"]
 programs: []
-cover: "/uploads/articles/dracek-pro-vyuku-logopedie/cover.jpg"
+cover: "/uploads/articles/dracek-pro-vyuku-logopedie/cover.webp"
 gallery: "dracek-pro-vyuku-logopedie-galerie"
 attachments: []
 related: []

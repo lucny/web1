@@ -6,7 +6,7 @@ author: "Petr Marcalík"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/land-art-ve-svobodnych-hermanicich-1/cover.jpg"
+cover: "/uploads/articles/land-art-ve-svobodnych-hermanicich-1/cover.webp"
 gallery: "land-art-ve-svobodnych-hermanicich-1-galerie"
 attachments: []
 related: []

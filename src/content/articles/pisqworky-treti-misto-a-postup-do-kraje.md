@@ -6,7 +6,7 @@ author: "Vladimíra Blaschke"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/pisqworky-treti-misto-a-postup-do-kraje/cover.jpg"
+cover: "/uploads/articles/pisqworky-treti-misto-a-postup-do-kraje/cover.webp"
 gallery: "pisqworky-treti-misto-a-postup-do-kraje-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Petr Grussmann"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/uspech-nasich-zaku-v-narodnim-kole-ceske-ai-olympiady/cover.jpg"
+cover: "/uploads/articles/uspech-nasich-zaku-v-narodnim-kole-ceske-ai-olympiady/cover.webp"
 gallery: "uspech-nasich-zaku-v-narodnim-kole-ceske-ai-olympiady-galerie"
 attachments: []
 related: []
@@ -27,7 +27,7 @@ status: published
 
 <p>Význam soutěže potvrzuje i její celostátní rozsah. Do okresních kol se zapojilo 160 týmů, v krajských kolech soutěžilo 100 týmů a do národního finále postoupilo 55 nejlepších týmů z celé České republiky. Finálové kategorie vznikaly ve spolupráci s Fakultou aplikovaných věd ZČU a s ohledem na oblasti důležité pro rozvoj průmyslu, veřejného sektoru i celé společnosti.</p>
 
-<p><img src="/uploads/articles/uspech-nasich-zaku-v-narodnim-kole-ceske-ai-olympiady/image-01.jpg" class="img-fluid" alt="Fotografie – Ai olympiada jpg 1600x1067 q85 subsampling"></p>
+<p><img src="/uploads/articles/uspech-nasich-zaku-v-narodnim-kole-ceske-ai-olympiady/image-01.webp" class="img-fluid" alt="Fotografie – Ai olympiada jpg 1600x1067 q85 subsampling"></p>
 
 <p>V soutěžní linii <strong>AI Startup</strong>, do níž se zapojil také náš tým, se hodnotily především inovativní aplikační nápady, jejich praktický dopad, proveditelnost a přínos pro uživatele. Ve finále byly projekty rozděleny podle tematického zaměření do kategorií AI pro mobilitu, AI pro zdravotnictví a AI pro veřejnou sféru.</p>
 

@@ -6,7 +6,7 @@ author: "Eva Zemanová"
 categories: ["Škola"]
 tags: ["soutěž","atletika"]
 programs: []
-cover: "/uploads/articles/soutez-ve-skoku-vysokem-pro-stredni-skoly-premierovy-rocnik-je-za-nami/cover.jpg"
+cover: "/uploads/articles/soutez-ve-skoku-vysokem-pro-stredni-skoly-premierovy-rocnik-je-za-nami/cover.webp"
 gallery: "soutez-ve-skoku-vysokem-pro-stredni-skoly-premierovy-rocnik-je-za-nami-galerie"
 attachments: []
 related: []

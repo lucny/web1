@@ -6,7 +6,7 @@ author: "Alena Biskupová"
 categories: ["Škola"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-u-okresniho-soudu-v-opave/cover.jpg"
+cover: "/uploads/articles/exkurze-u-okresniho-soudu-v-opave/cover.webp"
 gallery: "exkurze-u-okresniho-soudu-v-opave-galerie"
 attachments: []
 related: []

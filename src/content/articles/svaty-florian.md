@@ -6,7 +6,7 @@ author: "Lenka Szwedová"
 categories: ["Umělecké obory","Grafický design"]
 tags: ["práce žáků","spolupráce"]
 programs: []
-cover: "/uploads/articles/svaty-florian/cover.jpg"
+cover: "/uploads/articles/svaty-florian/cover.webp"
 attachments: []
 related: []
 homepage:

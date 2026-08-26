@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola"]
 tags: ["prezentace","školy"]
 programs: []
-cover: "/uploads/articles/nase-skola-na-veletrhu-povolani/cover.jpg"
+cover: "/uploads/articles/nase-skola-na-veletrhu-povolani/cover.webp"
 gallery: "nase-skola-na-veletrhu-povolani-galerie"
 attachments: []
 related: []

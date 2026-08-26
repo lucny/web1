@@ -6,7 +6,7 @@ author: "Daniela Kubová"
 categories: ["Škola"]
 tags: ["workshop"]
 programs: []
-cover: "/uploads/articles/hrou-proti-aids/cover.jpg"
+cover: "/uploads/articles/hrou-proti-aids/cover.webp"
 gallery: "hrou-proti-aids-galerie"
 attachments: []
 related: []

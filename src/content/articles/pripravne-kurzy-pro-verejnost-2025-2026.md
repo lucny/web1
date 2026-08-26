@@ -6,7 +6,7 @@ author: "Lubomír Anlauf"
 categories: ["Umělecké obory"]
 tags: ["kurzy"]
 programs: []
-cover: "/uploads/articles/pripravne-kurzy-pro-verejnost-2025-2026/cover.jpg"
+cover: "/uploads/articles/pripravne-kurzy-pro-verejnost-2025-2026/cover.webp"
 attachments: []
 related: []
 homepage:

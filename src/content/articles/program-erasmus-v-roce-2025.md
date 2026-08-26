@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola","Informační technologie","Strojírenství","Umělecké obory"]
 tags: ["spolupráce","stáže"]
 programs: []
-cover: "/uploads/articles/program-erasmus-v-roce-2025/cover.jpg"
+cover: "/uploads/articles/program-erasmus-v-roce-2025/cover.webp"
 gallery: "program-erasmus-v-roce-2025-galerie"
 attachments: []
 related: []

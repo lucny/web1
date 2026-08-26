@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/tradicni-povanocni-badmintonovy-turnaj/cover.jpg"
+cover: "/uploads/articles/tradicni-povanocni-badmintonovy-turnaj/cover.webp"
 attachments: []
 related: []
 homepage:

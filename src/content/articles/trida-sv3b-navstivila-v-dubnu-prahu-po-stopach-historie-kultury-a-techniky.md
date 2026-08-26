@@ -6,7 +6,7 @@ author: "Martina Hulvová"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/trida-sv3b-navstivila-v-dubnu-prahu-po-stopach-historie-kultury-a-techniky/cover.jpg"
+cover: "/uploads/articles/trida-sv3b-navstivila-v-dubnu-prahu-po-stopach-historie-kultury-a-techniky/cover.webp"
 gallery: "trida-sv3b-navstivila-v-dubnu-prahu-po-stopach-historie-kultury-a-techniky-galerie"
 attachments: []
 related: []

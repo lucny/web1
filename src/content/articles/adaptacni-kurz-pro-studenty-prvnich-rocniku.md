@@ -6,7 +6,7 @@ author: "Radim Sonnek"
 categories: ["Škola"]
 tags: ["kurz"]
 programs: []
-cover: "/uploads/articles/adaptacni-kurz-pro-studenty-prvnich-rocniku/cover.jpg"
+cover: "/uploads/articles/adaptacni-kurz-pro-studenty-prvnich-rocniku/cover.webp"
 gallery: "adaptacni-kurz-pro-studenty-prvnich-rocniku-galerie"
 attachments: []
 related: []
@@ -23,7 +23,7 @@ status: published
 
 <p>Volné chvíle byly vyplněny sportovními aktivitami, například míčovými hrami, a také společenskými hrami, které podpořily přátelskou atmosféru mezi účastníky.</p>
 
-<p><img src="/uploads/articles/adaptacni-kurz-pro-studenty-prvnich-rocniku/image-01.jpg" class="img-fluid" alt="Fotografie – Adaptacni kurz 2025f jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/adaptacni-kurz-pro-studenty-prvnich-rocniku/image-01.webp" class="img-fluid" alt="Fotografie – Adaptacni kurz 2025f jpg 1600x1200 q85 subsampling"></p>
 
 <p>Adaptační pobyt hodnotíme jako velmi úspěšný. Žáci si nejen rozšířili znalosti o regionu a jeho technických památkách, ale především navázali nová přátelství, posílili týmového ducha a užili si společný čas v příjemném prostředí.</p>
 

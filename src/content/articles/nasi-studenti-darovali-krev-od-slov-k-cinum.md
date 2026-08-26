@@ -6,7 +6,7 @@ author: "Zuzana Vildomcová"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/nasi-studenti-darovali-krev-od-slov-k-cinum/cover.jpg"
+cover: "/uploads/articles/nasi-studenti-darovali-krev-od-slov-k-cinum/cover.webp"
 gallery: "nasi-studenti-darovali-krev-od-slov-k-cinum-galerie"
 attachments: []
 related: []

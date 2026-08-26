@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["práce žáků","spolupráce"]
 programs: []
-cover: "/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/cover.jpg"
+cover: "/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -23,13 +23,13 @@ status: published
 <p>Věříme, že s dobrým parťákem po boku jde všechno lépe – i louskání prvních písmenek. Skřítci mají dětem pomoci vybudovat si vřelý vztah ke čtení a ukázat jim, že knížka je bránou do jiného světa.<br>
 Když si dítě ke čtení přizve svého skřítka, stává se z prohlížení stránek společné dobrodružství. Tento rituál pomáhá dětem <strong>zklidnit mysl, posiluje jejich vnitřní svět a rozvíjí empatii</strong>. Skřítek je trpělivý posluchač, který se nikdy nesměje chybám v předčítání, a právě tato podpora dodává malým objevitelům odvahu a <strong>posiluje jejich sebedůvěru</strong>.</p>
 
-<p><img src="/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/image-01.jpg" class="img-fluid" alt="Fotografie – Skritek pro knihovnu jpg 1918x1080 q85 subsampling"></p>
+<p><img src="/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/image-01.webp" class="img-fluid" alt="Fotografie – Skritek pro knihovnu jpg 1918x1080 q85 subsampling"></p>
 
 <h3>Putování za dětmi</h3>
 
 <p>Knihovna si část skřítků ponechá pro své programy, ale někteří se vydají na zkušenou i do dalších poboček a knihoven v okolí, aby šířili radost a chuť do čtení i za hranicemi našeho města.</p>
 
-<p><img src="/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/image-02.jpg" class="img-fluid" alt="Fotografie – Skritek pro knihovnu jpg 1918x1080 q85 subsampling"></p>
+<p><img src="/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/image-02.webp" class="img-fluid" alt="Fotografie – Skritek pro knihovnu jpg 1918x1080 q85 subsampling"></p>
 
 <h3>Kdo za tím stojí?</h3>
 
@@ -37,4 +37,4 @@ Když si dítě ke čtení přizve svého skřítka, stává se z prohlížení 
 
 <p>Věříme, že tito textilní průvodci vdechnou opavské knihovně ještě více kouzelné atmosféry!</p>
 
-<p><img src="/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/image-03.jpg" class="img-fluid" alt="Fotografie – Skritek pro knihovnu jpg 1918x1080 q85 subsampling"></p>
+<p><img src="/uploads/articles/skritek-pro-knihovnu-mali-pruvodci-svetem-pribehu/image-03.webp" class="img-fluid" alt="Fotografie – Skritek pro knihovnu jpg 1918x1080 q85 subsampling"></p>

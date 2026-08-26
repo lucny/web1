@@ -6,7 +6,7 @@ author: "Vladimíra Blaschke"
 categories: []
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/cisticka-odpadnich-vod/cover.jpg"
+cover: "/uploads/articles/cisticka-odpadnich-vod/cover.webp"
 gallery: "cisticka-odpadnich-vod-galerie"
 attachments: []
 related: []

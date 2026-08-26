@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/cover.jpg"
+cover: "/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/cover.webp"
 gallery: "soutez-pro-zaky-zakladnich-skol-prezentace-2025-galerie"
 attachments: [{"label":"Plakát soutěže ve formátu A2 (PDF)","url":"/uploads/attachments/soutez-pro-zaky-zakladnich-skol-prezentace-2025/soubor-1.pdf"}]
 related: []
@@ -143,13 +143,13 @@ Marie Vlčková</span></span></b></span></span></span></p>
 <p style="text-align: justify; margin: 0cm 0cm 10pt;">Také letos byla k vidění velmi zajímavá a různorodá multimediální díla. K těm nejkvalitnějším rozhodně patřila ta, jež získala ocenění od odborných porotců. Hlavní cenu letos porota udělila velmi atraktivní videohře <em>Mayhem D</em> <strong>Tobiáše Lelovského</strong> ze <em>ZŠ a MŠ Slavkov</em>, jejíž děj se odehrává ve fantazijním trojrozměrném světě. Hned dvě propracované počítačové hry naprogramoval a publiku představil další letošní držitel ceny poroty <strong>Adam Burdík</strong> ze <em>ZŠ Šrámkova v Opavě</em>. Porotci rovněž ocenili animovaný film Nehoda na hřišti autorské trojice <strong>Laura Breksová, Tereza Strnádková</strong> a <strong>Marie Vlčková</strong> ze <em>ZŠ Boženy Němcové v Opavě</em>.<br>
 <br>
 
-<img src="/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/image-01.jpg" class="img-fluid" alt="Fotografie – Prezentace vitezove jpg 1600x900 q85 subsampling"></p>
+<img src="/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/image-01.webp" class="img-fluid" alt="Fotografie – Prezentace vitezove jpg 1600x900 q85 subsampling"></p>
 
 <p style="text-align: justify; margin: 0cm 0cm 10pt;">O dalších cenách rozhodovali hlasováním diváci; už tradičně jimi byli žáci pozvaných základních škol a jejich pedagogický doprovod. Největší přízeň publika si získalo vystoupení <strong>Matyáše Schwarze</strong> a <strong>Elly Šalmanové</strong> ze <em>ZŠ Kravaře</em>, kteří ve svěží prezentaci propagovali své vlastní vývojářské studio a jeho rodící se produkty. Druhé místo přisoudili diváci <strong>Sabině Černínové</strong> ze <em>ZŠ Boženy Němcové</em> za její prezentaci o Opavě a těsně za ní skončila na pomyslném třetím stupínku <strong>Sára Tošková</strong> ze <em>ZŠ Šrámkova</em>, která svou práci věnovala fenoménu vzducholodí.</p>
 
 <p style="text-align: justify; margin: 0cm 0cm 10pt;">
 
-<img src="/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/image-02.jpg" class="img-fluid" alt="Fotografie – Prezentace jpg 1406x1600 q85 subsampling"></p>
+<img src="/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/image-02.webp" class="img-fluid" alt="Fotografie – Prezentace jpg 1406x1600 q85 subsampling"></p>
 
 <p style="text-align: justify; margin: 0cm 0cm 10pt;">Od prvního ročníku doprovází prezentační přehlídku znalostní soutěž z oblasti informačních a komunikačních technologií pro týmy ze zúčastněných základních škol. V tomto ročníku se v ní nejvíce dařilo reprezentantům <strong>ZŠ a MŠ Sudice</strong>.</p>
 
@@ -159,7 +159,7 @@ Marie Vlčková</span></span></b></span></span></span></p>
 
 <a href="https://www.remante.cz/" target="_blank">
 
-<img src="/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/image-03.jpg" class="img-fluid" alt="Fotografie – Remante logo png 796x158 q85 subsampling">
+<img src="/uploads/articles/soutez-pro-zaky-zakladnich-skol-prezentace-2025/image-03.webp" class="img-fluid" alt="Fotografie – Remante logo png 796x158 q85 subsampling">
 
 </a></p>
 

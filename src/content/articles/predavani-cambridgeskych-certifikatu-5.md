@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola"]
 tags: ["angličtina"]
 programs: []
-cover: "/uploads/articles/predavani-cambridgeskych-certifikatu-5/cover.jpg"
+cover: "/uploads/articles/predavani-cambridgeskych-certifikatu-5/cover.webp"
 gallery: "predavani-cambridgeskych-certifikatu-5-galerie"
 attachments: []
 related: []

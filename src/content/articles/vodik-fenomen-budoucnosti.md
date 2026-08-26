@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Škola","Strojírenství"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/vodik-fenomen-budoucnosti/cover.jpg"
+cover: "/uploads/articles/vodik-fenomen-budoucnosti/cover.webp"
 gallery: "vodik-fenomen-budoucnosti-galerie"
 attachments: []
 related: []

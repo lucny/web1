@@ -6,7 +6,7 @@ author: "Alena Biskupová"
 categories: ["Umělecké obory"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/vychovne-vzdelavaci-zajezd-do-holandska/cover.jpg"
+cover: "/uploads/articles/vychovne-vzdelavaci-zajezd-do-holandska/cover.webp"
 gallery: "vychovne-vzdelavaci-zajezd-do-holandska-galerie"
 attachments: []
 related: []

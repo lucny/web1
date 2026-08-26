@@ -6,7 +6,7 @@ author: "Edita Binarová"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/studenti-navstivili-anglicke-divadelni-predstaveni-frankenstein/cover.jpg"
+cover: "/uploads/articles/studenti-navstivili-anglicke-divadelni-predstaveni-frankenstein/cover.webp"
 attachments: []
 related: []
 homepage:

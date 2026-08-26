@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/letosni-veletrh-gaudeamus-v-brne/cover.jpg"
+cover: "/uploads/articles/letosni-veletrh-gaudeamus-v-brne/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -20,4 +20,4 @@ status: published
 
 <p>Součásti veletrhu byly rovněž tematické přednášky, kde se žáci mohli dozvědět řadu informací, které jim pomohou nejen zvolit vhodnou školu, ale také jak následně směřovat svou kariéru. U jednotlivých stánků se žákům věnovali vysokoškolští studenti i kariérní poradci, kteří poskytli důležité informace o studijních programech, aktivitách vysokých škol a jejich vybavení.</p>
 
-<p><img src="/uploads/articles/letosni-veletrh-gaudeamus-v-brne/image-01.jpg" class="img-fluid" alt="Fotografie – Gaudeamus jpg 2000x1128 q85 subsampling"></p>
+<p><img src="/uploads/articles/letosni-veletrh-gaudeamus-v-brne/image-01.webp" class="img-fluid" alt="Fotografie – Gaudeamus jpg 2000x1128 q85 subsampling"></p>

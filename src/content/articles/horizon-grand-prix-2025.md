@@ -6,7 +6,7 @@ author: "Karel Procházka"
 categories: ["Strojírenství"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/horizon-grand-prix-2025/cover.jpg"
+cover: "/uploads/articles/horizon-grand-prix-2025/cover.webp"
 gallery: "horizon-grand-prix-2025-galerie"
 attachments: []
 related: []

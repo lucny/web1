@@ -5,7 +5,7 @@ position: odborné předměty strojírenství
 phones:
   - +420 553 621 580 / 108
 email: sonnek@sspu-opava.cz
-photo: /uploads/people/avatar-male.jpg
+photo: /uploads/people/avatar-male.webp
 groups: [ucitele]
 studyFields: [strojirenstvi]
 showInContacts: true

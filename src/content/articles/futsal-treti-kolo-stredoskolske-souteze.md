@@ -6,7 +6,7 @@ author: "Eva Zemanová"
 categories: ["Škola"]
 tags: ["futsal"]
 programs: []
-cover: "/uploads/articles/futsal-treti-kolo-stredoskolske-souteze/cover.jpg"
+cover: "/uploads/articles/futsal-treti-kolo-stredoskolske-souteze/cover.webp"
 gallery: "futsal-treti-kolo-stredoskolske-souteze-galerie"
 attachments: []
 related: []

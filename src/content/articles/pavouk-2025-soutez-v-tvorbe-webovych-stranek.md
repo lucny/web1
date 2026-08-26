@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/pavouk-2025-soutez-v-tvorbe-webovych-stranek/cover.jpg"
+cover: "/uploads/articles/pavouk-2025-soutez-v-tvorbe-webovych-stranek/cover.webp"
 attachments: []
 related: []
 homepage:

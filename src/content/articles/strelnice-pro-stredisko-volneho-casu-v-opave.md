@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/strelnice-pro-stredisko-volneho-casu-v-opave/cover.jpg"
+cover: "/uploads/articles/strelnice-pro-stredisko-volneho-casu-v-opave/cover.webp"
 gallery: "strelnice-pro-stredisko-volneho-casu-v-opave-galerie"
 attachments: []
 related: []

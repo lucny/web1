@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/exkurze-v-tepelne-elektrarne-v-trebovicich/cover.jpg"
+cover: "/uploads/articles/exkurze-v-tepelne-elektrarne-v-trebovicich/cover.webp"
 gallery: "exkurze-v-tepelne-elektrarne-v-trebovicich-galerie"
 attachments: []
 related: []

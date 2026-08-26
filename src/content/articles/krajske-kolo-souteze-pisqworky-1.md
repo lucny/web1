@@ -6,7 +6,7 @@ author: "Eva Vengřínová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/krajske-kolo-souteze-pisqworky-1/cover.jpg"
+cover: "/uploads/articles/krajske-kolo-souteze-pisqworky-1/cover.webp"
 gallery: "krajske-kolo-souteze-pisqworky-1-galerie"
 attachments: []
 related: []

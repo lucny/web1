@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Škola"]
 tags: ["soutěž","spolupráce"]
 programs: []
-cover: "/uploads/articles/soutez-prezentace-2026/cover.jpg"
+cover: "/uploads/articles/soutez-prezentace-2026/cover.webp"
 gallery: "soutez-prezentace-2026-galerie"
 attachments: []
 related: []

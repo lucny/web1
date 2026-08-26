@@ -6,7 +6,7 @@ author: "Kateřina Čechová"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/okresni-kolo-strednich-skol-ve-florbalu/cover.jpg"
+cover: "/uploads/articles/okresni-kolo-strednich-skol-ve-florbalu/cover.webp"
 attachments: []
 related: []
 homepage:

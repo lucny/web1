@@ -6,7 +6,7 @@ author: "Lubomír Anlauf"
 categories: []
 tags: ["práce žáků","spolupráce"]
 programs: []
-cover: "/uploads/articles/tiskova-zprava-studenti-meni-tvar-opavske-tovarny-mondelez-international/cover.jpg"
+cover: "/uploads/articles/tiskova-zprava-studenti-meni-tvar-opavske-tovarny-mondelez-international/cover.webp"
 gallery: "tiskova-zprava-studenti-meni-tvar-opavske-tovarny-mondelez-international-galerie"
 attachments: [{"label":"Celá zpráva (PDF)","url":"/uploads/attachments/tiskova-zprava-studenti-meni-tvar-opavske-tovarny-mondelez-international/soubor-1.pdf"}]
 related: []

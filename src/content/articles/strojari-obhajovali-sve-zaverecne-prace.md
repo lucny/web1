@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/strojari-obhajovali-sve-zaverecne-prace/cover.jpg"
+cover: "/uploads/articles/strojari-obhajovali-sve-zaverecne-prace/cover.webp"
 gallery: "strojari-obhajovali-sve-zaverecne-prace-galerie"
 attachments: []
 related: []

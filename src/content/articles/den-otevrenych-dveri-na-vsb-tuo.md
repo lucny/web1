@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/den-otevrenych-dveri-na-vsb-tuo/cover.jpg"
+cover: "/uploads/articles/den-otevrenych-dveri-na-vsb-tuo/cover.webp"
 gallery: "den-otevrenych-dveri-na-vsb-tuo-galerie"
 attachments: []
 related: []

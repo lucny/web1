@@ -6,7 +6,7 @@ author: "Zuzana Vildomcová"
 categories: ["Škola"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/studenti-objevovali-tajemstvi-nebezpecnych-latek/cover.jpg"
+cover: "/uploads/articles/studenti-objevovali-tajemstvi-nebezpecnych-latek/cover.webp"
 attachments: []
 related: []
 homepage:

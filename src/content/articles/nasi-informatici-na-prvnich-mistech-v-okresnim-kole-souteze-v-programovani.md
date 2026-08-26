@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/nasi-informatici-na-prvnich-mistech-v-okresnim-kole-souteze-v-programovani/cover.jpg"
+cover: "/uploads/articles/nasi-informatici-na-prvnich-mistech-v-okresnim-kole-souteze-v-programovani/cover.webp"
 attachments: []
 related: []
 homepage:

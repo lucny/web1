@@ -6,7 +6,7 @@ author: "Pavel Hulva"
 categories: ["Škola"]
 tags: ["kurz"]
 programs: []
-cover: "/uploads/articles/lyzarsky-a-snowboardovy-kurz-2026/cover.jpg"
+cover: "/uploads/articles/lyzarsky-a-snowboardovy-kurz-2026/cover.webp"
 gallery: "lyzarsky-a-snowboardovy-kurz-2026-galerie"
 attachments: []
 related: []

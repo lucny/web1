@@ -6,7 +6,7 @@ author: "Eva Vengřínová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/soutez-ve-financni-gramotnosti-3-misto-v-kraji/cover.jpg"
+cover: "/uploads/articles/soutez-ve-financni-gramotnosti-3-misto-v-kraji/cover.webp"
 attachments: []
 related: []
 homepage:

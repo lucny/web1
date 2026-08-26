@@ -6,7 +6,7 @@ author: "Karel Procházka"
 categories: ["Strojírenství"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/uspechy-ve-strojarskych-soutezich/cover.jpg"
+cover: "/uploads/articles/uspechy-ve-strojarskych-soutezich/cover.webp"
 gallery: "uspechy-ve-strojarskych-soutezich-galerie"
 attachments: []
 related: []

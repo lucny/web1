@@ -6,7 +6,7 @@ author: "Daniela Kubová"
 categories: ["Umělecké obory"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/kreslim-kreslis-kreslime/cover.jpg"
+cover: "/uploads/articles/kreslim-kreslis-kreslime/cover.webp"
 gallery: "kreslim-kreslis-kreslime-galerie"
 attachments: []
 related: []
@@ -19,4 +19,4 @@ status: published
 
 <p>11. března proběhla v tělocvičně školy vyhlášená soutěž pro žáky ZŠ <strong>Kreslím, kreslíš, kreslíme</strong>. Soutěže v kreslení modelu se zúčastnilo 78 žáků z 11 škol Opavy a okolí. Oceněným žákům gratulujeme a všem přejeme hodně tvůrčí fantazie!</p>
 
-<img src="/uploads/articles/kreslim-kreslis-kreslime/image-01.jpg" class="img-fluid" alt="Fotografie – Kreslim plakat jpg 587x583 q85 subsampling">
+<img src="/uploads/articles/kreslim-kreslis-kreslime/image-01.webp" class="img-fluid" alt="Fotografie – Kreslim plakat jpg 587x583 q85 subsampling">

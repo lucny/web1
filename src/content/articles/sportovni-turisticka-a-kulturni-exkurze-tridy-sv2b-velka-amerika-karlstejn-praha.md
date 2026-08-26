@@ -6,7 +6,7 @@ author: "Martina Hulvová"
 categories: ["Strojírenství"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/sportovni-turisticka-a-kulturni-exkurze-tridy-sv2b-velka-amerika-karlstejn-praha/cover.jpg"
+cover: "/uploads/articles/sportovni-turisticka-a-kulturni-exkurze-tridy-sv2b-velka-amerika-karlstejn-praha/cover.webp"
 gallery: "sportovni-turisticka-a-kulturni-exkurze-tridy-sv2b-velka-amerika-karlstejn-praha-galerie"
 attachments: []
 related: []

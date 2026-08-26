@@ -6,7 +6,7 @@ author: "Daniel Jedlička, M.A."
 categories: ["Škola","Strojírenství"]
 tags: ["soutěž","angličtina"]
 programs: []
-cover: "/uploads/articles/michal-ondracek-vyhral-okresni-kolo-souteze-v-anglickem-jazyce/cover.jpg"
+cover: "/uploads/articles/michal-ondracek-vyhral-okresni-kolo-souteze-v-anglickem-jazyce/cover.webp"
 attachments: [{"label":"Výsledková listina okresního kola (PDF)","url":"/uploads/attachments/michal-ondracek-vyhral-okresni-kolo-souteze-v-anglickem-jazyce/soubor-1.pdf"}]
 related: []
 homepage:
@@ -24,4 +24,4 @@ Výsledková listina okresního kola (PDF)
 
 </a>
 
-<img src="/uploads/articles/michal-ondracek-vyhral-okresni-kolo-souteze-v-anglickem-jazyce/image-01.jpg" class="img-fluid" alt="Fotografie – Soutez anglictina ok jpg 1600x1200 q85 subsampling">
+<img src="/uploads/articles/michal-ondracek-vyhral-okresni-kolo-souteze-v-anglickem-jazyce/image-01.webp" class="img-fluid" alt="Fotografie – Soutez anglictina ok jpg 1600x1200 q85 subsampling">

@@ -6,7 +6,7 @@ author: "Šárka Šmehýlová"
 categories: ["Škola"]
 tags: []
 programs: []
-cover: "/uploads/articles/jeden-svet-2026/cover.jpg"
+cover: "/uploads/articles/jeden-svet-2026/cover.webp"
 attachments: []
 related: []
 homepage:

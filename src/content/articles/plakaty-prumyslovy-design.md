@@ -6,7 +6,7 @@ author: "Jiří Štencek"
 categories: ["Umělecké obory","Průmyslový design"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/plakaty-prumyslovy-design/cover.jpg"
+cover: "/uploads/articles/plakaty-prumyslovy-design/cover.webp"
 gallery: "plakaty-prumyslovy-design-galerie"
 attachments: []
 related: []

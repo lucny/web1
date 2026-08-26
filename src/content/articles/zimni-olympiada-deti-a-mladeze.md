@@ -6,7 +6,7 @@ author: "Marek Lučný"
 categories: []
 tags: []
 programs: []
-cover: "/uploads/articles/zimni-olympiada-deti-a-mladeze/cover.jpg"
+cover: "/uploads/articles/zimni-olympiada-deti-a-mladeze/cover.webp"
 gallery: "zimni-olympiada-deti-a-mladeze-galerie"
 attachments: []
 related: []

@@ -6,7 +6,7 @@ author: "Vítězslav Doleží"
 categories: ["Technické obory"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/energie-pro-bezemisni-budoucnost/cover.jpg"
+cover: "/uploads/articles/energie-pro-bezemisni-budoucnost/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -18,4 +18,4 @@ status: published
 
 <p>Žáci třetích ročníků technických oborů se zúčastnili besedy Energie pro bezemisní budoucnost. Formou diskuse a názorných ukázek si žáci prohloubili znalosti na toto aktuální téma. Probíraly se druhy elektráren a jejich vliv na emise, ale i spolehlivost výroby elektrické energie.</p>
 
-<img src="/uploads/articles/energie-pro-bezemisni-budoucnost/image-01.jpg" class="img-fluid" alt="Fotografie – Bezemisni budoucnost jpg 1600x901 q85 subsampling">
+<img src="/uploads/articles/energie-pro-bezemisni-budoucnost/image-01.webp" class="img-fluid" alt="Fotografie – Bezemisni budoucnost jpg 1600x901 q85 subsampling">

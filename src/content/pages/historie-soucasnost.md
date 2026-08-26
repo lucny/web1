@@ -19,7 +19,7 @@ contentBlocks:
 
       Škola zahájila výuku na podzim roku 1870 a existovala až do podzimu 1944, kdy byla těžce poškozena leteckými nálety spojenců. Stala se důležitým místem středoškolské německé vzdělanosti. Rok zde studoval také Joseph Maria Olbrich, zakladatel vídeňské secese.
   - type: image
-    image: /uploads/contact/school-building.jpg
+    image: /uploads/contact/school-building.webp
     alt: Historická budova školy ve Smetanových sadech
     caption: Historická budova školy sousedí se Slezským zemským muzeem.
   - type: heading

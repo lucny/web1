@@ -6,7 +6,7 @@ author: "Tereza Tomaszková"
 categories: ["Informační technologie"]
 tags: ["workshop"]
 programs: []
-cover: "/uploads/articles/zaci-tridy-it1-absolvovali-anglicky-workshop-o-britskych-ostrovech/cover.jpg"
+cover: "/uploads/articles/zaci-tridy-it1-absolvovali-anglicky-workshop-o-britskych-ostrovech/cover.webp"
 attachments: []
 related: []
 homepage:

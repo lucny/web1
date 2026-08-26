@@ -6,7 +6,7 @@ author: "Kateřina Čechová"
 categories: ["Informační technologie"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/myty-versus-realita-u-hasicskeho-sboru/cover.jpg"
+cover: "/uploads/articles/myty-versus-realita-u-hasicskeho-sboru/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -39,4 +39,4 @@ Většina z nás měla předem celkem jasnou (a jak se ukázalo, dost zkreslenou
 
 <p><em>Za třídu IT1 M. H.</em></p>
 
-<p><img src="/uploads/articles/myty-versus-realita-u-hasicskeho-sboru/image-01.jpg" class="img-fluid" alt="Fotografie – Hasici it1 jpg 1440x1920 q85 subsampling"></p>
+<p><img src="/uploads/articles/myty-versus-realita-u-hasicskeho-sboru/image-01.webp" class="img-fluid" alt="Fotografie – Hasici it1 jpg 1440x1920 q85 subsampling"></p>

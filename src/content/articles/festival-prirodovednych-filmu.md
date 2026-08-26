@@ -6,7 +6,7 @@ author: "Vladimíra Blaschke"
 categories: ["Škola"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/festival-prirodovednych-filmu/cover.jpg"
+cover: "/uploads/articles/festival-prirodovednych-filmu/cover.webp"
 gallery: "festival-prirodovednych-filmu-galerie"
 attachments: []
 related: []

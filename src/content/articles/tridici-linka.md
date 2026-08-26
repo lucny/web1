@@ -6,7 +6,7 @@ author: "Vladimíra Blaschke"
 categories: ["Škola"]
 tags: ["exkurze"]
 programs: []
-cover: "/uploads/articles/tridici-linka/cover.jpg"
+cover: "/uploads/articles/tridici-linka/cover.webp"
 gallery: "tridici-linka-galerie"
 attachments: []
 related: []

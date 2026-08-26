@@ -6,7 +6,7 @@ author: "Pavla Nedopilková"
 categories: ["Škola"]
 tags: ["angličtina","certifikáty"]
 programs: []
-cover: "/uploads/articles/pretesty-neboli-zkousky-nanecisto/cover.jpg"
+cover: "/uploads/articles/pretesty-neboli-zkousky-nanecisto/cover.webp"
 gallery: "pretesty-neboli-zkousky-nanecisto-galerie"
 attachments: []
 related: []

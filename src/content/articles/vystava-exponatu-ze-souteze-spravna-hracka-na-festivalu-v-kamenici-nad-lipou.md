@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/vystava-exponatu-ze-souteze-spravna-hracka-na-festivalu-v-kamenici-nad-lipou/cover.jpg"
+cover: "/uploads/articles/vystava-exponatu-ze-souteze-spravna-hracka-na-festivalu-v-kamenici-nad-lipou/cover.webp"
 gallery: "vystava-exponatu-ze-souteze-spravna-hracka-na-festivalu-v-kamenici-nad-lipou-galerie"
 attachments: []
 related: []

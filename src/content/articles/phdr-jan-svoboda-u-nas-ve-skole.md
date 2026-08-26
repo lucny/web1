@@ -6,7 +6,7 @@ author: "Daniela Kubová"
 categories: ["Škola"]
 tags: ["přednáška"]
 programs: []
-cover: "/uploads/articles/phdr-jan-svoboda-u-nas-ve-skole/cover.jpg"
+cover: "/uploads/articles/phdr-jan-svoboda-u-nas-ve-skole/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -20,4 +20,4 @@ status: published
 Témata školení si mohli zaměstnanci zvolit sami, čehož si velmi vážíme. Věnovali jsme se například komunikaci se žáky a rodiči, budování kvalitních vztahů ve škole i dalším oblastem, které mohou přispět ke zkvalitnění výuky a příjemnějšímu školnímu prostředí.<br>
 Děkujeme za inspirativní setkání a podněty do další práce.</p>
 
-<img src="/uploads/articles/phdr-jan-svoboda-u-nas-ve-skole/image-01.jpg" class="img-fluid" alt="Fotografie – Prednaska psychohygiena jpg 1600x900 q85 subsampling">
+<img src="/uploads/articles/phdr-jan-svoboda-u-nas-ve-skole/image-01.webp" class="img-fluid" alt="Fotografie – Prednaska psychohygiena jpg 1600x900 q85 subsampling">

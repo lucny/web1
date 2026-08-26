@@ -6,7 +6,7 @@ author: "Lenka Kašpárková, Ph.D."
 categories: ["Umělecké obory"]
 tags: ["výstava"]
 programs: []
-cover: "/uploads/articles/vernisaz-vystavy-praci-z-vytvarneho-workshopu-zivot-ve-meste-1/cover.jpg"
+cover: "/uploads/articles/vernisaz-vystavy-praci-z-vytvarneho-workshopu-zivot-ve-meste-1/cover.webp"
 gallery: "vernisaz-vystavy-praci-z-vytvarneho-workshopu-zivot-ve-meste-1-galerie"
 attachments: []
 related: []

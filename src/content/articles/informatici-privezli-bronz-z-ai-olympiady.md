@@ -6,7 +6,7 @@ author: "Petr Grussmann"
 categories: ["Informační technologie"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/informatici-privezli-bronz-z-ai-olympiady/cover.jpg"
+cover: "/uploads/articles/informatici-privezli-bronz-z-ai-olympiady/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -20,6 +20,6 @@ status: published
 
 <p>Blahopřejeme postupujícím a děkujeme všem za reprezentaci školy!</p>
 
-<p><img src="/uploads/articles/informatici-privezli-bronz-z-ai-olympiady/image-01.jpg" class="img-fluid" alt="Fotografie – Ai olympiada jpg 1600x1200 q85 subsampling"></p>
+<p><img src="/uploads/articles/informatici-privezli-bronz-z-ai-olympiady/image-01.webp" class="img-fluid" alt="Fotografie – Ai olympiada jpg 1600x1200 q85 subsampling"></p>
 
-<p><img src="/uploads/articles/informatici-privezli-bronz-z-ai-olympiady/image-02.jpg" class="img-fluid" alt="Fotografie – Ai olympiada jpg 1202x1600 q85 subsampling"></p>
+<p><img src="/uploads/articles/informatici-privezli-bronz-z-ai-olympiady/image-02.webp" class="img-fluid" alt="Fotografie – Ai olympiada jpg 1202x1600 q85 subsampling"></p>

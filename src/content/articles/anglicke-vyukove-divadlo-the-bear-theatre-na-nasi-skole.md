@@ -6,7 +6,7 @@ author: "Tereza Tomaszková"
 categories: ["Škola"]
 tags: ["divadlo"]
 programs: []
-cover: "/uploads/articles/anglicke-vyukove-divadlo-the-bear-theatre-na-nasi-skole/cover.jpg"
+cover: "/uploads/articles/anglicke-vyukove-divadlo-the-bear-theatre-na-nasi-skole/cover.webp"
 attachments: []
 related: []
 homepage:

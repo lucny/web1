@@ -6,7 +6,7 @@ author: "Alena Biskupová"
 categories: ["Umělecké obory"]
 tags: ["práce žáků","workshop"]
 programs: []
-cover: "/uploads/articles/mas-to-v-genech/cover.jpg"
+cover: "/uploads/articles/mas-to-v-genech/cover.webp"
 gallery: "mas-to-v-genech-galerie"
 attachments: []
 related: []

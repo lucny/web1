@@ -15,6 +15,7 @@
     "check:pages-cms": "node scripts/validate-pages-config.mjs",
     "check:links": "node scripts/check-links.mjs",
     "media:optimize": "node scripts/optimize-images.mjs",
+    "media:convert": "node scripts/convert-jpg-to-webp.mjs",
     "check": "astro check && npm run check:content && npm run check:pages-cms",
     "test": "npm run check && npm run build && npm run check:links",
     "gallery:create": "node scripts/create-gallery.mjs"

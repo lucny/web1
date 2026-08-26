@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["výstava","práce žáků","spolupráce"]
 programs: []
-cover: "/uploads/articles/hravek-originalni-navrat-k-puvodnimu-smyslu-hracky/cover.jpg"
+cover: "/uploads/articles/hravek-originalni-navrat-k-puvodnimu-smyslu-hracky/cover.webp"
 gallery: "hravek-originalni-navrat-k-puvodnimu-smyslu-hracky-galerie"
 attachments: []
 related: []

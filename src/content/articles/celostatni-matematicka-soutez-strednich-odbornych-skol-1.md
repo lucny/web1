@@ -6,7 +6,7 @@ author: "Kateřina Čechová"
 categories: ["Škola"]
 tags: ["soutěž","matematika"]
 programs: []
-cover: "/uploads/articles/celostatni-matematicka-soutez-strednich-odbornych-skol-1/cover.jpg"
+cover: "/uploads/articles/celostatni-matematicka-soutez-strednich-odbornych-skol-1/cover.webp"
 attachments: []
 related: []
 homepage:

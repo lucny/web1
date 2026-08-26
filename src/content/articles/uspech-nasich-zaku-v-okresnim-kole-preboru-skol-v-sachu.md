@@ -6,7 +6,7 @@ author: "Kateřina Čechová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/uspech-nasich-zaku-v-okresnim-kole-preboru-skol-v-sachu/cover.jpg"
+cover: "/uploads/articles/uspech-nasich-zaku-v-okresnim-kole-preboru-skol-v-sachu/cover.webp"
 attachments: []
 related: []
 homepage:
@@ -24,4 +24,4 @@ status: published
 
 <p><em>Všem zúčastněným žákům děkujeme za skvělou reprezentaci školy a přejeme mnoho úspěchů v nadcházejícím krajském kole.</em></p>
 
-<img src="/uploads/articles/uspech-nasich-zaku-v-okresnim-kole-preboru-skol-v-sachu/image-01.jpg" class="img-fluid" alt="Fotografie – Sachy jpg 810x1080 q85 subsampling">
+<img src="/uploads/articles/uspech-nasich-zaku-v-okresnim-kole-preboru-skol-v-sachu/image-01.webp" class="img-fluid" alt="Fotografie – Sachy jpg 810x1080 q85 subsampling">

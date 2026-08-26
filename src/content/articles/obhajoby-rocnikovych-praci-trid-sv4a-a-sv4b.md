@@ -6,7 +6,7 @@ author: "René Černín"
 categories: ["Strojírenství"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/obhajoby-rocnikovych-praci-trid-sv4a-a-sv4b/cover.jpg"
+cover: "/uploads/articles/obhajoby-rocnikovych-praci-trid-sv4a-a-sv4b/cover.webp"
 gallery: "obhajoby-rocnikovych-praci-trid-sv4a-a-sv4b-galerie"
 attachments: []
 related: []

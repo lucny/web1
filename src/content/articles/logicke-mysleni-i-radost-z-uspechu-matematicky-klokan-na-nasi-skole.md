@@ -6,7 +6,7 @@ author: "Zuzana Vildomcová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/logicke-mysleni-i-radost-z-uspechu-matematicky-klokan-na-nasi-skole/cover.jpg"
+cover: "/uploads/articles/logicke-mysleni-i-radost-z-uspechu-matematicky-klokan-na-nasi-skole/cover.webp"
 attachments: []
 related: []
 homepage:

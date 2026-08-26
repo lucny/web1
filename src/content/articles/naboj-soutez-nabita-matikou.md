@@ -6,7 +6,7 @@ author: "Eva Vengřínová"
 categories: ["Škola"]
 tags: ["soutěž"]
 programs: []
-cover: "/uploads/articles/naboj-soutez-nabita-matikou/cover.jpg"
+cover: "/uploads/articles/naboj-soutez-nabita-matikou/cover.webp"
 attachments: []
 related: []
 homepage:

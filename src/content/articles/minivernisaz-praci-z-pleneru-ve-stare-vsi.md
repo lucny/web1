@@ -6,7 +6,7 @@ author: "Jiří Štencek"
 categories: ["Umělecké obory"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/minivernisaz-praci-z-pleneru-ve-stare-vsi/cover.jpg"
+cover: "/uploads/articles/minivernisaz-praci-z-pleneru-ve-stare-vsi/cover.webp"
 gallery: "minivernisaz-praci-z-pleneru-ve-stare-vsi-galerie"
 attachments: []
 related: []

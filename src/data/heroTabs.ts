@@ -18,12 +18,12 @@ export type HeroTab = {
   actions: HeroAction[];
 };
 
-const strojirenstviImage = '/images/programs/strojirenstvi-banner.jpg';
-const informacniTechnologieImage = '/images/programs/informacni-technologie-banner.jpg';
-const designHracekImage = '/images/programs/obor-design-hracek-banner.jpg';
-const prumyslovyDesignImage = '/images/programs/prumyslovy-design-banner.jpg';
-const graphicImage = '/images/programs/graficky-design-banner.jpg';
-const schoolImage = '/images/programs/skola-budova.jpg';
+const strojirenstviImage = '/images/programs/strojirenstvi-banner.webp';
+const informacniTechnologieImage = '/images/programs/informacni-technologie-banner.webp';
+const designHracekImage = '/images/programs/obor-design-hracek-banner.webp';
+const prumyslovyDesignImage = '/images/programs/prumyslovy-design-banner.webp';
+const graphicImage = '/images/programs/graficky-design-banner.webp';
+const schoolImage = '/images/programs/skola-budova.webp';
 
 export const heroTabs: HeroTab[] = [
   {

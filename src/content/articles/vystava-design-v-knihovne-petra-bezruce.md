@@ -6,7 +6,7 @@ author: "Jitka Oboňová"
 categories: ["Umělecké obory","Design hraček","Průmyslový design"]
 tags: ["výstava","práce žáků"]
 programs: []
-cover: "/uploads/articles/vystava-design-v-knihovne-petra-bezruce/cover.jpg"
+cover: "/uploads/articles/vystava-design-v-knihovne-petra-bezruce/cover.webp"
 gallery: "vystava-design-v-knihovne-petra-bezruce-galerie"
 attachments: []
 related: []
@@ -31,7 +31,7 @@ status: published
 
 <p>Pro koho: Široká veřejnost, potenciální studenti, rodiče</p>
 
-<p><img src="/uploads/articles/vystava-design-v-knihovne-petra-bezruce/image-01.jpg" class="img-fluid" alt="Fotografie – Vystava knihovna jpg 1131x1600 q85 subsampling"></p>
+<p><img src="/uploads/articles/vystava-design-v-knihovne-petra-bezruce/image-01.webp" class="img-fluid" alt="Fotografie – Vystava knihovna jpg 1131x1600 q85 subsampling"></p>
 
 <hr>
 <p><strong>Neváhejte a nenechte si ujít příležitost nahlédnout do světa designu a objevit kreativní potenciál našich studentů! Výstava nabízí jedinečnou možnost poznat práci mladých umělců a designérů z první ruky.</strong></p>

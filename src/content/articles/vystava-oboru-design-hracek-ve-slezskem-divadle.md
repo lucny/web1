@@ -6,7 +6,7 @@ author: "Gabriela Bernardová"
 categories: ["Umělecké obory","Design hraček"]
 tags: ["žáků","práce"]
 programs: []
-cover: "/uploads/articles/vystava-oboru-design-hracek-ve-slezskem-divadle/cover.jpg"
+cover: "/uploads/articles/vystava-oboru-design-hracek-ve-slezskem-divadle/cover.webp"
 gallery: "vystava-oboru-design-hracek-ve-slezskem-divadle-galerie"
 attachments: []
 related: []
