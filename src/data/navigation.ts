@@ -86,15 +86,4 @@ export const mainNavigation: NavGroup[] = [
       { label: 'Prohlášení o přístupnosti', href: '/prohlaseni-o-pristupnosti-webu/' }
     ]
   },
-  {
-    id: 'ostatni',
-    label: 'Ostatní',
-    href: '/ostatni/',
-    items: [
-      { label: 'Přehled ostatních stránek', href: '/ostatni/' },
-      { label: 'Přehled školy', href: '/skola/o-skole/' },
-      { label: 'Fotogalerie uměleckých oborů', href: '/fotogalerie-umeleckych-oboru/' },
-      { label: 'Vyhledávání', href: '/vyhledavani/' }
-    ]
-  }
 ];
