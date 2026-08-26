@@ -1,5 +1,6 @@
 ---
 import AccordionList from './AccordionList.astro';
+import { withBase } from '../../lib/content';
 
 interface Visual {
   src: string;
@@ -186,7 +187,7 @@ const galleryPhotos = Array.from({ length: 6 }, (_, index) => visuals[index % vi
       {classroomItems.map((item) => <article><h3 class="text-xl">{item.title}</h3><p class="mt-3 leading-7 text-ink/80">{item.text}</p></article>)}
     </div>
     <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {galleryPhotos.map((photo) => <figure class="overflow-hidden rounded-2xl"><img src={photo.src} alt={photo.alt || programTitle} class="aspect-[4/3] w-full object-cover transition duration-300 hover:scale-105" loading="lazy" decoding="async" /></figure>)}
+      {galleryPhotos.map((photo) => <figure class="overflow-hidden rounded-2xl"><img src={withBase(photo.src)} alt={photo.alt || programTitle} class="aspect-[4/3] w-full object-cover transition duration-300 hover:scale-105" loading="lazy" decoding="async" /></figure>)}
     </div>
   </section>
 </section>

@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../lib/content';
+
 interface AccordionItem {
   title: string;
   text: string;
@@ -22,7 +24,7 @@ const { id, items } = Astro.props as Props;
     </summary>
     <div class="pb-8">
       <p class="max-w-3xl text-base leading-8 text-ink/80">{item.text}</p>
-      <img src={item.image} alt={item.alt} class="mt-6 aspect-[16/9] w-full rounded-2xl object-cover" loading="lazy" decoding="async" />
+      <img src={withBase(item.image)} alt={item.alt} class="mt-6 aspect-[16/9] w-full rounded-2xl object-cover" loading="lazy" decoding="async" />
     </div>
   </details>)}
 </div>
