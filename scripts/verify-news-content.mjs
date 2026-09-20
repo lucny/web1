@@ -52,8 +52,8 @@ for (const file of galleryFiles) {
   const source = await readFile(join(process.cwd(), 'src', 'content', 'galleries', file), 'utf8');
   const title = frontmatterString(source, 'title');
   const expectedAlt = title?.replace(/^Fotogalerie:\s*/i, '').trim();
-  for (const line of source.split(/\r?\n/).filter((value) => /^    alt:\s*/.test(value))) {
-    const raw = line.match(/^    alt:\s*(.*?)\s*$/)?.[1] ?? '';
+  for (const line of source.split(/\r?\n/).filter((value) => /^ {4}alt:\s*/.test(value))) {
+    const raw = line.match(/^ {4}alt:\s*(.*?)\s*$/)?.[1] ?? '';
     let actualAlt = raw.replace(/^['"]|['"]$/g, '');
     if (raw.startsWith('"')) {
       try { actualAlt = JSON.parse(raw); } catch { /* keep the fallback */ }

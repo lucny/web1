@@ -7,6 +7,10 @@ import PersonMeta from './PersonMeta.astro';
 
 const { person } = Astro.props as { person: PersonEntry };
 const data = person.data;
+const state = Astro.locals as { personDialogIds?: Set<string> };
+const renderedIds = state.personDialogIds ??= new Set();
+const showDialog = !renderedIds.has(person.id);
+renderedIds.add(person.id);
 const dialogId = `person-dialog-${person.id}`;
 const name = formatPersonName(data);
 const position = getPersonPosition(data);
@@ -15,7 +19,7 @@ const photo = getPersonPhoto(data);
 const hasProfile = data.contentBlocks.length > 0 || Boolean(data.profile?.trim());
 ---
 
-<dialog id={dialogId} class="person-dialog" data-person-dialog data-person-dialog-id={person.id} data-pagefind-ignore aria-labelledby={`${dialogId}-title`}>
+{showDialog && <dialog id={dialogId} class="person-dialog" data-person-dialog data-person-dialog-id={person.id} data-pagefind-ignore aria-labelledby={`${dialogId}-title`}>
   <div class="person-dialog-shell">
     <form method="dialog" class="person-dialog-close-form">
       <button type="submit" class="person-dialog-close" aria-label="Zavřít profil osoby">
@@ -39,7 +43,7 @@ const hasProfile = data.contentBlocks.length > 0 || Boolean(data.profile?.trim()
       </ContentRenderer>
     </div>}
   </div>
-</dialog>
+</dialog>}
 
 <script>
   const dialogs = [...document.querySelectorAll<HTMLDialogElement>('[data-person-dialog]')];
@@ -64,12 +68,13 @@ const hasProfile = data.contentBlocks.length > 0 || Boolean(data.profile?.trim()
   };
 
   document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     const target = event.target;
     const trigger = target instanceof Element ? target.closest<HTMLElement>('[data-person-open]') : null;
     if (!trigger) return;
     if (target instanceof Element && target.closest('a[href^="mailto:"], a[href^="tel:"], a.person-field-tag')) return;
     const id = trigger.dataset.personOpen;
-    if (!id || !openDialog(id, trigger)) return;
+    if (!id || !openDialog(id, target instanceof Element ? target.closest<HTMLElement>('a, button') ?? trigger : trigger)) return;
     event.preventDefault();
   });
 

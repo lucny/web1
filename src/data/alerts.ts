@@ -1,3 +1,5 @@
+import settings from './homepage-alerts.json';
+import { civilToday } from '../lib/publication.mjs';
 import type { CollectionEntry } from 'astro:content';
 
 export type AlertVariant = 'text' | 'banner';
@@ -12,6 +14,7 @@ export type HomepageAlertDefinition = {
   tone: AlertTone;
   desktopColumns: AlertColumns;
   label?: string;
+  expiresAt?: string;
 };
 
 export type ResolvedHomepageAlert = HomepageAlertDefinition & {
@@ -22,42 +25,14 @@ export type ResolvedHomepageAlert = HomepageAlertDefinition & {
  * Alert stores only presentation and editorial placement. The article remains
  * the single source of truth for title, perex, date and public URL.
  */
-export const homepageAlertDefinitions: HomepageAlertDefinition[] = [
-  {
-    id: 'industrial-design-posters',
-    articleId: 'plakaty-prumyslovy-design',
-    enabled: true,
-    variant: 'text',
-    tone: 'mist',
-    desktopColumns: 6,
-    label: 'Z tvorby studentů'
-  },
-  {
-    id: 'litomysl-field-trip',
-    articleId: 'exkurze-do-litomysle',
-    enabled: true,
-    variant: 'banner',
-    tone: 'brand',
-    desktopColumns: 8,
-    label: 'Škola v terénu'
-  },
-  {
-    id: 'ai-olympiad-success',
-    articleId: 'ceska-ai-olympiada',
-    enabled: true,
-    variant: 'text',
-    tone: 'accent',
-    desktopColumns: 4,
-    label: 'Úspěch studentů'
-  }
-];
+export const homepageAlertDefinitions = settings.alerts as HomepageAlertDefinition[];
 
 export function resolveHomepageAlerts(articles: CollectionEntry<'articles'>[]): ResolvedHomepageAlert[] {
   const articleById = new Map(articles.map((article) => [article.id, article]));
   return homepageAlertDefinitions
-    .filter((definition) => definition.enabled)
+    .filter((definition) => definition.enabled && (!definition.expiresAt || definition.expiresAt >= civilToday()))
     .map((definition) => {
-      const article = articleById.get(definition.articleId);
+      const article = articleById.get(definition.articleId.replace(/\.md$/i, ''));
       return article ? { ...definition, article } : undefined;
     })
     .filter((alert): alert is ResolvedHomepageAlert => Boolean(alert));

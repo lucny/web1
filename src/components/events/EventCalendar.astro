@@ -40,13 +40,13 @@ const dayData = (date: string) => {
     </div>
   </div>
   <div class="mt-6 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-soft">
-    <div class="event-calendar-weekdays" role="row">{weekdays.map((day) => <span role="columnheader">{day}</span>)}</div>
-    <div class="event-calendar-grid" role="grid" aria-label={`Kalendář událostí – ${monthLabel}`} data-event-calendar-grid>
+    <div class="event-calendar-weekdays" aria-hidden="true">{weekdays.map((day) => <span>{day}</span>)}</div>
+    <div class="event-calendar-grid" role="group" aria-label={`Kalendář událostí – ${monthLabel}`} data-event-calendar-grid>
       {cells.map(({ day, date }) => {
         const { dayEvents, startingEvents, continuingEvents, markerEvent } = dayData(date);
         const isCurrent = date === currentDate;
         const dayLabel = date ? `${day}. ${monthNumber}. ${year}${isCurrent ? ', dnes' : ''}${dayEvents.length ? `, ${dayEvents.length} událostí${continuingEvents.length && !startingEvents.length ? ', probíhající vícedenní akce' : ''}` : ''}` : 'Prázdný den';
-        return <div class:list={["event-calendar-cell", !date && "event-calendar-cell-empty", isCurrent && "event-calendar-cell-today"]} role="gridcell" data-calendar-date={date}>
+        return <div class:list={["event-calendar-cell", !date && "event-calendar-cell-empty", isCurrent && "event-calendar-cell-today"]} data-calendar-date={date}>
           <button type="button" class:list={["event-calendar-day", dayEvents.length > 0 && "event-calendar-day-has-event", startingEvents.length > 0 && "event-calendar-day-event-start", dayEvents.length > 0 && startingEvents.length === 0 && "event-calendar-day-event-continuing", dayEvents.length > 1 && "event-calendar-day-overlap", isCurrent && "event-calendar-day-today"]} style={markerEvent ? `--event-day-color:${getProgramColor(markerEvent.data.programs)};--event-day-text:${getProgramTextColor(markerEvent.data.programs)}` : undefined} data-calendar-day={date} disabled={!date} aria-label={dayLabel}>{date ? day : ''}</button>
         </div>;
       })}
@@ -56,6 +56,7 @@ const dayData = (date: string) => {
 </section>
 
 <script>
+  import { civilToday, isCivilDate, isMonth } from '../../lib/publication.mjs';
   const calendar = document.querySelector<HTMLElement>('[data-event-calendar]');
   if (calendar) {
     const events = JSON.parse(calendar.dataset.events || '[]');
@@ -72,11 +73,13 @@ const dayData = (date: string) => {
     const activeFilters = document.querySelector<HTMLElement>('[data-event-active-filters]');
     const clearFilters = document.querySelector<HTMLAnchorElement>('[data-event-clear-filters]');
     const filterOptions = JSON.parse(filterOptionsElement?.dataset.eventFilterOptions || '[]') as { kind: 'tag' | 'program'; value: string; label: string }[];
-    const currentDate = calendar.dataset.currentDate || '';
+    const currentDate = civilToday();
     const initialParams = new URL(window.location.href).searchParams;
     const queryTags = initialParams.getAll('stitky').flatMap((value) => value.split(',')).filter(Boolean);
     const queryPrograms = initialParams.getAll('obor').flatMap((value) => value.split(',')).filter(Boolean);
-    const state = { month: initialParams.get('mesic') || calendar.dataset.initialMonth || '', day: initialParams.get('den') || '', tags: [...new Set(queryTags)], programs: [...new Set(queryPrograms)] };
+    const monthParam = initialParams.get('mesic');
+    const dayParam = initialParams.get('den');
+    const state = { month: isMonth(monthParam) ? monthParam! : currentDate.slice(0, 7), day: isCivilDate(dayParam) ? dayParam! : '', tags: [...new Set(queryTags)], programs: [...new Set(queryPrograms)] };
     const pad = (value: number) => value.toString().padStart(2, '0');
     const monthParts = (value: string) => value.split('-').map(Number);
     const dateKey = (year: number, month: number, day: number) => `${year.toString().padStart(4, '0')}-${pad(month)}-${pad(day)}`;
@@ -101,6 +104,7 @@ const dayData = (date: string) => {
       const firstDayOffset = (new Date(Date.UTC(year, month - 1, 1)).getUTCDay() + 6) % 7;
       const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
       const cells = Math.ceil((firstDayOffset + daysInMonth) / 7) * 7;
+      const focusedDate = document.activeElement instanceof HTMLElement ? document.activeElement.dataset.calendarDay : undefined;
       grid.replaceChildren();
       if (label) label.textContent = monthLabel(state.month);
       grid.setAttribute('aria-label', `Kalendář událostí – ${monthLabel(state.month)}`);
@@ -113,13 +117,14 @@ const dayData = (date: string) => {
         const markerEvent = startingEvents[0] || dayEvents[0];
         const cell = document.createElement('div');
         cell.className = `event-calendar-cell${date === currentDate ? ' event-calendar-cell-today' : ''}${!date ? ' event-calendar-cell-empty' : ''}`;
-        cell.setAttribute('role', 'gridcell');
+
         cell.dataset.calendarDate = date;
         const dayButton = document.createElement('button');
         dayButton.type = 'button';
         dayButton.className = `event-calendar-day${dayEvents.length ? ' event-calendar-day-has-event' : ''}${startingEvents.length ? ' event-calendar-day-event-start' : ''}${dayEvents.length && !startingEvents.length ? ' event-calendar-day-event-continuing' : ''}${dayEvents.length > 1 ? ' event-calendar-day-overlap' : ''}${date === currentDate ? ' event-calendar-day-today' : ''}`;
         dayButton.dataset.calendarDay = date;
         dayButton.disabled = !date;
+        dayButton.setAttribute('aria-pressed', String(date !== '' && date === state.day));
         dayButton.setAttribute('aria-label', date ? `${day}. ${month}. ${year}${date === currentDate ? ', dnes' : ''}${dayEvents.length ? `, ${dayEvents.length} událostí${continuingEvents.length && !startingEvents.length ? ', probíhající vícedenní akce' : ''}` : ''}` : 'Prázdný den');
         if (markerEvent) {
           dayButton.style.setProperty('--event-day-color', markerEvent.accent || '#6B7280');
@@ -129,6 +134,7 @@ const dayData = (date: string) => {
         cell.append(dayButton);
         grid.append(cell);
       }
+      if (focusedDate) grid.querySelector<HTMLButtonElement>(`[data-calendar-day="${focusedDate}"]`)?.focus();
       grid.querySelectorAll<HTMLElement>('[data-calendar-day]').forEach((button) => button.classList.toggle('event-calendar-day-selected', Boolean(button.dataset.calendarDay && button.dataset.calendarDay === state.day)));
     };
     const ensureEmpty = () => {
@@ -233,7 +239,7 @@ const dayData = (date: string) => {
     });
     calendar.querySelector('[data-event-calendar-prev]')?.addEventListener('click', () => { const [year, month] = monthParts(state.month); const date = new Date(Date.UTC(year, month - 2, 1)); state.month = `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}`; state.day = ''; apply(); });
     calendar.querySelector('[data-event-calendar-next]')?.addEventListener('click', () => { const [year, month] = monthParts(state.month); const date = new Date(Date.UTC(year, month, 1)); state.month = `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}`; state.day = ''; apply(); });
-    calendar.querySelector('[data-event-calendar-today]')?.addEventListener('click', () => { state.month = calendar.dataset.currentMonth || state.month; state.day = ''; apply(); });
+    calendar.querySelector('[data-event-calendar-today]')?.addEventListener('click', () => { state.month = currentDate.slice(0, 7); state.day = ''; apply(); });
     calendar.addEventListener('click', (event) => { const target = event.target; const button = target instanceof Element ? target.closest<HTMLButtonElement>('[data-calendar-day]') : null; if (!button?.dataset.calendarDay) return; state.day = state.day === button.dataset.calendarDay ? '' : button.dataset.calendarDay; apply(); });
     apply(false);
   }

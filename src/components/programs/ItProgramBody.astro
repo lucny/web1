@@ -7,7 +7,7 @@ interface Props {
   programTitle: string;
 }
 
-const { additionalBlocks = [], programTitle } = Astro.props as Props;
+const { additionalBlocks = [] } = Astro.props as Props;
 
 const careers = [
   'Technik IT',
@@ -169,8 +169,6 @@ const classrooms = [
 
 ---
 <section id="obor-content" class="container-page pb-14 sm:pb-20" data-pagefind-body>
-  <span class="sr-only" data-pagefind-filter="typ">Obor</span>
-  <span class="sr-only" data-pagefind-filter="obor">{programTitle}</span>
 
   <section aria-labelledby="it-why-title">
     <h2 id="it-why-title" class="text-4xl font-black tracking-tight text-[#59BDDC] sm:text-5xl">Proč studovat informační technologie?</h2>

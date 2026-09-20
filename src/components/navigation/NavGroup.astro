@@ -22,16 +22,15 @@ const isActive = (href: string) => {
     <a
       href={withBase(group.href)}
       class:list={[
-        'rounded-lg px-2.5 py-2 text-[0.82rem] font-semibold leading-tight no-underline transition hover:bg-white hover:text-brand',
+        'rounded-lg px-2.5 py-2 text-[0.9rem] font-normal uppercase leading-tight tracking-[0.04em] no-underline transition hover:bg-white hover:text-brand',
         isActive(group.href) && 'bg-white text-brand'
       ]}
-      aria-current={isActive(group.href) ? 'page' : undefined}
+      aria-current={currentPath === group.href ? 'page' : isActive(group.href) ? 'location' : undefined}
     >{group.label}</a>
     <button
       type="button"
       class="grid h-9 w-8 place-items-center rounded-lg text-night transition hover:bg-white hover:text-brand"
       aria-label={`Rozbalit sekci ${group.label}`}
-      aria-haspopup="true"
       aria-expanded="false"
       aria-controls={`desktop-menu-${group.id}`}
       data-menu-trigger
@@ -47,7 +46,7 @@ const isActive = (href: string) => {
             target={item.external ? '_blank' : undefined}
             rel={item.external ? 'noreferrer' : undefined}
             class:list={['block rounded-lg px-4 py-2.5 text-sm font-medium no-underline transition hover:bg-mist hover:text-brand', isActive(item.href) && 'bg-mist text-brand']}
-            aria-current={isActive(item.href) ? 'page' : undefined}
+            aria-current={currentPath === item.href ? 'page' : isActive(item.href) ? 'location' : undefined}
           >{item.label}{item.external && <span aria-hidden="true" class="ml-1 text-xs">↗</span>}</a>
         </li>)}
       </ul>
@@ -55,7 +54,7 @@ const isActive = (href: string) => {
   </div>
 ) : (
   <details class="border-t border-ink/10 py-1" data-mobile-group>
-    <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-4 py-3 font-semibold transition hover:bg-mist hover:text-brand">
+    <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-4 py-3 text-[0.9rem] font-normal uppercase tracking-[0.04em] transition hover:bg-mist hover:text-brand">
       <span class:list={[isActive(group.href) && 'text-brand']}>{group.label}</span>
       <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 transition group-open:rotate-180"><path d="m5 7 5 5 5-5" /></svg>
     </summary>

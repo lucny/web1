@@ -21,7 +21,7 @@ const peopleBlocks = page.data.contentBlocks.filter((block: { type: string }) =>
 const pagePeople = people.filter((person) => peopleBlocks.some((block) => block.people.includes(person.id)));
 ---
 <BaseLayout title={page.data.title} description={page.data.description} seo={page.data.seo} breadcrumbs={breadcrumbs}>
-  <PageHero eyebrow={eyebrow ?? page.data.eyebrow ?? 'Škola'} title={page.data.title} description={page.data.highlight ?? page.data.description} accent={accent} icon={heroIcon} iconBackground="#001731" />
+  <PageHero eyebrow={eyebrow ?? page.data.eyebrow ?? 'Škola'} title={page.data.title} description={page.data.highlight ?? page.data.description} accent={accent} icon={heroIcon} iconBackground="#001731" variant={page.id === 'historie-soucasnost' ? 'history' : 'default'} />
   <article class="container-page pb-14 sm:pb-20" data-pagefind-body>
     <span class="sr-only" data-pagefind-filter="typ">Stránka</span>
     <div class="mt-10"><ContentRenderer blocks={page.data.contentBlocks}><Content /></ContentRenderer></div>

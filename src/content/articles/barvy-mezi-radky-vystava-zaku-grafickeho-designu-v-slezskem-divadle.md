@@ -30,4 +30,4 @@ SŠPU Opava dlouhodobě využívá prostory Slezského divadla k prezentaci tvor
 
 <p>.</p>
 
-<iframe src="//www.youtube.com/embed/cSvtqe47Ba8" height="388" width="640" frameborder="0" allowfullscreen="true"></iframe>
+<iframe title="Barvy mezi řádky — výstava v Slezském divadle" loading="lazy" src="//www.youtube.com/embed/cSvtqe47Ba8" height="388" width="640" frameborder="0" allowfullscreen="true"></iframe>

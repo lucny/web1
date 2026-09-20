@@ -16,4 +16,8 @@ export const EVENT_TAG_OPTIONS = [
 
 export const EVENT_TAG_VALUES = EVENT_TAG_OPTIONS.map(({ value }) => value) as [string, ...string[]];
 
-export const eventTagLabel = (value: string) => EVENT_TAG_OPTIONS.find((tag) => tag.value === value)?.label ?? value;
+export const eventTagLabel = (value: string) => {
+  const text = value.trim().replace(/\s+/g, ' ');
+  const normalized = text.toLocaleLowerCase('cs-CZ');
+  return EVENT_TAG_OPTIONS.find(tag => tag.value === normalized || tag.label.toLocaleLowerCase('cs-CZ') === normalized)?.label ?? text;
+};

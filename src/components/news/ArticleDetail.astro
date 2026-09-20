@@ -4,6 +4,7 @@ import { entries, formatDate, withBase } from '../../lib/content';
 import GalleryLightbox from '../GalleryLightbox.astro';
 import ArticleHero from './ArticleHero.astro';
 import AttachmentList from '../content/AttachmentList.astro';
+import SearchMetadata from '../content/SearchMetadata.astro';
 
 interface Props { article: CollectionEntry<'articles'> }
 const { article } = Astro.props;
@@ -13,10 +14,7 @@ const gallery = article.data.gallery ? galleries.find((item) => item.id === arti
 
 <article data-pagefind-body>
   <ArticleHero article={article} />
-  <span class="sr-only" data-pagefind-filter="typ">Aktualita</span>
-  {article.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}
-  {article.data.categories.map((category) => <span class="sr-only" data-pagefind-filter="rubrika">{category}</span>)}
-  {article.data.tags.map((tag) => <span class="sr-only" data-pagefind-filter="stitek">{tag}</span>)}
+  <SearchMetadata type="Aktualita" programs={article.data.programs} categories={article.data.categories} tags={article.data.tags} year={article.data.publishedAt.getFullYear()} />
   <div class="container-page pb-12 sm:pb-16">
       <div class="flex flex-col gap-3 border-y border-ink/10 py-4 text-sm text-ink/75 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1">

@@ -128,7 +128,7 @@ function dateIso(date) {
 
 function parseListing(html) {
   const rows = [];
-  const re = /<div class="single-blog-post[^\"]*"[\s\S]*?<h3>[\s\S]*?<a href="(\/cs\/zpravy\/[^"?#]+\/)"[^>]*>([\s\S]*?)<\/a>[\s\S]*?<div class="post-meta[\s\S]*?<p>([\s\S]*?)<\/p>/g;
+  const re = /<div class="single-blog-post[^"]*"[\s\S]*?<h3>[\s\S]*?<a href="(\/cs\/zpravy\/[^"?#]+\/)"[^>]*>([\s\S]*?)<\/a>[\s\S]*?<div class="post-meta[\s\S]*?<p>([\s\S]*?)<\/p>/g;
   for (const match of html.matchAll(re)) {
     const url = absoluteUrl(match[1]);
     const date = parseCzechDate(match[3]);
@@ -159,7 +159,7 @@ function articleContainer(html) {
 function extractDetail(html, listing) {
   const container = articleContainer(html);
   const title = normalizeText(html.match(/<h2[^>]*class="text-center[^"]*"[^>]*>([\s\S]*?)<\/h2>/i)?.[1] || listing.title);
-  const author = normalizeText(html.match(/<a\b[^>]*href="\/cs\/zpravy\/author\/[^\"]+"[^>]*>([\s\S]*?)<\/a>/i)?.[1] || 'Redakce školy');
+  const author = normalizeText(html.match(/<a\b[^>]*href="\/cs\/zpravy\/author\/[^"]+"[^>]*>([\s\S]*?)<\/a>/i)?.[1] || 'Redakce školy');
   const publishedText = html.match(/Publikováno:\s*([\s\S]{0,100}?\d{4})/i)?.[1] || listing.date.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
   const publishedAt = parseCzechDate(publishedText) || listing.date;
   const metaBlock = html.match(/<div class="post-meta[^>]*>([\s\S]*?)<\/div>/i)?.[1] || '';
@@ -399,7 +399,7 @@ async function main() {
       try {
         return extractDetail(await fetchText(listing.url), listing);
       } catch (error) {
-        throw new Error(`${listing.url}: ${error.message}`);
+        throw new Error(`${listing.url}: ${error.message}`, { cause: error });
       }
     }));
     details.push(...result);

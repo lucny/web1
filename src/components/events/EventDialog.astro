@@ -1,10 +1,12 @@
 ---
+import { render } from 'astro:content';
 import type { EventEntry } from '../../lib/events';
 import ContentRenderer from '../content/ContentRenderer.astro';
 import EventAttachments from './EventAttachments.astro';
 import EventMeta from './EventMeta.astro';
 
 const { event } = Astro.props as { event: EventEntry };
+const { Content } = await render(event);
 const dialogId = `event-dialog-${event.id}`;
 ---
 <dialog id={dialogId} class="event-dialog" data-event-dialog data-event-dialog-id={event.id} data-pagefind-ignore aria-labelledby={`${dialogId}-title`}>
@@ -19,7 +21,7 @@ const dialogId = `event-dialog-${event.id}`;
       <EventMeta event={event} />
     </div>
     <div class="event-dialog-body">
-      <ContentRenderer blocks={event.data.contentBlocks} />
+      <ContentRenderer blocks={event.data.contentBlocks}><Content /></ContentRenderer>
       <EventAttachments attachments={event.data.attachments} />
     </div>
   </div>
@@ -48,6 +50,7 @@ const dialogId = `event-dialog-${event.id}`;
   };
 
   document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const target = event.target;
     const trigger = target instanceof Element ? target.closest<HTMLElement>('[data-event-open]') : null;
     if (!trigger) return;

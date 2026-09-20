@@ -1,28 +1,33 @@
-name: Validate content
-
+name: Kontrola obsahu, ALT a metadat
 on:
   workflow_dispatch:
     inputs:
       payload:
-        description: Pages CMS action context (JSON)
+        description: Kontext Pages CMS (JSON)
         required: false
         type: string
-
 permissions:
   contents: read
-
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Use Node.js
-        uses: actions/setup-node@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Validate collections, relations and CMS configuration
+      - run: npm ci
+      - name: Ověřit obsah, vztahy a formuláře
         run: npm run check
+      - name: Lint a regresní testy
+        run: npm run lint && npm run test:unit
+      - name: Uložit redakční zprávy
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redakcni-kontroly
+          path: reports/
+          if-no-files-found: ignore
+          retention-days: 14

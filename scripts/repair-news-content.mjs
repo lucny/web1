@@ -154,7 +154,7 @@ function repairBody(value) {
   // CommonMark does not reliably parse tags whose attributes are split over
   // multiple lines. Keep imported HTML tags on one line so images, links and
   // embeds are rendered as elements rather than visible source code.
-  body = body.replace(/<(\/?[A-Za-z][^<>]*?)>/g, (match, inside) => `<${inside.replace(/\s+/g, ' ').trim()}>`);
+  body = body.replace(/<(\/?[A-Za-z][^<>]*?)>/g, (_match, inside) => `<${inside.replace(/\s+/g, ' ').trim()}>`);
   body = body.replace(/<p>\s*(<img\b[^>]*>)\s*<\/p>/gi, '<p>$1</p>');
   body = body.replace(/\n{3,}/g, '\n\n').trim();
   return body;
@@ -190,7 +190,7 @@ for (const file of galleryFiles) {
   const title = frontmatterString(source, 'title');
   if (!title) throw new Error(`${file}: galerie nemá title.`);
   const galleryName = title.replace(/^Fotogalerie:\s*/i, '').trim();
-  const next = source.replace(/^    alt:\s*.*$/gm, () => {
+  const next = source.replace(/^ {4}alt:\s*.*$/gm, () => {
     galleryPhotos += 1;
     return `    alt: ${JSON.stringify(galleryName)}`;
   });

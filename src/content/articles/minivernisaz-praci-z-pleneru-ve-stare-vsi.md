@@ -21,4 +21,4 @@ status: published
 
 <h3>Videoklip na YouTube </h3>
 
-<iframe src="//www.youtube.com/embed/oC7mKYahnIQ" height="360" width="640" frameborder="0" allowfullscreen="true"></iframe>
+<iframe title="Minivernisáž prací z plenéru ve Staré Vsi" loading="lazy" src="//www.youtube.com/embed/oC7mKYahnIQ" height="360" width="640" frameborder="0" allowfullscreen="true"></iframe>

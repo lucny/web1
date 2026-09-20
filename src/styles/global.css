@@ -2,16 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Hind Guntur';
+  src: url('../../fonts/HindGuntur-Light.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hind Guntur';
+  src: url('../../fonts/HindGuntur-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hind Guntur';
+  src: url('../../fonts/HindGuntur-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 @layer base {
   :root { color-scheme: light; }
   html { scroll-behavior: smooth; }
   [hidden] { display: none !important; }
   body { @apply min-w-[320px] bg-paper font-body text-ink antialiased; background-image: linear-gradient(180deg, rgb(255 255 255 / 72%), transparent 24rem); }
-  main { @apply overflow-hidden; }
+  main { min-width: 0; }
   h1, h2, h3, h4 { @apply font-display font-bold tracking-[-0.04em] text-night; }
-  h1 { @apply text-4xl leading-[1.05] sm:text-5xl lg:text-6xl; }
-  h2 { @apply text-3xl leading-tight sm:text-4xl; }
+  h1 { font-size: 2.5rem; font-weight: 300; line-height: 1.08; text-transform: uppercase; }
+  h2 { font-size: 1.5rem; font-weight: 400; line-height: 1.2; text-transform: uppercase; }
   h3 { @apply text-xl leading-snug sm:text-2xl; }
+  p { font-size: 1rem; font-weight: 400; }
   a { @apply underline-offset-4; }
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
     @apply outline-none ring-4 ring-school-cyan/50 ring-offset-2 ring-offset-paper;
@@ -151,7 +176,7 @@
   .school-contact-link { @apply inline-flex min-w-0 items-center gap-2 text-xs font-semibold text-brand no-underline hover:text-school-magenta; }
   .school-contact-link svg { @apply h-4 w-4 shrink-0 fill-none stroke-current stroke-[1.7]; }
   .school-building-map { @apply block h-full min-h-0 w-full border-0 bg-mist; }
-  .prose-school { @apply max-w-3xl text-base leading-8 text-ink/85 sm:text-lg; }
+  .prose-school { @apply max-w-3xl text-base leading-8 text-ink/85; }
   .prose-school :where(h2,h3) { @apply mt-10; }
   .prose-school :where(a) { @apply font-semibold text-brand decoration-2 decoration-school-cyan/70 hover:text-school-magenta; }
   .prose-school :where(ul) { @apply my-6 list-disc space-y-2 pl-6; }
@@ -236,13 +261,31 @@
   .hero-tab { position: relative; background-color: var(--tab-color); color: var(--tab-text); }
   .hero-tab[aria-selected='true'] .hero-tab-label { text-decoration-line: underline; text-decoration-style: dotted; text-decoration-thickness: 2px; text-underline-offset: 0.35rem; }
   .hero-tab-label { position: relative; z-index: 1; }
-  .page-hero-art { position: absolute; right: 4%; bottom: -4rem; width: 18rem; height: 18rem; transform: rotate(16deg); opacity: .9; pointer-events: none; }
-  .page-hero-art span { position: absolute; display: block; border: 1px solid rgb(255 255 255 / 22%); }
-  .page-hero-art span:nth-child(1) { inset: 0; border-radius: 32% 68% 48% 52% / 42% 34% 66% 58%; background: color-mix(in srgb, var(--page-hero-accent) 75%, transparent); }
-  .page-hero-art span:nth-child(2) { inset: 2rem; border-radius: 50%; background: rgb(255 255 255 / 8%); }
-  .page-hero-art span:nth-child(3) { inset: 5rem 1rem 1rem 5rem; border-radius: 1.5rem; transform: rotate(28deg); }
-  .page-hero-icon { @apply pointer-events-none absolute right-1 top-1/2 z-0 flex w-32 -translate-y-1/2 items-center justify-center sm:right-6 sm:w-44 lg:right-10 lg:w-64; }
-  .page-hero-icon img { @apply max-h-full w-full object-contain; }
+  .page-hero { padding-top: 1rem; padding-bottom: 1rem; }
+  .page-hero-shell {
+    min-height: 7rem;
+    border-bottom: 1px dotted #999;
+    padding-block: .5rem 1rem;
+  }
+  .page-hero-shell-with-icon {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 6rem;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .page-hero-title {
+    margin: 0;
+    max-width: 56rem;
+    color: #999;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.08;
+    text-transform: uppercase;
+  }
+  .page-hero-icon { pointer-events: none; width: 6rem; height: 6rem; 
+    background-color: #999;  
+    border-radius: 20%; display: grid; place-items: center; }
+  .page-hero-icon img { display: block; width: 80%; height: 80%; object-fit: contain; }
   .section-hub-grid { @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3; }
   .section-hub-card { @apply border border-ink/10 bg-white; }
   .section-hub-card-icon { @apply grid h-16 w-16 place-items-center; }
@@ -430,6 +473,11 @@
   body.event-dialog-open { overflow: hidden; }
 }
 
+.section-hub-card h2 {
+  font-weight: 800;
+  color: #0cc6de;
+} 
+
 .person-card-compact {
   display: grid;
   grid-template-columns: 3.75rem minmax(0, 1fr);
@@ -539,7 +587,47 @@ div[class*='bg-[#59BDDC]'] a:hover { background-color: #FFFFFF; }
   .hero-tab { @apply min-h-24 px-3 py-3 text-[0.68rem] tracking-[0.04em]; }
 }
 
+/* Shared accessibility rules: keep focus and content visible at narrow widths. */
+:focus-visible {
+  outline: 3px solid #08243A !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff !important;
+}
+#main-content:focus { outline: none !important; box-shadow: none !important; }
+h1, h2, h3, p, a { overflow-wrap: anywhere; }
+.mobile-menu-dialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  margin: 0;
+  width: min(29rem, calc(100vw - 1rem));
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  border: 0;
+  padding: 1.25rem;
+  background: #fff;
+  color: #26343B;
+  overflow-y: auto;
+}
+.mobile-menu-dialog::backdrop { background: rgb(8 36 58 / 60%); }
+.mobile-menu-dialog nav > a:first-child { font-size: .9rem; font-weight: 400; letter-spacing: .04em; text-transform: uppercase; }
+.gallery-dialog { max-height: 92dvh; overflow-y: auto; }
+.prose-school img { max-width: 100%; height: auto; }
+.prose-school pre { max-width: 100%; overflow-x: auto; }
+.prose-school table { display: block; max-width: 100%; overflow-x: auto; }
+.section-hub-card span[class*='text-ink/45'] { color: #52616a; }
+#program-why-title, #program-study-title, #program-classrooms-title { color: #1A4053 !important; }
+.person-meta-link { padding-block: .2rem; }
+@media (max-width: 639px) {
+  .page-hero-shell-with-icon { gap: .75rem; }
+  header .container-page { gap: .5rem; }
+  header .container-page > a img { max-width: calc(100vw - 9rem); }
+}
+
 @media (max-width: 640px) {
   .event-calendar-cell { min-height: 4.75rem; padding: .25rem; }
   .event-calendar-day { height: 2rem; width: 2rem; font-size: .75rem; }
 }
+body:has(dialog[open]) { overflow: hidden; }
+.prose-school iframe { max-width: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }

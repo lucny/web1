@@ -7,17 +7,17 @@ import EventMeta from '../../components/events/EventMeta.astro';
 import PageHero from '../../components/content/PageHero.astro';
 import { heroImages } from '../../data/heroImages';
 import { entries, withBase } from '../../lib/content';
+import { eventDateTime } from '../../lib/publication.mjs';
+import SearchMetadata from '../../components/content/SearchMetadata.astro';
 export async function getStaticPaths() { return (await entries('events')).map((event) => ({ params: { slug: event.id }, props: { event } })); }
 const { event } = Astro.props;
 const { Content } = await render(event);
-const schema = { '@context': 'https://schema.org', '@type': 'Event', name: event.data.title, description: event.data.excerpt, startDate: `${event.data.startDate}${event.data.startTime ? `T${event.data.startTime}` : ''}`, endDate: event.data.endDate ? `${event.data.endDate}${event.data.endTime ? `T${event.data.endTime}` : ''}` : undefined, location: event.data.location ? { '@type': 'Place', name: event.data.location } : undefined, organizer: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
+const schema = { '@context': 'https://schema.org', '@type': 'Event', name: event.data.title, description: event.data.excerpt, startDate: eventDateTime(event.data.startDate, event.data.startTime), endDate: event.data.endDate || event.data.endTime ? eventDateTime(event.data.endDate ?? event.data.startDate, event.data.endTime) : undefined, url: new URL(withBase(`/udalosti/${event.id}/`), Astro.site).href, location: event.data.location ? { '@type': 'Place', name: event.data.location } : undefined, organizer: { '@type': 'EducationalOrganization', name: 'SŠPU Opava' } };
 ---
 <BaseLayout title={event.data.title} description={event.data.excerpt} seo={event.data.seo} breadcrumbs={[{ label: 'Kalendář akcí', href: '/udalosti/' }, { label: event.data.title }]} schema={schema}>
   <PageHero eyebrow="Kalendář akcí" title={event.data.title} description={event.data.excerpt} accent="#D0D543" icon={heroImages.calendar} iconBackground="#001731" />
   <article class="container-page pb-14 sm:pb-20" data-pagefind-body>
-    <span class="sr-only" data-pagefind-filter="typ">Událost</span>
-    {event.data.programs.map((program) => <span class="sr-only" data-pagefind-filter="obor">{program}</span>)}
-    {event.data.tags.map((tag) => <span class="sr-only" data-pagefind-filter="stitek">{tag}</span>)}
+    <SearchMetadata type="Událost" programs={event.data.programs} tags={event.data.tags} year={event.data.startDate.slice(0, 4)} />
     <div class="event-detail-meta mt-10"><EventMeta event={event} /></div>
     {event.data.url && <a class="button-primary mt-6" href={event.data.url}>Více informací <span aria-hidden="true" class="ml-2">↗</span></a>}
     <div class="event-detail-content mt-10"><ContentRenderer blocks={event.data.contentBlocks}><Content /></ContentRenderer></div>

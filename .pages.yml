@@ -1,58 +1,130 @@
-# Pages CMS is an editing layer only: the public site continues to read these Markdown files through Astro.
+# Pages CMS: formuláře zachovávají původní plochý datový model. Viz PAGES-CMS.md.
 media:
+  - name: articles
+    label: Fotografie článků
+    input: public/uploads/articles
+    output: /uploads/articles
+    extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      - avif
+    rename: safe
   - name: images
     label: Obrázky pro obsah
     input: public/uploads/images
     output: /uploads/images
-    extensions: [jpg, jpeg, png, webp, avif]
+    extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      - avif
     rename: safe
     actions:
       - name: optimize-images
-        label: Optimalizovat obrázky
+        label: Připravit náhledy a zprávu o médiích
         workflow: optimize-images.yml
         ref: current
         confirm:
           title: Vytvořit optimalizované varianty?
-          message: Původní JPG a PNG zůstanou zachovány; workflow pouze přidá WebP a AVIF soubory.
+          message: Vytvoří náhledy a přehled velikostí jako artefakt Actions. Web stejné náhledy připravuje při každém
+            buildu; originály se nemění.
           button: Spustit optimalizaci
   - name: galleries
     label: Fotografie do galerií
     input: public/uploads/galleries
     output: /uploads/galleries
-    extensions: [jpg, jpeg, png, webp, avif]
+    extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      - avif
     rename: safe
     actions:
       - name: optimize-gallery-images
-        label: Optimalizovat fotografie
+        label: Připravit náhledy a zprávu o médiích
         workflow: optimize-images.yml
         ref: current
   - name: people
     label: Fotografie osob
     input: public/uploads/people
     output: /uploads/people
-    extensions: [jpg, jpeg, png, webp, avif]
+    extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      - avif
     rename: safe
   - name: documents
     label: Dokumenty ke stažení
     input: public/uploads/documents
     output: /uploads/documents
-    extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx]
+    extensions:
+      - pdf
+      - doc
+      - docx
+      - odt
+      - xls
+      - xlsx
+      - ods
+      - ppt
+      - pptx
     rename: safe
   - name: attachments
     label: Přílohy článků
     input: public/uploads/attachments
     output: /uploads/attachments
-    extensions: [mp3, wav, ogg, m4a, pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx, jpg, jpeg, png, webp, avif]
-    categories: [document, image, audio]
+    extensions:
+      - mp3
+      - wav
+      - ogg
+      - m4a
+      - pdf
+      - doc
+      - docx
+      - odt
+      - xls
+      - xlsx
+      - ods
+      - ppt
+      - pptx
+      - jpg
+      - jpeg
+      - png
+      - webp
+      - avif
+    categories:
+      - document
+      - image
+      - audio
     rename: safe
   - name: job-offers
     label: Inzeráty pracovních nabídek
     input: public/uploads/job-offers
     output: /uploads/job-offers
-    extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx, jpg, jpeg, png, webp, avif]
-    categories: [document, image]
+    extensions:
+      - pdf
+      - doc
+      - docx
+      - odt
+      - xls
+      - xlsx
+      - ods
+      - ppt
+      - pptx
+      - jpg
+      - jpeg
+      - png
+      - webp
+      - avif
+    categories:
+      - document
+      - image
     rename: safe
-
 components:
   status:
     type: select
@@ -63,6 +135,9 @@ components:
           label: Publikováno
         - name: draft
           label: Koncept (nezobrazí se na veřejném webu)
+    default: draft
+    required: true
+    description: Koncept se nezobrazuje. Zveřejnění proběhne až po úspěšné kontrole a sestavení webu v GitHub Actions.
   programs:
     type: reference
     label: Studijní obory
@@ -70,8 +145,9 @@ components:
       collection: programs
       multiple: true
       value: "{name}"
-      label: "{title}"
-      search: "title,code,description"
+      label: "{fields.title}"
+      search: title,code,description
+    description: Vyberte obory, kterých se obsah týká. U celoškolního obsahu může seznam zůstat prázdný.
   categories:
     type: reference
     label: Kategorie
@@ -79,13 +155,15 @@ components:
       collection: categories
       multiple: true
       value: "{primary}"
-      label: "{primary}"
-      search: "title,description"
+      label: "{fields.title}"
+      search: title,description
+    description: Vyberte existující rubriky. Název používané kategorie měňte společně s vazbami v obsahu.
   tags:
     type: string
     label: Štítky
     list: true
-    description: Volné štítky – použijte krátká, opakovatelná označení (např. „výstava“, „praxe“).
+    description: Krátká opakovatelná témata. Dodržujte již používané názvy; obor a kategorii vyplňte v jejich
+      samostatných polích.
   seo:
     type: object
     label: SEO a sdílení
@@ -121,7 +199,10 @@ components:
   contentBlocks:
     type: block
     label: Obsahové bloky
-    list: true
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{index}. {fields.title} {fields.text}"
     blockKey: type
     blocks:
       - name: heading
@@ -131,13 +212,27 @@ components:
             label: Úroveň
             type: select
             options:
-              values: [h2, h3]
+              values:
+                - h2
+                - h3
             default: h2
           - name: text
             label: Text nadpisu
             type: string
+      - name: richText
+        label: Formátovaný text (Markdown)
+        fields:
+          - name: title
+            label: Nadpis oddílu (H2)
+            type: string
+            required: false
+          - name: text
+            component: body
+            label: Text oddílu
+            required: true
+            description: Formátovaný text s odkazy, seznamy a citacemi; nadpis oddílu vyplňte výše.
       - name: text
-        label: Text
+        label: Prostý text
         fields:
           - name: title
             label: Nadpis bloku
@@ -155,10 +250,12 @@ components:
             options:
               media: images
               rename: safe
+            required: true
           - name: alt
             label: ALT text
             type: string
-            description: Popište obsah obrázku; prázdný ALT použijte jen pro čistě dekorativní obrázek.
+            description: Popište sdělení obrázku. Čistě dekorativní obrázky patří do vzhledu šablony.
+            required: true
           - name: caption
             label: Popisek
             type: text
@@ -182,7 +279,8 @@ components:
             type: file
             options:
               media: attachments
-              categories: [audio]
+              categories:
+                - audio
           - name: title
             label: Popisek audia
             type: string
@@ -201,7 +299,10 @@ components:
           - name: rows
             label: Řádky
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.title} {fields.label} {fields.name}"
             fields:
               - name: cells
                 label: Buňky řádku zleva doprava
@@ -213,7 +314,12 @@ components:
           - name: items
             label: Sloupce
             type: object
-            list: true
+            list:
+              min: 2
+              max: 2
+              collapsible:
+                collapsed: false
+                summary: "{fields.title}"
             fields:
               - name: title
                 label: Nadpis
@@ -227,7 +333,12 @@ components:
           - name: items
             label: Sloupce
             type: object
-            list: true
+            list:
+              min: 3
+              max: 3
+              collapsible:
+                collapsed: false
+                summary: "{fields.title}"
             fields:
               - name: title
                 label: Nadpis
@@ -241,7 +352,12 @@ components:
           - name: items
             label: Sloupce
             type: object
-            list: true
+            list:
+              min: 2
+              max: 4
+              collapsible:
+                collapsed: false
+                summary: "{fields.title}"
             fields:
               - name: title
                 label: Nadpis
@@ -282,8 +398,8 @@ components:
             options:
               collection: galleries
               value: "{name}"
-              label: "{title}"
-              search: "title,description"
+              label: "{fields.title}"
+              search: title,description
       - name: documents
         label: Seznam dokumentů
         fields:
@@ -294,8 +410,8 @@ components:
               collection: documents
               multiple: true
               value: "{name}"
-              label: "{title}"
-              search: "title,description,category"
+              label: "{fields.title}"
+              search: title,description,category
       - name: downloads
         label: Ke stažení
         fields:
@@ -325,7 +441,10 @@ components:
           - name: items
             label: Soubory a odkazy
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.title} {fields.label} {fields.name}"
             fields:
               - name: label
                 label: Název odkazu
@@ -351,7 +470,10 @@ components:
           - name: items
             label: Odkazy
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.title} {fields.label} {fields.name}"
             fields:
               - name: label
                 label: Název odkazu
@@ -367,7 +489,9 @@ components:
                 label: Typ
                 type: select
                 options:
-                  values: [external, document]
+                  values:
+                    - external
+                    - document
                 default: external
       - name: resourceGroups
         label: Tematické skupiny materiálů
@@ -383,7 +507,10 @@ components:
           - name: groups
             label: Skupiny materiálů
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.title} {fields.label} {fields.name}"
             fields:
               - name: title
                 label: Název skupiny
@@ -399,7 +526,10 @@ components:
               - name: items
                 label: Jednotlivé materiály
                 type: object
-                list: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{fields.title} {fields.label} {fields.name}"
                 fields:
                   - name: label
                     label: Název
@@ -415,12 +545,17 @@ components:
                     label: Typ
                     type: select
                     options:
-                      values: [external, document]
+                      values:
+                        - external
+                        - document
                     default: document
               - name: series
                 label: Série s číslovanými materiály
                 type: object
-                list: true
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{fields.title} {fields.label} {fields.name}"
                 fields:
                   - name: urlTemplate
                     label: Vzor URL ({n} = číslo)
@@ -444,7 +579,9 @@ components:
                     label: Typ
                     type: select
                     options:
-                      values: [external, document]
+                      values:
+                        - external
+                        - document
                     default: document
       - name: articles
         label: Seznam aktualit
@@ -456,8 +593,8 @@ components:
               collection: articles
               multiple: true
               value: "{name}"
-              label: "{title}"
-              search: "title,description,author"
+              label: "{fields.title}"
+              search: title,description,author
       - name: people
         label: Osoby a kontakty
         fields:
@@ -481,15 +618,18 @@ components:
               collection: people
               multiple: true
               value: "{name}"
-              label: "{name}"
-              search: "name,position,workplace"
+              label: "{fields.name}"
+              search: name,position,workplace
       - name: faq
         label: FAQ
         fields:
           - name: items
             label: Otázky a odpovědi
             type: object
-            list: true
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.title} {fields.label} {fields.name}"
             fields:
               - name: question
                 label: Otázka
@@ -497,8 +637,116 @@ components:
               - name: answer
                 label: Odpověď
                 type: text
-
+    description: Volitelné pro strukturované stránky. Neprázdný seznam nahrazuje Hlavní text. Pořadí bloků je
+      pořadím na webu; používejte H2 pro oddíly a H3 pro pododdíly.
+  body:
+    type: rich-text
+    label: Hlavní text
+    required: false
+    description: "Běžný článek pište zde: nadpisy od H2, odstavce, odkazy, seznamy, citace a obrázky s ALT textem.
+      Pokud vyplníte Obsahové bloky, nahradí tento text. Starší HTML upravujte v režimu Markdown."
+    options:
+      format: markdown
+      switcher: true
+      media: images
+      rename: safe
+      extensions:
+        - jpg
+        - jpeg
+        - png
+        - webp
+        - avif
+  photo:
+    type: object
+    fields:
+      - name: src
+        label: Fotografie
+        type: image
+        required: true
+        options:
+          media: galleries
+          rename: safe
+      - name: alt
+        label: Co je na fotografii (ALT)
+        type: string
+        required: true
+        description: Stručně popište děj nebo důležitý obsah. Nepište název souboru ani pouze „fotografie“.
+      - name: caption
+        label: Viditelný popisek
+        type: text
+        required: false
+        description: Doplňte okolnosti, jména nebo autora snímku, pokud je chcete zveřejnit.
 content:
+  - name: homepage-alerts
+    label: Úvodní upozornění
+    type: file
+    path: src/data/homepage-alerts.json
+    format: json
+    fields:
+      - name: alerts
+        label: Upozornění na homepage
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.label}"
+        fields:
+          - name: id
+            label: Interní identifikátor
+            type: string
+            required: true
+            description: Krátký jedinečný název bez mezer; po vytvoření neměňte.
+          - name: articleId
+            label: Zvýrazněný článek
+            type: reference
+            required: true
+            options:
+              collection: articles
+              value: "{name}"
+              label: "{fields.title}"
+              search: title,description
+          - name: label
+            label: Krátký popisek
+            type: string
+            required: true
+          - name: enabled
+            label: Zobrazovat
+            type: boolean
+            default: false
+          - name: expiresAt
+            label: Zobrazovat nejdéle do (včetně)
+            type: date
+            required: false
+            options:
+              format: yyyy-MM-dd
+          - name: variant
+            label: Podoba
+            type: select
+            default: text
+            options:
+              values:
+                - name: text
+                  label: Text
+                - name: banner
+                  label: Banner s obrázkem
+          - name: tone
+            label: Barva
+            type: select
+            default: mist
+            options:
+              values:
+                - night
+                - brand
+                - mist
+                - accent
+          - name: desktopColumns
+            label: Šířka na desktopu (z 12 sloupců)
+            type: number
+            default: 6
+            options:
+              min: 4
+              max: 8
+              step: 2
   - name: web-pages
     label: Stránky
     type: collection
@@ -506,9 +754,15 @@ content:
     filename: "{primary}.md"
     view:
       primary: title
-      fields: [title, status]
-      search: [title, description, eyebrow]
-      sort: [title]
+      fields:
+        - title
+        - status
+      search:
+        - title
+        - description
+        - eyebrow
+      sort:
+        - title
       default:
         sort: title
         order: asc
@@ -521,6 +775,11 @@ content:
         label: Perex a meta description
         type: text
         required: true
+      - name: body
+        component: body
+      - name: contentBlocks
+        component: contentBlocks
+        required: false
       - name: eyebrow
         label: Nadřazený popisek
         type: string
@@ -529,35 +788,35 @@ content:
         label: Zvýrazněná informace
         type: text
         required: false
-      - name: contentBlocks
-        component: contentBlocks
       - name: status
         component: status
       - name: seo
         component: seo
-      - name: body
-        label: Starší Markdownový text (kompatibilita)
-        type: rich-text
-        description: Používá se jen u položek bez contentBlocks; pro nový obsah použijte Obsahové bloky.
-        options:
-          media: images
-          path: pages
-          extensions: [jpg, jpeg, png, webp, avif]
-          rename: safe
-          switcher: true
-
   - name: jobOffers
     label: Nabídky zaměstnání a brigád
     type: collection
     path: src/content/job-offers
     filename: "{slug}.md"
-    media_folder: public/uploads/job-offers
-    public_folder: /uploads/job-offers
     view:
       primary: position
-      fields: [company, position, type, status, location, needsReview]
-      search: [title, company, position, summary, location, field]
-      sort: [status, publishedAt, company]
+      fields:
+        - company
+        - position
+        - type
+        - status
+        - location
+        - needsReview
+      search:
+        - title
+        - company
+        - position
+        - summary
+        - location
+        - field
+      sort:
+        - status
+        - publishedAt
+        - company
       default:
         sort: publishedAt
         order: desc
@@ -571,8 +830,9 @@ content:
         type: string
         required: true
         pattern:
-          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          regex: ^[a-z0-9]+(?:-[a-z0-9]+)*$
           message: Použijte malá písmena bez diakritiky a slova oddělte pomlčkami.
+        description: Trvalá část adresy a názvu souboru. U publikovaného záznamu ji neměňte bez přesměrování.
       - name: company
         label: Firma
         type: string
@@ -590,21 +850,35 @@ content:
         type: select
         required: false
         options:
-          values: [job, brigade, internship, practice]
-          labels: [Pracovní nabídka, Brigáda, Stáž, Praxe]
-          default: job
+          values:
+            - name: job
+              label: Pracovní nabídka
+            - name: brigade
+              label: Brigáda
+            - name: internship
+              label: Stáž
+            - name: practice
+              label: Praxe
+        default: job
       - name: status
         label: Stav nabídky
         type: select
         required: true
         options:
-          values: [active, needs-review, closed, archived]
-          labels: [Aktuální, Vyžaduje ověření, Uzavřená, Archivní]
+          values:
+            - name: active
+              label: Aktuální
+            - name: needs-review
+              label: Vyžaduje ověření
+            - name: closed
+              label: Uzavřená
+            - name: archived
+              label: Archivní
       - name: visible
         label: Zobrazit veřejně
         type: boolean
         required: true
-        default: true
+        default: false
       - name: needsReview
         label: Vyžaduje ověření aktuálnosti
         type: boolean
@@ -638,6 +912,8 @@ content:
         required: false
         options:
           format: yyyy-MM-dd
+        description: Termín pro kontrolu aktuálnosti. Staré nabídky zůstávají v archivu; uzavření nastavte ve Stavu
+          nabídky.
       - name: featured
         label: Zvýraznit v přehledu
         type: boolean
@@ -650,7 +926,10 @@ content:
       - name: attachments
         label: Přílohy nabídky
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: label
@@ -670,7 +949,10 @@ content:
       - name: sourceLinks
         label: Externí odkazy
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: label
@@ -694,15 +976,7 @@ content:
         type: string
         required: false
       - name: body
-        label: Podrobný text nabídky
-        type: rich-text
-        required: false
-        options:
-          media: images
-          path: job-offers
-          extensions: [jpg, jpeg, png, webp, avif]
-          switcher: true
-
+        component: body
   - name: projects
     label: Projekty
     type: collection
@@ -710,9 +984,23 @@ content:
     filename: "{slug}.md"
     view:
       primary: title
-      fields: [title, status, startDate, endDate, programme]
-      search: [title, summary, programme, topics, registrationNumber, projectNumber]
-      sort: [status, startDate, title]
+      fields:
+        - title
+        - status
+        - startDate
+        - endDate
+        - programme
+      search:
+        - title
+        - summary
+        - programme
+        - topics
+        - registrationNumber
+        - projectNumber
+      sort:
+        - status
+        - startDate
+        - title
       default:
         sort: startDate
         order: desc
@@ -725,14 +1013,25 @@ content:
         label: URL identifikátor
         type: string
         required: true
-        description: Malá písmena bez diakritiky, slova oddělujte pomlčkami.
+        description: Trvalá část adresy a názvu souboru. U publikovaného záznamu ji neměňte bez přesměrování.
+      - name: summary
+        label: Krátké shrnutí
+        type: text
+        required: true
+      - name: body
+        component: body
       - name: status
         label: Stav projektu
         type: select
         required: true
         options:
-          values: [active, completed, archived]
-          labels: [Probíhá, Ukončený, Archivní]
+          values:
+            - name: active
+              label: Probíhá
+            - name: completed
+              label: Ukončený
+            - name: archived
+              label: Archivní
       - name: publicationStatus
         component: status
       - name: startDate
@@ -770,14 +1069,6 @@ content:
         type: string
         list: true
         required: false
-      - name: summary
-        label: Krátké shrnutí
-        type: text
-        required: true
-      - name: featured
-        label: Zvýraznit v přehledu
-        type: boolean
-        default: false
       - name: heroImage
         label: Hlavní obrázek
         type: image
@@ -788,7 +1079,10 @@ content:
       - name: gallery
         label: Galerie projektu
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: src
@@ -797,9 +1091,11 @@ content:
             options:
               media: images
               rename: safe
+            required: true
           - name: alt
             label: ALT text
             type: string
+            required: true
           - name: caption
             label: Popisek
             type: text
@@ -807,7 +1103,10 @@ content:
       - name: partners
         label: Partneři
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: name
@@ -820,7 +1119,10 @@ content:
       - name: links
         label: Související odkazy
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: label
@@ -834,20 +1136,19 @@ content:
             type: select
             required: false
             options:
-              values: [external, document, video]
-              labels: [Externí web, Dokument, Video]
+              values:
+                - name: external
+                  label: Externí web
+                - name: document
+                  label: Dokument
+                - name: video
+                  label: Video
+      - name: featured
+        label: Zvýraznit v přehledu
+        type: boolean
+        default: false
       - name: seo
         component: seo
-      - name: body
-        label: Obsah projektu
-        type: rich-text
-        options:
-          media: images
-          path: projects
-          extensions: [jpg, jpeg, png, webp, avif]
-          rename: safe
-          switcher: true
-
   - name: articles
     label: Aktuality a články
     type: collection
@@ -855,9 +1156,20 @@ content:
     filename: "{primary}.md"
     view:
       primary: title
-      fields: [title, publishedAt, author, status]
-      search: [title, description, author, categories, tags]
-      sort: [publishedAt, title]
+      fields:
+        - title
+        - publishedAt
+        - author
+        - status
+      search:
+        - title
+        - description
+        - author
+        - categories
+        - tags
+      sort:
+        - publishedAt
+        - title
       default:
         sort: publishedAt
         order: desc
@@ -870,12 +1182,33 @@ content:
         label: Perex
         type: text
         required: true
+        description: 1–2 věty pro kartu článku, vyhledávání a sdílení. Neopakujte pouze titulek.
+      - name: body
+        component: body
+        options:
+          format: markdown
+          switcher: true
+          media: articles
+          rename: safe
+          extensions:
+            - jpg
+            - jpeg
+            - png
+            - webp
+            - avif
+      - name: contentBlocks
+        component: contentBlocks
+        required: false
+      - name: status
+        component: status
       - name: publishedAt
         label: Datum publikace
         type: date
         required: true
         options:
           format: yyyy-MM-dd
+        description: Datum podle Europe/Prague. Budoucí článek se zveřejní až při prvním úspěšném buildu v daný den
+          (pravidelný rebuild každou hodinu).
       - name: updatedAt
         label: Datum poslední úpravy
         type: date
@@ -887,48 +1220,40 @@ content:
       - name: author
         label: Autor
         type: reference
-        required: true
+        required: false
         options:
           collection: people
           value: "{primary}"
-          label: "{name}"
-          search: "name,role,department"
+          label: "{fields.name}"
+          search: name,position,workplace
+        description: Vyberte osobu. U starších článků je zachováno i společné autorství „Redakce školy“. Při změně
+          jména zkontrolujte starší vazby.
       - name: categories
         component: categories
-      - name: tags
-        component: tags
       - name: programs
         component: programs
+      - name: tags
+        component: tags
       - name: cover
         label: Titulní obrázek
         type: image
         required: false
         options:
-          media: images
+          media: articles
           rename: safe
-      - name: gallery
-        label: Související galerie
-        type: reference
+      - name: coverAlt
+        label: Popis titulního obrázku (ALT)
+        type: string
         required: false
-        options:
-          collection: galleries
-          value: "{name}"
-          label: "{title}"
-          search: "title,description"
-      - name: related
-        label: Doporučené články
-        type: reference
-        required: false
-        options:
-          collection: articles
-          multiple: true
-          value: "{name}"
-          label: "{title}"
-          search: "title,description"
+        description: Popište obsah, pokud obrázek předává další informaci. V náhledových kartách má odkaz vlastní
+          text; při prázdném poli se použije titulek článku.
       - name: attachments
         label: Přílohy
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: label
@@ -939,8 +1264,29 @@ content:
             type: file
             options:
               media: attachments
-              categories: [document, image]
+              categories:
+                - document
+                - image
               rename: safe
+      - name: gallery
+        label: Související galerie
+        type: reference
+        required: false
+        options:
+          collection: galleries
+          value: "{name}"
+          label: "{fields.title}"
+          search: title,description
+      - name: related
+        label: Doporučené články
+        type: reference
+        required: false
+        options:
+          collection: articles
+          multiple: true
+          value: "{name}"
+          label: "{fields.title}"
+          search: title,description
       - name: homepage
         label: Zobrazení na titulní stránce
         type: object
@@ -953,23 +1299,10 @@ content:
             label: Pořadí na titulní stránce
             type: number
             default: 0
-      - name: contentBlocks
-        component: contentBlocks
-      - name: status
-        component: status
+        description: Přednostní zařazení do zpravodaje na homepage; nižší pořadí je výše. Upozornění nad zpravodajem
+          se upravují v kolekci Úvodní upozornění.
       - name: seo
         component: seo
-      - name: body
-        label: Starší Markdownový text (kompatibilita)
-        type: rich-text
-        description: Používá se jen u článků bez contentBlocks; pro nový obsah použijte Obsahové bloky.
-        options:
-          media: images
-          path: articles
-          extensions: [jpg, jpeg, png, webp, avif]
-          rename: safe
-          switcher: true
-
   - name: programs
     label: Studijní obory
     type: collection
@@ -979,13 +1312,25 @@ content:
       delete: false
     view:
       primary: title
-      fields: [title, code, form, status]
-      search: [title, code, description]
-      sort: [title]
+      fields:
+        - title
+        - code
+        - form
+        - status
+      search:
+        - title
+        - code
+        - description
+      sort:
+        - title
     fields:
       - name: title
         label: Název oboru
         type: string
+        required: true
+      - name: description
+        label: Stručný popis
+        type: text
         required: true
       - name: code
         label: Kód oboru
@@ -999,17 +1344,16 @@ content:
         label: Kapacita
         type: number
         required: true
-      - name: description
-        label: Stručný popis
-        type: text
-        required: true
-      - name: heroImage
-        label: Titulní obrázek
-        type: image
-        required: false
         options:
-          media: images
-          rename: safe
+          min: 0
+          step: 1
+      - name: body
+        component: body
+        description: Obsah oboru. Neprázdné bloky mají přednost; pokud jsou text i bloky prázdné, použije se výchozí
+          obsah oboru.
+      - name: contentBlocks
+        component: contentBlocks
+        required: false
       - name: highlights
         label: Hlavní body studia
         type: string
@@ -1020,6 +1364,13 @@ content:
         type: string
         list: true
         required: true
+      - name: heroImage
+        label: Titulní obrázek
+        type: image
+        required: false
+        options:
+          media: images
+          rename: safe
       - name: relatedPeople
         label: Kontakty k oboru
         type: reference
@@ -1028,25 +1379,12 @@ content:
           collection: people
           multiple: true
           value: "{name}"
-          label: "{name}"
-          search: "name,role,department"
-      - name: contentBlocks
-        component: contentBlocks
+          label: "{fields.name}"
+          search: name,position,workplace
       - name: status
         component: status
       - name: seo
         component: seo
-      - name: body
-        label: Starší Markdownový text (kompatibilita)
-        type: rich-text
-        description: Používá se jen u oborů bez contentBlocks; pro nový obsah použijte Obsahové bloky.
-        options:
-          media: images
-          path: programs
-          extensions: [jpg, jpeg, png, webp, avif]
-          rename: safe
-          switcher: true
-
   - name: galleries
     label: Galerie
     type: collection
@@ -1054,9 +1392,18 @@ content:
     filename: "{primary}.md"
     view:
       primary: title
-      fields: [title, date, status]
-      search: [title, description, categories, tags]
-      sort: [date, title]
+      fields:
+        - title
+        - date
+        - status
+      search:
+        - title
+        - description
+        - categories
+        - tags
+      sort:
+        - date
+        - title
       default:
         sort: date
         order: desc
@@ -1075,36 +1422,37 @@ content:
         required: true
         options:
           format: yyyy-MM-dd
+      - name: photos
+        label: Fotografie (pořadí odpovídá veřejné galerii)
+        required: true
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{index}. {fields.alt}"
+        component: photo
+        description: Pořadí upravte přetažením. Hromadné nahrání do médií samo nevytvoří tyto řádky. Pro velkou sadu
+          použijte gallery:create podle PAGES-CMS.md.
       - name: cover
         label: Titulní fotografie
         type: image
-        required: true
+        required: false
         options:
           media: galleries
           rename: safe
-      - name: photos
-        label: Fotografie (pořadí odpovídá veřejné galerii)
-        type: object
-        required: true
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{alt}"
-        fields:
-          - name: src
-            label: Fotografie
-            type: image
-            options:
-              media: galleries
-              rename: safe
-          - name: alt
-            label: ALT text
-            type: string
-            description: Povinný smysluplný popis obsahu snímku.
-          - name: caption
-            label: Popisek
-            type: text
-            required: false
+        description: Volitelné. Bez výběru se použije první fotografie v seznamu.
+      - name: body
+        component: body
+        label: Veřejný doplňující text
+        description: Text pod popisem galerie. Interní poznámky sem nepatří.
+      - name: status
+        component: status
+      - name: programs
+        component: programs
+      - name: categories
+        component: categories
+      - name: tags
+        component: tags
       - name: article
         label: Související článek
         type: reference
@@ -1112,29 +1460,10 @@ content:
         options:
           collection: articles
           value: "{name}"
-          label: "{title}"
-          search: "title,description"
-      - name: programs
-        component: programs
-      - name: categories
-        component: categories
-      - name: tags
-        component: tags
-      - name: status
-        component: status
+          label: "{fields.title}"
+          search: title,description
       - name: seo
         component: seo
-      - name: body
-        label: Poznámka pro redakci / doplňující text
-        type: rich-text
-        required: false
-        options:
-          media: images
-          path: galleries
-          extensions: [jpg, jpeg, png, webp, avif]
-          rename: safe
-          switcher: true
-
   - name: documents
     label: Dokumenty
     type: collection
@@ -1142,9 +1471,20 @@ content:
     filename: "{primary}.md"
     view:
       primary: title
-      fields: [title, category, date, validUntil, status]
-      search: [title, description, category, tags]
-      sort: [date, title]
+      fields:
+        - title
+        - category
+        - date
+        - validUntil
+        - status
+      search:
+        - title
+        - description
+        - category
+        - tags
+      sort:
+        - date
+        - title
       default:
         sort: date
         order: desc
@@ -1163,17 +1503,17 @@ content:
         required: true
         options:
           media: documents
-          extensions: [pdf, doc, docx, odt, xls, xlsx, ods, ppt, pptx]
+          extensions:
+            - pdf
+            - doc
+            - docx
+            - odt
+            - xls
+            - xlsx
+            - ods
+            - ppt
+            - pptx
           rename: safe
-      - name: category
-        label: Kategorie
-        type: reference
-        required: true
-        options:
-          collection: categories
-          value: "{primary}"
-          label: "{primary}"
-          search: "title,description"
       - name: date
         label: Datum vydání
         type: date
@@ -1187,6 +1527,18 @@ content:
         default: ""
         options:
           format: yyyy-MM-dd
+        description: Datum poslední platnosti. Kontrola upozorní na prošlý dokument; automaticky jej nemaže ani neskrývá.
+      - name: status
+        component: status
+      - name: category
+        label: Kategorie
+        type: reference
+        required: true
+        options:
+          collection: categories
+          value: "{primary}"
+          label: "{fields.title}"
+          search: title,description
       - name: programs
         component: programs
       - name: tags
@@ -1199,13 +1551,10 @@ content:
           collection: web-pages
           multiple: true
           value: "{name}"
-          label: "{title}"
-          search: "title,description"
-      - name: status
-        component: status
+          label: "{fields.title}"
+          search: title,description
       - name: seo
         component: seo
-
   - name: events
     label: Kalendář akcí
     type: collection
@@ -1213,9 +1562,20 @@ content:
     filename: "{primary}.md"
     view:
       primary: title
-      fields: [title, startDate, endDate, location, status]
-      search: [title, excerpt, location, tags]
-      sort: [startDate, title]
+      fields:
+        - title
+        - startDate
+        - endDate
+        - location
+        - status
+      search:
+        - title
+        - excerpt
+        - location
+        - tags
+      sort:
+        - startDate
+        - title
       default:
         sort: startDate
         order: asc
@@ -1228,8 +1588,6 @@ content:
         label: Perex události
         type: text
         required: true
-      - name: contentBlocks
-        component: contentBlocks
       - name: startDate
         label: Datum začátku
         type: date
@@ -1241,8 +1599,9 @@ content:
         type: string
         required: false
         pattern:
-          regex: "^([01]\\d|2[0-3]):[0-5]\\d$"
+          regex: ^([01]\d|2[0-3]):[0-5]\d$
           message: Zadejte čas ve formátu HH:mm.
+        description: Místní čas v Opavě (HH:mm). Bez času jde o celodenní událost.
       - name: endDate
         label: Datum konce
         type: date
@@ -1250,21 +1609,30 @@ content:
         default: ""
         options:
           format: yyyy-MM-dd
+        description: U jednodenní akce nechte prázdné. U vícedenní akce vyplňte poslední den včetně.
       - name: endTime
         label: Čas konce
         type: string
         required: false
         pattern:
-          regex: "^([01]\\d|2[0-3]):[0-5]\\d$"
+          regex: ^([01]\d|2[0-3]):[0-5]\d$
           message: Zadejte čas ve formátu HH:mm.
       - name: location
         label: Místo
         type: text
         required: false
+      - name: body
+        component: body
+      - name: contentBlocks
+        component: contentBlocks
+        required: false
+      - name: status
+        component: status
+      - name: programs
+        component: programs
       - name: tags
         label: Štítky
         type: select
-        list: true
         options:
           values:
             - name: vystava
@@ -1293,14 +1661,14 @@ content:
               label: Strojírenství
             - name: design-hracek
               label: Design hraček
-      - name: url
-        label: Odkaz pro více informací
-        type: string
-        required: false
+          multiple: true
       - name: attachments
         label: Přílohy
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.title} {fields.label} {fields.name}"
         required: false
         fields:
           - name: file
@@ -1308,7 +1676,10 @@ content:
             type: file
             options:
               media: attachments
-              categories: [document, image, audio]
+              categories:
+                - document
+                - image
+                - audio
           - name: label
             label: Název odkazu
             type: string
@@ -1316,8 +1687,6 @@ content:
             label: Popis přílohy
             type: text
             required: false
-      - name: programs
-        component: programs
       - name: article
         label: Související článek
         type: reference
@@ -1325,8 +1694,8 @@ content:
         options:
           collection: articles
           value: "{name}"
-          label: "{title}"
-          search: "title,description"
+          label: "{fields.title}"
+          search: title,description
       - name: gallery
         label: Související galerie
         type: reference
@@ -1334,13 +1703,14 @@ content:
         options:
           collection: galleries
           value: "{name}"
-          label: "{title}"
-          search: "title,description"
-      - name: status
-        component: status
+          label: "{fields.title}"
+          search: title,description
+      - name: url
+        label: Odkaz pro více informací
+        type: string
+        required: false
       - name: seo
         component: seo
-
   - name: people
     label: Lidé a kontakty
     type: collection
@@ -1348,9 +1718,20 @@ content:
     filename: "{primary}.md"
     view:
       primary: name
-      fields: [name, position, workplace, showInContacts, status]
-      search: [name, position, workplace, email, studyFields]
-      sort: [name]
+      fields:
+        - name
+        - position
+        - workplace
+        - showInContacts
+        - status
+      search:
+        - name
+        - position
+        - workplace
+        - email
+        - studyFields
+      sort:
+        - name
     fields:
       - name: name
         label: Jméno
@@ -1371,11 +1752,12 @@ content:
       - name: workplace
         label: Pracoviště
         type: string
-        required: false
+        required: true
       - name: phone
         label: Telefon
         type: string
         required: false
+        description: Hlavní telefon. Další čísla přidejte níže; stejné číslo nevkládejte dvakrát.
       - name: phones
         label: Telefonní čísla
         type: string
@@ -1386,7 +1768,7 @@ content:
         type: string
         required: true
         pattern:
-          regex: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+          regex: ^[^\s@]+@[^\s@]+\.[^\s@]+$
           message: Zadejte platnou e-mailovou adresu.
       - name: photo
         label: Fotografie
@@ -1399,6 +1781,7 @@ content:
         label: ALT fotografie
         type: string
         required: false
+        description: Volitelné; při prázdném poli se použije jméno osoby.
       - name: photoFocalPoint
         label: Ohnisko fotografie
         type: string
@@ -1408,16 +1791,29 @@ content:
         label: Stručný profil
         type: text
         required: false
-        description: Starší krátký profil; pro nový obsah použijte obsahové bloky níže.
+        description: Krátký veřejný profil. Rozsáhlejší členění lze doplnit obsahovými bloky.
       - name: contentBlocks
         component: contentBlocks
+        required: false
       - name: studyFields
         component: programs
       - name: groups
         label: Skupiny kontaktů
-        type: string
-        list: true
+        type: select
         required: false
+        options:
+          multiple: true
+          values:
+            - name: vedeni
+              label: Vedení
+            - name: kolegium
+              label: Kolegium
+            - name: administrativa
+              label: Administrativa
+            - name: ucitele
+              label: Učitelé
+            - name: skolska-rada
+              label: Školská rada
       - name: showInContacts
         label: Zobrazit v přehledu kontaktů
         type: boolean
@@ -1427,7 +1823,6 @@ content:
         component: status
       - name: seo
         component: seo
-
   - name: categories
     label: Kategorie
     type: collection
@@ -1437,9 +1832,15 @@ content:
       delete: false
     view:
       primary: title
-      fields: [title, description, status]
-      search: [title, description]
-      sort: [title]
+      fields:
+        - title
+        - description
+        - status
+      search:
+        - title
+        - description
+      sort:
+        - title
     fields:
       - name: title
         label: Název kategorie
@@ -1451,17 +1852,15 @@ content:
         required: false
       - name: status
         component: status
-
 settings:
   content:
     merge: true
   commit:
     templates:
-      create: "Přidat {path} přes Pages CMS"
-      update: "Upravit {path} přes Pages CMS"
-      delete: "Odstranit {path} přes Pages CMS"
-      rename: "Přejmenovat {oldPath} na {newPath} přes Pages CMS"
-
+      create: Přidat {path} přes Pages CMS
+      update: Upravit {path} přes Pages CMS
+      delete: Odstranit {path} přes Pages CMS
+      rename: Přejmenovat {oldPath} na {newPath} přes Pages CMS
 actions:
   - name: rebuild-site
     label: Znovu sestavit a publikovat web
@@ -1473,12 +1872,13 @@ actions:
       message: Spustí validaci obsahu, Astro build, Pagefind a deployment na GitHub Pages.
       button: Publikovat
   - name: validate-content
-    label: Zkontrolovat obsah
+    label: Kontrola obsahu, ALT, metadat a platnosti
     workflow: validate-content.yml
     ref: current
     confirm:
       title: Zkontrolovat obsah?
-      message: Provede kontrolu datového modelu, Astro typů a konfigurace Pages CMS bez změny souborů.
+      message: Přehled chyb a doporučení najdete v souhrnu Actions a artefaktu redakční-kontroly. Zkontroluje i
+        vazby a obsah bez příchozích vztahů.
       button: Spustit kontrolu
   - name: check-links
     label: Zkontrolovat interní odkazy

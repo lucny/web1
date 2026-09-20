@@ -2,6 +2,7 @@
 import type { PersonEntry } from '../../lib/people';
 import { formatPersonName, getPersonPhoto, getPersonPosition, getPersonWorkplace } from '../../lib/people';
 import { withBase } from '../../lib/content';
+import ResponsiveImage from '../ResponsiveImage.astro';
 import PersonMeta from './PersonMeta.astro';
 
 type Variant = 'vertical' | 'compact' | 'list';
@@ -30,23 +31,20 @@ const photo = getPersonPhoto(data);
 const name = formatPersonName(data);
 const position = getPersonPosition(data);
 const workplace = getPersonWorkplace(data);
-const profileUrl = withBase(`/kontakt/?osoba=${encodeURIComponent(person.id)}`);
+const profileUrl = withBase(`/kontakt/${person.id}/`);
 ---
 
 <article
   class:list={["person-card", `person-card-${variant}`, "card", photo && showPhoto && "person-card-has-photo"]}
   data-person-open={interactive ? person.id : undefined}
   data-person-card
-  tabindex={interactive ? 0 : undefined}
-  role={interactive ? 'button' : undefined}
-  aria-label={interactive ? `Otevřít profil: ${name}` : undefined}
 >
   {showPhoto && photo && <a class="person-card-photo" href={profileUrl} tabindex="-1" aria-hidden="true">
-    <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" style={photo.focalPoint ? `object-position:${photo.focalPoint}` : undefined} />
+    <ResponsiveImage src={photo.src} sizes="240px" alt={photo.alt} loading="lazy" style={photo.focalPoint ? `object-position:${photo.focalPoint}` : undefined} />
   </a>}
   <div class="person-card-content">
     {workplace && <p class="person-card-workplace">{workplace}</p>}
-    <h2 class="person-card-name"><a href={profileUrl} class="no-underline hover:text-brand">{name}</a></h2>
+    <h3 class="person-card-name"><a href={profileUrl} class="no-underline hover:text-brand">{name}</a></h3>
     <p class="person-card-position">{position}</p>
     {variant !== 'compact' && <PersonMeta person={person} showWorkplace={showWorkplace && !workplace} showPhone={showPhone} phoneLimit={undefined} showStudyFields={showStudyFields} compact={variant !== 'vertical'} />}
   </div>

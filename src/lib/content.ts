@@ -1,16 +1,30 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { isPublished } from './publication.mjs';
+import { withBasePath } from './urls.mjs';
+export { routeFor } from './urls.mjs';
 
 type Name = 'articles' | 'programs' | 'galleries' | 'documents' | 'projects' | 'events' | 'people' | 'pages' | 'jobOffers' | 'categories';
 type Entry<T extends Name> = CollectionEntry<T>;
 
-export async function entries<T extends Name>(collection: T) {
+const buildCache = new Map<Name, Promise<unknown>>();
+
+export async function entries<T extends Name>(collection: T): Promise<CollectionEntry<T>[]> {
+  // A build sees one content snapshot. Dev deliberately re-reads after CMS edits.
+  if (!import.meta.env.PROD) return loadEntries(collection);
+  if (!buildCache.has(collection)) buildCache.set(collection, loadEntries(collection));
+  return buildCache.get(collection) as Promise<CollectionEntry<T>[]>;
+}
+
+async function loadEntries<T extends Name>(collection: T) {
   const collectionEntries = await getCollection(collection);
+  const [people, categories] = await Promise.all([
+    collection === 'articles' ? getCollection('people') : [],
+    ['articles', 'galleries', 'documents'].includes(collection) ? getCollection('categories') : []
+  ]);
+  const reference = (value: string) => value.replace(/\.md$/i, '');
+  const categoryLabel = (value: string) => categories.find(item => item.slug === reference(value))?.data.title ?? value;
   return collectionEntries
-    .filter((entry) => collection === 'projects'
-      ? (entry.data as { publicationStatus?: string }).publicationStatus !== 'draft'
-      : collection === 'jobOffers'
-        ? (entry.data as { visible?: boolean }).visible !== false
-        : (entry.data as { status?: string }).status === 'published')
+    .filter((entry) => isPublished(collection, entry.data))
     .sort((a, b) => {
       const value = (data: { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) => {
         if (data.publishedAt || data.date || data.start) return Number(data.publishedAt ?? data.date ?? data.start);
@@ -20,7 +34,14 @@ export async function entries<T extends Name>(collection: T) {
       return value(b.data as { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string }) - value(a.data as { publishedAt?: Date; date?: Date; start?: Date; startDate?: string; startTime?: string });
     })
     // Legacy Astro content collections retain `.md` in `id`; public relations and URLs use the stable slug.
-    .map((entry) => ({ ...entry, id: (entry as { slug?: string }).slug ?? entry.id })) as CollectionEntry<T>[];
+    .map((entry) => {
+      const data = { ...entry.data } as Record<string, any>;
+      if (collection === 'articles') data.author = people.find(item => item.slug === reference(data.author))?.data.name ?? data.author;
+      if (data.categories) data.categories = data.categories.map(categoryLabel);
+      if (data.category) data.category = categoryLabel(data.category);
+      if (collection === 'galleries' && !data.cover) data.cover = data.photos[0]?.src ?? '';
+      return { ...entry, data, id: (entry as { slug?: string }).slug ?? entry.id };
+    }) as CollectionEntry<T>[];
 }
 
 export async function byId<T extends Name>(collection: T, id: string) {
@@ -28,16 +49,7 @@ export async function byId<T extends Name>(collection: T, id: string) {
 }
 
 export function formatDate(date: Date, options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' }) {
-  return new Intl.DateTimeFormat('cs-CZ', options).format(date);
-}
-
-export function routeFor(collection: Name, id: string) {
-  const routes: Record<Exclude<Name, 'categories'>, string> = {
-    articles: '/aktuality/', programs: '/obory/', galleries: '/galerie/', documents: '/dokumenty/', projects: '/cs/projekty/', events: '/udalosti/', people: '/kontakt/', pages: '/skola/', jobOffers: '/cs/studium/nabidky-zamestnani/'
-  };
-  if (collection === 'categories') throw new Error('Kategorie nemají veřejnou detailní trasu.');
-  if (collection === 'documents') return routes.documents;
-  return `${routes[collection]}${id}/`;
+  return new Intl.DateTimeFormat('cs-CZ', { timeZone: 'Europe/Prague', ...options }).format(date);
 }
 
 export function relatedByProgram<T extends Name>(items: Entry<T>[], programs: string[]) {
@@ -66,6 +78,5 @@ export function relatedArticles(article: Entry<'articles'>, articles: Entry<'art
 
 /** Prefixes a repository-relative public URL when Astro runs below a GitHub Pages base path. */
 export function withBase(path: string) {
-  if (!path.startsWith('/') || path.startsWith('//')) return path;
-  return `${import.meta.env.BASE_URL}${path.slice(1)}`;
+  return withBasePath(path, import.meta.env.BASE_URL);
 }

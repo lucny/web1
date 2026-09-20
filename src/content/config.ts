@@ -1,20 +1,19 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { EVENT_TAG_VALUES } from '../data/eventTags';
+import { isCivilDate } from '../lib/publication.mjs';
 
 const status = z.enum(['published', 'draft']).default('published');
 // Pages CMS reference fields naturally store a collection entry name such as
 // `informacni-technologie.md`. The public site uses Astro slugs without the
 // Markdown extension, so accept both forms at the content boundary.
-const contentReference = z.preprocess(
-  (value) => typeof value === 'string' ? value.replace(/\.md$/i, '') : value,
-  z.string()
-);
+const contentReference = z.string().trim().min(1).transform(value => value.replace(/\.md$/i, ''));
+const optionalReference = z.preprocess(value => value == null || value === '' ? undefined : value, contentReference.optional());
 const slugList = z.array(contentReference).default([]);
-const optionalDate = z.preprocess((value) => value === '' ? undefined : value, z.coerce.date().optional());
-const optionalUrl = z.preprocess((value) => value === '' ? undefined : value, z.string().url().optional());
-const optionalString = z.preprocess((value) => value === '' ? undefined : value, z.string().optional());
-const projectDate = z.string().regex(/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/, 'Použijte rok, měsíc nebo datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD.').optional();
+const optionalDate = z.preprocess((value) => value == null || value === '' ? undefined : value, z.coerce.date().optional());
+const optionalUrl = z.preprocess((value) => value == null || value === '' ? undefined : value, z.string().url().optional());
+const optionalString = z.preprocess((value) => value == null || value === '' ? undefined : value, z.string().optional());
+const projectDate = z.preprocess(value => value == null || value === '' ? undefined : value, z.string().regex(/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/, 'Použijte rok, měsíc nebo datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD.').optional());
 const seo = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
@@ -30,6 +29,7 @@ const tableRow = z.union([
 const contentBlock = z.discriminatedUnion('type', [
   z.object({ type: z.literal('heading'), level: z.enum(['h2', 'h3']).default('h2'), text: z.string() }),
   z.object({ type: z.literal('text'), title: z.string().optional(), text: z.string() }),
+  z.object({ type: z.literal('richText'), title: z.string().optional(), text: z.string() }),
   z.object({ type: z.literal('image'), image: z.string(), alt: z.string(), caption: z.string().optional() }),
   z.object({ type: z.literal('youtube'), url: z.string().url(), title: z.string().optional() }),
   z.object({ type: z.literal('audio'), src: z.string().min(1), title: z.string().optional() }),
@@ -68,7 +68,7 @@ const contentBlock = z.discriminatedUnion('type', [
   z.object({ type: z.literal('faq'), items: z.array(z.object({ question: z.string(), answer: z.string() })) })
 ]);
 const contentBlocks = z.array(contentBlock).default([]);
-const civilDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Použijte datum ve formátu RRRR-MM-DD.');
+const civilDate = z.string().refine(isCivilDate, 'Zadejte skutečné datum ve formátu RRRR-MM-DD.');
 const localTime = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Použijte čas ve formátu HH:mm.');
 const eventTags = z.array(z.enum(EVENT_TAG_VALUES)).default([]);
 
@@ -79,12 +79,13 @@ const articles = defineCollection({
     description: z.string(),
     publishedAt: z.coerce.date(),
     updatedAt: optionalDate,
-    author: z.string(),
+    author: z.preprocess(value => value == null || value === '' ? 'Redakce školy' : value, z.string()),
     categories: slugList,
     tags: slugList,
     programs: slugList,
     cover: z.string().optional(),
-    gallery: contentReference.optional(),
+    coverAlt: optionalString,
+    gallery: optionalReference,
     attachments: z.array(z.object({ label: z.string(), url: z.string() })).default([]),
     related: slugList,
     contentBlocks,
@@ -103,7 +104,7 @@ const programs = defineCollection({
     title: z.string(),
     code: z.string(),
     form: z.string(),
-    capacity: z.number(),
+    capacity: z.number().int().nonnegative(),
     description: z.string(),
     heroImage: z.string().optional(),
     highlights: z.array(z.string()),
@@ -121,9 +122,9 @@ const galleries = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    cover: z.string(),
+    cover: z.preprocess(value => value == null ? '' : value, z.string().default('')),
     photos: z.array(z.object({ src: z.string(), alt: z.string(), caption: z.string().optional() })),
-    article: contentReference.optional(),
+    article: optionalReference,
     programs: slugList,
     categories: slugList,
     tags: slugList,
@@ -191,8 +192,8 @@ const events = defineCollection({
     programs: slugList,
     attachments: z.array(z.object({ file: z.string().min(1), label: z.string(), description: z.string().optional() })).default([]),
     url: optionalUrl,
-    article: contentReference.optional(),
-    gallery: contentReference.optional(),
+    article: optionalReference,
+    gallery: optionalReference,
     status,
     seo
   }).superRefine((event, context) => {

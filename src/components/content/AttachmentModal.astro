@@ -54,6 +54,7 @@
     else if (empty) empty.hidden = false;
     lastTrigger = trigger;
     dialog.showModal();
+    document.body.classList.add('attachment-dialog-open');
     dialog.querySelector<HTMLElement>('[data-attachment-dialog-close]')?.focus();
   };
 
@@ -67,10 +68,12 @@
   };
 
   document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     const target = event.target;
     const explicitTrigger = target instanceof Element ? target.closest<HTMLElement>('[data-attachment-open]') : null;
     const rawLink = target instanceof Element ? target.closest<HTMLAnchorElement>('a[href]') : null;
     const href = rawLink?.getAttribute('href');
+    if (rawLink?.hasAttribute('download') || rawLink?.closest('[data-attachment-dialog], [data-gallery]')) return;
     if (!dialog || (!explicitTrigger && (!rawLink || !href || !isAttachmentHref(href)))) return;
     const trigger = explicitTrigger ?? rawLink;
     if (!trigger) return;
@@ -79,5 +82,5 @@
   });
 
   dialog?.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-  dialog?.addEventListener('close', () => { resetPreview(); lastTrigger?.focus(); lastTrigger = null; });
+  dialog?.addEventListener('close', () => { document.body.classList.remove('attachment-dialog-open'); resetPreview(); lastTrigger?.focus(); lastTrigger = null; });
 </script>

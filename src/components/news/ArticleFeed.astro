@@ -64,10 +64,8 @@ const firstBatch = Math.min(initialCount, articles.length);
 
     const render = () => {
       const matching = cards.filter(matches);
-      cards.forEach((card) => {
-        const position = matching.indexOf(card);
-        card.hidden = position < 0 || position >= shownCount;
-      });
+      const visibleCards = new Set(matching.slice(0, shownCount));
+      cards.forEach(card => { card.hidden = !visibleCards.has(card); });
       const visible = Math.min(shownCount, matching.length);
       if (status) status.textContent = matching.length === 0
         ? 'Zobrazeno: 0 aktualit.'

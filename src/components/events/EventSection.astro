@@ -28,7 +28,7 @@ const today = eventDateKey(new Date());
 const filteredEvents = events
   .filter((event) => tags.length === 0 || tags.some((tag) => event.data.tags.includes(tag)))
   .filter((event) => programs.length === 0 || programs.some((program) => event.data.programs.includes(program)))
-  .filter((event) => !from || eventStartKey(event).slice(0, 10) >= (from === 'now' ? today : from))
+  .filter((event) => !from || (event.data.endDate ?? event.data.startDate) >= (from === 'now' ? today : from))
   .filter((event) => !to || event.data.startDate <= to)
   .sort((a, b) => eventStartKey(a).localeCompare(eventStartKey(b)))
   .slice(0, limit);

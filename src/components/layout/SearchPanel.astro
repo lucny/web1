@@ -34,11 +34,11 @@ import { withBase } from '../../lib/content';
   const searchInput = searchRoot?.querySelector('[data-search-input]');
   const searchClose = searchRoot?.querySelector('[data-search-close]');
 
-  const closeSearch = () => {
+  const closeSearch = (restoreFocus = true) => {
     if (!(searchTrigger instanceof HTMLButtonElement) || !(searchPanel instanceof HTMLElement)) return;
     searchTrigger.setAttribute('aria-expanded', 'false');
     searchPanel.hidden = true;
-    searchTrigger.focus();
+    if (restoreFocus) searchTrigger.focus();
   };
 
   searchTrigger?.addEventListener('click', () => {
@@ -48,10 +48,10 @@ import { withBase } from '../../lib/content';
     searchPanel.hidden = !willOpen;
     if (willOpen && searchInput instanceof HTMLInputElement) window.requestAnimationFrame(() => searchInput.focus());
   });
-  searchClose?.addEventListener('click', closeSearch);
+  searchClose?.addEventListener('click', () => closeSearch());
   document.addEventListener('click', (event) => {
     if (event.target instanceof Node && searchRoot?.contains(event.target)) return;
-    if (searchTrigger instanceof HTMLButtonElement && searchTrigger.getAttribute('aria-expanded') === 'true') closeSearch();
+    if (searchTrigger instanceof HTMLButtonElement && searchTrigger.getAttribute('aria-expanded') === 'true') closeSearch(false);
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && searchTrigger instanceof HTMLButtonElement && searchTrigger.getAttribute('aria-expanded') === 'true') closeSearch();

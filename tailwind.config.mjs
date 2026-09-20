@@ -23,8 +23,8 @@ export default {
         soft: '0 12px 28px -20px rgb(8 36 58 / 28%)'
       },
       fontFamily: {
-        display: ['"Open Sans"', 'Arial', 'sans-serif'],
-        body: ['"Open Sans"', 'Arial', 'sans-serif']
+        display: ['"Hind Guntur"', '"Open Sans"', 'Arial', 'sans-serif'],
+        body: ['"Hind Guntur"', '"Open Sans"', 'Arial', 'sans-serif']
       }
     }
   },

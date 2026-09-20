@@ -143,12 +143,10 @@ const classroomItems = classroomCopies[programId] ?? [
   { title: 'Odborné učebny', text: 'Výuka probíhá ve specializovaných učebnách vybavených pro praktickou práci v oboru.' },
   { title: 'Vybavení pro projekty', text: 'Studenti využívají techniku a materiály, které jim umožní proměnit návrhy v konkrétní výstupy.' }
 ];
-const galleryPhotos = Array.from({ length: 6 }, (_, index) => visuals[index % visuals.length]);
+const galleryPhotos = visuals.slice(0, 6);
 ---
 
 <section id="obor-content" class="container-page pb-14 sm:pb-20" data-pagefind-body>
-  <span class="sr-only" data-pagefind-filter="typ">Obor</span>
-  <span class="sr-only" data-pagefind-filter="obor">{programTitle}</span>
 
   <section aria-labelledby="program-why-title">
     <h2 id="program-why-title" class="text-4xl font-black tracking-tight sm:text-5xl" style={`color: ${accent}`}>Proč studovat {programTitle.toLocaleLowerCase('cs-CZ')}?</h2>

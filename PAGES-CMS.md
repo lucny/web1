@@ -1,91 +1,98 @@
-# Pages CMS – experimentální administrační varianta
+# Pages CMS — redakční příručka
 
-Tento projekt zachovává původní [Decap konfiguraci](public/admin/config.yml) a přidává samostatnou konkurenční vrstvu [Pages CMS](https://app.pagescms.org). Obě administrace zapisují přímo do stejných Markdown souborů v Gitu; nevzniká databáze ani druhá kopie obsahu.
+Pages CMS je hlavní editor tohoto webu. Ukládá Markdown a metadata do Gitu; veřejný web sestavuje Astro. Databáze ani vlastní server administrace nejsou potřeba.
 
-## První spuštění
+## Připojení
 
-1. Pushněte větev `main` do GitHub repozitáře.
-2. V repozitáři otevřete **Settings → Pages** a jako zdroj nastavte **GitHub Actions**.
-3. Otevřete [app.pagescms.org](https://app.pagescms.org), přihlaste se GitHub účtem a vyberte tento repozitář.
-4. Při prvním otevření nainstalujte oficiální Pages CMS GitHub App jen pro tento repozitář a potvrďte požadovaná oprávnění k obsahu a Actions.
-5. Pages CMS načte `.pages.yml`; Decap dál zůstává k dispozici na `/admin/` (pro lokální test `npm run cms`).
+1. V GitHub repozitáři nastavte Settings → Pages → GitHub Actions.
+2. Přihlaste se do [Pages CMS](https://app.pagescms.org), připojte oficiální GitHub App k tomuto repozitáři a otevřete větev main.
+3. Formuláře se načtou z .pages.yml. Uložení vytvoří commit a spustí kontroly a publikaci.
+4. Výsledek ověřte v GitHub Actions. Zelený krok Publikovat znamená úspěšné nasazení; při chybě zůstává předchozí verze webu.
 
-Hosted Pages CMS je pro tento experiment doporučený. Self-hosting není potřeba; vyžadoval by vlastní GitHub App, callback URL a tajné proměnné mimo repozitář.
+Připojení do vašeho účtu a skutečné uložení přes hostovaný editor musí ověřit správce. Lokální kontrola YAML ani test dat tuto interakci nenahrazují.
 
-## Obsah a vztahy
+## Článek
 
-| Oblast | Markdown umístění | Praktický model v Pages CMS |
-| --- | --- | --- |
-| Stránky | `src/content/pages/` | Metadata stránky, `contentBlocks`, SEO a vztahy |
-| Aktuality | `src/content/articles/` | Metadata článku, `contentBlocks`; autor → lidé; obory, kategorie, galerie a doporučené články → reference |
-| Obory | `src/content/programs/` | Metadata oboru, `contentBlocks`; pět stávajících oborů; kontakty → lidé |
-| Galerie | `src/content/galleries/` | Seřaditelný seznam snímků s povinným ALT textem |
-| Dokumenty | `src/content/documents/` | Soubor, platnost, kategorie, štítky, obory a stránky |
-| Události | `src/content/events/` | Kalendářová událost s datem/časem, štítky, přílohami, blokovým obsahem a vazbami na obory, článek nebo galerii |
-| Lidé | `src/content/people/` | Kontaktní údaje, foto, profil a obory |
-| Kategorie | `src/content/categories/` | Řízená klasifikace použitá v článcích, galeriích a dokumentech |
+1. Vyplňte titulek a krátký perex.
+2. Napište Hlavní text ve vizuálním Markdownovém editoru. Používejte nadpisy od H2, odstavce, seznamy, odkazy, citace a základní zvýraznění. U obrázků napište ALT.
+3. Obsahové bloky přidávejte jen tehdy, potřebujete-li například galerii, seznam dokumentů nebo kontakty. Jakmile seznam není prázdný, nahrazuje Hlavní text. Varování v reportu tuto situaci připomíná.
+4. Nový záznam začíná jako Koncept. Vyplňte datum a změňte stav na Publikováno, až je text připraven.
+5. Vyberte autora, kategorii, obory a případně štítky. Prázdný autor znamená Redakce školy.
+6. Doplňte cover, přílohy, galerii a doporučené články podle potřeby. SEO obvykle nechte prázdné; použije se název a perex.
 
-Kategorie jsou samostatné entity. Štítky zůstávají záměrně volným opakovatelným seznamem: pro redakci je rychlejší je přidat bez zakládání nové entity, zatímco řízené kategorie se nerozpadnou na podobné varianty. Slug je název souboru Markdownu; Pages CMS jej při vytvoření automaticky vytvoří z hlavního názvu včetně přípony `.md`, takže redaktor název souboru nevyplňuje ručně. Reference mezi kolekcemi mohou mít tento přirozený tvar s `.md`; web i validátor jej bezpečně převedou na interní slug.
+Datum článku je den podle Europe/Prague. Budoucí publikovaný článek se nezobrazí před tímto dnem. Zveřejní ho první úspěšný build po začátku dne; pravidelná akce běží každou hodinu, GitHub ale může běh zpozdit. Pro okamžité sestavení použijte ruční akci.
 
-## Obsahové bloky a editor
+Starší články mohou obsahovat HTML. Při jeho úpravě použijte přepínač Markdown/Source, aby vizuální editor nepřepsal složitější vložený obsah. Nový blok Formátovaný text používá Markdown bez surového HTML.
 
-Stránky, články, obory a události používají stejný blokový obsah v poli `contentBlocks`. Renderer je v `src/components/content/ContentRenderer.astro` a routy mu předávají například `<ContentRenderer blocks={entry.data.contentBlocks} />`. Podporuje nadpis, text, obrázek, YouTube, audio, tabulku, 2/3 sloupce, informační box, CTA, galerii, seznam dokumentů, seznam aktualit, kontaktní osoby a FAQ. Vztahové bloky volí existující položky místo ručního zadávání slugů. [Block field](https://pagescms.org/docs/configuration/fields/block/) ukládá čitelný YAML frontmatter s klíčem `type`.
+Koncepty nejsou veřejné. I koncept musí mít platný datový tvar a základní povinná pole, aby neblokoval společný build. Náhled konceptu na veřejné URL není implementován; veřejný náhled ukazuje až poslední úspěšně sestavený obsah.
 
-Starší Markdownové tělo zůstává dočasně jako fallback pro již existující články, obory a stránky. Jakmile položka dostane neprázdné `contentBlocks`, zobrazí se pouze blokový obsah; nová tvorba přes Pages CMS proto používá `contentBlocks` jako jediný zdroj obsahové kompozice. Události mají stejný renderer v modálním detailu i na samostatné URL. Kompatibilní wrapper `ContentBlocks.astro` zůstává kvůli starším importům, vlastní logika je pouze v `ContentRenderer.astro`.
+## Galerie
 
-## Kalendář událostí
+Pro malou galerii založte záznam, vyplňte název, popis a datum a přidávejte fotografie do seznamu. Každá položka obsahuje soubor, povinný ALT a volitelný viditelný popisek. Řádky lze sbalit a seřadit. Titulní fotografie je volitelná; bez výběru se použije první fotografie.
 
-Kolekce `events` používá civilní datum `startDate`/`endDate` ve formátu `RRRR-MM-DD` a samostatný lokální čas `startTime`/`endTime` ve formátu `HH:mm`. Datum se záměrně neukládá jako JavaScriptový timestamp, aby se při publikaci na GitHub Pages neposouvalo mezi časovými pásmy. Volitelné pole `tags` používá stabilní hodnoty z `src/data/eventTags.ts`; redakční popisky se mohou změnit bez rozbití URL filtrů.
+ALT popisuje důležité dění na konkrétním snímku, např. „Studentka brousí dřevěný model hračky“. Název souboru ani stejný název galerie na všech fotografiích nejsou kvalitním popisem. Viditelný popisek přidává okolnosti, jména nebo autorství.
 
-Stránka `/udalosti/` kombinuje kalendář, URL filtry `mesic`, `den`, `stitky` a `obor`, seznam událostí a nativní `<dialog>`. Události jsou v seznamu vyrenderované jako statický fallback a po načtení se synchronizují s filtry v prohlížeči, což je důležité pro hosting na GitHub Pages. Každá událost má navíc samostatnou URL `/udalosti/<slug>/`, která funguje i bez JavaScriptu. Blok `EventSection.astro` stejným způsobem poskytuje výběry na homepage, stránkách oborů, uchazečů a studentů.
-
-Přepínač **Editor / Source** zůstává zapnutý u staršího Markdownového fallbacku, takže dosavadní obsah lze kontrolovat a ručně upravovat ve VS Code či přes Git. Nový obsah se skládá z bloků v čistém YAML frontmatteru.
-
-## Média
-
-Nová média patří do těchto Git-tracked adresářů:
-
-| Zdroj | Uložení | Veřejná URL |
-| --- | --- | --- |
-| Obrázky obsahu | `public/uploads/images/` | `/uploads/images/` |
-| Galerie | `public/uploads/galleries/` | `/uploads/galleries/` |
-| Fotografie osob | `public/uploads/people/` | `/uploads/people/` |
-| Dokumenty | `public/uploads/documents/` | `/uploads/documents/` |
-| Přílohy článků | `public/uploads/attachments/` | `/uploads/attachments/` |
-
-Pages CMS bezpečně normalizuje názvy nahrávaných souborů. Staré soubory v `public/uploads/` zůstávají funkční, ale nové do kořene této složky neukládejte.
-
-Tlačítko **Optimalizovat obrázky** spouští `optimize-images.yml`. Vytváří vedle nových JPG/PNG nedestruktivní WebP a AVIF varianty, originál nemění a v případě změn vytvoří samostatný commit. Lokálně lze stejný krok spustit příkazem `npm run media:optimize`. Workflow zatím automaticky nepřepisuje odkazy v obsahu na variantu – je to vědomé bezpečné omezení pro experiment.
-
-## Publikování a automatizace
-
-```text
-Pages CMS / Decap / VS Code
-            ↓ commit do GitHubu
-      Validate content + Astro check
-            ↓ Astro build + Pagefind
-            ↓ kontrola interních odkazů
-            ↓ GitHub Pages
-```
-
-Push do `main` spouští `.github/workflows/deploy-pages.yml`. Pages CMS navíc ukazuje dvě užitečné repository actions:
-
-- **Znovu sestavit a publikovat web** – ruční build/deploy aktuální větve;
-- **Zkontrolovat obsah** – pouze kontrola, bez zápisu do repozitáře.
-- **Zkontrolovat interní odkazy** – dočasný produkční build a kontrola odkazů v HTML.
-
-Workflow předává Astro `base_path` z `actions/configure-pages`, proto fungují interní odkazy, média i Pagefind i na project URL typu `https://<owner>.github.io/<repo>/`. Pro vlastní doménu nastavte v deploymentu `ASTRO_SITE` na finální HTTPS doménu.
-
-## Kontroly před publikací
+Hromadné nahrání do knihovny médií samo nevytvoří řádky galerie s ALT a popisky. Pro větší sadu je připraven helper:
 
 ```powershell
-npm run check          # Astro typy, vztahy obsahu a .pages.yml
-npm run build          # Astro + Pagefind
-npm run check:links    # interní odkazy ve výsledném dist/
+npm run gallery:create -- 'C:\fotky\vystava' vystava-2026 'Výstava studentských prací'
 ```
 
-`check:content` kontroluje mimo jiné existenci reference, povinné ALT texty galerie a publikovatelný stav. `check:pages-cms` ověřuje YAML, zdroje médií, všechny cílové kolekce reference fields a existenci jejich adresářů.
+Helper seřadí soubory přirozeně podle čísel v názvech, vytvoří WebP kopie do samostatné složky (nejvýše 1600 px na delší straně), opraví orientaci podle EXIF a do výstupů nepřenese EXIF. Založí koncept s pomocnými ALT. Tyto ALT a pomocný popis musíte před publikací doplnit. Zdrojové soubory ani existující galerii nepřepisuje. Při neúspěšném zpracování zkontrolujte rozpracovanou novou složku před dalším importem.
 
-## Doporučený redakční test
+Změny z helperu uložte do Gitu a pokračujte v Pages CMS. Není potřeba vlastní správce médií ani AI generování popisů.
 
-Po instalaci GitHub App vyzkoušejte v Pages CMS postupně vytvořit článek (dva obory, kategorie, štítky, autor, galerie a doporučený článek), galerii s několika snímky a ALT texty, PDF dokument, budoucí událost a úpravu osoby. Po změně slugu/názvu souboru vždy spusťte **Zkontrolovat obsah**: soubory ukládají reference jako čitelné hodnoty a přejmenování položky může vyžadovat opravu odkazů.
+## Ostatní kolekce
+
+| Kolekce | Běžný postup a důležité pravidlo |
+| --- | --- |
+| Stránky | Název, perex, text nebo bloky, publikace, SEO. U používaných stránek neměňte soubor/URL bez kontroly navigace. |
+| Obory | Název, popis, kód, forma, kapacita, obsah a kontakty. Bloky se vykreslují celé. Bez bloků zůstává prezentační šablona s redakčním textem a metadaty. |
+| Dokumenty | Název, popis, soubor, vydání, případná platnost, stav a kategorie. Datum platnosti upozorňuje na revizi; samo dokument nemaže. |
+| Události | Název, perex, začátek, případný konec a místo. Časy HH:mm jsou místní časy v Opavě. Konec vícedenní akce je včetně posledního dne. Staré akce zůstávají v archivu. |
+| Lidé | Jméno, funkce, pracoviště, kontakty, profil a foto. Zveřejnění osoby a zařazení do hlavního přehledu jsou dvě různá pole. Publikovaná osoba má vlastní dohledatelnou stránku. |
+| Kategorie | Malý řízený slovník pro články, galerie a dokumenty. Název měňte spolu s existujícími vazbami. |
+| Štítky | Volná témata; nevzniká samostatná kolekce. Dodržujte stejné názvy. Události používají omezený výběr. |
+| Projekty | Obsah a shrnutí, stav realizace, samostatný stav publikace, termíny, financování a odkazy. |
+| Pracovní nabídky | Firma, pozice a text; stav nabídky je oddělený od viditelnosti. Termín platnosti a „Vyžaduje ověření“ patří do pravidelné redakční revize. |
+| Úvodní upozornění | Vyberte skutečný článek, popisek a vzhled. Datum konce skryje upozornění od následujícího dne při dalším buildu. |
+
+Reference zobrazují obsahové názvy, ne názvy souborů. Většina vazeb ukládá filename s .md; web přijímá i původní slugy. Kategorie a autoři zachovávají původní názvové hodnoty, aby se existující výběry v CMS neztratily. Validátor přijímá oba formáty. Přejmenování souboru, kategorie nebo autora může vyžadovat opravu vazeb; změna se nepropaguje automaticky do všech záznamů.
+
+U kontaktů zvolte existující skupinu: vedení, kolegium, administrativa, učitelé nebo školská rada. Hlavní telefon a další telefony nezadávejte duplicitně.
+
+## Média a rychlost
+
+| Obsah | Složka v repozitáři |
+| --- | --- |
+| Fotografie článků | public/uploads/articles |
+| Obecné obrázky | public/uploads/images |
+| Galerie | public/uploads/galleries |
+| Portréty | public/uploads/people |
+| Dokumenty | public/uploads/documents |
+| Přílohy | public/uploads/attachments |
+| Pracovní nabídky | public/uploads/job-offers |
+
+Nové soubory neukládejte do kořene uploads. Nevkládejte do obrázků text, který má být čitelný jako běžný obsah stránky.
+
+Každý build připraví WebP varianty šířky 480, 960 a 1600 px bez zvětšování malých obrázků. Karty, hero obrázky, bloky a galerie je vybírají pomocí srcset. Originál zůstává pro velký náhled a jako zdroj; generované varianty se necommitují. Hash obsahu umožní opakované využití již připravených variant. Externí obrázky ani videa tento lokální krok nezpracovává.
+
+Akce v knihovně médií připraví stejné náhledy a zprávu jako artefakt GitHub Actions. Neprovádí skrytý commit. Běžná publikace náhledy připravuje automaticky, takže správce nemusí ručně přepisovat cesty v obsahu. AVIF zatím negenerujeme: další formát a delší build zde nepřináší prokazatelnou hodnotu vůči již připravenému WebP.
+
+## Kontroly a řešení chyb
+
+- Kontrola obsahu, ALT, metadat a platnosti: povinné údaje, neplatná data, neexistující vztahy, duplicitní slugy, dlouhé titulky, nedoplněné ALT, prošlé položky a záznamy bez příchozí obsahové vazby.
+- Kontrola interních odkazů: sestaví web a ověří odkazy, soubory, obrázky i kotvy v HTML a cíle v sitemap, RSS a obsah.json.
+- Znovu sestavit a publikovat web: celý ověřený publikační postup včetně Pagefind.
+
+Otevřete souhrn běhu GitHub Actions nebo artefakt redakcni-kontroly. Chyby jsou nahoře a obsahují soubor i pole. Opravte záznam a uložte jej znovu. Upozornění na starší událost neznamená automaticky chybu: jde o podnět ke kontrole archivu. „Bez příchozí vazby“ neznamená nedostupnou stránku; záznam může být stále dostupný ve svém přehledu.
+
+Při špatné redakční změně vraťte konkrétní commit pomocí GitHubu a vyčkejte na nový build. Nepřepisujte celou historii. Domluvte si, kdo upravuje jeden konkrétní záznam, aby si dva správci nepřepsali změny.
+
+Starší školní archiv je externí závislost popsaná v README a src/data/external-content.json. Odkazy na něj nejsou součástí lokální kontroly existence souborů. Před převzetím jeho domény je nutné vyřešit migraci; deployment ji kontroluje.
+
+## Co ověřit při prvním připojení redakce
+
+V hostovaném Pages CMS vytvořte koncept článku s formátovaným textem a dvěma obory, malou galerii s různými ALT, dokument, budoucí událost a změnu kontaktu. Ověřte uložení referencí, zachování starších neznámých polí, upload do správné složky, české popisky akcí a čitelnost hlášení z úmyslně neplatného data. Projděte pořadí fotografií po opětovném otevření. Tento test zahrnuje oprávnění skutečného GitHub účtu a je nutné provést po jeho připojení.
+
+Dokumentované možnosti: [reference](https://pagescms.org/docs/configuration/fields/reference/), [bloky](https://pagescms.org/docs/configuration/fields/block/), [seznamy](https://pagescms.org/docs/configuration/content/list/), [rich-text](https://pagescms.org/docs/configuration/fields/rich-text/). Konfigurace nepoužívá nedokumentované fieldsets ani vlastní toolbar.
