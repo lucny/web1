@@ -34,7 +34,6 @@ export const heroTabs: HeroTab[] = [
     image: strojirenstviImage,
     eyebrow: 'Technický obor',
     title: 'Strojírenství',
-    motto: 'Od nápadu k přesnému řešení.',
     description: 'Konstrukce, výroba a digitální technologie v jednom praktickém studiu.',
     actions: [
       { label: 'Chci studovat Strojírenství', href: '/obory/strojirenstvi/', variant: 'primary' },
@@ -49,7 +48,6 @@ export const heroTabs: HeroTab[] = [
     image: informacniTechnologieImage,
     eyebrow: 'Technický obor',
     title: 'Informační technologie',
-    motto: 'Kód, který má smysl.',
     description: 'Programování, sítě a digitální tvorba pro svět, který se mění.',
     actions: [
       { label: 'Chci studovat Informační technologie', href: '/obory/informacni-technologie/', variant: 'primary' },
@@ -64,7 +62,6 @@ export const heroTabs: HeroTab[] = [
     image: designHracekImage,
     eyebrow: 'Umělecký obor',
     title: 'Design hraček',
-    motto: 'Tvořit znamená probouzet zvědavost.',
     description: 'Nápad, materiál a příběh se potkávají v originálním produktu.',
     actions: [
       { label: 'Chci studovat Design hraček', href: '/obory/design-hracek/', variant: 'primary' },
@@ -79,7 +76,6 @@ export const heroTabs: HeroTab[] = [
     image: prumyslovyDesignImage,
     eyebrow: 'Umělecký obor',
     title: 'Průmyslový design',
-    motto: 'Forma, která slouží člověku.',
     description: 'Navrhujte předměty, které fungují, komunikují a zůstávají.',
     actions: [
       { label: 'Chci studovat Průmyslový design', href: '/obory/prumyslovy-design/', variant: 'primary' },
@@ -94,7 +90,6 @@ export const heroTabs: HeroTab[] = [
     image: graphicImage,
     eyebrow: 'Umělecký obor',
     title: 'Grafický design',
-    motto: 'Myšlenka, která je vidět.',
     description: 'Typografie, obraz a digitální média pro přesvědčivou komunikaci.',
     actions: [
       { label: 'Chci studovat Grafický design', href: '/obory/graficky-design/', variant: 'primary' },
@@ -108,8 +103,7 @@ export const heroTabs: HeroTab[] = [
     textColor: '#FFFFFF',
     image: schoolImage,
     eyebrow: 'Střední škola průmyslová a umělecká · Opava',
-    title: 'Kde se z nápadů stává dovednost.',
-    motto: 'Technika, digitální svět a tvorba pod jednou střechou.',
+    title: 'Od nápadů k dovednostem, od dovedností k uplatnění.',
     actions: [
       { label: 'O škole', href: '/skola/o-skole/', variant: 'primary' },
       { label: 'Kontakty', href: '/kontakt/', variant: 'secondary' }
