@@ -1,32 +1,28 @@
 ---
-title: "Rozvrhy"
-description: "Stálé rozvrhy tříd, učitelů a učeben."
-eyebrow: "Dokumenty"
-highlight: "Stálé rozvrhy tříd, učitelů a učeben jsou k dispozici v PDF."
+title: Rozvrhy
+description: Stálé rozvrhy tříd, učitelů a učeben platné od 1. září 2026.
+eyebrow: Dokumenty
+highlight: Stálé rozvrhy tříd, učitelů a učeben jsou k dispozici v PDF.
 contentBlocks:
   - type: links
-    title: "Stálé rozvrhy"
+    title: Stálé rozvrhy platné od 1. září 2026
     items:
-      - label: "Stálý rozvrh tříd (platný od 1. 2. 2026)"
-        url: "https://www.sspu-opava.cz/media/filer_public/f6/8e/f68ec5b7-d05b-4ae8-95e4-8cd94c05eede/rozvrh_trid_-_platny_od_1_2_2026.pdf"
+      - label: Stálý rozvrh tříd
+        url: https://www.sspu-opava.cz/media/filer_public/c8/c1/c8c1c031-54fe-485b-a58e-1207931e8c17/rozvrh_trid_platny_od_1_9_2026.pdf
         kind: document
-      - label: "Stálý rozvrh učitelů (platný od 1. 2. 2026)"
-        url: "https://www.sspu-opava.cz/media/filer_public/f6/8f/f68f51c6-e377-4093-8c89-54f82afc8116/rozvrh_ucitelu__-_platny_od_1_2_2026.pdf"
+      - label: Stálý rozvrh učitelů
+        url: https://www.sspu-opava.cz/media/filer_public/d8/03/d803193a-5c29-4d49-abff-773e1a4d9618/rozvrh_ucitelu_platny_od_1_9_2026.pdf
         kind: document
-      - label: "Stálý rozvrh učeben (platný od 1. 2. 2026)"
-        url: "https://www.sspu-opava.cz/media/filer_public/02/76/027652c3-d4f6-449b-b5a3-d82c9d778c7b/rozvrh_mistnosti_-_platny_od_1_2_2026.pdf"
+      - label: Stálý rozvrh učeben
+        url: https://www.sspu-opava.cz/media/filer_public/cf/a8/cfa87291-1a2b-4c9e-b5d7-09965fcbef9e/rozvrh_mistnosti_platny_od_1_9_2026.pdf
         kind: document
-
   - type: text
-    text: |
-      Změny rozvrhu jsou pro přihlášené uživatele k dispozici v systému Škola Online.
-
+    text: Změny rozvrhu jsou pro přihlášené uživatele k dispozici v systému Škola Online.
   - type: links
-    title: "Škola Online"
+    title: Škola Online
     items:
-      - label: "Škola Online"
-        url: "https://portal.skolaonline.cz"
+      - label: Škola Online
+        url: https://portal.skolaonline.cz/
         kind: external
-
 status: published
 ---

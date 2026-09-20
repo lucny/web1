@@ -1,10 +1,19 @@
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import sharp from 'sharp';
 
 const SOURCE_ORIGIN = 'https://www.sspu-opava.cz';
 const SOURCE_LIST = `${SOURCE_ORIGIN}/cs/zpravy/`;
-const START_DATE = new Date('2025-01-01T00:00:00');
-const END_DATE = new Date('2026-08-24T23:59:59');
+const option = (name) => process.argv.find((argument) => argument.startsWith(`--${name}=`))?.slice(name.length + 3);
+const dateOption = (name, fallback, endOfDay = false) => {
+  const value = option(name) || fallback;
+  const date = new Date(`${value}T${endOfDay ? '23:59:59' : '00:00:00'}`);
+  if (Number.isNaN(date.getTime())) throw new Error(`Neplatné datum --${name}=${value}. Použijte formát RRRR-MM-DD.`);
+  return date;
+};
+const START_DATE = dateOption('start-date', '2025-01-01');
+const END_DATE = dateOption('end-date', '2026-08-24', true);
+const INCREMENTAL = process.argv.includes('--incremental');
 const root = process.cwd();
 const articlesDir = join(root, 'src', 'content', 'articles');
 const galleriesDir = join(root, 'src', 'content', 'galleries');
@@ -64,6 +73,14 @@ function setAttribute(tag, name, value) {
   const attrPattern = new RegExp(`(${name}\\s*=\\s*)["'][^"']*["']`, 'i');
   if (attrPattern.test(tag)) return tag.replace(attrPattern, `$1"${escaped}"`);
   return tag.replace(/\s*\/?>(\s*)$/, ` ${name}="${escaped}"$&`);
+}
+
+function normalizeEmbeddedMedia(value, title) {
+  const unwrapped = value.replace(/<p>\s*(<iframe\b[\s\S]*?<\/iframe>)\s*<\/p>/gi, '$1');
+  return unwrapped.replace(
+    /<iframe\b[^>]*\bsrc=["'](?:https?:)?\/\/(?:www\.)?youtube\.com\/embed\/([^"'?&/]+)[^>]*>\s*<\/iframe>/gi,
+    (_, videoId) => `<iframe title="${htmlEscape(`${title} – video`)}" loading="lazy" src="https://www.youtube-nocookie.com/embed/${videoId}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+  );
 }
 
 function absoluteUrl(value) {
@@ -174,6 +191,7 @@ function extractDetail(html, listing) {
   for (const galleryBlock of galleryBlocks) body = body.replace(galleryBlock, '');
   body = body.replace(/<!--[^>]*-->/g, '').trim();
   body = body.replace(/<a\b([^>]*href="\/cs\/zpravy\/[^"/]+\/"[^>]*)>([\s\S]*?)<\/a>/gi, '$2');
+  body = normalizeEmbeddedMedia(body, title);
   return { url: listing.url, title, author, publishedAt, categories, tags, hero, galleryPhotos, body, container };
 }
 
@@ -182,11 +200,10 @@ function textFromHtml(value) {
 }
 
 function makeDescription(body, title) {
-  const text = textFromHtml(body);
+  const firstTextBlock = body.match(/<(?:p|h[2-6])\b[^>]*>([\s\S]*?)<\/(?:p|h[2-6])>/i)?.[1] || body;
+  const text = textFromHtml(firstTextBlock);
   if (!text) return `Stručná zpráva ze života školy: ${title}.`;
-  const sentences = text.match(/[^.!?]+[.!?]+/g)?.map((sentence) => sentence.trim()).filter(Boolean) || [];
-  const candidate = sentences.slice(0, 2).join(' ');
-  return truncate(candidate || text, 245);
+  return truncate(text, 245);
 }
 
 function htmlFileName(url, fallback = 'soubor') {
@@ -227,9 +244,13 @@ async function downloadAsset(url, relativePath) {
   }
   const response = await fetch(url, { headers: { 'user-agent': 'SSPU Opava content migration' } });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-  const bytes = Buffer.from(await response.arrayBuffer());
+  const contentType = response.headers.get('content-type') || '';
+  const sourceBytes = Buffer.from(await response.arrayBuffer());
+  const bytes = /\.webp$/i.test(relativePath) && /^image\//i.test(contentType)
+    ? await sharp(sourceBytes, { limitInputPixels: 40000000 }).rotate().webp({ quality: 86, effort: 5 }).toBuffer()
+    : sourceBytes;
   await writeFile(target, bytes);
-  return { relativePath: `/${relativePath.replaceAll('\\', '/')}`, contentType: response.headers.get('content-type') || '', bytes: bytes.length };
+  return { relativePath: `/${relativePath.replaceAll('\\', '/')}`, contentType, bytes: bytes.length };
 }
 
 function applyReplacements(body, replacements) {
@@ -270,27 +291,27 @@ async function migrateArticle(detail, index, total) {
 
   let cover;
   if (detail.hero?.src) {
-    const ext = extensionFor(absoluteUrl(detail.hero.src));
-    cover = await download(detail.hero.src, `uploads/articles/${slug}/cover${ext}`);
+    cover = await download(detail.hero.src, `uploads/articles/${slug}/cover.webp`);
   }
 
   const galleryPhotos = [];
   for (const [photoIndex, photo] of detail.galleryPhotos.entries()) {
     const source = photo.src || photo.dataImage;
     if (!source) continue;
-    const ext = extensionFor(absoluteUrl(source));
     const stem = safeFileStem(fileStem(source)).slice(0, 48) || `foto-${photoIndex + 1}`;
-    const asset = await download(source, `uploads/galleries/${gallerySlug}/${String(photoIndex + 1).padStart(2, '0')}-${stem}${ext}`);
+    const asset = await download(source, `uploads/galleries/${gallerySlug}/${String(photoIndex + 1).padStart(2, '0')}-${stem}.webp`);
     if (!asset) continue;
-    const alt = altText({ provided: photo.alt, title: detail.title, source, context: `Galerie „${detail.title}“` });
-    galleryPhotos.push({ src: asset.relativePath, alt, caption: alt });
+    const photoNumber = photoIndex + 1;
+    const providedAlt = normalizeText(photo.alt);
+    const alt = providedAlt || `${detail.title} – fotografie ${photoNumber}`;
+    const caption = providedAlt || `Fotografie ${photoNumber} z ${detail.galleryPhotos.length}`;
+    galleryPhotos.push({ src: asset.relativePath, alt, caption });
   }
 
   const bodyImages = parseImages(detail.body);
   for (const [imageIndex, image] of bodyImages.entries()) {
     if (!image.src) continue;
-    const ext = extensionFor(absoluteUrl(image.src));
-    await download(image.src, `uploads/articles/${slug}/image-${String(imageIndex + 1).padStart(2, '0')}${ext}`);
+    await download(image.src, `uploads/articles/${slug}/image-${String(imageIndex + 1).padStart(2, '0')}.webp`);
   }
 
   const bodyAnchors = parseAnchors(detail.body);
@@ -408,15 +429,17 @@ async function main() {
   const filteredDetails = details.filter((detail) => detail.publishedAt >= START_DATE && detail.publishedAt <= END_DATE);
   if (filteredDetails.length !== listingRows.length) console.warn(`Pozor: detail článku potvrdil ${filteredDetails.length} zpráv, archiv uváděl ${listingRows.length}.`);
 
-  const existingArticles = (await readdir(articlesDir)).filter((file) => file.endsWith('.md'));
-  const sourceSlugs = new Set(filteredDetails.map((detail) => safeSlug(new URL(detail.url).pathname.split('/').filter(Boolean).pop())));
-  for (const file of existingArticles) {
-    if (TEST_ARTICLE_FILES.has(file) && !sourceSlugs.has(file.replace(/\.md$/, ''))) await rm(join(articlesDir, file));
-  }
-  const existingGalleries = (await readdir(galleriesDir)).filter((file) => file.endsWith('.md'));
-  for (const file of existingGalleries) if (TEST_GALLERY_FILES.has(file)) await rm(join(galleriesDir, file));
-  for (const file of MIGRATION_ARTIFACT_CATEGORY_FILES) {
-    try { await rm(join(categoriesDir, file)); } catch { /* already clean */ }
+  if (!INCREMENTAL) {
+    const existingArticles = (await readdir(articlesDir)).filter((file) => file.endsWith('.md'));
+    const sourceSlugs = new Set(filteredDetails.map((detail) => safeSlug(new URL(detail.url).pathname.split('/').filter(Boolean).pop())));
+    for (const file of existingArticles) {
+      if (TEST_ARTICLE_FILES.has(file) && !sourceSlugs.has(file.replace(/\.md$/, ''))) await rm(join(articlesDir, file));
+    }
+    const existingGalleries = (await readdir(galleriesDir)).filter((file) => file.endsWith('.md'));
+    for (const file of existingGalleries) if (TEST_GALLERY_FILES.has(file)) await rm(join(galleriesDir, file));
+    for (const file of MIGRATION_ARTIFACT_CATEGORY_FILES) {
+      try { await rm(join(categoriesDir, file)); } catch { /* already clean */ }
+    }
   }
 
   const migrated = [];

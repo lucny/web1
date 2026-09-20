@@ -15,7 +15,7 @@ interface Props {
   variant?: 'default' | 'history';
 }
 
-const { eyebrow = '', title, icon, iconAlt = '', iconVariant = 'light' } = Astro.props;
+const { eyebrow = '', title, icon, iconAlt = '', iconVariant = 'dark' } = Astro.props;
 const pageContext = `${eyebrow} ${title}`.toLocaleLowerCase('cs');
 const fallbackIcon = pageContext.includes('galer')
   ? '/images/banners/fotogalerie-light.svg'

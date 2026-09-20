@@ -22,7 +22,7 @@ const isActive = (href: string) => {
     <a
       href={withBase(group.href)}
       class:list={[
-        'rounded-lg px-2.5 py-2 text-[0.9rem] font-normal uppercase leading-tight tracking-[0.04em] no-underline transition hover:bg-white hover:text-brand',
+        'rounded-lg px-2.5 py-2 text-[1rem] font-normal uppercase leading-tight tracking-[0.04em] no-underline transition hover:bg-white hover:text-brand',
         isActive(group.href) && 'bg-white text-brand'
       ]}
       aria-current={currentPath === group.href ? 'page' : isActive(group.href) ? 'location' : undefined}
